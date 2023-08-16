@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="tr-TR">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Language" content="tr">
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Competible" content="IE=Edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0 maximum-scale=1.0, user-scalable=no">
+<link type="image/png" rel="icon"  sizes="93x93" href="/images/favicon.png" >
+<meta name="robots" content="index, follow, noarchive">
+<meta name="revisit-after" content="7 days">
+<meta name="rating" content="general">
+<meta name="copyright" content="copyright &copy; 2023 Vecihistore.com Her Hakkı Saklıdır.">
+<meta name="reply-to" content="info@vecihistore.com">
+<meta name="author" content="Eren Akkurt - info@vecihistore.com">
+<meta name="designer" content="Eren Akkurt - Vecihi Store">
+<meta name="generator" content="Microsoft Visual Studio">
+<title>Vecihi Store</title>
+<meta name="description"  content="Vecihi store vintage ürünler satan aynı zamanda eğlenceli çizgiromanlara sahip bir e-ticaret sitesidir">
+<meta name="keywords" content="Vecihi Store, Vintage , Baskı Tişört , Antika , Oyun , Çizgiroman ">
+<script type="text/javascript" language="javascript" src="/js/jquery-3.6.4.min.js"></script>
+<link type="text/css" rel="stylesheet" href="/css/style.css">
+<script type="text/javascript" language="javascript" src="/js/java.js"></script>
+</head>
+
+<body>
+    <div id="TumSayfaAlani">
+    
+    <%- include('partials/navbar')%>
+
+    <main>
+        <div id="TamSayfaCerceveAlani">
+            <div id="TamSayfaCerceveSinirlamaAlani">
+  
+                   <div id="TamSayfaCerceveAlaniIciYuzdeElliSolAlan">
+                      <div class="TamSayfaCerceveAlaniİciAltiCizgiliBaslikAlani">
+                          <div class="TamSayfaCerceveAlaniİciAltiCizgiliBaslikAlaniUstBaslikMetni">
+                              Hesap Oluştur</div>
+                          <div class="TamSayfaCerceveAlaniİciAltiCizgiliBaslikAlaniAltBaslikMetni">
+                              Yeni misiniz? Aşağıdan hesap oluşturabilirsiniz.</div>
+                          </div>
+                              <form action="/ueyeOl" method="POST">
+                                  <div class="TamSayfaCerceveAlaniIcinFormElemanlariBaslikMetni">İsim</div>
+                                  <div class="TamSayfaCerceveAlaniIcinFormElemanlariIciSatirAlani"><input name="isim" type="text" class="FormElemanlariTextInputlari" tabindex="1"></div>
+
+                                  <div class="TamSayfaCerceveAlaniIcinFormElemanlariBaslikMetni">Soyisim</div>
+                                  <div class="TamSayfaCerceveAlaniIcinFormElemanlariIciSatirAlani"><input name="soyisim" type="text" class="FormElemanlariTextInputlari" tabindex="2"></div>
+  
+  
+                                  <div class="TamSayfaCerceveAlaniIcinFormElemanlariBaslikMetni">E-Mail Adresi</div>
+                                  <div class="TamSayfaCerceveAlaniIcinFormElemanlariIciSatirAlani"><input name="email" type="text" class="FormElemanlariTextInputlari" tabindex="3"></div>
+  
+                                  <div class="TamSayfaCerceveAlaniIcinFormElemanlariBaslikMetni">Şifre</div>
+                                  <div class="TamSayfaCerceveAlaniIcinFormElemanlariIciSatirAlani"><input name="sifre1" type="number" class="FormElemanlariTextInputlari" tabindex="4"></div>
+  
+                                  <div class="TamSayfaCerceveAlaniIcinFormElemanlariBaslikMetni">Şifre Tekrar</div>
+                                  <div class="TamSayfaCerceveAlaniIcinFormElemanlariIciSatirAlani"><input name="sifre2" type="number" class="FormElemanlariTextInputlari" tabindex="5"></div>
+  
+                                  <div class="TamSayfaCerceveAlaniIcinFormElemanlariBaslikMetni">Cep Telefonu</div>
+                                  <div class="TamSayfaCerceveAlaniIcinFormElemanlariIciSatirAlani"><input name="ceptelefonu" type="number" class="FormElemanlariTextInputlari" tabindex="6"></div> 
+  
+                                   <div class="CheckBoxlarveSecenekleriIcinKapsamaAlanı">
+                                      <span class="CheckBoxlarveSeceneklerKapsamaAlanı">
+                                          <label class="CheckBoxKapsamaAlanı">
+                                              <input name="EmailIleHaberdarOl" type="checkbox" class="FormElemanlariCheckBoxInputlari">
+                                                  <span class="CheckBoxIcinBicimlendirmeAlani"></span>
+                                                  <span class="CheckBoxYaniMetinAlani">E-mail ile haberdar olmak istiyorum.</span>
+                                         </label>
+                                      </span>
+                                  </div>
+  
+                                  <div class="CheckBoxlarveSecenekleriIcinKapsamaAlanı">
+                                      <span class="CheckBoxlarveSeceneklerKapsamaAlanı">
+                                          <label class="CheckBoxKapsamaAlanı">
+                                              <input name="SmsIleHaberdarOl" type="checkbox" class="FormElemanlariCheckBoxInputlari">
+                                                  <span class="CheckBoxIcinBicimlendirmeAlani"></span>
+                                                  <span class="CheckBoxYaniMetinAlani">Sms ile haberdar olmak istiyorum.</span>
+                                         </label>
+                                      </span>
+                                  </div>
+  
+                                  <div class="CheckBoxlarveSecenekleriIcinKapsamaAlanı">
+                                      <span class="CheckBoxlarveSeceneklerKapsamaAlanı">
+                                          <label class="CheckBoxKapsamaAlanı">
+                                              <input name="SmsIleHaberdarOl" type="checkbox" class="FormElemanlariCheckBoxInputlari">
+                                                  <span class="CheckBoxIcinBicimlendirmeAlani"></span>
+                                                  <span class="CheckBoxYaniMetinAlani"><a href="/ueyelikSoezlesme" target="_blank"><b> Üyelik sözleşmesi</b>ni onaylıyorum.</a></span>
+                                         </label>
+                                      </span>
+                                  </div>
+  
+                                  <div class="ButonlarIcinKapsamaAlani"><input type="submit" value="Hesabımı Oluştur" class="FormElemanlariYesilButonlar" tabindex="6" ></div>
+                              </form>
+                   </div>
+  
+                   <div id="TamSayfaCerceveAlaniIciYuzdeElliSagAlan">
+                      <div class="TamSayfaCerceveAlaniİciAltiCizgiliBaslikAlani">
+                          <div class="TamSayfaCerceveAlaniİciAltiCizgiliBaslikAlaniUstBaslikMetni">
+                              Neden mi vecihistore.com ?
+                          </div>
+                          <div class="TamSayfaCerceveAlaniİciAltiCizgiliBaslikAlaniAltBaslikMetni">
+                              Çünkü birçok nedeni var.
+                          </div>
+                       </div>
+  
+                       <div class="TamSayfaCerceveAlaniIciBilgiParagraflariKapsamaAlani">
+                          <div class="TamSayfaCerceveAlaniIciBilgiParagraflariResimliBaslikMetniAlani">
+                              <img src="/images/rare.png" alt="" title=""><span class="TamSayfaCerceveAlaniIciBilgiParagraflariResimliBaslikMetni">Nadir bulunan vintage ürünler</span>
+                          </div>
+                          <div class="TamSayfaCerceveAlaniIciBilgiParagraflariAciklamaMetni">Hepsi birbirinden nadir koleksiyonluk ürünler ve daha fazlası...
+                              </div>
+                       </div>
+  
+  
+                       <div class="TamSayfaCerceveAlaniIciBilgiParagraflariKapsamaAlani">
+                          <div class="TamSayfaCerceveAlaniIciBilgiParagraflariResimliBaslikMetniAlani">
+                              <img src="/images/refresh.png" alt="" title=""><span class="TamSayfaCerceveAlaniIciBilgiParagraflariResimliBaslikMetni">Kaliteli ve güncel</span>
+                          </div>
+                          <div class="TamSayfaCerceveAlaniIciBilgiParagraflariAciklamaMetni">
+                              Sosyal medya etkileşimi , video içerikleri ve daha fazlası... 
+                            </div>
+                       </div>
+  
+  
+                       <div class="TamSayfaCerceveAlaniIciBilgiParagraflariKapsamaAlani">
+                          <div class="TamSayfaCerceveAlaniIciBilgiParagraflariResimliBaslikMetniAlani">
+                              <img src="images/rare.png" alt="" title=""><span class="TamSayfaCerceveAlaniIciBilgiParagraflariResimliBaslikMetni">Koleksiyon </span>
+                          </div>
+                          <div class="TamSayfaCerceveAlaniIciBilgiParagraflariAciklamaMetni">Koleksiyon tutkunları ve meraklıları için bir pazar yeri. Sizi nadir ürünlerin büyülü dünyasında unutulmaz bir yolculuğa davet ediyoruz.</div>
+                       </div>
+  
+  
+                       <div class="TamSayfaCerceveAlaniIciBilgiParagraflariKapsamaAlani">
+                          <div class="TamSayfaCerceveAlaniIciBilgiParagraflariResimliBaslikMetniAlani">
+                              <img src="/images/fun.png" alt="" title=""><span class="TamSayfaCerceveAlaniIciBilgiParagraflariResimliBaslikMetni">Eğlenceli içerik </span>
+                          </div>
+                          <div class="TamSayfaCerceveAlaniIciBilgiParagraflariAciklamaMetni">Eğlenceli içerikle dolu dünyamızda sizi bekleyen komik videolar, esprili yazılar ve sürprizlerle dolu bir atmosfer var.</div>
+                       </div>
+  
+                       <div class="TamSayfaCerceveAlaniIciBilgiParagraflariKapsamaAlani">
+                          <div class="TamSayfaCerceveAlaniIciBilgiParagraflariResimliBaslikMetniAlani">
+                              <img src="/images/prize.png" alt="" title=""><span class="TamSayfaCerceveAlaniIciBilgiParagraflariResimliBaslikMetni">Birbirinden nadir ödüller!!!</span>
+                          </div>
+                          <div class="TamSayfaCerceveAlaniIciBilgiParagraflariAciklamaMetni">"Ödüller Kazanmak İçin Etkinliklere Katılın: Eğlence ve Heyecan Dolu Deneyimler Sizi Bekliyor!" 
+                              Eğlence dolu etkinliklere katılarak hem keyifli zaman geçirin hem de ödüller kazanma fırsatını yakalayın! Sizi bekleyen birbirinden heyecanlı etkinliklerle dolu dünyamıza adım atın ve unutulmaz deneyimlerin tadını çıkarın.
+                             </div>
+                       </div>
+                       
+                   </div>
+            </div>
+          </div>
+    </main>
+
+    <%- include('partials/footer')%>
+    
+   </div>
+</body>
+</html>
