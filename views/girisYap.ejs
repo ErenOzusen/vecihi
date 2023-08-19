@@ -1,99 +1,77 @@
-<!doctype html>
-<html lang="tr-TR">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<meta http-equiv="Content-Language" content="tr">
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Competible" content="IE=Edge">
-<meta name="viewport" content="width=device-width, initial-scale=1.0 maximum-scale=1.0, user-scalable=no">
-<link type="image/png" rel="icon"  sizes="93x93" href="/images/favicon.png" >
-<meta name="robots" content="index, follow, noarchive">
-<meta name="revisit-after" content="7 days">
-<meta name="rating" content="general">
-<meta name="copyright" content="copyright &copy; 2023 Vecihistore.com Her Hakkı Saklıdır.">
-<meta name="reply-to" content="info@vecihistore.com">
-<meta name="author" content="Eren Akkurt - info@vecihistore.com">
-<meta name="designer" content="Eren Akkurt - Vecihi Store">
-<meta name="generator" content="Microsoft Visual Studio">
-<title>Vecihi Store</title>
-<meta name="description"  content="Vecihi store vintage ürünler satan aynı zamanda eğlenceli çizgiromanlara sahip bir e-ticaret sitesidir">
-<meta name="keywords" content="Vecihi Store, Vintage , Baskı Tişört , Antika , Oyun , Çizgiroman ">
-<script type="text/javascript" language="javascript" src="/js/jquery-3.6.4.min.js"></script>
-<link type="text/css" rel="stylesheet" href="/css/style.css">
-<script type="text/javascript" language="javascript" src="/js/java.js"></script>
-</head>
+<% layout('layouts/boilerplate') %>
 
-<body>
-    <div id="TumSayfaAlani">
-        <%- include('partials/navbar')%>
-    <main>
-       <div id="TamSayfaCerceveAlani">
-          <div id="TamSayfaCerceveSinirlamaAlani">
+    <div id="TamSayfaCerceveAlani">
+        <div id="TamSayfaCerceveSinirlamaAlani">
 
-                 <div id="TamSayfaCerceveAlaniIciYuzdeElliSolAlan">
-                    <div class="TamSayfaCerceveAlaniİciAltiCizgiliBaslikAlani">
-                        <div class="TamSayfaCerceveAlaniİciAltiCizgiliBaslikAlaniUstBaslikMetni">
-                            Kullanıcı Girişi</div>
-                        <div class="TamSayfaCerceveAlaniİciAltiCizgiliBaslikAlaniAltBaslikMetni">
-                            Aşağıdan hesabına giriş yapabilirsin.</div>
-                        </div>
-                            <form action="/girisYap" method="POST" novalidate class="validated-form">
+            <div id="TamSayfaCerceveAlaniIciYuzdeElliSolAlan">
+                <div class="TamSayfaCerceveAlaniİciAltiCizgiliBaslikAlani">
+                    <div class="TamSayfaCerceveAlaniİciAltiCizgiliBaslikAlaniUstBaslikMetni">
+                        Kullanıcı Girişi</div>
+                    <div class="TamSayfaCerceveAlaniİciAltiCizgiliBaslikAlaniAltBaslikMetni">
+                        Aşağıdan hesabına giriş yapabilirsin.</div>
+                </div>
+                <form action="/girisYap" method="POST" novalidate class="validated-form">
 
-                                <div class="TamSayfaCerceveAlaniIcinFormElemanlariBaslikMetni">E-mail</div>
-                                <!-- SONRADAN İSİMDE EKLE -->
-                                <div class="TamSayfaCerceveAlaniIcinFormElemanlariIciSatirAlani">
-                                    <input name="email" type="text" class="FormElemanlariTextInputlari" tabindex="1" required>
-                                    <div class="valid-feedback">looks good</div>
-                                    <div class="invalid-feedback">looks bad</div>
+                    <div class="TamSayfaCerceveAlaniIcinFormElemanlariBaslikMetni">E-mail</div>
+                    <!-- SONRADAN İSİMDE EKLE -->
+                    <div class="TamSayfaCerceveAlaniIcinFormElemanlariIciSatirAlani">
+                        <input name="email" type="email" class="FormElemanlariTextInputlari" tabindex="1" required>
+                        <div class="valid-feedback">Iyi!</div>
+                        <div class="invalid-feedback">Lütfen Emaili yazin</div>
 
-                                </div>
+                    </div>
 
-                                <div class="TamSayfaCerceveAlaniIcinFormElemanlariBaslikMetni">
-                                    Şifre<span class="TamSayfaCerceveAlaniIcinFormElemanlariSagaHizaliBaslikMetni" ><a  href="Sifremi-Unuttum.html" target="_top"> Şifremi Unuttum?</a></span>
-                                </div>
+                    <div class="TamSayfaCerceveAlaniIcinFormElemanlariBaslikMetni">
+                        Şifre<span class="TamSayfaCerceveAlaniIcinFormElemanlariSagaHizaliBaslikMetni"><a
+                                href="Sifremi-Unuttum.html" target="_top"> Şifremi Unuttum?</a></span>
+                    </div>
 
-                                <div class="TamSayfaCerceveAlaniIcinFormElemanlariIciSatirAlani"><input name="sifre1" type="password" class="FormElemanlariTextInputlari" tabindex="2"></div>
+                    <div class="TamSayfaCerceveAlaniIcinFormElemanlariIciSatirAlani">
+                        <input name="sifre1" type="password" class="FormElemanlariTextInputlari" tabindex="2" required>
+                        <div class="valid-feedback">Iyi!</div>
+                        <div class="invalid-feedback">Lütfen şifreyi yazin</div>
+                    </div>
 
 
 
-                                <div class="ButonlarIcinKapsamaAlani"><input type="submit" value="Giriş Yap" class="FormElemanlariYesilButonlar" tabindex="3" ></div>
-                            </form>
-                 </div>
+                    <div class="ButonlarIcinKapsamaAlani"><input type="submit" value="Giriş Yap"
+                            class="FormElemanlariYesilButonlar" tabindex="3"></div>
+                </form>
+            </div>
 
-                 <div id="TamSayfaCerceveAlaniIciYuzdeElliSagAlan">
-                    <div class="TamSayfaCerceveAlaniİciAltiCizgiliBaslikAlani">
-                        <div class="TamSayfaCerceveAlaniİciAltiCizgiliBaslikAlaniUstBaslikMetni">
-                          Hızlı Sevkiyat Ve Satış Sonrası Destek
-                        </div>
-                        <div class="TamSayfaCerceveAlaniİciAltiCizgiliBaslikAlaniAltBaslikMetni">
-                            
-                        </div>
-                     </div>
+            <div id="TamSayfaCerceveAlaniIciYuzdeElliSagAlan">
+                <div class="TamSayfaCerceveAlaniİciAltiCizgiliBaslikAlani">
+                    <div class="TamSayfaCerceveAlaniİciAltiCizgiliBaslikAlaniUstBaslikMetni">
+                        Hızlı Sevkiyat Ve Satış Sonrası Destek
+                    </div>
+                    <div class="TamSayfaCerceveAlaniİciAltiCizgiliBaslikAlaniAltBaslikMetni">
 
-                     <div class="TamSayfaCerceveAlaniIciBilgiParagraflariKapsamaAlani">
-                        <div class="TamSayfaCerceveAlaniIciBilgiParagraflariResimliBaslikMetniAlani">
-                            <img src="/images/fast.png" alt="" title=""><span class="TamSayfaCerceveAlaniIciBilgiParagraflariResimliBaslikMetni">Hızlı Sevkiyat</span>
-                        </div>
-                        <div class="TamSayfaCerceveAlaniIciBilgiParagraflariAciklamaMetni">Satın almış olduğunuz ürünü en kısa sürede adresinize gönderiyoruz.
-                            </div>
-                     </div>
+                    </div>
+                </div>
+
+                <div class="TamSayfaCerceveAlaniIciBilgiParagraflariKapsamaAlani">
+                    <div class="TamSayfaCerceveAlaniIciBilgiParagraflariResimliBaslikMetniAlani">
+                        <img src="/images/fast.png" alt="" title=""><span
+                            class="TamSayfaCerceveAlaniIciBilgiParagraflariResimliBaslikMetni">Hızlı
+                            Sevkiyat</span>
+                    </div>
+                    <div class="TamSayfaCerceveAlaniIciBilgiParagraflariAciklamaMetni">Satın almış olduğunuz
+                        ürünü en kısa sürede adresinize gönderiyoruz.
+                    </div>
+                </div>
 
 
-                     <div class="TamSayfaCerceveAlaniIciBilgiParagraflariKapsamaAlani">
-                        <div class="TamSayfaCerceveAlaniIciBilgiParagraflariResimliBaslikMetniAlani">
-                            <img src="/images/refresh.png" alt="" title=""><span class="TamSayfaCerceveAlaniIciBilgiParagraflariResimliBaslikMetni">Satış Sonrası Destek</span>
-                        </div>
-                        <div class="TamSayfaCerceveAlaniIciBilgiParagraflariAciklamaMetni">
-                            Satın almış olduğunuz ürün ile alakalı yaşanabilecek her türlü problem ve aklınıza takılabilecek tüm sorular ile ilgili bizimle iletişime geçebilirsiniz.
-                          </div>
-                     </div>
-                 </div>
-          </div>
+                <div class="TamSayfaCerceveAlaniIciBilgiParagraflariKapsamaAlani">
+                    <div class="TamSayfaCerceveAlaniIciBilgiParagraflariResimliBaslikMetniAlani">
+                        <img src="/images/refresh.png" alt="" title=""><span
+                            class="TamSayfaCerceveAlaniIciBilgiParagraflariResimliBaslikMetni">Satış Sonrası
+                            Destek</span>
+                    </div>
+                    <div class="TamSayfaCerceveAlaniIciBilgiParagraflariAciklamaMetni">
+                        Satın almış olduğunuz ürün ile alakalı yaşanabilecek her türlü problem ve aklınıza
+                        takılabilecek tüm sorular ile ilgili bizimle iletişime geçebilirsiniz.
+                    </div>
+                </div>
+            </div>
         </div>
-    </main>
-    
-    <%- include('partials/footer')%>
-    
-   </div>
-</body>
-</html>
+    </div>
