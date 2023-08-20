@@ -4,53 +4,55 @@ const Ueye = require('../models/ueye');
 const catchAsync = require('../utils/catchAsync');
 const passport = require('passport');
 
+
+
 router.get('/girisYap', (req, res) => {
-    res.render("girisYap");
+    res.render("ueye/girisYap");
 })
 
-router.post('/girisYap', catchAsync(async (req, res) => {
-    try {
-        const { email, password } = req.body;
-        const ueyeDB = await Ueye.findOne({ email: email });
-        if (ueyeDB !== null) {
-            req.flash('success', 'Hoşgeldiniz!');
-            res.redirect(`/${ueyeDB._id}`);
-        } else {
-            req.flash('error', 'Böyle bir üye yok');
-            res.redirect('/ueyeOl');
-        }
-    } catch (e) {
-        console.log("Hata: " + e.mssage);
-        req.flash('error', e.message);
-    }
+router.post('/girisYap', passport.authenticate('local', { failureFlash: true, failureRedirect: '/girisYap', keepSessionInfo: true }), catchAsync(async (req, res) => {
+    const { email, password } = req.body;
+    const ueyeDB = await Ueye.findOne({ email: email });
+    const redirectUrl = req.session.returnTo || '/';
+    req.flash('success', 'Hoşgeldiniz ' + ueyeDB.isim + '!');
+    delete req.session.returnTo;
+    res.redirect(redirectUrl);
 }));
+
+
 
 router.get('/ueyeOl', (req, res) => {
 
-    res.render("ueyeOl");
+    res.render("ueye/ueyeOl");
 })
 
-router.post('/ueyeOl', catchAsync(async (req, res) => {
+router.post('/ueyeOl', catchAsync(async (req, res, next) => {
     try {
         const { isim, soyisim, email, password, ceptelefonu } = req.body;
         //emailkiyasla(email);
         const ueye = new Ueye({ isim, soyisim, email, ceptelefonu });
         const kayitUeye = await Ueye.register(ueye, password);
         console.log("kayitUeye:" + kayitUeye);
-        /*         req.login(kayitUeye, err => {
-                    if (err) return next(err);
-                    req.flash('success', 'You have been Successfully registered');
-                    res.redirect('/');
-                }) */
-        //ueye.save();
-        req.flash('success', 'Tebrikler, yeni üye oldunuz!');
-        res.redirect('/');
+        req.login(kayitUeye, err => {
+            if (err) return next(err);
+            req.flash('success', 'Tebrikler ' + kayitUeye.isim + ', ' + 'yeni üye oldunuz!');
+            res.redirect('/');
+        })
     } catch (e) {
         console.log("Hata: " + e.message);
         req.flash('error', 'Bu email üzerine bir kayit var');
         res.redirect('/ueyeOl');
     }
 }));
+
+router.get('/cikis', (req, res, next) => {
+    const currentUserName = req.user.isim;
+    req.logOut(function (err) {
+        if (err) { return next(err); }
+        req.flash('success', 'Görüşmek üzere ' + currentUserName + '!');
+        res.redirect('/');
+    });
+})
 
 
 module.exports = router;

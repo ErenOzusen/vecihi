@@ -23,11 +23,11 @@
                          -->
                         <!-- site dinamik hale döndürüldüğünde bu alan kullanıcı girişi sonrasında açılmalıdır <<<<< -->
                         <!-- site dinamik hale döndürüldüğünde bu alan kullanıcı girişi YOKSA açılmalıdır >>>>>> -->
-                        <% if(typeof ueye !=='undefined' && ueye !==null) { %>
+                        <% if(currentUser) { %>
                             <li class="HeaderMenuUstuSecenekleri">
-                                <a href="/<%=ueye._id%>" target="_top">
+                                <a href="/" target="_top">
                                     <img src="/images/Hesabım.png" alt="" title="" style="vertical-align: middle;">
-                                    <%=ueye.isim%>
+                                    <%=currentUser.isim%>
                                 </a>
                             </li>
 
@@ -40,7 +40,7 @@
                             </li>
 
                             <li class="HeaderMenuUstuSecenekleri">
-                                <a href="Cikis.html" target=" _top">
+                                <a href="/cikis" target=" _top">
                                     <img src="/images/Cikis.png" alt="" title=""
                                         style="vertical-align: middle;">Çıkış</a>
                             </li>

@@ -10,6 +10,7 @@ const ExpressError = require('./utils/ExpressError');
 const session = require('express-session');
 const flash = require('connect-flash');
 const ueyeRoutes = require('./routes/ueye');
+const erkekRoutes = require('./routes/erkek')
 const passport = require('passport');
 const LocalStrategy = require('passport-local')
 
@@ -44,33 +45,15 @@ app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());
 //passport.use(new LocalStrategy(Ueye.authenticate()));
-passport.use(
-  new LocalStrategy({
-
-    usernameField: 'email',
-
-    passwordField: 'password',
-  },
-    function (email, password, done) {
-      Ueye.findOne({ email: email }, {}, function (err, user) {
-        if (err) { return done(err); }
-        if (!user) { return done(null, false, { message: 'Unknown user ' + e }); }
-        user.comparePassword(password, function (err, isMatch) {
-          if (err) return done(err);
-          if (isMatch) {
-            return done(null, user);
-          } else {
-            return done(null, false, { message: 'Invalid password' });
-          }
-        });
-      });
-    }
-  ));
-
+passport.use(new LocalStrategy({
+  usernameField: 'email', // Verweise auf das E-Mail-Feld
+  passwordField: 'password' // Verweise auf das Passwort-Feld
+}, Ueye.authenticate()));
 
 passport.serializeUser(Ueye.serializeUser());
 passport.deserializeUser(Ueye.deserializeUser());
 app.use((req, res, next) => {
+  res.locals.currentUser = req.user;
   res.locals.success = req.flash('success');
   res.locals.error = req.flash('error');
   next();
@@ -78,16 +61,17 @@ app.use((req, res, next) => {
 
 
 app.use('/', ueyeRoutes);
+app.use('/erkekGiyim', erkekRoutes);
 
 app.get('/', (req, res) => {
 
   res.render("index");
 })
 
-app.get('/:id', catchAsync(async (req, res) => {
+/* app.get('/:id', catchAsync(async (req, res) => {
   const ueye = await Ueye.findById(req.params.id);
   res.render('index', { ueye });
-}))
+})) */
 
 app.get('/hakkimizda', (req, res) => {
 
@@ -194,11 +178,6 @@ app.get('/adreslerim', (req, res) => {
 app.get('/favorilerim', (req, res) => {
 
   res.render("favorilerim");
-})
-
-app.get('/erkekGiyim', (req, res) => {
-
-  res.render("erkekGiyim");
 })
 
 app.get('/kadinGiyim', (req, res) => {
