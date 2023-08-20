@@ -7,13 +7,24 @@ app.engine('ejs', ejsMate);
 const Ueye = require('./models/ueye');
 const catchAsync = require('./utils/catchAsync');
 const ExpressError = require('./utils/ExpressError');
-
+const session = require('express-session');
+const ueyeRoutes = require('./routes/ueye');
 
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
 mongoose.connect('mongodb://127.0.0.1:27017/vecihi');
 
+const sessionConfig = {
+  secret: 'thiswillchange',
+  resave: false,
+  saveUninitialized: true,
+  cookie: {
+    httpOnly: true,
+    expires: Date.now() + 1000 * 60 * 60 * 24 * 7,
+    maxAge: 1000 * 60 * 60 * 24 * 7
+  }
+};
 
 const db = mongoose.connection;
 db.on("error", console.error.bind(console, "connection error:"));
@@ -23,14 +34,19 @@ db.once("open", () => {
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static('public'));
+app.use(session(sessionConfig));
+app.use('/', ueyeRoutes);
+
 
 app.get('/', (req, res) => {
 
   res.render("index");
-
-  console.log("Tebrikler");
-
 })
+
+app.get('/:id', catchAsync(async (req, res) => {
+  const ueye = await Ueye.findById(req.params.id);
+  res.render('index', { ueye });
+}))
 
 app.get('/hakkimizda', (req, res) => {
 
@@ -38,56 +54,6 @@ app.get('/hakkimizda', (req, res) => {
 
 })
 
-app.get('/girisYap', (req, res) => {
-
-  res.render("girisYap");
-})
-
-app.post('/girisYap', catchAsync(async (req, res) => {
-  try {
-    const { email, sifre1 } = req.body;
-    const emailDB = await Ueye.findOne({ email: email });
-    if (emailDB !== null) {
-      res.redirect('/');
-
-    } else {
-      console.log("böyle bir uye yok");
-    }
-
-
-
-  } catch (e) {
-    console.log("Hata: " + e.mssage);
-
-
-  }
-
-
-}));
-
-
-app.get('/ueyeOl', (req, res) => {
-
-  res.render("ueyeOl");
-})
-
-app.post('/ueyeOl', catchAsync(async (req, res) => {
-  try {
-    const { isim, soyisim, email, sifre1, ceptelefonu } = req.body;
-    //emailkiyasla(email);
-    const ueye = new Ueye({ isim, soyisim, email, sifre1, ceptelefonu });
-    ueye.save();
-    res.redirect('/');
-
-
-  } catch (e) {
-    console.log("Hata: " + e.mssage);
-
-
-  }
-
-
-}));
 
 app.get('/bankaHesap', (req, res) => {
 

@@ -23,17 +23,38 @@
                          -->
                         <!-- site dinamik hale döndürüldüğünde bu alan kullanıcı girişi sonrasında açılmalıdır <<<<< -->
                         <!-- site dinamik hale döndürüldüğünde bu alan kullanıcı girişi YOKSA açılmalıdır >>>>>> -->
-                        <li class="HeaderMenuUstuSecenekleri"><a href="girisYap" target="_top"><img
-                                    src="/images/Hesabım.png" alt="" title=""></a></li>
-                        <li class="HeaderMenuUstuSecenekleri"><a href="girisYap" target="_top">Giriş Yap</li>
-                        <li class="HeaderMenuUstuSecenekleri"><a href="/ueyeOl" target="_top"><img
-                                    src="/images/UyeOl.png" alt="" title=""></a></li>
-                        <li class="HeaderMenuUstuSecenekleri"><a href="/ueyeOl" target="_top">Üye Ol</li>
-                        <li class="HeaderMenuUstuSecenekleri"><a href="Alisveris-Sepeti.html" target="_top"><img
-                                    src="/images/AlisverisSepeti.png" alt="" title=""></a></li>
-                        <li class="HeaderMenuUstuSecenekleri"><a href="Alisveris-Sepeti.html" target="_top">Alışveriş
-                                Sepeti</a></li>
-                        <!-- site dinamik hale döndürüldüğünde bu alan kullanıcı girişi YOKSA açılmalıdıR <<<<< -->
+                        <% if(typeof ueye !=='undefined' && ueye !==null) { %>
+                            <li class="HeaderMenuUstuSecenekleri">
+                                <a href="/girisYap" target="_top">
+                                    <img src="/images/Hesabım.png" alt="" title="" style="vertical-align: middle;">
+                                    <%=ueye.isim%>
+                                </a>
+                            </li>
+                            <% } else { %>
+
+                                <li class="HeaderMenuUstuSecenekleri">
+                                    <a href="/girisYap" target="_top">
+                                        <img src="/images/Hesabım.png" alt="" title=""
+                                            style="vertical-align: middle;">Giriş
+                                        Yap
+                                    </a>
+                                </li>
+
+                                <li class="HeaderMenuUstuSecenekleri">
+                                    <a href="/ueyeOl" target=" _top">
+                                        <img src="/images/UyeOl.png" alt="" title="" style="vertical-align: middle;">Üye
+                                        Ol
+                                    </a>
+                                </li>
+                                <% } %>
+
+                                    <li class="HeaderMenuUstuSecenekleri">
+                                        <a href="Alisveris-Sepeti.html" target=" _top">
+                                            <img src="/images/AlisverisSepeti.png" alt="" title=""
+                                                style="vertical-align: middle;">Alışveriş
+                                            Sepeti</a>
+                                    </li>
+                                    <!-- site dinamik hale döndürüldüğünde bu alan kullanıcı girişi YOKSA açılmalıdıR <<<<< -->
                     </ul>
                 </div>
             </div>

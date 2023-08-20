@@ -398,7 +398,7 @@ body {
 }
 
 #HeaderMenuUstuSeceneklerAlani {
-  display: inline-block;
+  display: flex;
   float: right;
   list-style: none;
   height: 30px;
@@ -412,7 +412,8 @@ body {
 }
 
 .HeaderMenuUstuSecenekleri {
-  display: inline-block;
+  display: flex;
+  align-items: center;
   float: left;
   height: auto;
   margin: 0 auto;
@@ -439,6 +440,9 @@ body {
   font-variant: normal;
   font-weight: normal;
   text-decoration: none;
+  display: inline-block;
+  vertical-align: middle;
+  line-height: 16px;
 }
 
 .HeaderMenuUstuSecenekleri a:link .HeaderMenuUstuSecenekleri a:active,
@@ -461,7 +465,7 @@ body {
 }
 
 .HeaderMenuUstuSecenekleri img {
-  display: block;
+  display: inline;
   width: 16px;
   min-width: 16px;
   max-width: 16px;
