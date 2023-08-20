@@ -2,32 +2,32 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const UeyeSchema = new Schema({
-    isim:{
+    isim: {
         type: String,
         required: true,
         unique: false
     },
-    soyisim:{
+    soyisim: {
         type: String,
         required: true,
         unique: false
     },
-    email:{
+    email: {
         type: String,
         required: true,
         unique: true
     },
-     sifre1:{
+    sifre1: {
         type: Number,
         required: true,
         unique: false
     },
-    ceptelefonu:{
+    ceptelefonu: {
         type: Number,
-        required: true,
+        required: false,
         unique: false
-    } 
-    
+    }
+
 });
 
 module.exports = mongoose.model('Ueye', UeyeSchema);

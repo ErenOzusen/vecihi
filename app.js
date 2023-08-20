@@ -8,6 +8,7 @@ const Ueye = require('./models/ueye');
 const catchAsync = require('./utils/catchAsync');
 const ExpressError = require('./utils/ExpressError');
 const session = require('express-session');
+const flash = require('connect-flash');
 const ueyeRoutes = require('./routes/ueye');
 
 app.set('view engine', 'ejs');
@@ -32,11 +33,21 @@ db.once("open", () => {
   console.log("Database connected");
 });
 
+
+
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static('public'));
 app.use(session(sessionConfig));
-app.use('/', ueyeRoutes);
+app.use(flash());
 
+app.use((req, res, next) => {
+  res.locals.success = req.flash('success');
+  res.locals.error = req.flash('error');
+  next();
+});
+
+
+app.use('/', ueyeRoutes);
 
 app.get('/', (req, res) => {
 

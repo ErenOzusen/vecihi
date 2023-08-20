@@ -12,12 +12,15 @@ router.post('/girisYap', catchAsync(async (req, res) => {
         const { email, sifre1 } = req.body;
         const ueyeDB = await Ueye.findOne({ email: email });
         if (ueyeDB !== null) {
+            req.flash('success', 'Hoşgeldiniz!');
             res.redirect(`/${ueyeDB._id}`);
         } else {
-            console.log("böyle bir uye yok");
+            req.flash('error', 'Böyle bir üye yok');
+            res.redirect('/ueyeOl');
         }
     } catch (e) {
         console.log("Hata: " + e.mssage);
+        req.flash('error', e.message);
     }
 }));
 
@@ -32,9 +35,11 @@ router.post('/ueyeOl', catchAsync(async (req, res) => {
         //emailkiyasla(email);
         const ueye = new Ueye({ isim, soyisim, email, sifre1, ceptelefonu });
         ueye.save();
+        req.flash('success', 'Tebrikler, yeni üye oldunuz!');
         res.redirect('/');
     } catch (e) {
         console.log("Hata: " + e.mssage);
+        req.flash('error', e.message);
     }
 }));
 
