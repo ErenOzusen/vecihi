@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+const passportLocalMongoose = require('passport-local-mongoose');
 
 const UeyeSchema = new Schema({
     isim: {
@@ -17,11 +18,11 @@ const UeyeSchema = new Schema({
         required: true,
         unique: true
     },
-    sifre1: {
-        type: Number,
-        required: true,
-        unique: false
-    },
+    /*     sifre1: {
+            type: Number,
+            required: true,
+            unique: false
+        }, */
     ceptelefonu: {
         type: Number,
         required: false,
@@ -30,4 +31,11 @@ const UeyeSchema = new Schema({
 
 });
 
+//UeyeSchema.plugin(passportLocalMongoose);
+UeyeSchema.plugin(passportLocalMongoose,
+    {
+        usernameField: 'email',
+        passwordField: 'password',
+
+    });
 module.exports = mongoose.model('Ueye', UeyeSchema);

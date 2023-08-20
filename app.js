@@ -10,6 +10,8 @@ const ExpressError = require('./utils/ExpressError');
 const session = require('express-session');
 const flash = require('connect-flash');
 const ueyeRoutes = require('./routes/ueye');
+const passport = require('passport');
+const LocalStrategy = require('passport-local')
 
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
@@ -39,7 +41,35 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static('public'));
 app.use(session(sessionConfig));
 app.use(flash());
+app.use(passport.initialize());
+app.use(passport.session());
+//passport.use(new LocalStrategy(Ueye.authenticate()));
+passport.use(
+  new LocalStrategy({
 
+    usernameField: 'email',
+
+    passwordField: 'password',
+  },
+    function (email, password, done) {
+      Ueye.findOne({ email: email }, {}, function (err, user) {
+        if (err) { return done(err); }
+        if (!user) { return done(null, false, { message: 'Unknown user ' + e }); }
+        user.comparePassword(password, function (err, isMatch) {
+          if (err) return done(err);
+          if (isMatch) {
+            return done(null, user);
+          } else {
+            return done(null, false, { message: 'Invalid password' });
+          }
+        });
+      });
+    }
+  ));
+
+
+passport.serializeUser(Ueye.serializeUser());
+passport.deserializeUser(Ueye.deserializeUser());
 app.use((req, res, next) => {
   res.locals.success = req.flash('success');
   res.locals.error = req.flash('error');
