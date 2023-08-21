@@ -1,145 +1,128 @@
-<!doctype html>
-<html lang="tr-TR">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<meta http-equiv="Content-Language" content="tr">
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Competible" content="IE=Edge">
-<meta name="viewport" content="width=device-width, initial-scale=1.0 maximum-scale=1.0, user-scalable=no">
-<link type="image/png" rel="icon"  sizes="93x93" href="/images/favicon.png" >
-<meta name="robots" content="index, follow, noarchive">
-<meta name="revisit-after" content="7 days">
-<meta name="rating" content="general">
-<meta name="copyright" content="copyright &copy; 2023 Vecihistore.com Her Hakkı Saklıdır.">
-<meta name="reply-to" content="info@vecihistore.com">
-<meta name="author" content="Eren Akkurt - info@vecihistore.com">
-<meta name="designer" content="Eren Akkurt - Vecihi Store">
-<meta name="generator" content="Microsoft Visual Studio">
-<title>Vecihi Store</title>
-<meta name="description"  content="Vecihi store vintage ürünler satan aynı zamanda eğlenceli çizgiromanlara sahip bir e-ticaret sitesidir">
-<meta name="keywords" content="Vecihi Store, Vintage , Baskı Tişört , Antika , Oyun , Çizgiroman ">
-<script type="text/javascript" language="javascript" src="/js/jquery-3.6.4.min.js"></script>
-<link type="text/css" rel="stylesheet" href="/css/style.css">
-<script type="text/javascript" language="javascript" src="/js/java.js"></script>
-</head>
+<% layout('layouts/boilerplate') %>
 
-<body>
-    <div id="TumSayfaAlani">
+    <div id="TamSayfaCerceveAlani">
+        <div id="TamSayfaCerceveSinirlamaAlani">
 
-        <%- include('partials/navbar')%>
-        
-    <main>
-       <div id="TamSayfaCerceveAlani">
-          <div id="TamSayfaCerceveSinirlamaAlani">
+            <div id="TamSayfaCerceveAlaniIciYuzdeElliSolAlan">
+                <div class="TamSayfaCerceveAlaniİciAltiCizgiliBaslikAlani">
+                    <div class="TamSayfaCerceveAlaniİciAltiCizgiliBaslikAlaniUstBaslikMetni">
+                        İş Ortaklığı Başvuru Formu</div>
+                    <div class="TamSayfaCerceveAlaniİciAltiCizgiliBaslikAlaniAltBaslikMetni">
+                        İş ortağımız olmak için aşağıdaki formu doldurabilirsiniz.</div>
+                </div>
+                <form action="/ortakForm" method="post">
+                    <div class="TamSayfaCerceveAlaniIcinFormElemanlariBaslikMetni">İsim Soyisim</div>
+                    <div class="TamSayfaCerceveAlaniIcinFormElemanlariIciSatirAlani"><input name="IsimSoyİsim"
+                            type="text" class="FormElemanlariTextInputlari" tabindex="1"></div>
 
-                 <div id="TamSayfaCerceveAlaniIciYuzdeElliSolAlan">
-                    <div class="TamSayfaCerceveAlaniİciAltiCizgiliBaslikAlani">
-                        <div class="TamSayfaCerceveAlaniİciAltiCizgiliBaslikAlaniUstBaslikMetni">
-                            İş Ortaklığı Başvuru Formu</div>
-                        <div class="TamSayfaCerceveAlaniİciAltiCizgiliBaslikAlaniAltBaslikMetni">
-                            İş ortağımız olmak için aşağıdaki formu doldurabilirsiniz.</div>
-                        </div>
-                            <form action="/ortakForm" method="post">
-                                <div class="TamSayfaCerceveAlaniIcinFormElemanlariBaslikMetni">İsim Soyisim</div>
-                                <div class="TamSayfaCerceveAlaniIcinFormElemanlariIciSatirAlani"><input name="IsimSoyİsim" type="text" class="FormElemanlariTextInputlari" tabindex="1"></div>
+                    <div class="TamSayfaCerceveAlaniIcinFormElemanlariBaslikMetni">E-Mail Adresi</div>
+                    <div class="TamSayfaCerceveAlaniIcinFormElemanlariIciSatirAlani"><input name="EmailAdresi"
+                            type="text" class="FormElemanlariTextInputlari" tabindex="2"></div>
 
-                                <div class="TamSayfaCerceveAlaniIcinFormElemanlariBaslikMetni">E-Mail Adresi</div>
-                                <div class="TamSayfaCerceveAlaniIcinFormElemanlariIciSatirAlani"><input name="EmailAdresi" type="text" class="FormElemanlariTextInputlari" tabindex="2"></div>
+                    <div class="TamSayfaCerceveAlaniIcinFormElemanlariBaslikMetni">Cep Telefonu</div>
+                    <div class="TamSayfaCerceveAlaniIcinFormElemanlariIciSatirAlani"><input name="EmailAdresi"
+                            type="text" class="FormElemanlariTextInputlari" tabindex="3"></div>
 
-                                <div class="TamSayfaCerceveAlaniIcinFormElemanlariBaslikMetni">Cep Telefonu</div>
-                                <div class="TamSayfaCerceveAlaniIcinFormElemanlariIciSatirAlani"><input name="EmailAdresi" type="text" class="FormElemanlariTextInputlari" tabindex="3"></div>
+                    <div class="TamSayfaCerceveAlaniIcinFormElemanlariBaslikMetni">Firma Adı</div>
+                    <div class="TamSayfaCerceveAlaniIcinFormElemanlariIciSatirAlani"><input name="EmailAdresi"
+                            type="text" class="FormElemanlariTextInputlari" tabindex="4"></div>
 
-                                <div class="TamSayfaCerceveAlaniIcinFormElemanlariBaslikMetni">Firma Adı</div>
-                                <div class="TamSayfaCerceveAlaniIcinFormElemanlariIciSatirAlani"><input name="EmailAdresi" type="text" class="FormElemanlariTextInputlari" tabindex="4"></div>
+                    <div class="TamSayfaCerceveAlaniIcinFormElemanlariBaslikMetni">Firma Yetkilisi</div>
+                    <div class="TamSayfaCerceveAlaniIcinFormElemanlariIciSatirAlani"><input name="EmailAdresi"
+                            type="text" class="FormElemanlariTextInputlari" tabindex="5"></div>
 
-                                <div class="TamSayfaCerceveAlaniIcinFormElemanlariBaslikMetni">Firma Yetkilisi</div>
-                                <div class="TamSayfaCerceveAlaniIcinFormElemanlariIciSatirAlani"><input name="EmailAdresi" type="text" class="FormElemanlariTextInputlari" tabindex="5"></div>
+                    <div class="TamSayfaCerceveAlaniIcinFormElemanlariBaslikMetni">Firma Telefonu</div>
+                    <div class="TamSayfaCerceveAlaniIcinFormElemanlariIciSatirAlani"><input name="EmailAdresi"
+                            type="text" class="FormElemanlariTextInputlari" tabindex="6"></div>
 
-                                <div class="TamSayfaCerceveAlaniIcinFormElemanlariBaslikMetni">Firma Telefonu</div>
-                                <div class="TamSayfaCerceveAlaniIcinFormElemanlariIciSatirAlani"><input name="EmailAdresi" type="text" class="FormElemanlariTextInputlari" tabindex="6"></div>
+                    <div class="TamSayfaCerceveAlaniIcinFormElemanlariBaslikMetni">Firma Adresi</div>
+                    <div class="TamSayfaCerceveAlaniIcinFormElemanlariIciSatirAlani"><textarea name="Aciklama"
+                            class="FormElemanlariTextArealari" tabindex="7"></textarea></div>
 
-                                <div class="TamSayfaCerceveAlaniIcinFormElemanlariBaslikMetni">Firma Adresi</div>
-                                <div class="TamSayfaCerceveAlaniIcinFormElemanlariIciSatirAlani"><textarea name="Aciklama" class="FormElemanlariTextArealari" tabindex="7"></textarea></div>
+                    <div class="ButonlarIcinKapsamaAlani"><input type="submit" value="Başvurumu Gönder"
+                            class="FormElemanlariYesilButonlar" tabindex="8"></div>
 
-                                <div class="ButonlarIcinKapsamaAlani"><input type="submit" value="Başvurumu Gönder" class="FormElemanlariYesilButonlar" tabindex="8" ></div>
+                </form>
+            </div>
 
-                            </form>
-                 </div>
+            <div id="TamSayfaCerceveAlaniIciYuzdeElliSagAlan">
+                <div class="TamSayfaCerceveAlaniİciAltiCizgiliBaslikAlani">
+                    <div class="TamSayfaCerceveAlaniİciAltiCizgiliBaslikAlaniUstBaslikMetni">
+                        İşleyiş
+                    </div>
+                    <div class="TamSayfaCerceveAlaniİciAltiCizgiliBaslikAlaniAltBaslikMetni">
+                        İş ortaklığı başvurusu aşamaları.
+                    </div>
+                </div>
 
-                 <div id="TamSayfaCerceveAlaniIciYuzdeElliSagAlan">
-                    <div class="TamSayfaCerceveAlaniİciAltiCizgiliBaslikAlani">
-                        <div class="TamSayfaCerceveAlaniİciAltiCizgiliBaslikAlaniUstBaslikMetni">
-                            İşleyiş
-                        </div>
-                        <div class="TamSayfaCerceveAlaniİciAltiCizgiliBaslikAlaniAltBaslikMetni">
-                            İş ortaklığı başvurusu aşamaları.
-                        </div>
-                     </div>
-
-                     <div class="TamSayfaCerceveAlaniIciBilgiParagraflariKapsamaAlani">
-                        <div class="TamSayfaCerceveAlaniIciBilgiParagraflariResimliBaslikMetniAlani">
-                            <img src="/images/başvuru formu.png" alt="" title=""><span class="TamSayfaCerceveAlaniIciBilgiParagraflariResimliBaslikMetni">Başvuru İşlemi</span>
-                        </div>
-                        <div class="TamSayfaCerceveAlaniIciBilgiParagraflariAciklamaMetni">Firma tarafından öncelikle , "iş Ortaklığı Başvuru Formu"
-                            sayfasında bulunan ilgili form doldurulur.
-                            </div>
-                     </div>
+                <div class="TamSayfaCerceveAlaniIciBilgiParagraflariKapsamaAlani">
+                    <div class="TamSayfaCerceveAlaniIciBilgiParagraflariResimliBaslikMetniAlani">
+                        <img src="/images/başvuru formu.png" alt="" title=""><span
+                            class="TamSayfaCerceveAlaniIciBilgiParagraflariResimliBaslikMetni">Başvuru İşlemi</span>
+                    </div>
+                    <div class="TamSayfaCerceveAlaniIciBilgiParagraflariAciklamaMetni">Firma tarafından öncelikle , "iş
+                        Ortaklığı Başvuru Formu"
+                        sayfasında bulunan ilgili form doldurulur.
+                    </div>
+                </div>
 
 
-                     <div class="TamSayfaCerceveAlaniIciBilgiParagraflariKapsamaAlani">
-                        <div class="TamSayfaCerceveAlaniIciBilgiParagraflariResimliBaslikMetniAlani">
-                            <img src="/images/control.png" alt="" title=""><span class="TamSayfaCerceveAlaniIciBilgiParagraflariResimliBaslikMetni">Kontroller</span>
-                        </div>
-                        <div class="TamSayfaCerceveAlaniIciBilgiParagraflariAciklamaMetni">İş ortaklığı başvuru formunuz tarafımıza ulaştığı anda ilgili departman
-                             tarafından yapmış olduğunuz başvuru bilgileri kontrol edilir.
-                          </div>
-                     </div>
+                <div class="TamSayfaCerceveAlaniIciBilgiParagraflariKapsamaAlani">
+                    <div class="TamSayfaCerceveAlaniIciBilgiParagraflariResimliBaslikMetniAlani">
+                        <img src="/images/control.png" alt="" title=""><span
+                            class="TamSayfaCerceveAlaniIciBilgiParagraflariResimliBaslikMetni">Kontroller</span>
+                    </div>
+                    <div class="TamSayfaCerceveAlaniIciBilgiParagraflariAciklamaMetni">İş ortaklığı başvuru formunuz
+                        tarafımıza ulaştığı anda ilgili departman
+                        tarafından yapmış olduğunuz başvuru bilgileri kontrol edilir.
+                    </div>
+                </div>
 
 
-                     <div class="TamSayfaCerceveAlaniIciBilgiParagraflariKapsamaAlani">
-                        <div class="TamSayfaCerceveAlaniIciBilgiParagraflariResimliBaslikMetniAlani">
-                            <img src="/images/iletisim.png" alt="" title=""><span class="TamSayfaCerceveAlaniIciBilgiParagraflariResimliBaslikMetni">İletişim</span>
-                        </div>
-                        <div class="TamSayfaCerceveAlaniIciBilgiParagraflariAciklamaMetni">Yönetici "iş Ortaklığı Başvuru Formu" sayfasında belirtilen
-                            bilgilere istinaden ilgili firma yetkilisi ile iletişime geçer.</div>
-                     </div>
+                <div class="TamSayfaCerceveAlaniIciBilgiParagraflariKapsamaAlani">
+                    <div class="TamSayfaCerceveAlaniIciBilgiParagraflariResimliBaslikMetniAlani">
+                        <img src="/images/iletisim.png" alt="" title=""><span
+                            class="TamSayfaCerceveAlaniIciBilgiParagraflariResimliBaslikMetni">İletişim</span>
+                    </div>
+                    <div class="TamSayfaCerceveAlaniIciBilgiParagraflariAciklamaMetni">Yönetici "iş Ortaklığı Başvuru
+                        Formu" sayfasında belirtilen
+                        bilgilere istinaden ilgili firma yetkilisi ile iletişime geçer.</div>
+                </div>
 
-                     <div class="TamSayfaCerceveAlaniIciBilgiParagraflariKapsamaAlani">
-                        <div class="TamSayfaCerceveAlaniIciBilgiParagraflariResimliBaslikMetniAlani">
-                            <img src="/images/başvuru formu.png" alt="" title=""><span class="TamSayfaCerceveAlaniIciBilgiParagraflariResimliBaslikMetni">Resmi Evrak Talebi</span>
-                        </div>
-                        <div class="TamSayfaCerceveAlaniIciBilgiParagraflariAciklamaMetni">Bayilik başvurusu yapan firmadan 
-                            ilgili evraklar talep edilir.<br><br> Firmalar için;<br><br>1. Vergi levhası.<br>2. İmza sirküleri.<br>3. Ticaret odası sicil kaydı.<br>4. Resmi gazete.<br>
-                            5. Faaliyet belgesi.<br>5. Şirket ortaklarının kimlik belgesi örneği.<br>
-                           </div>
-                     </div>
+                <div class="TamSayfaCerceveAlaniIciBilgiParagraflariKapsamaAlani">
+                    <div class="TamSayfaCerceveAlaniIciBilgiParagraflariResimliBaslikMetniAlani">
+                        <img src="/images/başvuru formu.png" alt="" title=""><span
+                            class="TamSayfaCerceveAlaniIciBilgiParagraflariResimliBaslikMetni">Resmi Evrak Talebi</span>
+                    </div>
+                    <div class="TamSayfaCerceveAlaniIciBilgiParagraflariAciklamaMetni">Bayilik başvurusu yapan firmadan
+                        ilgili evraklar talep edilir.<br><br> Firmalar için;<br><br>1. Vergi levhası.<br>2. İmza
+                        sirküleri.<br>3. Ticaret odası sicil kaydı.<br>4. Resmi gazete.<br>
+                        5. Faaliyet belgesi.<br>5. Şirket ortaklarının kimlik belgesi örneği.<br>
+                    </div>
+                </div>
 
-                     <div class="TamSayfaCerceveAlaniIciBilgiParagraflariKapsamaAlani">
-                        <div class="TamSayfaCerceveAlaniIciBilgiParagraflariResimliBaslikMetniAlani">
-                            <img src="/images/onay-red.png" alt="" title=""><span class="TamSayfaCerceveAlaniIciBilgiParagraflariResimliBaslikMetni">Onay / Red</span>
-                        </div>
-                        <div class="TamSayfaCerceveAlaniIciBilgiParagraflariAciklamaMetni">Firma tarafından gönderilecek / gönderilen evraklar ilgili birim tarafından
-                            kontrol edilerek onay / red işlemi tamamlanır.
-                           </div>
-                     </div>
-                     
+                <div class="TamSayfaCerceveAlaniIciBilgiParagraflariKapsamaAlani">
+                    <div class="TamSayfaCerceveAlaniIciBilgiParagraflariResimliBaslikMetniAlani">
+                        <img src="/images/onay-red.png" alt="" title=""><span
+                            class="TamSayfaCerceveAlaniIciBilgiParagraflariResimliBaslikMetni">Onay / Red</span>
+                    </div>
+                    <div class="TamSayfaCerceveAlaniIciBilgiParagraflariAciklamaMetni">Firma tarafından gönderilecek /
+                        gönderilen evraklar ilgili birim tarafından
+                        kontrol edilerek onay / red işlemi tamamlanır.
+                    </div>
+                </div>
 
-                     <div class="TamSayfaCerceveAlaniIciBilgiParagraflariKapsamaAlani">
-                        <div class="TamSayfaCerceveAlaniIciBilgiParagraflariResimliBaslikMetniAlani">
-                            <img src="/images/ortaklik.png" alt="" title=""><span class="TamSayfaCerceveAlaniIciBilgiParagraflariResimliBaslikMetni">İş Ortaklığı</span>
-                        </div>
-                        <div class="TamSayfaCerceveAlaniIciBilgiParagraflariAciklamaMetni">Yönetici evrak onayından sonra ,
-                            iş ortaklığı bilgilerinizi ve sisteme giriş bilgilerinizi tarafınıza iletilecektir.
-                           </div>
-                     </div>
-                     
-                 </div>
-          </div>
+
+                <div class="TamSayfaCerceveAlaniIciBilgiParagraflariKapsamaAlani">
+                    <div class="TamSayfaCerceveAlaniIciBilgiParagraflariResimliBaslikMetniAlani">
+                        <img src="/images/ortaklik.png" alt="" title=""><span
+                            class="TamSayfaCerceveAlaniIciBilgiParagraflariResimliBaslikMetni">İş Ortaklığı</span>
+                    </div>
+                    <div class="TamSayfaCerceveAlaniIciBilgiParagraflariAciklamaMetni">Yönetici evrak onayından sonra ,
+                        iş ortaklığı bilgilerinizi ve sisteme giriş bilgilerinizi tarafınıza iletilecektir.
+                    </div>
+                </div>
+
+            </div>
         </div>
-    </main>
-
-    <%- include('partials/footer')%>
-
-   </div>
-</body>
-</html>
+    </div>

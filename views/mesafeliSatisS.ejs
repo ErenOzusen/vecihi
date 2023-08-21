@@ -1,79 +1,62 @@
-<!doctype html>
-<html lang="tr-TR">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<meta http-equiv="Content-Language" content="tr">
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Competible" content="IE=Edge">
-<meta name="viewport" content="width=device-width, initial-scale=1.0 maximum-scale=1.0, user-scalable=no">
-<link type="image/png" rel="icon"  sizes="93x93" href="/images/favicon.png" >
-<meta name="robots" content="index, follow, noarchive">
-<meta name="revisit-after" content="7 days">
-<meta name="rating" content="general">
-<meta name="copyright" content="copyright &copy; 2023 Vecihistore.com Her Hakkı Saklıdır.">
-<meta name="reply-to" content="info@vecihistore.com">
-<meta name="author" content="Eren Akkurt - info@vecihistore.com">
-<meta name="designer" content="Eren Akkurt - Vecihi Store">
-<meta name="generator" content="Microsoft Visual Studio">
-<title>Vecihi Store</title>
-<meta name="description"  content="Vecihi store vintage ürünler satan aynı zamanda eğlenceli çizgiromanlara sahip bir e-ticaret sitesidir">
-<meta name="keywords" content="Vecihi Store, Vintage , Baskı Tişört , Antika , Oyun , Çizgiroman ">
-<script type="text/javascript" language="javascript" src="/js/jquery-3.6.4.min.js"></script>
-<link type="text/css" rel="stylesheet" href="/css/style.css">
-<script type="text/javascript" language="javascript" src="/js/java.js"></script>
-</head>
+<% layout('layouts/boilerplate') %>
 
-<body>
-    <div id="TumSayfaAlani">
-
-        <%- include('partials/navbar')%>
-    <main>
-       <div id="TamSayfaCerceveAlani">
-          <div id="TamSayfaCerceveSinirlamaAlani">
-             <div id="TamSayfaCerceveAlaniİciYuzdeYuzlukAlan">
+    <div id="TamSayfaCerceveAlani">
+        <div id="TamSayfaCerceveSinirlamaAlani">
+            <div id="TamSayfaCerceveAlaniİciYuzdeYuzlukAlan">
                 <div class="TamSayfaCerceveAlaniİciAltiCizgiliBaslikAlani">
                     <div class="TamSayfaCerceveAlaniİciAltiCizgiliBaslikAlaniUstBaslikMetni">
                         Vecihistore.com Mesafeli Satış Sözleşmesi</div>
                     <div class="TamSayfaCerceveAlaniİciAltiCizgiliBaslikAlaniAltBaslikMetni">
                         vecihistore.com mesafeli satış sözleşmesi metni aşağıdadır.
                     </div>
-                    </div>
+                </div>
 
-                     <div id="TamSayfaCerceveAlaniİciGenelBilgilendirmeAlani">
-                        <div style="height: 350px; overflow-x: hidden; overflow-y: scroll;">                       
-                            Lütfen aşağıdaki metni dikkatlice okuyun. Bu metin, Vecihistore.com üzerinden yapılan mesafeli satışlar için geçerli olan sözleşme koşullarını içermektedir. 
+                <div id="TamSayfaCerceveAlaniİciGenelBilgilendirmeAlani">
+                    <div style="height: 350px; overflow-x: hidden; overflow-y: scroll;">
+                        Lütfen aşağıdaki metni dikkatlice okuyun. Bu metin, Vecihistore.com üzerinden yapılan mesafeli
+                        satışlar için geçerli olan sözleşme koşullarını içermektedir.
                         Ürünleri satın almadan önce bu koşulları kabul ettiğinizden emin olun.<br><br>
                         1.Taraflar <br><br>
-                        İşbu mesafeli satış sözleşmesi ("Sözleşme"), bir tarafta Vecihistore.com ("Satıcı") ve diğer tarafta Sözleşmeyi kabul eden kişi ("Alıcı") arasında akdedilmektedir.<br><br>
+                        İşbu mesafeli satış sözleşmesi ("Sözleşme"), bir tarafta Vecihistore.com ("Satıcı") ve diğer
+                        tarafta Sözleşmeyi kabul eden kişi ("Alıcı") arasında akdedilmektedir.<br><br>
 
                         2. Konu<br><br>
 
-                        Satıcı, Vecihistore.com üzerinde sergilenen ürünleri Alıcı'ya satmayı ve teslim etmeyi taahhüt eder. Alıcı ise belirtilen ürünleri satın almak amacıyla Vecihistore.com'u kullanır.<br><br>
+                        Satıcı, Vecihistore.com üzerinde sergilenen ürünleri Alıcı'ya satmayı ve teslim etmeyi taahhüt
+                        eder. Alıcı ise belirtilen ürünleri satın almak amacıyla Vecihistore.com'u kullanır.<br><br>
 
                         3. Sipariş ve Ödeme<br><br>
-                        3.1. Alıcı, Vecihistore.com üzerinden seçtiği ürünleri sepete ekleyerek ve gerekli bilgileri doğru ve eksiksiz olarak doldurarak bir sipariş oluşturur.
-3.2. Siparişin onaylanması ve işleme alınması, Alıcı tarafından sağlanan ödemenin Satıcı tarafından alınmasıyla gerçekleşir.
-3.3. Ödeme seçenekleri, Vecihistore.com'da belirtilen yöntemler arasından seçilebilir.<br><br>
+                        3.1. Alıcı, Vecihistore.com üzerinden seçtiği ürünleri sepete ekleyerek ve gerekli bilgileri
+                        doğru ve eksiksiz olarak doldurarak bir sipariş oluşturur.
+                        3.2. Siparişin onaylanması ve işleme alınması, Alıcı tarafından sağlanan ödemenin Satıcı
+                        tarafından alınmasıyla gerçekleşir.
+                        3.3. Ödeme seçenekleri, Vecihistore.com'da belirtilen yöntemler arasından seçilebilir.<br><br>
 
-4.Teslimat ve İade<br><br>4.1Ürünler, Alıcı tarafından belirtilen teslimat adresine gönderilecektir. Teslimat süresi ve kargo şirketi, siparişin detaylarına göre belirlenecektir.
-4.2. Alıcı, teslimatın gerçekleştiği tarih itibarıyla ürünleri kontrol etmeli ve herhangi bir hasar veya eksiklik durumunda derhal Satıcı'ya bildirmelidir.
-4.3. İade ve değişim talepleri, Vecihistore.com'un iade ve değişim politikasına uygun olarak değerlendirilecektir. İade edilecek ürünlerin kullanılmamış ve orijinal ambalajında olması gerekmektedir.<br><br>
-5.Gizlilik ve Veri Koruma <br><br> Alıcı, kişisel verilerin Vecihistore.com tarafından gizlilik politikasına uygun şekilde kullanılacağını kabul eder. Kişisel verilerin toplanması, saklanması ve kullanımı hakkında daha fazla bilgi için Vecihistore.com Gizlilik Politikasını inceleyiniz.<br><br>
-6.İptal ve İade Hakkı<br><br>
-6.1. Alıcı, teslimat yapılmadan önce siparişi iptal etme hakkına sahiptir. Ancak, ürünün sevkiyatı gerçekleştiyse iptal talepleri Vecihistore.com'un onayına tabidir.
-6.2. Mesafeli satışlarda, Alıcı, belirli süre ve koşullar çerçevesinde cayma hakkına sahip olabilir. Cayma hakkı kullanımıyla ilgili detaylar Vecihistore.com'da belirtilmiştir.<br><br>
-7.Sorumluluk Sınırlamaları<br><br>
-Satıcı, Vecihistore.com üzerinde yer alan bilgilerin doğruluğunu ve güncelliğini garanti etmez. Ürünlerin kullanımı veya bu Sözleşme kapsamındaki işlemlerden kaynaklanan herhangi bir sorumluluk kabul edilmez.<br><br>
-8. Uyuşmazlıkların Çözümü<br><br>
-İşbu Sözleşme'nin uygulanmasından doğan uyuşmazlıkların çözümünde Türk Hukuku uygulanacaktır .<br><br>
-</div>
-</div>
-             </div>
-          </div>
+                        4.Teslimat ve İade<br><br>4.1Ürünler, Alıcı tarafından belirtilen teslimat adresine
+                        gönderilecektir. Teslimat süresi ve kargo şirketi, siparişin detaylarına göre belirlenecektir.
+                        4.2. Alıcı, teslimatın gerçekleştiği tarih itibarıyla ürünleri kontrol etmeli ve herhangi bir
+                        hasar veya eksiklik durumunda derhal Satıcı'ya bildirmelidir.
+                        4.3. İade ve değişim talepleri, Vecihistore.com'un iade ve değişim politikasına uygun olarak
+                        değerlendirilecektir. İade edilecek ürünlerin kullanılmamış ve orijinal ambalajında olması
+                        gerekmektedir.<br><br>
+                        5.Gizlilik ve Veri Koruma <br><br> Alıcı, kişisel verilerin Vecihistore.com tarafından gizlilik
+                        politikasına uygun şekilde kullanılacağını kabul eder. Kişisel verilerin toplanması, saklanması
+                        ve kullanımı hakkında daha fazla bilgi için Vecihistore.com Gizlilik Politikasını
+                        inceleyiniz.<br><br>
+                        6.İptal ve İade Hakkı<br><br>
+                        6.1. Alıcı, teslimat yapılmadan önce siparişi iptal etme hakkına sahiptir. Ancak, ürünün
+                        sevkiyatı gerçekleştiyse iptal talepleri Vecihistore.com'un onayına tabidir.
+                        6.2. Mesafeli satışlarda, Alıcı, belirli süre ve koşullar çerçevesinde cayma hakkına sahip
+                        olabilir. Cayma hakkı kullanımıyla ilgili detaylar Vecihistore.com'da belirtilmiştir.<br><br>
+                        7.Sorumluluk Sınırlamaları<br><br>
+                        Satıcı, Vecihistore.com üzerinde yer alan bilgilerin doğruluğunu ve güncelliğini garanti etmez.
+                        Ürünlerin kullanımı veya bu Sözleşme kapsamındaki işlemlerden kaynaklanan herhangi bir
+                        sorumluluk kabul edilmez.<br><br>
+                        8. Uyuşmazlıkların Çözümü<br><br>
+                        İşbu Sözleşme'nin uygulanmasından doğan uyuşmazlıkların çözümünde Türk Hukuku uygulanacaktır
+                        .<br><br>
+                    </div>
+                </div>
+            </div>
         </div>
-    </main>
-
-    <%- include('partials/footer')%>
-   </div>
-</body>
-</html>
+    </div>

@@ -1,51 +1,18 @@
-<!doctype html>
-<html lang="tr-TR">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<meta http-equiv="Content-Language" content="tr">
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Competible" content="IE=Edge">
-<meta name="viewport" content="width=device-width, initial-scale=1.0 maximum-scale=1.0, user-scalable=no">
-<link type="image/png" rel="icon"  sizes="93x93" href="foto/favicon.png" >
-<meta name="robots" content="index, follow, noarchive">
-<meta name="revisit-after" content="7 days">
-<meta name="rating" content="general">
-<meta name="copyright" content="copyright &copy; 2023 Vecihistore.com Her Hakkı Saklıdır.">
-<meta name="reply-to" content="info@vecihistore.com">
-<meta name="author" content="Eren Akkurt - info@vecihistore.com">
-<meta name="designer" content="Eren Akkurt - Vecihi Store">
-<meta name="generator" content="Microsoft Visual Studio">
-<title>Vecihi Store</title>
-<meta name="description"  content="Vecihi store vintage ürünler satan aynı zamanda eğlenceli çizgiromanlara sahip bir e-ticaret sitesidir">
-<meta name="keywords" content="Vecihi Store, Vintage , Baskı Tişört , Antika , Oyun , Çizgiroman ">
-<script type="text/javascript" language="javascript" src="/js/jquery-3.6.4.min.js"></script>
-<link type="text/css" rel="stylesheet" href="/css/style.css">
-<script type="text/javascript" language="javascript" src="/js/java.js"></script>
-</head>
+<% layout('layouts/boilerplate') %>
 
-<body>
-    <div id="TumSayfaAlani">
-
-        <%- include('partials/navbar')%>
-
-    <main>
-        <div id="SonucSayfalariAlani">
-            <div id="SonucSayfalariSinirlamaAlani">
-                <div id="SonucSayfalariBilgiAlani">
-                    <div id="SonucSayfalariIslemIconuAlani">
-                        <img src="/images/Error.png" alt="" title="">
-                    </div>
-                    <div id="SonucSayfalariBaslikAlani">
-                        İşlem sırasında beklenmedik bir hata oluştu!
-                    </div>
-                    <div id="SonucSayfalariIcerikAlani">
-                        Lütfen daha sonra tekrar deneyiniz.Sorununuz devam ederse bizimle iletişime geçiniz.Anasayfaya dönmek için <a href="index.html" target="_top">buraya tıklayın.</a>
-                    </div>
-                    </div>
+    <div id="SonucSayfalariAlani">
+        <div id="SonucSayfalariSinirlamaAlani">
+            <div id="SonucSayfalariBilgiAlani">
+                <div id="SonucSayfalariIslemIconuAlani">
+                    <img src="/images/Error.png" alt="" title="">
+                </div>
+                <div id="SonucSayfalariBaslikAlani">
+                    İşlem sırasında beklenmedik bir hata oluştu!
+                </div>
+                <div id="SonucSayfalariIcerikAlani">
+                    Lütfen daha sonra tekrar deneyiniz.Sorununuz devam ederse bizimle iletişime geçiniz.Anasayfaya
+                    dönmek için <a href="index.html" target="_top">buraya tıklayın.</a>
                 </div>
             </div>
-    </main>
-    <%- include('partials/footer')%>
-   </div>
-</body>
-</html>
+        </div>
+    </div>

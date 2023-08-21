@@ -1,99 +1,66 @@
-<!doctype html>
-<html lang="tr-TR">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<meta http-equiv="Content-Language" content="tr">
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Competible" content="IE=Edge">
-<meta name="viewport" content="width=device-width, initial-scale=1.0 maximum-scale=1.0, user-scalable=no">
-<link type="image/png" rel="icon"  sizes="93x93" href="/images/favicon.png" >
-<meta name="robots" content="index, follow, noarchive">
-<meta name="revisit-after" content="7 days">
-<meta name="rating" content="general">
-<meta name="copyright" content="copyright &copy; 2023 Vecihistore.com Her Hakkı Saklıdır.">
-<meta name="reply-to" content="info@vecihistore.com">
-<meta name="author" content="Eren Akkurt - info@vecihistore.com">
-<meta name="designer" content="Eren Akkurt - Vecihi Store">
-<meta name="generator" content="Microsoft Visual Studio">
-<title>Vecihi Store</title>
-<meta name="description"  content="Vecihi store vintage ürünler satan aynı zamanda eğlenceli çizgiromanlara sahip bir e-ticaret sitesidir">
-<meta name="keywords" content="Vecihi Store, Vintage , Baskı Tişört , Antika , Oyun , Çizgiroman ">
-<script type="text/javascript" language="javascript" src="/js/jquery-3.6.4.min.js"></script>
-<link type="text/css" rel="stylesheet" href="/css/style.css">
-<script type="text/javascript" language="javascript" src="/js/java.js"></script>
-</head>
+<% layout('layouts/boilerplate') %>
 
-<body>
-    <div id="TumSayfaAlani">
-
-        <%- include('partials/navbar')%>
-    <main>
-       <div id="TamSayfaCerceveAlani">
-          <div id="TamSayfaCerceveSinirlamaAlani">
-             <div id="TamSayfaCerceveAlaniİciYuzdeYuzlukAlan">
+    <div id="TamSayfaCerceveAlani">
+        <div id="TamSayfaCerceveSinirlamaAlani">
+            <div id="TamSayfaCerceveAlaniİciYuzdeYuzlukAlan">
                 <div class="TamSayfaCerceveAlaniİciAltiCizgiliBaslikAlani">
                     <div class="TamSayfaCerceveAlaniİciAltiCizgiliBaslikAlaniUstBaslikMetni">
                         Sık Sorulan Sorular</div>
                     <div class="TamSayfaCerceveAlaniİciAltiCizgiliBaslikAlaniAltBaslikMetni">
-                        Aklınıza takılabileceğini düşündüğümüz soruları bu sayfada cevapladık.Farklı bir sorunuz varsa lütfen iletişim alanından bize yazınız.
-                      </div>
+                        Aklınıza takılabileceğini düşündüğümüz soruları bu sayfada cevapladık.Farklı bir sorunuz varsa
+                        lütfen iletişim alanından bize yazınız.
+                    </div>
+                </div>
+
+                <div class="TamSayfaCerceveAlaniIciIcBaslikMetni">
+                    KONU 1
+                </div>
+
+                <div class="TamSayfaCerceveAlaniIciSssAlani">
+                    <div id="1" class="TamSayfaCerceveAlaniIciSssSoruBaslikAlani" onclick="$.SSSIceriginiGoster('1')">
+                        1. KONUNUN 1. BAŞLIĞI
                     </div>
 
-                        <div class="TamSayfaCerceveAlaniIciIcBaslikMetni">
-                            KONU 1
-                        </div>
+                    <div class="TamSayfaCerceveAlaniIciSssSoruIcerigiAlani" style="display: none;">
+                        1. KONUNUN 1. BAŞLIĞININ CEVABI
+                    </div>
+                </div>
 
-                        <div class="TamSayfaCerceveAlaniIciSssAlani">
-                            <div id="1" class="TamSayfaCerceveAlaniIciSssSoruBaslikAlani" onclick="$.SSSIceriginiGoster('1')">
-                                1. KONUNUN 1. BAŞLIĞI 
-                            </div>
+                <div class="TamSayfaCerceveAlaniIciSssAlani">
+                    <div id="2" class="TamSayfaCerceveAlaniIciSssSoruBaslikAlani" onclick="$.SSSIceriginiGoster('2')">
+                        1. KONUNUN 2. BAŞLIĞI
+                    </div>
 
-                            <div class="TamSayfaCerceveAlaniIciSssSoruIcerigiAlani" style="display: none;">
-                                1. KONUNUN 1. BAŞLIĞININ CEVABI
-                            </div>
-                        </div>
+                    <div class="TamSayfaCerceveAlaniIciSssSoruIcerigiAlani" style="display: none;">
+                        1. KONUNUN 2. BAŞLIĞININ CEVABI
+                    </div>
+                </div>
 
-                        <div class="TamSayfaCerceveAlaniIciSssAlani">
-                            <div id="2" class="TamSayfaCerceveAlaniIciSssSoruBaslikAlani" onclick="$.SSSIceriginiGoster('2')">
-                                1. KONUNUN 2. BAŞLIĞI 
-                            </div>
+                <div class="TamSayfaCerceveAlaniIciSssAlani">
+                    <div id="3" class="TamSayfaCerceveAlaniIciSssSoruBaslikAlani" onclick="$.SSSIceriginiGoster('3')">
+                        1. KONUNUN 3. BAŞLIĞI
+                    </div>
 
-                            <div class="TamSayfaCerceveAlaniIciSssSoruIcerigiAlani" style="display: none;">
-                                1. KONUNUN 2. BAŞLIĞININ CEVABI
-                            </div>
-                        </div>
+                    <div class="TamSayfaCerceveAlaniIciSssSoruIcerigiAlani" style="display: none;">
+                        1. KONUNUN 3. BAŞLIĞININ CEVABI
+                    </div>
+                </div>
 
-                        <div class="TamSayfaCerceveAlaniIciSssAlani">
-                            <div id="3" class="TamSayfaCerceveAlaniIciSssSoruBaslikAlani" onclick="$.SSSIceriginiGoster('3')">
-                                1. KONUNUN 3. BAŞLIĞI 
-                            </div>
+                <div class="TamSayfaCerceveAlaniIciIcBaslikMetni">
+                    KONU 2
+                </div>
 
-                            <div class="TamSayfaCerceveAlaniIciSssSoruIcerigiAlani" style="display: none;">
-                                1. KONUNUN 3. BAŞLIĞININ CEVABI
-                            </div>
-                        </div>
+                <div class="TamSayfaCerceveAlaniIciSssAlani">
+                    <div id="4" class="TamSayfaCerceveAlaniIciSssSoruBaslikAlani" onclick="$.SSSIceriginiGoster('4')">
+                        2. KONUNUN 1. BAŞLIĞI
+                    </div>
 
-                        <div class="TamSayfaCerceveAlaniIciIcBaslikMetni">
-                            KONU 2
-                        </div>
-
-                        <div class="TamSayfaCerceveAlaniIciSssAlani">
-                            <div id="4" class="TamSayfaCerceveAlaniIciSssSoruBaslikAlani" onclick="$.SSSIceriginiGoster('4')">
-                                2. KONUNUN 1. BAŞLIĞI 
-                            </div>
-
-                            <div class="TamSayfaCerceveAlaniIciSssSoruIcerigiAlani" style="display: none;">
-                                2. KONUNUN 1. BAŞLIĞININ CEVABI
-                            </div>
-                        </div>
+                    <div class="TamSayfaCerceveAlaniIciSssSoruIcerigiAlani" style="display: none;">
+                        2. KONUNUN 1. BAŞLIĞININ CEVABI
+                    </div>
+                </div>
 
 
-             </div>
-          </div>
+            </div>
         </div>
-    </main>
-
-    <%- include('partials/footer')%>
-   </div>
-</body>
-</html>
+    </div>

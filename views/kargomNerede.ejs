@@ -1,73 +1,48 @@
-<!doctype html>
-<html lang="tr-TR">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<meta http-equiv="Content-Language" content="tr">
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Competible" content="IE=Edge">
-<meta name="viewport" content="width=device-width, initial-scale=1.0 maximum-scale=1.0, user-scalable=no">
-<link type="image/png" rel="icon"  sizes="93x93" href="/images/favicon.png" >
-<meta name="robots" content="index, follow, noarchive">
-<meta name="revisit-after" content="7 days">
-<meta name="rating" content="general">
-<meta name="copyright" content="copyright &copy; 2023 Vecihistore.com Her Hakkı Saklıdır.">
-<meta name="reply-to" content="info@vecihistore.com">
-<meta name="author" content="Eren Akkurt - info@vecihistore.com">
-<meta name="designer" content="Eren Akkurt - Vecihi Store">
-<meta name="generator" content="Microsoft Visual Studio">
-<title>Vecihi Store</title>
-<meta name="description"  content="Vecihi store vintage ürünler satan aynı zamanda eğlenceli çizgiromanlara sahip bir e-ticaret sitesidir">
-<meta name="keywords" content="Vecihi Store, Vintage , Baskı Tişört , Antika , Oyun , Çizgiroman ">
-<script type="text/javascript" language="javascript" src="/js/jquery-3.6.4.min.js"></script>
-<link type="text/css" rel="stylesheet" href="/css/style.css">
-<script type="text/javascript" language="javascript" src="/js/java.js"></script>
-</head>
+<% layout('layouts/boilerplate') %>
 
-<body>
-    <div id="TumSayfaAlani">
-
-        <%- include('partials/navbar')%>
-    <main>
-       <div id="TamSayfaCerceveAlani">
-          <div id="TamSayfaCerceveSinirlamaAlani">
-             <div id="TamSayfaCerceveAlaniİciYuzdeYuzlukAlan">
+    <div id="TamSayfaCerceveAlani">
+        <div id="TamSayfaCerceveSinirlamaAlani">
+            <div id="TamSayfaCerceveAlaniİciYuzdeYuzlukAlan">
                 <div class="TamSayfaCerceveAlaniİciAltiCizgiliBaslikAlani">
                     <div class="TamSayfaCerceveAlaniİciAltiCizgiliBaslikAlaniUstBaslikMetni">
                         Kargom Nerede?</div>
                     <div class="TamSayfaCerceveAlaniİciAltiCizgiliBaslikAlaniAltBaslikMetni">
-                       Sipariş gönderilerinizi bu ekrandan takip edebilirsiniz.
+                        Sipariş gönderilerinizi bu ekrandan takip edebilirsiniz.
                     </div>
+                </div>
+
+
+                <form action="https://www.yurticikargo.com/" method="get">
+                    <div id="KargomNeredeBilgiAlani">
+                        <!--SonucSayfalariBilgiAlani-->
+                        <div id="KargomNeredeIslemIconuAlani">
+                            <!--SonucSayfalariIslemIconuAlani-->
+                            <img src="/images/kargomnerede.png" alt="" title="">
+                        </div>
+
+                        <div id="KargomNeredeBaslikAlani">
+                            <!--SonucSayfalariBaslikAlani-->
+                            Gönderi Takip Numarası.
+                        </div>
+
+                        <div id="KargomNeredeInputAlani">
+                            <!--SonucSayfalariBaslikAlani-->
+                            <div class="TamSayfaCerceveAlaniIcinFormElemanlariIciTekSatirAlani"><input
+                                    name="GonderiKodu" type="text" class="FormElemanlariTextInputlari"
+                                    style="text-align: center;font-weight: 600;"></div>
+                        </div>
+                        <div class="ButonlarIcinKapsamaAlani"><input type="submit" value="Kargo Durumu Göster"
+                                class="FormElemanlariMaviButonlar" tabindex="8"></div>
+
+                        <div id="KargomNeredeiIcerikAlani">
+                            <!--SonucSayfalariIcerikAlani-->
+                            Siparişler sayfasında ilgili siparişiniz ile alakalı olan gönderi kodunuzu lütfen yukarıdaki
+                            alana girerek "Kargo Durumu Göster" butonuna tıklayınız.
+                        </div>
                     </div>
+                </form>
 
 
-                    <form action="https://www.yurticikargo.com/" method="get">
-                        <div id="KargomNeredeBilgiAlani"><!--SonucSayfalariBilgiAlani-->
-                            <div id="KargomNeredeIslemIconuAlani"><!--SonucSayfalariIslemIconuAlani-->
-                                <img src="/images/kargomnerede.png" alt="" title="">
-                            </div>
-
-                                <div id="KargomNeredeBaslikAlani"><!--SonucSayfalariBaslikAlani-->
-                                    Gönderi Takip Numarası.
-                                </div>
-
-                                <div id="KargomNeredeInputAlani"><!--SonucSayfalariBaslikAlani-->
-                                <div class="TamSayfaCerceveAlaniIcinFormElemanlariIciTekSatirAlani"><input name="GonderiKodu" type="text"  class="FormElemanlariTextInputlari" style="text-align: center;font-weight: 600;"></div>
-                                </div>
-                                <div class="ButonlarIcinKapsamaAlani"><input type="submit" value="Kargo Durumu Göster" class="FormElemanlariMaviButonlar" tabindex="8" ></div>
-
-                                    <div id="KargomNeredeiIcerikAlani"><!--SonucSayfalariIcerikAlani-->
-                                    Siparişler sayfasında ilgili siparişiniz ile alakalı olan gönderi kodunuzu lütfen yukarıdaki alana girerek "Kargo Durumu Göster" butonuna tıklayınız.
-                                    </div>
-                                </div>
-                        </form>
-
-                
-             </div>
-          </div>
+            </div>
         </div>
-    </main>
-
-    <%- include('partials/footer')%>
-   </div>
-</body>
-</html>
+    </div>

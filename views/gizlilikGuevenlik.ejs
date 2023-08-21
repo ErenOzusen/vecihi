@@ -1,82 +1,66 @@
-<!doctype html>
-<html lang="tr-TR">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<meta http-equiv="Content-Language" content="tr">
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Competible" content="IE=Edge">
-<meta name="viewport" content="width=device-width, initial-scale=1.0 maximum-scale=1.0, user-scalable=no">
-<link type="image/png" rel="icon"  sizes="93x93" href="/images/favicon.png" >
-<meta name="robots" content="index, follow, noarchive">
-<meta name="revisit-after" content="7 days">
-<meta name="rating" content="general">
-<meta name="copyright" content="copyright &copy; 2023 Vecihistore.com Her Hakkı Saklıdır.">
-<meta name="reply-to" content="info@vecihistore.com">
-<meta name="author" content="Eren Akkurt - info@vecihistore.com">
-<meta name="designer" content="Eren Akkurt - Vecihi Store">
-<meta name="generator" content="Microsoft Visual Studio">
-<title>Vecihi Store</title>
-<meta name="description"  content="Vecihi store vintage ürünler satan aynı zamanda eğlenceli çizgiromanlara sahip bir e-ticaret sitesidir">
-<meta name="keywords" content="Vecihi Store, Vintage , Baskı Tişört , Antika , Oyun , Çizgiroman ">
-<script type="text/javascript" language="javascript" src="/js/jquery-3.6.4.min.js"></script>
-<link type="text/css" rel="stylesheet" href="/css/style.css">
-<script type="text/javascript" language="javascript" src="/js/java.js"></script>
-</head>
+<% layout('layouts/boilerplate') %>
 
-<body>
-    <div id="TumSayfaAlani">
-
-        <%- include('partials/navbar')%>
-    <main>
-       <div id="TamSayfaCerceveAlani">
-          <div id="TamSayfaCerceveSinirlamaAlani">
-             <div id="TamSayfaCerceveAlaniİciYuzdeYuzlukAlan">
+    <div id="TamSayfaCerceveAlani">
+        <div id="TamSayfaCerceveSinirlamaAlani">
+            <div id="TamSayfaCerceveAlaniİciYuzdeYuzlukAlan">
                 <div class="TamSayfaCerceveAlaniİciAltiCizgiliBaslikAlani">
                     <div class="TamSayfaCerceveAlaniİciAltiCizgiliBaslikAlaniUstBaslikMetni">
                         Vecihistore.com Gizlilik ve Güvenlik Metni</div>
                     <div class="TamSayfaCerceveAlaniİciAltiCizgiliBaslikAlaniAltBaslikMetni">
                         vecihistore.com gizlilik ve güvenlik metni aşağıdadır.
                     </div>
+                </div>
+
+                <div id="TamSayfaCerceveAlaniİciGenelBilgilendirmeAlani">
+                    <div style="height: 350px; overflow-x: hidden; overflow-y: scroll;">
+
+
+                        Lütfen aşağıdaki metni dikkatlice okuyun. Bu metin, Vecihistore.com'un gizlilik ve güvenlik
+                        uygulamalarını ve politikalarını açıklamaktadır.
+                        Vecihistore.com'u kullanmaya devam etmeden önce bu politikaları kabul ettiğinizden emin
+                        olun.<br><br>
+
+                        1. Kişisel Verilerin Toplanması ve Kullanımı<br><br>
+                        1.1. Vecihistore.com, kullanıcılarının kişisel verilerini, hizmetlerimizi sunmak ve
+                        iyileştirmek, taleplerini yerine getirmek, iletişim sağlamak ve yasal gereklilikleri yerine
+                        getirmek amacıyla toplayabilir ve kullanabilir.
+                        1.2. Toplanan kişisel veriler arasında isim, adres, e-posta adresi, telefon numarası gibi
+                        bilgiler yer alabilir. Bu veriler, kullanıcının onayı olmadan üçüncü taraflarla
+                        paylaşılmaz.<br><br>
+
+                        2. Çerezler ve İzleme Teknolojileri<br><br>
+                        2.1. Vecihistore.com, kullanıcı deneyimini geliştirmek, içerikleri kişiselleştirmek ve kullanıcı
+                        tercihlerini hatırlamak amacıyla çerezler ve benzeri izleme teknolojilerini kullanabilir.
+                        2.2. Çerezleri kabul etmek veya reddetmek konusunda tercihlerinizi tarayıcınızın ayarlarından
+                        belirleyebilirsiniz. Ancak, çerezleri reddetmek bazı özelliklerin düzgün çalışmasını
+                        engelleyebilir.<br><br>
+
+                        3.Güvenlik<br><br>
+
+                        3.1. Vecihistore.com, kullanıcılarının verilerinin güvenliğini sağlamak için uygun teknik ve
+                        idari önlemler almaktadır. Bununla birlikte, internet üzerinden iletişimde veya veri aktarımında
+                        tam bir güvenlik sağlanamayacağını lütfen unutmayın.
+                        3.2. Vecihistore.com, kullanıcıların hesap bilgilerini korumak için parola kullanımını teşvik
+                        etmektedir. Kullanıcılar, parolalarını güçlü ve güvenli tutmalı ve başkalarıyla
+                        paylaşmamalıdır.<br><br>
+
+                        4.Üçüncü Taraf Bağlantıları<br><br>
+
+                        .1. Vecihistore.com, diğer web sitelerine veya hizmetlere bağlantılar içerebilir. Bu bağlantılar
+                        üzerinden erişilen web sitelerinin gizlilik ve güvenlik politikaları Vecihistore.com'un kontrolü
+                        dışındadır.
+                        Bu nedenle, bağlantıya tıkladığınızda başka bir web sitesine yönlendirildiğinizi unutmayın ve
+                        ilgili web sitesinin politikalarını okuyun.<br><br>
+
+                        5.Gizlilik Politikası Güncellemeleri<br><br>
+
+                        5.1. Vecihistore.com, gizlilik politikasını zaman zaman güncelleme hakkını saklı tutar. Bu
+                        değişiklikleri bildirmek veya kullanıcılara duyurmak için uygun yöntemleri kullanacaktır.
+                        5.2. Gizlilik politikasının güncel sürümünü Vecihistore.com web sitesinde bulabilirsiniz. Güncel
+                        politikayı takip etmek sizin sorumluluğunuzdadır.
                     </div>
 
-                     <div id="TamSayfaCerceveAlaniİciGenelBilgilendirmeAlani">
-                        <div style="height: 350px; overflow-x: hidden; overflow-y: scroll;">                       
-                    
-
-                    Lütfen aşağıdaki metni dikkatlice okuyun. Bu metin, Vecihistore.com'un gizlilik ve güvenlik uygulamalarını ve politikalarını açıklamaktadır.
-                     Vecihistore.com'u kullanmaya devam etmeden önce bu politikaları kabul ettiğinizden emin olun.<br><br>
-
-                    1. Kişisel Verilerin Toplanması ve Kullanımı<br><br>
-                    1.1. Vecihistore.com, kullanıcılarının kişisel verilerini, hizmetlerimizi sunmak ve iyileştirmek, taleplerini yerine getirmek, iletişim sağlamak ve yasal gereklilikleri yerine getirmek amacıyla toplayabilir ve kullanabilir.
-1.2. Toplanan kişisel veriler arasında isim, adres, e-posta adresi, telefon numarası gibi bilgiler yer alabilir. Bu veriler, kullanıcının onayı olmadan üçüncü taraflarla paylaşılmaz.<br><br>
-
- 2. Çerezler ve İzleme Teknolojileri<br><br>
- 2.1. Vecihistore.com, kullanıcı deneyimini geliştirmek, içerikleri kişiselleştirmek ve kullanıcı tercihlerini hatırlamak amacıyla çerezler ve benzeri izleme teknolojilerini kullanabilir.
-2.2. Çerezleri kabul etmek veya reddetmek konusunda tercihlerinizi tarayıcınızın ayarlarından belirleyebilirsiniz. Ancak, çerezleri reddetmek bazı özelliklerin düzgün çalışmasını engelleyebilir.<br><br>
-
-3.Güvenlik<br><br>
-
-3.1. Vecihistore.com, kullanıcılarının verilerinin güvenliğini sağlamak için uygun teknik ve idari önlemler almaktadır. Bununla birlikte, internet üzerinden iletişimde veya veri aktarımında tam bir güvenlik sağlanamayacağını lütfen unutmayın.
-3.2. Vecihistore.com, kullanıcıların hesap bilgilerini korumak için parola kullanımını teşvik etmektedir. Kullanıcılar, parolalarını güçlü ve güvenli tutmalı ve başkalarıyla paylaşmamalıdır.<br><br>
-
-4.Üçüncü Taraf Bağlantıları<br><br>
-
-.1. Vecihistore.com, diğer web sitelerine veya hizmetlere bağlantılar içerebilir. Bu bağlantılar üzerinden erişilen web sitelerinin gizlilik ve güvenlik politikaları Vecihistore.com'un kontrolü dışındadır.
- Bu nedenle, bağlantıya tıkladığınızda başka bir web sitesine yönlendirildiğinizi unutmayın ve ilgili web sitesinin politikalarını okuyun.<br><br>
-
- 5.Gizlilik Politikası Güncellemeleri<br><br>
-
- 5.1. Vecihistore.com, gizlilik politikasını zaman zaman güncelleme hakkını saklı tutar. Bu değişiklikleri bildirmek veya kullanıcılara duyurmak için uygun yöntemleri kullanacaktır.
-5.2. Gizlilik politikasının güncel sürümünü Vecihistore.com web sitesinde bulabilirsiniz. Güncel politikayı takip etmek sizin sorumluluğunuzdadır.
-</div>
-
-</div> 
-             </div>
-          </div>
+                </div>
+            </div>
         </div>
-    </main>
-
-    <%- include('partials/footer')%>
-   </div>
-</body>
-</html>
+    </div>

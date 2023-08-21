@@ -1,114 +1,94 @@
-<!doctype html>
-<html lang="tr-TR">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<meta http-equiv="Content-Language" content="tr">
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Competible" content="IE=Edge">
-<meta name="viewport" content="width=device-width, initial-scale=1.0 maximum-scale=1.0, user-scalable=no">
-<link type="image/png" rel="icon"  sizes="93x93" href="/images/favicon.png" >
-<meta name="robots" content="index, follow, noarchive">
-<meta name="revisit-after" content="7 days">
-<meta name="rating" content="general">
-<meta name="copyright" content="copyright &copy; 2023 Vecihistore.com Her Hakkı Saklıdır.">
-<meta name="reply-to" content="info@vecihistore.com">
-<meta name="author" content="Eren Akkurt - info@vecihistore.com">
-<meta name="designer" content="Eren Akkurt - Vecihi Store">
-<meta name="generator" content="Microsoft Visual Studio">
-<title>Vecihi Store</title>
-<meta name="description"  content="Vecihi store vintage ürünler satan aynı zamanda eğlenceli çizgiromanlara sahip bir e-ticaret sitesidir">
-<meta name="keywords" content="Vecihi Store, Vintage , Baskı Tişört , Antika , Oyun , Çizgiroman ">
-<script type="text/javascript" language="javascript" src="/js/jquery-3.6.4.min.js"></script>
-<link type="text/css" rel="stylesheet" href="/css/style.css">
-<script type="text/javascript" language="javascript" src="/js/java.js"></script>
-</head>
+<% layout('layouts/boilerplate') %>
 
-<body>
-    <div id="TumSayfaAlani">
+    <div id="TamSayfaCerceveAlani">
+        <div id="TamSayfaCerceveSinirlamaAlani">
 
-        <%- include('partials/navbar')%>
-    <main>
-       <div id="TamSayfaCerceveAlani">
-          <div id="TamSayfaCerceveSinirlamaAlani">
+            <div id="TamSayfaCerceveAlaniIciYuzdeElliSolAlan">
+                <div class="TamSayfaCerceveAlaniİciAltiCizgiliBaslikAlani">
+                    <div class="TamSayfaCerceveAlaniİciAltiCizgiliBaslikAlaniUstBaslikMetni">
+                        İletişim</div>
+                    <div class="TamSayfaCerceveAlaniİciAltiCizgiliBaslikAlaniAltBaslikMetni">
+                        Bir sorun mu var? Bizlere her konuda yazabilirsiniz.</div>
+                </div>
+                <form action="/iletisim" method="post">
+                    <div class="TamSayfaCerceveAlaniIcinFormElemanlariBaslikMetni">İsim Soyisim</div>
+                    <div class="TamSayfaCerceveAlaniIcinFormElemanlariIciSatirAlani"><input name="IsimSoyİsim"
+                            type="text" class="FormElemanlariTextInputlari" tabindex="1"></div>
 
-                 <div id="TamSayfaCerceveAlaniIciYuzdeElliSolAlan">
-                    <div class="TamSayfaCerceveAlaniİciAltiCizgiliBaslikAlani">
-                        <div class="TamSayfaCerceveAlaniİciAltiCizgiliBaslikAlaniUstBaslikMetni">
-                            İletişim</div>
-                        <div class="TamSayfaCerceveAlaniİciAltiCizgiliBaslikAlaniAltBaslikMetni">
-                            Bir sorun mu var? Bizlere her konuda yazabilirsiniz.</div>
-                        </div>
-                            <form action="/iletisim" method="post">
-                                <div class="TamSayfaCerceveAlaniIcinFormElemanlariBaslikMetni">İsim Soyisim</div>
-                                <div class="TamSayfaCerceveAlaniIcinFormElemanlariIciSatirAlani"><input name="IsimSoyİsim" type="text" class="FormElemanlariTextInputlari" tabindex="1"></div>
+                    <div class="TamSayfaCerceveAlaniIcinFormElemanlariBaslikMetni">E-Mail Adresi</div>
+                    <div class="TamSayfaCerceveAlaniIcinFormElemanlariIciSatirAlani"><input name="EmailAdresi"
+                            type="text" class="FormElemanlariTextInputlari" tabindex="2"></div>
 
-                                <div class="TamSayfaCerceveAlaniIcinFormElemanlariBaslikMetni">E-Mail Adresi</div>
-                                <div class="TamSayfaCerceveAlaniIcinFormElemanlariIciSatirAlani"><input name="EmailAdresi" type="text" class="FormElemanlariTextInputlari" tabindex="2"></div>
+                    <div class="TamSayfaCerceveAlaniIcinFormElemanlariBaslikMetni">Cep Telefonu</div>
+                    <div class="TamSayfaCerceveAlaniIcinFormElemanlariIciSatirAlani"><input name="EmailAdresi"
+                            type="text" class="FormElemanlariTextInputlari" tabindex="3"></div>
 
-                                <div class="TamSayfaCerceveAlaniIcinFormElemanlariBaslikMetni">Cep Telefonu</div>
-                                <div class="TamSayfaCerceveAlaniIcinFormElemanlariIciSatirAlani"><input name="EmailAdresi" type="text" class="FormElemanlariTextInputlari" tabindex="3"></div>
+                    <div class="TamSayfaCerceveAlaniIcinFormElemanlariBaslikMetni">Mesaj</div>
+                    <div class="TamSayfaCerceveAlaniIcinFormElemanlariIciSatirAlani"><textarea name="Mesaj"
+                            class="FormElemanlariTextArealari" tabindex="4"></textarea></div>
 
-                                <div class="TamSayfaCerceveAlaniIcinFormElemanlariBaslikMetni">Mesaj</div>
-                                <div class="TamSayfaCerceveAlaniIcinFormElemanlariIciSatirAlani"><textarea name="Mesaj" class="FormElemanlariTextArealari" tabindex="4"></textarea></div>
+                    <div class="ButonlarIcinKapsamaAlani"><input type="submit" value="Mesajımı Gönder"
+                            class="FormElemanlariYesilButonlar" tabindex="5"></div>
 
-                                <div class="ButonlarIcinKapsamaAlani"><input type="submit" value="Mesajımı Gönder" class="FormElemanlariYesilButonlar" tabindex="5" ></div>
+                </form>
+            </div>
 
-                            </form>
-                 </div>
+            <div id="TamSayfaCerceveAlaniIciYuzdeElliSagAlan">
+                <div class="TamSayfaCerceveAlaniİciAltiCizgiliBaslikAlani">
+                    <div class="TamSayfaCerceveAlaniİciAltiCizgiliBaslikAlaniUstBaslikMetni">
+                        Değerlendirmeye alınmayan mesajlar!
+                    </div>
+                    <div class="TamSayfaCerceveAlaniİciAltiCizgiliBaslikAlaniAltBaslikMetni">
+                        Geçersiz olarak değerlendirilen mesajlar aşağıdaki gibidir.
+                    </div>
+                </div>
 
-                 <div id="TamSayfaCerceveAlaniIciYuzdeElliSagAlan">
-                    <div class="TamSayfaCerceveAlaniİciAltiCizgiliBaslikAlani">
-                        <div class="TamSayfaCerceveAlaniİciAltiCizgiliBaslikAlaniUstBaslikMetni">
-                            Değerlendirmeye alınmayan mesajlar!
-                        </div>
-                        <div class="TamSayfaCerceveAlaniİciAltiCizgiliBaslikAlaniAltBaslikMetni">
-                            Geçersiz olarak değerlendirilen mesajlar aşağıdaki gibidir.
-                        </div>
-                     </div>
+                <div class="TamSayfaCerceveAlaniIciBilgiParagraflariKapsamaAlani">
+                    <div class="TamSayfaCerceveAlaniIciBilgiParagraflariResimliBaslikMetniAlani">
+                        <img src="/images/başvuru formu.png" alt="" title=""><span
+                            class="TamSayfaCerceveAlaniIciBilgiParagraflariResimliBaslikMetni">Geçersiz bilgi
+                            girişi</span>
+                    </div>
+                    <div class="TamSayfaCerceveAlaniIciBilgiParagraflariAciklamaMetni">İsim soyisim , e-mail adresi veya
+                        cep telefonu bilgileri rastgele veya geçersiz şekilde
+                        doldurulan mesajlar.
+                    </div>
+                </div>
 
-                     <div class="TamSayfaCerceveAlaniIciBilgiParagraflariKapsamaAlani">
-                        <div class="TamSayfaCerceveAlaniIciBilgiParagraflariResimliBaslikMetniAlani">
-                            <img src="/images/başvuru formu.png" alt="" title=""><span class="TamSayfaCerceveAlaniIciBilgiParagraflariResimliBaslikMetni">Geçersiz bilgi girişi</span>
-                        </div>
-                        <div class="TamSayfaCerceveAlaniIciBilgiParagraflariAciklamaMetni">İsim soyisim , e-mail adresi veya cep telefonu bilgileri rastgele veya geçersiz şekilde
-                            doldurulan mesajlar.
-                            </div>
-                     </div>
+                <div class="TamSayfaCerceveAlaniIciBilgiParagraflariKapsamaAlani">
+                    <div class="TamSayfaCerceveAlaniIciBilgiParagraflariResimliBaslikMetniAlani">
+                        <img src="/images/ucuncukisiler.png" alt="" title=""><span
+                            class="TamSayfaCerceveAlaniIciBilgiParagraflariResimliBaslikMetni">3. şahıslar</span>
+                    </div>
+                    <div class="TamSayfaCerceveAlaniIciBilgiParagraflariAciklamaMetni">Vecihi store kullanıcı hesapları
+                        hakkında (örneğin: Bilgi edinme , şifre talebi vb.)
+                        herhangibir yakını , arkadaşı vb. 3. şahıslar tarafından gönderilen mesajlar.
+                    </div>
+                </div>
 
-                     <div class="TamSayfaCerceveAlaniIciBilgiParagraflariKapsamaAlani">
-                        <div class="TamSayfaCerceveAlaniIciBilgiParagraflariResimliBaslikMetniAlani">
-                            <img src="/images/ucuncukisiler.png" alt="" title=""><span class="TamSayfaCerceveAlaniIciBilgiParagraflariResimliBaslikMetni">3. şahıslar</span>
-                        </div>
-                        <div class="TamSayfaCerceveAlaniIciBilgiParagraflariAciklamaMetni">Vecihi store kullanıcı hesapları hakkında (örneğin: Bilgi edinme , şifre talebi vb.)
-                           herhangibir yakını , arkadaşı vb. 3. şahıslar tarafından gönderilen mesajlar.
-                            </div>
-                     </div>
+                <div class="TamSayfaCerceveAlaniIciBilgiParagraflariKapsamaAlani">
+                    <div class="TamSayfaCerceveAlaniIciBilgiParagraflariResimliBaslikMetniAlani">
+                        <img src="/images/reklam.png" alt="" title=""><span
+                            class="TamSayfaCerceveAlaniIciBilgiParagraflariResimliBaslikMetni">Reklam & Tanıtım</span>
+                    </div>
+                    <div class="TamSayfaCerceveAlaniIciBilgiParagraflariAciklamaMetni">Site , kurum veya kuruluşlar ile
+                        ilgili
+                        reklam veya tanıtım içeren mesajlar.
+                    </div>
+                </div>
 
-                     <div class="TamSayfaCerceveAlaniIciBilgiParagraflariKapsamaAlani">
-                        <div class="TamSayfaCerceveAlaniIciBilgiParagraflariResimliBaslikMetniAlani">
-                            <img src="/images/reklam.png" alt="" title=""><span class="TamSayfaCerceveAlaniIciBilgiParagraflariResimliBaslikMetni">Reklam & Tanıtım</span>
-                        </div>
-                        <div class="TamSayfaCerceveAlaniIciBilgiParagraflariAciklamaMetni">Site , kurum veya kuruluşlar ile ilgili 
-                            reklam veya tanıtım içeren mesajlar.
-                            </div>
-                     </div>
+                <div class="TamSayfaCerceveAlaniIciBilgiParagraflariKapsamaAlani">
+                    <div class="TamSayfaCerceveAlaniIciBilgiParagraflariResimliBaslikMetniAlani">
+                        <img src="/images/siyaset.png" alt="" title=""><span
+                            class="TamSayfaCerceveAlaniIciBilgiParagraflariResimliBaslikMetni">Politika & Siyaset</span>
+                    </div>
+                    <div class="TamSayfaCerceveAlaniIciBilgiParagraflariAciklamaMetni">Politik veya siyasi
+                        içerikli mesajlar.<br><br>Yukarıda belirtilmiş olan vb. konularda gönderilecek olan tüm mesajlar
+                        , içeriği her ne olursa olsun
+                        değerlendirilmeye alınmayacaktır.
+                    </div>
+                </div>
 
-                     <div class="TamSayfaCerceveAlaniIciBilgiParagraflariKapsamaAlani">
-                        <div class="TamSayfaCerceveAlaniIciBilgiParagraflariResimliBaslikMetniAlani">
-                            <img src="/images/siyaset.png" alt="" title=""><span class="TamSayfaCerceveAlaniIciBilgiParagraflariResimliBaslikMetni">Politika & Siyaset</span>
-                        </div>
-                        <div class="TamSayfaCerceveAlaniIciBilgiParagraflariAciklamaMetni">Politik veya siyasi 
-                            içerikli mesajlar.<br><br>Yukarıda belirtilmiş olan vb. konularda gönderilecek olan tüm mesajlar , içeriği her ne olursa olsun
-                            değerlendirilmeye alınmayacaktır.
-                            </div>
-                     </div>
-
-                 </div>
-          </div>
+            </div>
         </div>
-    </main>
-
-    <%- include('partials/footer')%>
-   </div>
-</body>
-</html>
+    </div>

@@ -1,327 +1,494 @@
-<!doctype html>
-<html lang="tr-TR">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<meta http-equiv="Content-Language" content="tr">
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Competible" content="IE=Edge">
-<meta name="viewport" content="width=device-width, initial-scale=1.0 maximum-scale=1.0, user-scalable=no">
-<link type="image/png" rel="icon"  sizes="93x93" href="/images/favicon.png" >
-<meta name="robots" content="index, follow, noarchive">
-<meta name="revisit-after" content="7 days">
-<meta name="rating" content="general">
-<meta name="copyright" content="copyright &copy; 2023 Vecihistore.com Her Hakkı Saklıdır.">
-<meta name="reply-to" content="info@vecihistore.com">
-<meta name="author" content="Eren Akkurt - info@vecihistore.com">
-<meta name="designer" content="Eren Akkurt - Vecihi Store">
-<meta name="generator" content="Microsoft Visual Studio">
-<title>Vecihi Store</title>
-<meta name="description"  content="Vecihi store vintage ürünler satan aynı zamanda eğlenceli çizgiromanlara sahip bir e-ticaret sitesidir">
-<meta name="keywords" content="Vecihi Store, Vintage , Baskı Tişört , Antika , Oyun , Çizgiroman ">
-<script type="text/javascript" language="javascript" src="/js/jquery-3.6.4.min.js"></script>
-<link type="text/css" rel="stylesheet" href="/css/style.css">
-<script type="text/javascript" language="javascript" src="/js/java.js"></script>
-</head>
+<% layout('layouts/boilerplate') %>
 
-<body>
-    <div id="TumSayfaAlani">
+    <div id="TamSayfaCerceveAlani">
+        <div id="TamSayfaCerceveSinirlamaAlani">
+            <div id="TamSayfaCerceveAlaniİciYuzdeYuzlukAlan">
+                <div class="TamSayfaCerceveAlaniİciAltiCizgiliBaslikAlani">
+                    <div class="TamSayfaCerceveAlaniİciAltiCizgiliBaslikAlaniUstBaslikMetni">
+                        Banka Hesaplarımız</div>
+                    <div class="TamSayfaCerceveAlaniİciAltiCizgiliBaslikAlaniAltBaslikMetni">
+                        Ödemeleriniz için çalıştığımız bankalar </div>
+                </div>
 
-        <%- include('partials/navbar')%>
+                <div id="TamsayfaCerceveAlaniİciBankaHesaplariAlani">
+                    <div id="TamsayfaCerceveAlaniİciBankaHesaplariDengelemeAlani">
 
-    <main>
-       
-        <div id="TamSayfaCerceveAlani">
-            <div id="TamSayfaCerceveSinirlamaAlani">
-               <div id="TamSayfaCerceveAlaniİciYuzdeYuzlukAlan">
-                  <div class="TamSayfaCerceveAlaniİciAltiCizgiliBaslikAlani">
-                      <div class="TamSayfaCerceveAlaniİciAltiCizgiliBaslikAlaniUstBaslikMetni">
-                         Banka Hesaplarımız</div>
-                      <div class="TamSayfaCerceveAlaniİciAltiCizgiliBaslikAlaniAltBaslikMetni">
-                          Ödemeleriniz için çalıştığımız bankalar </div>
-                      </div>
-
-                      <div id="TamsayfaCerceveAlaniİciBankaHesaplariAlani">
-                        <div id="TamsayfaCerceveAlaniİciBankaHesaplariDengelemeAlani">
-
-                            <div class="TamsayfaCerceveAlaniİciBankaHesabiSinirlamaAlani">
-                                <div class="TamsayfaCerceveAlaniİciBankaHesabiLogosuAlani">
-                                    <img src="/images/odeme-garanti.png" alt="" title="">
-                                </div>
-                                <table class="TamsayfaCerceveAlaniİciBankaHesabiTablosu" width="100%" cellspacing="0" cellpadding="0">
-                                        <tbody>
-                                            <tr>
-                                                <td align="left" valign"top" class="TamsayfaCerceveAlaniİciBankaHesabiTablosuBaslikMetniSütunu">Banka</td>
-                                                <td align="left" valign"top" class="TamsayfaCerceveAlaniİciBankaHesabiTablosuNoktaMetniSütunu">:</td>
-                                                <td align="left" valign"top" class="TamsayfaCerceveAlaniİciBankaHesabiTablosuİcerikMetniSütunu">Garanti</td>
-                                            </tr>
-                                            <tr>
-                                                <td align="left" valign"top" class="TamsayfaCerceveAlaniİciBankaHesabiTablosuBaslikMetniSütunu">Konum</td>
-                                                <td align="left" valign"top" class="TamsayfaCerceveAlaniİciBankaHesabiTablosuNoktaMetniSütunu">:</td>
-                                                <td align="left" valign"top" class="TamsayfaCerceveAlaniİciBankaHesabiTablosuİcerikMetniSütunu">Ankara Türkiye</td>
-                                            </tr>
-                                            <tr>
-                                                <td align="left" valign"top" class="TamsayfaCerceveAlaniİciBankaHesabiTablosuBaslikMetniSütunu">Şube</td>
-                                                <td align="left" valign"top" class="TamsayfaCerceveAlaniİciBankaHesabiTablosuNoktaMetniSütunu">:</td>
-                                                <td align="left" valign"top" class="TamsayfaCerceveAlaniİciBankaHesabiTablosuİcerikMetniSütunu">Gaziosmanpaşa</td>
-                                            </tr>
-                                            <tr>
-                                                <td align="left" valign"top" class="TamsayfaCerceveAlaniİciBankaHesabiTablosuBaslikMetniSütunu">Birim</td>
-                                                <td align="left" valign"top" class="TamsayfaCerceveAlaniİciBankaHesabiTablosuNoktaMetniSütunu">:</td>
-                                                <td align="left" valign"top" class="TamsayfaCerceveAlaniİciBankaHesabiTablosuİcerikMetniSütunu">Türk Lirası (TL)</td>
-                                            </tr>
-                                            <tr>
-                                                <td align="left" valign"top" class="TamsayfaCerceveAlaniİciBankaHesabiTablosuBaslikMetniSütunu">Adı</td>
-                                                <td align="left" valign"top" class="TamsayfaCerceveAlaniİciBankaHesabiTablosuNoktaMetniSütunu">:</td>
-                                                <td align="left" valign"top" class="TamsayfaCerceveAlaniİciBankaHesabiTablosuİcerikMetniSütunu">Eren Akkurt</td>
-                                            </tr>
-                                            <tr>
-                                                <td align="left" valign"top" class="TamsayfaCerceveAlaniİciBankaHesabiTablosuBaslikMetniSütunu">Hesap No</td>
-                                                <td align="left" valign"top" class="TamsayfaCerceveAlaniİciBankaHesabiTablosuNoktaMetniSütunu">:</td>
-                                                <td align="left" valign"top" class="TamsayfaCerceveAlaniİciBankaHesabiTablosuİcerikMetniSütunu">12123123</td>
-                                            </tr>
-                                            <tr>
-                                                <td align="left" valign"top" class="TamsayfaCerceveAlaniİciBankaHesabiTablosuBaslikMetniSütunu">İban No</td>
-                                                <td align="left" valign"top" class="TamsayfaCerceveAlaniİciBankaHesabiTablosuNoktaMetniSütunu">:</td>
-                                                <td align="left" valign"top" class="TamsayfaCerceveAlaniİciBankaHesabiTablosuİcerikMetniSütunu">TR0000 0000 0000 0000 0000 00</td>
-                                            </tr>
-                                        </tbody>
-                                </table>
+                        <div class="TamsayfaCerceveAlaniİciBankaHesabiSinirlamaAlani">
+                            <div class="TamsayfaCerceveAlaniİciBankaHesabiLogosuAlani">
+                                <img src="/images/odeme-garanti.png" alt="" title="">
                             </div>
-
-                            <div class ="TamsayfaCerceveAlaniİciBankaHesabiSinirlamaAlani">
-                                <div class="TamsayfaCerceveAlaniİciBankaHesabiLogosuAlani">
-                                    <img src="/images/odeme-isbankasi.png" alt="" title="">
-                                </div>
-                                <table class="TamsayfaCerceveAlaniİciBankaHesabiTablosu" width="100%" cellspacing="0" cellpadding="0">
-                                        <tbody>
-                                            <tr>
-                                                <td align="left" valign"top" class="TamsayfaCerceveAlaniİciBankaHesabiTablosuBaslikMetniSütunu">Banka</td>
-                                                <td align="left" valign"top" class="TamsayfaCerceveAlaniİciBankaHesabiTablosuNoktaMetniSütunu">:</td>
-                                                <td align="left" valign"top" class="TamsayfaCerceveAlaniİciBankaHesabiTablosuİcerikMetniSütunu">İş Bankası</td>
-                                            </tr>
-                                            <tr>
-                                                <td align="left" valign"top" class="TamsayfaCerceveAlaniİciBankaHesabiTablosuBaslikMetniSütunu">Konum</td>
-                                                <td align="left" valign"top" class="TamsayfaCerceveAlaniİciBankaHesabiTablosuNoktaMetniSütunu">:</td>
-                                                <td align="left" valign"top" class="TamsayfaCerceveAlaniİciBankaHesabiTablosuİcerikMetniSütunu">Ankara Türkiye</td>
-                                            </tr>
-                                            <tr>
-                                                <td align="left" valign"top" class="TamsayfaCerceveAlaniİciBankaHesabiTablosuBaslikMetniSütunu">Şube</td>
-                                                <td align="left" valign"top" class="TamsayfaCerceveAlaniİciBankaHesabiTablosuNoktaMetniSütunu">:</td>
-                                                <td align="left" valign"top" class="TamsayfaCerceveAlaniİciBankaHesabiTablosuİcerikMetniSütunu">Gaziosmanpaşa</td>
-                                            </tr>
-                                            <tr>
-                                                <td align="left" valign"top" class="TamsayfaCerceveAlaniİciBankaHesabiTablosuBaslikMetniSütunu">Birim</td>
-                                                <td align="left" valign"top" class="TamsayfaCerceveAlaniİciBankaHesabiTablosuNoktaMetniSütunu">:</td>
-                                                <td align="left" valign"top" class="TamsayfaCerceveAlaniİciBankaHesabiTablosuİcerikMetniSütunu">Türk Lirası (TL)</td>
-                                            </tr>
-                                            <tr>
-                                                <td align="left" valign"top" class="TamsayfaCerceveAlaniİciBankaHesabiTablosuBaslikMetniSütunu">Adı</td>
-                                                <td align="left" valign"top" class="TamsayfaCerceveAlaniİciBankaHesabiTablosuNoktaMetniSütunu">:</td>
-                                                <td align="left" valign"top" class="TamsayfaCerceveAlaniİciBankaHesabiTablosuİcerikMetniSütunu">Eren Akkurt</td>
-                                            </tr>
-                                            <tr>
-                                                <td align="left" valign"top" class="TamsayfaCerceveAlaniİciBankaHesabiTablosuBaslikMetniSütunu">Hesap No</td>
-                                                <td align="left" valign"top" class="TamsayfaCerceveAlaniİciBankaHesabiTablosuNoktaMetniSütunu">:</td>
-                                                <td align="left" valign"top" class="TamsayfaCerceveAlaniİciBankaHesabiTablosuİcerikMetniSütunu">12123123</td>
-                                            </tr>
-                                            <tr>
-                                                <td align="left" valign"top" class="TamsayfaCerceveAlaniİciBankaHesabiTablosuBaslikMetniSütunu">İban No</td>
-                                                <td align="left" valign"top" class="TamsayfaCerceveAlaniİciBankaHesabiTablosuNoktaMetniSütunu">:</td>
-                                                <td align="left" valign"top" class="TamsayfaCerceveAlaniİciBankaHesabiTablosuİcerikMetniSütunu">TR0000 0000 0000 0000 0000 00</td>
-                                            </tr>
-                                        </tbody>
-                                </table>
-                            </div>
-
-                            <div class="TamsayfaCerceveAlaniİciBankaHesabiSinirlamaAlani">
-                                <div class="TamsayfaCerceveAlaniİciBankaHesabiLogosuAlani">
-                                    <img src="/images/odeme-yapikredi.png" alt="" title="">
-                                </div>
-                                <table class="TamsayfaCerceveAlaniİciBankaHesabiTablosu" width="100%" cellspacing="0" cellpadding="0">
-                                        <tbody>
-                                            <tr>
-                                                <td align="left" valign"top" class="TamsayfaCerceveAlaniİciBankaHesabiTablosuBaslikMetniSütunu">Banka</td>
-                                                <td align="left" valign"top" class="TamsayfaCerceveAlaniİciBankaHesabiTablosuNoktaMetniSütunu">:</td>
-                                                <td align="left" valign"top" class="TamsayfaCerceveAlaniİciBankaHesabiTablosuİcerikMetniSütunu">Yapı Kredi</td>
-                                            </tr>
-                                            <tr>
-                                                <td align="left" valign"top" class="TamsayfaCerceveAlaniİciBankaHesabiTablosuBaslikMetniSütunu">Konum</td>
-                                                <td align="left" valign"top" class="TamsayfaCerceveAlaniİciBankaHesabiTablosuNoktaMetniSütunu">:</td>
-                                                <td align="left" valign"top" class="TamsayfaCerceveAlaniİciBankaHesabiTablosuİcerikMetniSütunu">Ankara Türkiye</td>
-                                            </tr>
-                                            <tr>
-                                                <td align="left" valign"top" class="TamsayfaCerceveAlaniİciBankaHesabiTablosuBaslikMetniSütunu">Şube</td>
-                                                <td align="left" valign"top" class="TamsayfaCerceveAlaniİciBankaHesabiTablosuNoktaMetniSütunu">:</td>
-                                                <td align="left" valign"top" class="TamsayfaCerceveAlaniİciBankaHesabiTablosuİcerikMetniSütunu">Gaziosmanpaşa</td>
-                                            </tr>
-                                            <tr>
-                                                <td align="left" valign"top" class="TamsayfaCerceveAlaniİciBankaHesabiTablosuBaslikMetniSütunu">Birim</td>
-                                                <td align="left" valign"top" class="TamsayfaCerceveAlaniİciBankaHesabiTablosuNoktaMetniSütunu">:</td>
-                                                <td align="left" valign"top" class="TamsayfaCerceveAlaniİciBankaHesabiTablosuİcerikMetniSütunu">Türk Lirası (TL)</td>
-                                            </tr>
-                                            <tr>
-                                                <td align="left" valign"top" class="TamsayfaCerceveAlaniİciBankaHesabiTablosuBaslikMetniSütunu">Adı</td>
-                                                <td align="left" valign"top" class="TamsayfaCerceveAlaniİciBankaHesabiTablosuNoktaMetniSütunu">:</td>
-                                                <td align="left" valign"top" class="TamsayfaCerceveAlaniİciBankaHesabiTablosuİcerikMetniSütunu">Eren Akkurt</td>
-                                            </tr>
-                                            <tr>
-                                                <td align="left" valign"top" class="TamsayfaCerceveAlaniİciBankaHesabiTablosuBaslikMetniSütunu">Hesap No</td>
-                                                <td align="left" valign"top" class="TamsayfaCerceveAlaniİciBankaHesabiTablosuNoktaMetniSütunu">:</td>
-                                                <td align="left" valign"top" class="TamsayfaCerceveAlaniİciBankaHesabiTablosuİcerikMetniSütunu">12123123</td>
-                                            </tr>
-                                            <tr>
-                                                <td align="left" valign"top" class="TamsayfaCerceveAlaniİciBankaHesabiTablosuBaslikMetniSütunu">İban No</td>
-                                                <td align="left" valign"top" class="TamsayfaCerceveAlaniİciBankaHesabiTablosuNoktaMetniSütunu">:</td>
-                                                <td align="left" valign"top" class="TamsayfaCerceveAlaniİciBankaHesabiTablosuİcerikMetniSütunu">TR0000 0000 0000 0000 0000 00</td>
-                                            </tr>
-                                        </tbody>
-                                </table>
-                            </div>
-
-                            <div class="TamsayfaCerceveAlaniİciBankaHesabiSinirlamaAlani">
-                                <div class="TamsayfaCerceveAlaniİciBankaHesabiLogosuAlani">
-                                    <img src="/images/odeme-akbank.png" alt="" title="">
-                                </div>
-                                <table class="TamsayfaCerceveAlaniİciBankaHesabiTablosu" width="100%" cellspacing="0" cellpadding="0">
-                                        <tbody>
-                                            <tr>
-                                                <td align="left" valign"top" class="TamsayfaCerceveAlaniİciBankaHesabiTablosuBaslikMetniSütunu">Banka</td>
-                                                <td align="left" valign"top" class="TamsayfaCerceveAlaniİciBankaHesabiTablosuNoktaMetniSütunu">:</td>
-                                                <td align="left" valign"top" class="TamsayfaCerceveAlaniİciBankaHesabiTablosuİcerikMetniSütunu">Akbank</td>
-                                            </tr>
-                                            <tr>
-                                                <td align="left" valign"top" class="TamsayfaCerceveAlaniİciBankaHesabiTablosuBaslikMetniSütunu">Konum</td>
-                                                <td align="left" valign"top" class="TamsayfaCerceveAlaniİciBankaHesabiTablosuNoktaMetniSütunu">:</td>
-                                                <td align="left" valign"top" class="TamsayfaCerceveAlaniİciBankaHesabiTablosuİcerikMetniSütunu">Ankara Türkiye</td>
-                                            </tr>
-                                            <tr>
-                                                <td align="left" valign"top" class="TamsayfaCerceveAlaniİciBankaHesabiTablosuBaslikMetniSütunu">Şube</td>
-                                                <td align="left" valign"top" class="TamsayfaCerceveAlaniİciBankaHesabiTablosuNoktaMetniSütunu">:</td>
-                                                <td align="left" valign"top" class="TamsayfaCerceveAlaniİciBankaHesabiTablosuİcerikMetniSütunu">Gaziosmanpaşa</td>
-                                            </tr>
-                                            <tr>
-                                                <td align="left" valign"top" class="TamsayfaCerceveAlaniİciBankaHesabiTablosuBaslikMetniSütunu">Birim</td>
-                                                <td align="left" valign"top" class="TamsayfaCerceveAlaniİciBankaHesabiTablosuNoktaMetniSütunu">:</td>
-                                                <td align="left" valign"top" class="TamsayfaCerceveAlaniİciBankaHesabiTablosuİcerikMetniSütunu">Türk Lirası (TL)</td>
-                                            </tr>
-                                            <tr>
-                                                <td align="left" valign"top" class="TamsayfaCerceveAlaniİciBankaHesabiTablosuBaslikMetniSütunu">Adı</td>
-                                                <td align="left" valign"top" class="TamsayfaCerceveAlaniİciBankaHesabiTablosuNoktaMetniSütunu">:</td>
-                                                <td align="left" valign"top" class="TamsayfaCerceveAlaniİciBankaHesabiTablosuİcerikMetniSütunu">Eren Akkurt</td>
-                                            </tr>
-                                            <tr>
-                                                <td align="left" valign"top" class="TamsayfaCerceveAlaniİciBankaHesabiTablosuBaslikMetniSütunu">Hesap No</td>
-                                                <td align="left" valign"top" class="TamsayfaCerceveAlaniİciBankaHesabiTablosuNoktaMetniSütunu">:</td>
-                                                <td align="left" valign"top" class="TamsayfaCerceveAlaniİciBankaHesabiTablosuİcerikMetniSütunu">12123123</td>
-                                            </tr>
-                                            <tr>
-                                                <td align="left" valign"top" class="TamsayfaCerceveAlaniİciBankaHesabiTablosuBaslikMetniSütunu">İban No</td>
-                                                <td align="left" valign"top" class="TamsayfaCerceveAlaniİciBankaHesabiTablosuNoktaMetniSütunu">:</td>
-                                                <td align="left" valign"top" class="TamsayfaCerceveAlaniİciBankaHesabiTablosuİcerikMetniSütunu">TR0000 0000 0000 0000 0000 00</td>
-                                            </tr>
-                                        </tbody>
-                                </table>
-                            </div>
-
-                            <div class="TamsayfaCerceveAlaniİciBankaHesabiSinirlamaAlani">
-                                <div class="TamsayfaCerceveAlaniİciBankaHesabiLogosuAlani">
-                                    <img src="/images/odeme-denizbank.png" alt="" title="">
-                                </div>
-                                <table class="TamsayfaCerceveAlaniİciBankaHesabiTablosu" width="100%" cellspacing="0" cellpadding="0">
-                                        <tbody>
-                                            <tr>
-                                                <td align="left" valign"top" class="TamsayfaCerceveAlaniİciBankaHesabiTablosuBaslikMetniSütunu">Banka</td>
-                                                <td align="left" valign"top" class="TamsayfaCerceveAlaniİciBankaHesabiTablosuNoktaMetniSütunu">:</td>
-                                                <td align="left" valign"top" class="TamsayfaCerceveAlaniİciBankaHesabiTablosuİcerikMetniSütunu">Denizbank</td>
-                                            </tr>
-                                            <tr>
-                                                <td align="left" valign"top" class="TamsayfaCerceveAlaniİciBankaHesabiTablosuBaslikMetniSütunu">Konum</td>
-                                                <td align="left" valign"top" class="TamsayfaCerceveAlaniİciBankaHesabiTablosuNoktaMetniSütunu">:</td>
-                                                <td align="left" valign"top" class="TamsayfaCerceveAlaniİciBankaHesabiTablosuİcerikMetniSütunu">Ankara Türkiye</td>
-                                            </tr>
-                                            <tr>
-                                                <td align="left" valign"top" class="TamsayfaCerceveAlaniİciBankaHesabiTablosuBaslikMetniSütunu">Şube</td>
-                                                <td align="left" valign"top" class="TamsayfaCerceveAlaniİciBankaHesabiTablosuNoktaMetniSütunu">:</td>
-                                                <td align="left" valign"top" class="TamsayfaCerceveAlaniİciBankaHesabiTablosuİcerikMetniSütunu">Gaziosmanpaşa</td>
-                                            </tr>
-                                            <tr>
-                                                <td align="left" valign"top" class="TamsayfaCerceveAlaniİciBankaHesabiTablosuBaslikMetniSütunu">Birim</td>
-                                                <td align="left" valign"top" class="TamsayfaCerceveAlaniİciBankaHesabiTablosuNoktaMetniSütunu">:</td>
-                                                <td align="left" valign"top" class="TamsayfaCerceveAlaniİciBankaHesabiTablosuİcerikMetniSütunu">Türk Lirası (TL)</td>
-                                            </tr>
-                                            <tr>
-                                                <td align="left" valign"top" class="TamsayfaCerceveAlaniİciBankaHesabiTablosuBaslikMetniSütunu">Adı</td>
-                                                <td align="left" valign"top" class="TamsayfaCerceveAlaniİciBankaHesabiTablosuNoktaMetniSütunu">:</td>
-                                                <td align="left" valign"top" class="TamsayfaCerceveAlaniİciBankaHesabiTablosuİcerikMetniSütunu">Eren Akkurt</td>
-                                            </tr>
-                                            <tr>
-                                                <td align="left" valign"top" class="TamsayfaCerceveAlaniİciBankaHesabiTablosuBaslikMetniSütunu">Hesap No</td>
-                                                <td align="left" valign"top" class="TamsayfaCerceveAlaniİciBankaHesabiTablosuNoktaMetniSütunu">:</td>
-                                                <td align="left" valign"top" class="TamsayfaCerceveAlaniİciBankaHesabiTablosuİcerikMetniSütunu">12123123</td>
-                                            </tr>
-                                            <tr>
-                                                <td align="left" valign"top" class="TamsayfaCerceveAlaniİciBankaHesabiTablosuBaslikMetniSütunu">İban No</td>
-                                                <td align="left" valign"top" class="TamsayfaCerceveAlaniİciBankaHesabiTablosuNoktaMetniSütunu">:</td>
-                                                <td align="left" valign"top" class="TamsayfaCerceveAlaniİciBankaHesabiTablosuİcerikMetniSütunu">TR0000 0000 0000 0000 0000 00</td>
-                                            </tr>
-                                        </tbody>
-                                </table>
-                            </div>
-
-                            <div class="TamsayfaCerceveAlaniİciBankaHesabiSinirlamaAlani">
-                                <div class="TamsayfaCerceveAlaniİciBankaHesabiLogosuAlani">
-                                    <img src="/images/odeme-qnb.png" alt="" title="">
-                                </div>
-                                <table class="TamsayfaCerceveAlaniİciBankaHesabiTablosu" width="100%" cellspacing="0" cellpadding="0">
-                                        <tbody>
-                                            <tr>
-                                                <td align="left" valign"top" class="TamsayfaCerceveAlaniİciBankaHesabiTablosuBaslikMetniSütunu">Banka</td>
-                                                <td align="left" valign"top" class="TamsayfaCerceveAlaniİciBankaHesabiTablosuNoktaMetniSütunu">:</td>
-                                                <td align="left" valign"top" class="TamsayfaCerceveAlaniİciBankaHesabiTablosuİcerikMetniSütunu">QNB Finansbank</td>
-                                            </tr>
-                                            <tr>
-                                                <td align="left" valign"top" class="TamsayfaCerceveAlaniİciBankaHesabiTablosuBaslikMetniSütunu">Konum</td>
-                                                <td align="left" valign"top" class="TamsayfaCerceveAlaniİciBankaHesabiTablosuNoktaMetniSütunu">:</td>
-                                                <td align="left" valign"top" class="TamsayfaCerceveAlaniİciBankaHesabiTablosuİcerikMetniSütunu">Ankara Türkiye</td>
-                                            </tr>
-                                            <tr>
-                                                <td align="left" valign"top" class="TamsayfaCerceveAlaniİciBankaHesabiTablosuBaslikMetniSütunu">Şube</td>
-                                                <td align="left" valign"top" class="TamsayfaCerceveAlaniİciBankaHesabiTablosuNoktaMetniSütunu">:</td>
-                                                <td align="left" valign"top" class="TamsayfaCerceveAlaniİciBankaHesabiTablosuİcerikMetniSütunu">Gaziosmanpaşa</td>
-                                            </tr>
-                                            <tr>
-                                                <td align="left" valign"top" class="TamsayfaCerceveAlaniİciBankaHesabiTablosuBaslikMetniSütunu">Birim</td>
-                                                <td align="left" valign"top" class="TamsayfaCerceveAlaniİciBankaHesabiTablosuNoktaMetniSütunu">:</td>
-                                                <td align="left" valign"top" class="TamsayfaCerceveAlaniİciBankaHesabiTablosuİcerikMetniSütunu">Türk Lirası (TL)</td>
-                                            </tr>
-                                            <tr>
-                                                <td align="left" valign"top" class="TamsayfaCerceveAlaniİciBankaHesabiTablosuBaslikMetniSütunu">Adı</td>
-                                                <td align="left" valign"top" class="TamsayfaCerceveAlaniİciBankaHesabiTablosuNoktaMetniSütunu">:</td>
-                                                <td align="left" valign"top" class="TamsayfaCerceveAlaniİciBankaHesabiTablosuİcerikMetniSütunu">Eren Akkurt</td>
-                                            </tr>
-                                            <tr>
-                                                <td align="left" valign"top" class="TamsayfaCerceveAlaniİciBankaHesabiTablosuBaslikMetniSütunu">Hesap No</td>
-                                                <td align="left" valign"top" class="TamsayfaCerceveAlaniİciBankaHesabiTablosuNoktaMetniSütunu">:</td>
-                                                <td align="left" valign"top" class="TamsayfaCerceveAlaniİciBankaHesabiTablosuİcerikMetniSütunu">12123123</td>
-                                            </tr>
-                                            <tr>
-                                                <td align="left" valign"top" class="TamsayfaCerceveAlaniİciBankaHesabiTablosuBaslikMetniSütunu">İban No</td>
-                                                <td align="left" valign"top" class="TamsayfaCerceveAlaniİciBankaHesabiTablosuNoktaMetniSütunu">:</td>
-                                                <td align="left" valign"top" class="TamsayfaCerceveAlaniİciBankaHesabiTablosuİcerikMetniSütunu">TR0000 0000 0000 0000 0000 00</td>
-                                            </tr>
-                                        </tbody>
-                                </table>
-                            </div>
-
+                            <table class="TamsayfaCerceveAlaniİciBankaHesabiTablosu" width="100%" cellspacing="0"
+                                cellpadding="0">
+                                <tbody>
+                                    <tr>
+                                        <td align="left" valign"top"
+                                            class="TamsayfaCerceveAlaniİciBankaHesabiTablosuBaslikMetniSütunu">Banka
+                                        </td>
+                                        <td align="left" valign"top"
+                                            class="TamsayfaCerceveAlaniİciBankaHesabiTablosuNoktaMetniSütunu">:</td>
+                                        <td align="left" valign"top"
+                                            class="TamsayfaCerceveAlaniİciBankaHesabiTablosuİcerikMetniSütunu">Garanti
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td align="left" valign"top"
+                                            class="TamsayfaCerceveAlaniİciBankaHesabiTablosuBaslikMetniSütunu">Konum
+                                        </td>
+                                        <td align="left" valign"top"
+                                            class="TamsayfaCerceveAlaniİciBankaHesabiTablosuNoktaMetniSütunu">:</td>
+                                        <td align="left" valign"top"
+                                            class="TamsayfaCerceveAlaniİciBankaHesabiTablosuİcerikMetniSütunu">Ankara
+                                            Türkiye</td>
+                                    </tr>
+                                    <tr>
+                                        <td align="left" valign"top"
+                                            class="TamsayfaCerceveAlaniİciBankaHesabiTablosuBaslikMetniSütunu">Şube</td>
+                                        <td align="left" valign"top"
+                                            class="TamsayfaCerceveAlaniİciBankaHesabiTablosuNoktaMetniSütunu">:</td>
+                                        <td align="left" valign"top"
+                                            class="TamsayfaCerceveAlaniİciBankaHesabiTablosuİcerikMetniSütunu">
+                                            Gaziosmanpaşa</td>
+                                    </tr>
+                                    <tr>
+                                        <td align="left" valign"top"
+                                            class="TamsayfaCerceveAlaniİciBankaHesabiTablosuBaslikMetniSütunu">Birim
+                                        </td>
+                                        <td align="left" valign"top"
+                                            class="TamsayfaCerceveAlaniİciBankaHesabiTablosuNoktaMetniSütunu">:</td>
+                                        <td align="left" valign"top"
+                                            class="TamsayfaCerceveAlaniİciBankaHesabiTablosuİcerikMetniSütunu">Türk
+                                            Lirası (TL)</td>
+                                    </tr>
+                                    <tr>
+                                        <td align="left" valign"top"
+                                            class="TamsayfaCerceveAlaniİciBankaHesabiTablosuBaslikMetniSütunu">Adı</td>
+                                        <td align="left" valign"top"
+                                            class="TamsayfaCerceveAlaniİciBankaHesabiTablosuNoktaMetniSütunu">:</td>
+                                        <td align="left" valign"top"
+                                            class="TamsayfaCerceveAlaniİciBankaHesabiTablosuİcerikMetniSütunu">Eren
+                                            Akkurt</td>
+                                    </tr>
+                                    <tr>
+                                        <td align="left" valign"top"
+                                            class="TamsayfaCerceveAlaniİciBankaHesabiTablosuBaslikMetniSütunu">Hesap No
+                                        </td>
+                                        <td align="left" valign"top"
+                                            class="TamsayfaCerceveAlaniİciBankaHesabiTablosuNoktaMetniSütunu">:</td>
+                                        <td align="left" valign"top"
+                                            class="TamsayfaCerceveAlaniİciBankaHesabiTablosuİcerikMetniSütunu">12123123
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td align="left" valign"top"
+                                            class="TamsayfaCerceveAlaniİciBankaHesabiTablosuBaslikMetniSütunu">İban No
+                                        </td>
+                                        <td align="left" valign"top"
+                                            class="TamsayfaCerceveAlaniİciBankaHesabiTablosuNoktaMetniSütunu">:</td>
+                                        <td align="left" valign"top"
+                                            class="TamsayfaCerceveAlaniİciBankaHesabiTablosuİcerikMetniSütunu">TR0000
+                                            0000 0000 0000 0000 00</td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
-                      </div>
-               </div>
-            </div>
-          </div>
-    </main>
 
-    <%- include('partials/footer')%>
-    
-   </div>
-</body>
-</html>
+                        <div class="TamsayfaCerceveAlaniİciBankaHesabiSinirlamaAlani">
+                            <div class="TamsayfaCerceveAlaniİciBankaHesabiLogosuAlani">
+                                <img src="/images/odeme-isbankasi.png" alt="" title="">
+                            </div>
+                            <table class="TamsayfaCerceveAlaniİciBankaHesabiTablosu" width="100%" cellspacing="0"
+                                cellpadding="0">
+                                <tbody>
+                                    <tr>
+                                        <td align="left" valign"top"
+                                            class="TamsayfaCerceveAlaniİciBankaHesabiTablosuBaslikMetniSütunu">Banka
+                                        </td>
+                                        <td align="left" valign"top"
+                                            class="TamsayfaCerceveAlaniİciBankaHesabiTablosuNoktaMetniSütunu">:</td>
+                                        <td align="left" valign"top"
+                                            class="TamsayfaCerceveAlaniİciBankaHesabiTablosuİcerikMetniSütunu">İş
+                                            Bankası</td>
+                                    </tr>
+                                    <tr>
+                                        <td align="left" valign"top"
+                                            class="TamsayfaCerceveAlaniİciBankaHesabiTablosuBaslikMetniSütunu">Konum
+                                        </td>
+                                        <td align="left" valign"top"
+                                            class="TamsayfaCerceveAlaniİciBankaHesabiTablosuNoktaMetniSütunu">:</td>
+                                        <td align="left" valign"top"
+                                            class="TamsayfaCerceveAlaniİciBankaHesabiTablosuİcerikMetniSütunu">Ankara
+                                            Türkiye</td>
+                                    </tr>
+                                    <tr>
+                                        <td align="left" valign"top"
+                                            class="TamsayfaCerceveAlaniİciBankaHesabiTablosuBaslikMetniSütunu">Şube</td>
+                                        <td align="left" valign"top"
+                                            class="TamsayfaCerceveAlaniİciBankaHesabiTablosuNoktaMetniSütunu">:</td>
+                                        <td align="left" valign"top"
+                                            class="TamsayfaCerceveAlaniİciBankaHesabiTablosuİcerikMetniSütunu">
+                                            Gaziosmanpaşa</td>
+                                    </tr>
+                                    <tr>
+                                        <td align="left" valign"top"
+                                            class="TamsayfaCerceveAlaniİciBankaHesabiTablosuBaslikMetniSütunu">Birim
+                                        </td>
+                                        <td align="left" valign"top"
+                                            class="TamsayfaCerceveAlaniİciBankaHesabiTablosuNoktaMetniSütunu">:</td>
+                                        <td align="left" valign"top"
+                                            class="TamsayfaCerceveAlaniİciBankaHesabiTablosuİcerikMetniSütunu">Türk
+                                            Lirası (TL)</td>
+                                    </tr>
+                                    <tr>
+                                        <td align="left" valign"top"
+                                            class="TamsayfaCerceveAlaniİciBankaHesabiTablosuBaslikMetniSütunu">Adı</td>
+                                        <td align="left" valign"top"
+                                            class="TamsayfaCerceveAlaniİciBankaHesabiTablosuNoktaMetniSütunu">:</td>
+                                        <td align="left" valign"top"
+                                            class="TamsayfaCerceveAlaniİciBankaHesabiTablosuİcerikMetniSütunu">Eren
+                                            Akkurt</td>
+                                    </tr>
+                                    <tr>
+                                        <td align="left" valign"top"
+                                            class="TamsayfaCerceveAlaniİciBankaHesabiTablosuBaslikMetniSütunu">Hesap No
+                                        </td>
+                                        <td align="left" valign"top"
+                                            class="TamsayfaCerceveAlaniİciBankaHesabiTablosuNoktaMetniSütunu">:</td>
+                                        <td align="left" valign"top"
+                                            class="TamsayfaCerceveAlaniİciBankaHesabiTablosuİcerikMetniSütunu">12123123
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td align="left" valign"top"
+                                            class="TamsayfaCerceveAlaniİciBankaHesabiTablosuBaslikMetniSütunu">İban No
+                                        </td>
+                                        <td align="left" valign"top"
+                                            class="TamsayfaCerceveAlaniİciBankaHesabiTablosuNoktaMetniSütunu">:</td>
+                                        <td align="left" valign"top"
+                                            class="TamsayfaCerceveAlaniİciBankaHesabiTablosuİcerikMetniSütunu">TR0000
+                                            0000 0000 0000 0000 00</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="TamsayfaCerceveAlaniİciBankaHesabiSinirlamaAlani">
+                            <div class="TamsayfaCerceveAlaniİciBankaHesabiLogosuAlani">
+                                <img src="/images/odeme-yapikredi.png" alt="" title="">
+                            </div>
+                            <table class="TamsayfaCerceveAlaniİciBankaHesabiTablosu" width="100%" cellspacing="0"
+                                cellpadding="0">
+                                <tbody>
+                                    <tr>
+                                        <td align="left" valign"top"
+                                            class="TamsayfaCerceveAlaniİciBankaHesabiTablosuBaslikMetniSütunu">Banka
+                                        </td>
+                                        <td align="left" valign"top"
+                                            class="TamsayfaCerceveAlaniİciBankaHesabiTablosuNoktaMetniSütunu">:</td>
+                                        <td align="left" valign"top"
+                                            class="TamsayfaCerceveAlaniİciBankaHesabiTablosuİcerikMetniSütunu">Yapı
+                                            Kredi</td>
+                                    </tr>
+                                    <tr>
+                                        <td align="left" valign"top"
+                                            class="TamsayfaCerceveAlaniİciBankaHesabiTablosuBaslikMetniSütunu">Konum
+                                        </td>
+                                        <td align="left" valign"top"
+                                            class="TamsayfaCerceveAlaniİciBankaHesabiTablosuNoktaMetniSütunu">:</td>
+                                        <td align="left" valign"top"
+                                            class="TamsayfaCerceveAlaniİciBankaHesabiTablosuİcerikMetniSütunu">Ankara
+                                            Türkiye</td>
+                                    </tr>
+                                    <tr>
+                                        <td align="left" valign"top"
+                                            class="TamsayfaCerceveAlaniİciBankaHesabiTablosuBaslikMetniSütunu">Şube</td>
+                                        <td align="left" valign"top"
+                                            class="TamsayfaCerceveAlaniİciBankaHesabiTablosuNoktaMetniSütunu">:</td>
+                                        <td align="left" valign"top"
+                                            class="TamsayfaCerceveAlaniİciBankaHesabiTablosuİcerikMetniSütunu">
+                                            Gaziosmanpaşa</td>
+                                    </tr>
+                                    <tr>
+                                        <td align="left" valign"top"
+                                            class="TamsayfaCerceveAlaniİciBankaHesabiTablosuBaslikMetniSütunu">Birim
+                                        </td>
+                                        <td align="left" valign"top"
+                                            class="TamsayfaCerceveAlaniİciBankaHesabiTablosuNoktaMetniSütunu">:</td>
+                                        <td align="left" valign"top"
+                                            class="TamsayfaCerceveAlaniİciBankaHesabiTablosuİcerikMetniSütunu">Türk
+                                            Lirası (TL)</td>
+                                    </tr>
+                                    <tr>
+                                        <td align="left" valign"top"
+                                            class="TamsayfaCerceveAlaniİciBankaHesabiTablosuBaslikMetniSütunu">Adı</td>
+                                        <td align="left" valign"top"
+                                            class="TamsayfaCerceveAlaniİciBankaHesabiTablosuNoktaMetniSütunu">:</td>
+                                        <td align="left" valign"top"
+                                            class="TamsayfaCerceveAlaniİciBankaHesabiTablosuİcerikMetniSütunu">Eren
+                                            Akkurt</td>
+                                    </tr>
+                                    <tr>
+                                        <td align="left" valign"top"
+                                            class="TamsayfaCerceveAlaniİciBankaHesabiTablosuBaslikMetniSütunu">Hesap No
+                                        </td>
+                                        <td align="left" valign"top"
+                                            class="TamsayfaCerceveAlaniİciBankaHesabiTablosuNoktaMetniSütunu">:</td>
+                                        <td align="left" valign"top"
+                                            class="TamsayfaCerceveAlaniİciBankaHesabiTablosuİcerikMetniSütunu">12123123
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td align="left" valign"top"
+                                            class="TamsayfaCerceveAlaniİciBankaHesabiTablosuBaslikMetniSütunu">İban No
+                                        </td>
+                                        <td align="left" valign"top"
+                                            class="TamsayfaCerceveAlaniİciBankaHesabiTablosuNoktaMetniSütunu">:</td>
+                                        <td align="left" valign"top"
+                                            class="TamsayfaCerceveAlaniİciBankaHesabiTablosuİcerikMetniSütunu">TR0000
+                                            0000 0000 0000 0000 00</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="TamsayfaCerceveAlaniİciBankaHesabiSinirlamaAlani">
+                            <div class="TamsayfaCerceveAlaniİciBankaHesabiLogosuAlani">
+                                <img src="/images/odeme-akbank.png" alt="" title="">
+                            </div>
+                            <table class="TamsayfaCerceveAlaniİciBankaHesabiTablosu" width="100%" cellspacing="0"
+                                cellpadding="0">
+                                <tbody>
+                                    <tr>
+                                        <td align="left" valign"top"
+                                            class="TamsayfaCerceveAlaniİciBankaHesabiTablosuBaslikMetniSütunu">Banka
+                                        </td>
+                                        <td align="left" valign"top"
+                                            class="TamsayfaCerceveAlaniİciBankaHesabiTablosuNoktaMetniSütunu">:</td>
+                                        <td align="left" valign"top"
+                                            class="TamsayfaCerceveAlaniİciBankaHesabiTablosuİcerikMetniSütunu">Akbank
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td align="left" valign"top"
+                                            class="TamsayfaCerceveAlaniİciBankaHesabiTablosuBaslikMetniSütunu">Konum
+                                        </td>
+                                        <td align="left" valign"top"
+                                            class="TamsayfaCerceveAlaniİciBankaHesabiTablosuNoktaMetniSütunu">:</td>
+                                        <td align="left" valign"top"
+                                            class="TamsayfaCerceveAlaniİciBankaHesabiTablosuİcerikMetniSütunu">Ankara
+                                            Türkiye</td>
+                                    </tr>
+                                    <tr>
+                                        <td align="left" valign"top"
+                                            class="TamsayfaCerceveAlaniİciBankaHesabiTablosuBaslikMetniSütunu">Şube</td>
+                                        <td align="left" valign"top"
+                                            class="TamsayfaCerceveAlaniİciBankaHesabiTablosuNoktaMetniSütunu">:</td>
+                                        <td align="left" valign"top"
+                                            class="TamsayfaCerceveAlaniİciBankaHesabiTablosuİcerikMetniSütunu">
+                                            Gaziosmanpaşa</td>
+                                    </tr>
+                                    <tr>
+                                        <td align="left" valign"top"
+                                            class="TamsayfaCerceveAlaniİciBankaHesabiTablosuBaslikMetniSütunu">Birim
+                                        </td>
+                                        <td align="left" valign"top"
+                                            class="TamsayfaCerceveAlaniİciBankaHesabiTablosuNoktaMetniSütunu">:</td>
+                                        <td align="left" valign"top"
+                                            class="TamsayfaCerceveAlaniİciBankaHesabiTablosuİcerikMetniSütunu">Türk
+                                            Lirası (TL)</td>
+                                    </tr>
+                                    <tr>
+                                        <td align="left" valign"top"
+                                            class="TamsayfaCerceveAlaniİciBankaHesabiTablosuBaslikMetniSütunu">Adı</td>
+                                        <td align="left" valign"top"
+                                            class="TamsayfaCerceveAlaniİciBankaHesabiTablosuNoktaMetniSütunu">:</td>
+                                        <td align="left" valign"top"
+                                            class="TamsayfaCerceveAlaniİciBankaHesabiTablosuİcerikMetniSütunu">Eren
+                                            Akkurt</td>
+                                    </tr>
+                                    <tr>
+                                        <td align="left" valign"top"
+                                            class="TamsayfaCerceveAlaniİciBankaHesabiTablosuBaslikMetniSütunu">Hesap No
+                                        </td>
+                                        <td align="left" valign"top"
+                                            class="TamsayfaCerceveAlaniİciBankaHesabiTablosuNoktaMetniSütunu">:</td>
+                                        <td align="left" valign"top"
+                                            class="TamsayfaCerceveAlaniİciBankaHesabiTablosuİcerikMetniSütunu">12123123
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td align="left" valign"top"
+                                            class="TamsayfaCerceveAlaniİciBankaHesabiTablosuBaslikMetniSütunu">İban No
+                                        </td>
+                                        <td align="left" valign"top"
+                                            class="TamsayfaCerceveAlaniİciBankaHesabiTablosuNoktaMetniSütunu">:</td>
+                                        <td align="left" valign"top"
+                                            class="TamsayfaCerceveAlaniİciBankaHesabiTablosuİcerikMetniSütunu">TR0000
+                                            0000 0000 0000 0000 00</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="TamsayfaCerceveAlaniİciBankaHesabiSinirlamaAlani">
+                            <div class="TamsayfaCerceveAlaniİciBankaHesabiLogosuAlani">
+                                <img src="/images/odeme-denizbank.png" alt="" title="">
+                            </div>
+                            <table class="TamsayfaCerceveAlaniİciBankaHesabiTablosu" width="100%" cellspacing="0"
+                                cellpadding="0">
+                                <tbody>
+                                    <tr>
+                                        <td align="left" valign"top"
+                                            class="TamsayfaCerceveAlaniİciBankaHesabiTablosuBaslikMetniSütunu">Banka
+                                        </td>
+                                        <td align="left" valign"top"
+                                            class="TamsayfaCerceveAlaniİciBankaHesabiTablosuNoktaMetniSütunu">:</td>
+                                        <td align="left" valign"top"
+                                            class="TamsayfaCerceveAlaniİciBankaHesabiTablosuİcerikMetniSütunu">Denizbank
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td align="left" valign"top"
+                                            class="TamsayfaCerceveAlaniİciBankaHesabiTablosuBaslikMetniSütunu">Konum
+                                        </td>
+                                        <td align="left" valign"top"
+                                            class="TamsayfaCerceveAlaniİciBankaHesabiTablosuNoktaMetniSütunu">:</td>
+                                        <td align="left" valign"top"
+                                            class="TamsayfaCerceveAlaniİciBankaHesabiTablosuİcerikMetniSütunu">Ankara
+                                            Türkiye</td>
+                                    </tr>
+                                    <tr>
+                                        <td align="left" valign"top"
+                                            class="TamsayfaCerceveAlaniİciBankaHesabiTablosuBaslikMetniSütunu">Şube</td>
+                                        <td align="left" valign"top"
+                                            class="TamsayfaCerceveAlaniİciBankaHesabiTablosuNoktaMetniSütunu">:</td>
+                                        <td align="left" valign"top"
+                                            class="TamsayfaCerceveAlaniİciBankaHesabiTablosuİcerikMetniSütunu">
+                                            Gaziosmanpaşa</td>
+                                    </tr>
+                                    <tr>
+                                        <td align="left" valign"top"
+                                            class="TamsayfaCerceveAlaniİciBankaHesabiTablosuBaslikMetniSütunu">Birim
+                                        </td>
+                                        <td align="left" valign"top"
+                                            class="TamsayfaCerceveAlaniİciBankaHesabiTablosuNoktaMetniSütunu">:</td>
+                                        <td align="left" valign"top"
+                                            class="TamsayfaCerceveAlaniİciBankaHesabiTablosuİcerikMetniSütunu">Türk
+                                            Lirası (TL)</td>
+                                    </tr>
+                                    <tr>
+                                        <td align="left" valign"top"
+                                            class="TamsayfaCerceveAlaniİciBankaHesabiTablosuBaslikMetniSütunu">Adı</td>
+                                        <td align="left" valign"top"
+                                            class="TamsayfaCerceveAlaniİciBankaHesabiTablosuNoktaMetniSütunu">:</td>
+                                        <td align="left" valign"top"
+                                            class="TamsayfaCerceveAlaniİciBankaHesabiTablosuİcerikMetniSütunu">Eren
+                                            Akkurt</td>
+                                    </tr>
+                                    <tr>
+                                        <td align="left" valign"top"
+                                            class="TamsayfaCerceveAlaniİciBankaHesabiTablosuBaslikMetniSütunu">Hesap No
+                                        </td>
+                                        <td align="left" valign"top"
+                                            class="TamsayfaCerceveAlaniİciBankaHesabiTablosuNoktaMetniSütunu">:</td>
+                                        <td align="left" valign"top"
+                                            class="TamsayfaCerceveAlaniİciBankaHesabiTablosuİcerikMetniSütunu">12123123
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td align="left" valign"top"
+                                            class="TamsayfaCerceveAlaniİciBankaHesabiTablosuBaslikMetniSütunu">İban No
+                                        </td>
+                                        <td align="left" valign"top"
+                                            class="TamsayfaCerceveAlaniİciBankaHesabiTablosuNoktaMetniSütunu">:</td>
+                                        <td align="left" valign"top"
+                                            class="TamsayfaCerceveAlaniİciBankaHesabiTablosuİcerikMetniSütunu">TR0000
+                                            0000 0000 0000 0000 00</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="TamsayfaCerceveAlaniİciBankaHesabiSinirlamaAlani">
+                            <div class="TamsayfaCerceveAlaniİciBankaHesabiLogosuAlani">
+                                <img src="/images/odeme-qnb.png" alt="" title="">
+                            </div>
+                            <table class="TamsayfaCerceveAlaniİciBankaHesabiTablosu" width="100%" cellspacing="0"
+                                cellpadding="0">
+                                <tbody>
+                                    <tr>
+                                        <td align="left" valign"top"
+                                            class="TamsayfaCerceveAlaniİciBankaHesabiTablosuBaslikMetniSütunu">Banka
+                                        </td>
+                                        <td align="left" valign"top"
+                                            class="TamsayfaCerceveAlaniİciBankaHesabiTablosuNoktaMetniSütunu">:</td>
+                                        <td align="left" valign"top"
+                                            class="TamsayfaCerceveAlaniİciBankaHesabiTablosuİcerikMetniSütunu">QNB
+                                            Finansbank</td>
+                                    </tr>
+                                    <tr>
+                                        <td align="left" valign"top"
+                                            class="TamsayfaCerceveAlaniİciBankaHesabiTablosuBaslikMetniSütunu">Konum
+                                        </td>
+                                        <td align="left" valign"top"
+                                            class="TamsayfaCerceveAlaniİciBankaHesabiTablosuNoktaMetniSütunu">:</td>
+                                        <td align="left" valign"top"
+                                            class="TamsayfaCerceveAlaniİciBankaHesabiTablosuİcerikMetniSütunu">Ankara
+                                            Türkiye</td>
+                                    </tr>
+                                    <tr>
+                                        <td align="left" valign"top"
+                                            class="TamsayfaCerceveAlaniİciBankaHesabiTablosuBaslikMetniSütunu">Şube</td>
+                                        <td align="left" valign"top"
+                                            class="TamsayfaCerceveAlaniİciBankaHesabiTablosuNoktaMetniSütunu">:</td>
+                                        <td align="left" valign"top"
+                                            class="TamsayfaCerceveAlaniİciBankaHesabiTablosuİcerikMetniSütunu">
+                                            Gaziosmanpaşa</td>
+                                    </tr>
+                                    <tr>
+                                        <td align="left" valign"top"
+                                            class="TamsayfaCerceveAlaniİciBankaHesabiTablosuBaslikMetniSütunu">Birim
+                                        </td>
+                                        <td align="left" valign"top"
+                                            class="TamsayfaCerceveAlaniİciBankaHesabiTablosuNoktaMetniSütunu">:</td>
+                                        <td align="left" valign"top"
+                                            class="TamsayfaCerceveAlaniİciBankaHesabiTablosuİcerikMetniSütunu">Türk
+                                            Lirası (TL)</td>
+                                    </tr>
+                                    <tr>
+                                        <td align="left" valign"top"
+                                            class="TamsayfaCerceveAlaniİciBankaHesabiTablosuBaslikMetniSütunu">Adı</td>
+                                        <td align="left" valign"top"
+                                            class="TamsayfaCerceveAlaniİciBankaHesabiTablosuNoktaMetniSütunu">:</td>
+                                        <td align="left" valign"top"
+                                            class="TamsayfaCerceveAlaniİciBankaHesabiTablosuİcerikMetniSütunu">Eren
+                                            Akkurt</td>
+                                    </tr>
+                                    <tr>
+                                        <td align="left" valign"top"
+                                            class="TamsayfaCerceveAlaniİciBankaHesabiTablosuBaslikMetniSütunu">Hesap No
+                                        </td>
+                                        <td align="left" valign"top"
+                                            class="TamsayfaCerceveAlaniİciBankaHesabiTablosuNoktaMetniSütunu">:</td>
+                                        <td align="left" valign"top"
+                                            class="TamsayfaCerceveAlaniİciBankaHesabiTablosuİcerikMetniSütunu">12123123
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td align="left" valign"top"
+                                            class="TamsayfaCerceveAlaniİciBankaHesabiTablosuBaslikMetniSütunu">İban No
+                                        </td>
+                                        <td align="left" valign"top"
+                                            class="TamsayfaCerceveAlaniİciBankaHesabiTablosuNoktaMetniSütunu">:</td>
+                                        <td align="left" valign"top"
+                                            class="TamsayfaCerceveAlaniİciBankaHesabiTablosuİcerikMetniSütunu">TR0000
+                                            0000 0000 0000 0000 00</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
