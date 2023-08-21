@@ -344,7 +344,6 @@ body {
 }
 
 #HeaderMenuUstuAlani {
-  display: block;
   width: 100%;
   min-width: 100%;
   max-width: 100%;
@@ -353,7 +352,6 @@ body {
   max-height: none;
   margin: 0 auto;
   padding: 0;
-  overflow: hidden;
   border: none;
   border-top: 2px solid #231F20;
   outline: none;
@@ -369,7 +367,6 @@ body {
   max-height: 30px;
   margin: 0 auto;
   padding: 0;
-  overflow: hidden;
   border: none;
   outline: none;
   background-color: #9DB870;
@@ -462,6 +459,10 @@ body {
   font-variant: normal;
   font-weight: normal;
   text-decoration: none;
+}
+
+.dropHover a:hover {
+  background-color: #9DB870;
 }
 
 .HeaderMenuUstuSecenekleri img {

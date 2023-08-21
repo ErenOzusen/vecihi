@@ -54,5 +54,29 @@ router.get('/cikis', (req, res, next) => {
     });
 })
 
+router.get('/hesabim', (req, res) => {
+
+    res.render("ueye/hesabim");
+})
+
+router.get('/yorumlarim', (req, res) => {
+
+    res.render("ueye/yorumlarim");
+})
+
+router.get('/ueyelikBilgilerim', (req, res) => {
+
+    res.render("ueye/ueyelikBilgilerim");
+})
+
+router.get('/adreslerim', (req, res) => {
+
+    res.render("ueye/adreslerim");
+})
+
+router.get('/favorilerim', (req, res) => {
+
+    res.render("ueye/favorilerim");
+})
 
 module.exports = router;

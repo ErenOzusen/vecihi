@@ -24,13 +24,20 @@
                         <!-- site dinamik hale döndürüldüğünde bu alan kullanıcı girişi sonrasında açılmalıdır <<<<< -->
                         <!-- site dinamik hale döndürüldüğünde bu alan kullanıcı girişi YOKSA açılmalıdır >>>>>> -->
                         <% if(currentUser) { %>
-                            <li class="HeaderMenuUstuSecenekleri">
-                                <a href="/" target="_top">
+                            <li class="HeaderMenuUstuSecenekleri nav-item dropdown">
+                                <a href="#" target="_top" class="dropdown-toggle" data-bs-toggle="dropdown"
+                                    aria-expanded="false">
                                     <img src="/images/Hesabım.png" alt="" title="" style="vertical-align: middle;">
                                     <%=currentUser.isim%>
                                 </a>
+                                <ul class="dropdown-menu dropHover">
+                                    <li><a class="dropdown-item" href="/hesabim">Siparişler</a></li>
+                                    <li><a class="dropdown-item" href="/yorumlarim">Yorumlar</a></li>
+                                    <li><a class="dropdown-item" href="/ueyelikBilgilerim">Üyelik Bilgileri</a></li>
+                                    <li><a class="dropdown-item" href="/adreslerim">Adresler</a></li>
+                                    <li><a class="dropdown-item" href="/favorilerim">Favoriler</a></li>
+                                </ul>
                             </li>
-
 
                             <li class="HeaderMenuUstuSecenekleri">
                                 <a href="Alisveris-Sepeti.html" target=" _top">
@@ -111,4 +118,5 @@
         </div>
 
     </div>
+
 </header>
