@@ -155,30 +155,7 @@ app.get('/iptalDegisim', (req, res) => {
   res.render("iptalDegisim");
 })
 
-app.get('/hesabim', (req, res) => {
 
-  res.render("hesabim");
-})
-
-app.get('/yorumlarim', (req, res) => {
-
-  res.render("yorumlarim");
-})
-
-app.get('/ueyelikBilgilerim', (req, res) => {
-
-  res.render("ueyelikBilgilerim");
-})
-
-app.get('/adreslerim', (req, res) => {
-
-  res.render("adreslerim");
-})
-
-app.get('/favorilerim', (req, res) => {
-
-  res.render("favorilerim");
-})
 
 app.get('/kadinGiyim', (req, res) => {
 
