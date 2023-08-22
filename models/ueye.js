@@ -18,20 +18,19 @@ const UeyeSchema = new Schema({
         required: true,
         unique: true
     },
-    /*     sifre1: {
-            type: Number,
-            required: true,
-            unique: false
-        }, */
+
     ceptelefonu: {
         type: Number,
         required: false,
         unique: false
     }
+    /*     sepet: {
+            type: Schema.Types.ObjectId,
+            ref: 'Ueruen'
+        } */
 
 });
 
-//UeyeSchema.plugin(passportLocalMongoose);
 UeyeSchema.plugin(passportLocalMongoose,
     {
         usernameField: 'email',

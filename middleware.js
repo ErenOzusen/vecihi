@@ -1,3 +1,6 @@
+const Ueye = require('./models/ueye');
+const ExpressError = require('./utils/ExpressError');
+
 
 module.exports.isLoggedIn = (req, res, next) => {
     if (!req.isAuthenticated()) {
@@ -8,3 +11,20 @@ module.exports.isLoggedIn = (req, res, next) => {
     }
     next();
 };
+
+module.exports.isAuthor = async (req, res, next) => {
+    const { id } = req.params;
+    const ueye = await Ueye.findById(id);
+    next();
+};
+
+module.exports.isAdmin = async (req, res, next) => {
+    const { id } = req.params;
+    const ueye = await Ueye.findById(id);
+    if (ueye.email !== 'tolgay.altiner@web.de') {
+        req.flash('error', 'Buna izinis yok!');
+        return res.redirect('/girisYap');
+    }
+    next();
+}
+

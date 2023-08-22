@@ -1,0 +1,121 @@
+<% layout('layouts/boilerplate') %>
+    <div id="TamSayfaAlani">
+        <div id="TamSayfaSinirlamaAlani">
+
+            <div id="TamSayfaSolSutunSinirlamaAlani">
+                <div id="TamSayfaSolSutunIcMenuAlani">
+                    <div id="TamSayfaSolSutunIcMenuAlaniUstMenuBasligi">
+                        <a href="/erkekGiyim" target="_top"> Erkek Giyim (17) </a>
+                    </div>
+
+                    <div id="TamSayfaSolSutunIcMenuAlaniAltKategoriOkuVeMenuBasligi">
+                        <img src="/images/arrow-right.png" alt="" title=""><span
+                            class="TamSayfaSolSutunIcMenuAlaniMenuBasligi"><a href="/erkekGiyim" target="_top">Tüm
+                                Ürünler</a></span>
+                    </div>
+
+                    <div id="TamSayfaSolSutunIcMenuSecenekleriKapsayiciAlan">
+                        <ul id="TamSayfaSolSutunIcMenuSeceneklerialani">
+                            <li class="TamSayfaSolSutunIcMenuSecenekleri">
+                                <img src="/images/arrow 11x8.png" alt="" title=""><a href="/erkekGiyim" target="_top">
+                                    <a href="/erkekGiyim" target="_top"> Baskı T-Shirtler</a>
+                            </li>
+                            <li class="TamSayfaSolSutunIcMenuSecenekleri">
+                                <img src="/images/arrow 11x8.png" alt="" title=""><a href="/erkekGiyim" target="_top">
+                                    <a href="/erkekGiyim" target="_top"> Şapkalar</a>
+                            </li>
+                            <li class="TamSayfaSolSutunIcMenuSecenekleri">
+                                <img src="/images/arrow 11x8.png" alt="" title=""><a href="/erkekGiyim" target="_top">
+                                    <a href="/erkekGiyim" target="_top"> Çantalar</a>
+                            </li>
+                            <li class="TamSayfaSolSutunIcMenuSecenekleri">
+                                <img src="/images/arrow 11x8.png" alt="" title=""><a href="/erkekGiyim" target="_top">
+                                    <a href="/erkekGiyim" target="_top"> Süs Eşyaları</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div id="TamSayfaSagSutunSinirlamaAlani">
+                <div id="TamSayfaSagSutunIciAramaAlani">
+                    <form action="/erkekGiyim" method="post">
+                        <div class="TamSayfaSagSutunIciAramaAlaniButonlarIcinKapsamaAlani"><input type="submit" value=""
+                                class="TamSayfaSagSutunIciAramaAlaniAramayapButonlari"> </div>
+                        <div class="TamSayfaSagSutunIciAramaAlaniInputAlanlariKapsamaAlani"><input type="text"
+                                name="Arama" class="TamSayfaSagSutunIciAramaAlaniTextInputlari"> </div>
+                    </form>
+                </div>
+
+                <div id="TamSayfaSagSutunIciUrunlerAlani">
+                    <div id="TamSayfaSagSutunIciUrunlerDengelemeAlani">
+
+                        <div class="TamSayfaSagSutunIciUrunSinirlamaAlani">
+                            <div class="TamSayfaSagSutunIciUrunResmiDısCercevesi">
+                                <a href="/ueruenDetay"><img src="/images/UrunResimleri/ErkekGiyim/Ayi-T-shirt.png"
+                                        alt="" title=""></a>
+                            </div>
+
+                            <div class="TamSayfaSagSutunIciUrunUstBaslikMetni">
+                                <a href="/ueruenDetay"> Erkek Giyim </a>
+                            </div>
+
+                            <div class="TamSayfaSagSutunIciUrunAltBaslikMetni">
+                                <a href="/ueruenDetay"> Ayı Temalı Baskı T-shirt </a>
+                            </div>
+
+                            <div class="TamSayfaSagSutunIciUrunPuanYildizlariAlani">
+
+                                <a href="/ueruenDetay"><img src="/images/star-1.png" alt="" title=""></a>
+
+                            </div>
+
+                            <div class="TamSayfaSagSutunIciUrunFiyatlariAlani">
+
+                                <span class="TamSayfaSagSutunIciUzeriCiziliUrunFiyati">
+                                    <a href="/ueruenDetay"> <del> 800 TL </del> </a>
+                                </span>
+
+                                <span class="TamSayfaSagSutunIciUrunFiyati">
+                                    <a href="/ueruenDetay"> 500 TL </a>
+                                </span>
+
+                            </div>
+                        </div>
+
+                        <% if(currentUser && currentUser.email=='tolgay.altiner@web.de' ){ %>
+
+                            <div class="TamSayfaCerceveAlaniIciHesabimSayfasiAdresBilgileriGuncelleVeSilIslemAlani">
+
+                                <div class="TamSayfaCerceveAlaniIciHesabimSayfasiAdresBilgileriIslemIconlariMetni"><a
+                                        href="/erkekGiyim/<%=currentUser._id%>/yeniUeruen" target="_top">Ekle</a></div>
+                                <div class="TamSayfaCerceveAlaniIciHesabimSayfasiAdresBilgileriIslemIconlariAlani">
+                                    <img src="/images/ekle.png" alt="" title="">
+                                </div>
+
+                                <div class="TamSayfaCerceveAlaniIciHesabimSayfasiAdresBilgileriIslemIconlariMetni"><a
+                                        href="Adreslerim.html" target="_top">Sil</a></div>
+                                <div class="TamSayfaCerceveAlaniIciHesabimSayfasiAdresBilgileriIslemIconlariAlani">
+                                    <img src="/images/delete.png" alt="" title="">
+                                </div>
+
+                                <div class="TamSayfaCerceveAlaniIciHesabimSayfasiAdresBilgileriIslemIconlariMetni"><a
+                                        href="Adres-Guncelle.html" target="_top">Güncelle</a></div>
+                                <div class="TamSayfaCerceveAlaniIciHesabimSayfasiAdresBilgileriIslemIconlariAlani">
+                                    <img src="/images/refresh.png" alt="" title="">
+                                </div>
+                            </div>
+                            <% } %>
+
+
+
+
+
+
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
