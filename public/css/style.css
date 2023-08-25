@@ -17760,3 +17760,51 @@ footer {
     font-size: 12px;
   }
 }
+
+.YeniÜrünEkle {
+  display: flex;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  background-color: #f0f0f0;
+  flex-direction: column;
+
+  /* Hintergrundfarbe für YeniÜrünEkle */
+}
+
+.displayÜrün {
+  height: auto;
+  width: 100%;
+  display: flex;
+  justify-content: left;
+  border: 1px solid #DDD;
+  background-color: #ffffff;
+  padding: 15px;
+
+}
+
+.YeniÜrünEkle a {
+  font-family: Arial, " Helvetica Neue ", Helvatica, sans-serif;
+  color: #231F20;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: normal;
+  text-decoration: none;
+  display: inline-block;
+  line-height: 16px;
+  text-decoration: none;
+}
+
+.YeniÜrünEkle img {
+  width: 30px;
+  margin-right: 10px;
+}
+
+.secenek {
+  display: flex;
+  justify-content: left;
+  padding: 20px;
+  margin: 15px;
+  border: 1px solid #DDD;
+  background-color: #ffffff;
+}

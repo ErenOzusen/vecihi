@@ -14,8 +14,13 @@ router.get('/tshirt', (req, res) => {
     res.render("erkek/tshirt", { currentUser });
 })
 
-router.get('/:id/yeniUeruen', isLoggedIn, isAdmin, (req, res) => {
-    res.render("erkek/yeniUeruen");
+router.get('/:id/yeniUeruen', isLoggedIn, isAdmin, catchAsync(async (req, res, next) => {
+    const ueyeDB = await Ueye.findById(req.params.id);
+    res.render("erkek/yeniUeruen", { ueyeDB });
+}))
+
+router.post('/:id/yeniUeruen', isLoggedIn, isAdmin, (req, res) => {
+    res.redirect("/");
 })
 
 module.exports = router;

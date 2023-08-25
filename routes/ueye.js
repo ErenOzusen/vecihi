@@ -29,7 +29,6 @@ router.get('/ueyeOl', (req, res) => {
 router.post('/ueyeOl', catchAsync(async (req, res, next) => {
     try {
         const { isim, soyisim, email, password, ceptelefonu } = req.body;
-        //emailkiyasla(email);
         const ueye = new Ueye({ isim, soyisim, email, ceptelefonu });
         const kayitUeye = await Ueye.register(ueye, password);
         console.log("kayitUeye:" + kayitUeye);
