@@ -4,7 +4,6 @@
 
             <%- include('../partials/kategori')%>
 
-
                 <div id="TamSayfaSagSutunSinirlamaAlani">
                     <div id="TamSayfaSagSutunIciAramaAlani">
                         <form action="/erkekGiyim" method="post">
@@ -19,10 +18,10 @@
                         <div id="TamSayfaSagSutunIciUrunlerDengelemeAlani">
                             <% for(let ueruen of ueruenler) {%>
                                 <% if((ueruen.kategori=='erkekGiyim' || ueruen.kategori=='unisexGiyim' ) &&
-                                    ueruen.cesit=='tshirt' ) {%>
+                                    ueruen.cesit=='canta' ) {%>
                                     <div class="TamSayfaSagSutunIciUrunSinirlamaAlani">
                                         <div class="TamSayfaSagSutunIciUrunResmiDısCercevesi">
-                                            <a href="/erkekGiyim/<%=ueruen._id%>/detay"><img
+                                            <a href="/ueruenDetay"><img
                                                     src="/images/UrunResimleri/ErkekGiyim/Ayi-T-shirt.png" alt=""
                                                     title=""></a>
                                         </div>

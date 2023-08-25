@@ -170,10 +170,7 @@ app.get('/vintageUeruenler', (req, res) => {
   res.render("vintageUeruenler");
 })
 
-app.get('/ueruenDetay', (req, res) => {
 
-  res.render("ueruenDetay");
-})
 
 app.get('/:id/yeniUeruen', isLoggedIn, isAdmin, catchAsync(async (req, res, next) => {
   const ueyeDB = await Ueye.findById(req.params.id);

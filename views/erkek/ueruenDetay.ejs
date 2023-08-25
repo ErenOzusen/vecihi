@@ -48,7 +48,7 @@
 
                 <div id="UrunDetaySayfalariBaslikVeIslemlerAlani">
                     <div id="UrunDetaySayfalariUrunBasligiAlani">
-                        Erkek Giyim Doğa Temalı Baskı T-shirt
+                        <%=ueruen.tarif %>
                     </div>
 
                     <div id="UrunDetaySayfalariUrunMarkasiAlani">
@@ -76,24 +76,25 @@
                     </div>
 
                     <div id="UrunDetaySayfalariUrunVaryantVeFiyatAlani">
-                        <div id="UrunDetaySayfalariUrunVaryantlarAlani">
-                            <select name="UrunBedeni" class="FormElemanlariSelectlerii">
-                                <option selected="selected">Beden Seçiniz</option>
-                                <option value="XL">XL</option>
-                                <option value="L">L</option>
-                                <option value="M">M</option>
-                                <option value="S">S</option>
-                            </select>
-                        </div>
-
-                        <div id="UrunDetaySayfalariUrunFiyatlandirmaAlani">
-                            <span class="UrunDetaySayfasiUrunFiyatiAlani">
-                                450,000 TL
-                            </span>
-                            <span class="UrunDetaySayfasiUrunFiyatiAlani">
+                        <% if(ueruen.kategori !=='vintageUeruenler' ) { %>
+                            <div id="UrunDetaySayfalariUrunVaryantlarAlani">
+                                <select name="UrunBedeni" class="FormElemanlariSelectlerii">
+                                    <option selected="selected">Beden Seçiniz</option>
+                                    <option value="XL">XL</option>
+                                    <option value="L">L</option>
+                                    <option value="M">M</option>
+                                    <option value="S">S</option>
+                                </select>
+                            </div>
+                            <% } %>
+                                <div id="UrunDetaySayfalariUrunFiyatlandirmaAlani">
+                                    <span class="UrunDetaySayfasiUrunFiyatiAlani">
+                                        <%=ueruen.fiyat %> TL
+                                    </span>
+                                    <!--                           <span class="UrunDetaySayfasiUrunFiyatiAlani">
                                 <del>600,000 TL</del>
-                            </span>
-                        </div>
+                            </span> -->
+                                </div>
                     </div>
 
 

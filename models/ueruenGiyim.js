@@ -20,7 +20,7 @@ const UeruenGiyimSchema = new Schema({
     },
     kategori: {
         type: String,
-        enum: ['erkekGiyim', 'kadinGiyim', 'unisexGiyim'],
+        enum: ['erkekGiyim', 'kadinGiyim', 'unisexGiyim', 'vintageUeruenler'],
         required: true
     },
     beden: {
