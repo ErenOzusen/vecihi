@@ -20,7 +20,6 @@ const UeruenGiyimSchema = new Schema({
     },
     beden: {
         type: [String],
-        //enum: ['s', 'm', 'l', 'xl'],
         required: true
     },
     fiyat: {
