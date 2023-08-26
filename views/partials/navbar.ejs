@@ -37,7 +37,8 @@
                                     <li><a class="dropdown-item" href="/adreslerim">Adresler</a></li>
                                     <li><a class="dropdown-item" href="/favorilerim">Favoriler</a></li>
                                     <% if(currentUser.email=='tolgay.altiner@web.de' ) {%>
-                                        <li><a class="dropdown-item" href="/<%=currentUser._id%>/yeniUeruen">Yeni ürün
+                                        <li><a class="dropdown-item" href="/admin/<%=currentUser._id%>/yeniUeruen">Yeni
+                                                ürün
                                                 ekle</a></li>
 
                                         <% } %>

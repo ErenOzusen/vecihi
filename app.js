@@ -1,3 +1,7 @@
+if (process.env.NODE_ENV !== "production") {
+  require('dotenv').config();
+};
+
 const express = require('express');
 const path = require('path');
 const mongoose = require('mongoose');
@@ -5,13 +9,13 @@ const app = express();
 const ejsMate = require('ejs-mate');
 app.engine('ejs', ejsMate);
 const Ueye = require('./models/ueye');
-const UeruenGiyim = require('./models/ueruenGiyim');
 const catchAsync = require('./utils/catchAsync');
 const ExpressError = require('./utils/ExpressError');
 const session = require('express-session');
 const flash = require('connect-flash');
 const ueyeRoutes = require('./routes/ueye');
 const erkekRoutes = require('./routes/erkek')
+const adminRoutes = require('./routes/admin');
 const passport = require('passport');
 const LocalStrategy = require('passport-local');
 const { isLoggedIn, isAuthor, isAdmin } = require('./middleware.js');
@@ -65,6 +69,7 @@ app.use((req, res, next) => {
 
 app.use('/', ueyeRoutes);
 app.use('/erkekGiyim', erkekRoutes);
+app.use('/admin', adminRoutes);
 
 app.get('/', (req, res) => {
 
@@ -170,19 +175,6 @@ app.get('/vintageUeruenler', (req, res) => {
   res.render("vintageUeruenler");
 })
 
-
-
-app.get('/:id/yeniUeruen', isLoggedIn, isAdmin, catchAsync(async (req, res, next) => {
-  const ueyeDB = await Ueye.findById(req.params.id);
-  res.render("erkek/yeniUeruen", { ueyeDB });
-}))
-
-app.post('/:id/yeniUeruen', isLoggedIn, isAdmin, catchAsync(async (req, res, next) => {
-  const yeniUeruen = new UeruenGiyim(req.body.yeniUeruen);
-  yeniUeruen.fiyat = parseFloat(yeniUeruen.fiyat);
-  await yeniUeruen.save();
-  res.redirect('/');
-}))
 
 app.listen(3000, () => {
 
