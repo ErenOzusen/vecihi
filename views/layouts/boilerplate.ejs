@@ -69,15 +69,21 @@
         document.addEventListener('DOMContentLoaded', function () {
             const cesitDropDown1 = document.getElementById('cesitDropDown1');
             const cesitDropDown2 = document.getElementById('cesitDropDown2');
-            const cesitDropDown3 = document.getElementById('cesitDropDown3');
+            const flexCheckDefault1 = document.getElementById('flexCheckDefault1');
+            const flexCheckDefault2 = document.getElementById('flexCheckDefault2');
+            const flexCheckDefault3 = document.getElementById('flexCheckDefault3');
+            const flexCheckDefault4 = document.getElementById('flexCheckDefault4');
+            const radioLabel = document.getElementById('radioLabel');
+            const checkboxes = document.querySelectorAll('.form-check-input');
+            const submitButton = document.querySelector('input[type="submit"]');
 
             handleCesitDropDownChange();
             cesitDropDown1.addEventListener('change', handleCesitDropDownChange);
+            submitButton.addEventListener('click', validateCheckboxes);
 
             function handleCesitDropDownChange() {
 
                 cesitDropDown2.innerHTML = '';
-                cesitDropDown3.innerHTML = '';
 
                 if (cesitDropDown1.value === 'erkekGiyim' || cesitDropDown1.value === 'kadinGiyim' || cesitDropDown1.value === 'unisex') {
 
@@ -94,28 +100,24 @@
                     option4.value = 'suesEsyalari';
                     option4.textContent = 'Süs Eşyaları';
 
-                    const option5 = document.createElement('option');
-                    option5.value = 's';
-                    option5.textContent = 'S';
-                    const option6 = document.createElement('option');
-                    option6.value = 'm';
-                    option6.textContent = 'M';
-                    const option7 = document.createElement('option');
-                    option7.value = 'l';
-                    option7.textContent = 'L';
-                    const option8 = document.createElement('option');
-                    option8.value = 'xl';
-                    option8.textContent = 'XL';
-
                     cesitDropDown2.appendChild(option1);
                     cesitDropDown2.appendChild(option2);
                     cesitDropDown2.appendChild(option3);
                     cesitDropDown2.appendChild(option4);
 
-                    cesitDropDown3.appendChild(option5);
-                    cesitDropDown3.appendChild(option6);
-                    cesitDropDown3.appendChild(option7);
-                    cesitDropDown3.appendChild(option8);
+                    flexCheckDefault1.disabled = false;
+                    flexCheckDefault2.disabled = false;
+                    flexCheckDefault3.disabled = false;
+                    flexCheckDefault4.disabled = false;
+
+                    /*   flexCheckDefault.appendChild(option5.value);
+                      radioLabel.appendChild(option5.textContent);
+                      flexCheckDefault.appendChild(option6);
+                      radioLabel.appendChild(option6.textContent);
+                      flexCheckDefault.appendChild(option7);
+                      radioLabel.appendChild(option7.textContent);
+                      flexCheckDefault.appendChild(option8);
+                      radioLabel.appendChild(option8.textContent); */
 
                 } else if (cesitDropDown1.value === 'vintageUeruenler') {
 
@@ -136,6 +138,23 @@
                     cesitDropDown2.appendChild(option3);
                     cesitDropDown2.appendChild(option4);
 
+                    flexCheckDefault1.disabled = true;
+                    flexCheckDefault2.disabled = true;
+                    flexCheckDefault3.disabled = true;
+                    flexCheckDefault4.disabled = true;
+                }
+            }
+            function validateCheckboxes(event) {
+                let atLeastOneSelected = false;
+                checkboxes.forEach(checkbox => {
+                    if (checkbox.checked) {
+                        atLeastOneSelected = true;
+                    }
+                });
+
+                if (!atLeastOneSelected) {
+                    event.preventDefault();
+                    alert('Lütfen boyut seceneklerden minimum bir tane secin');
                 }
             }
         });

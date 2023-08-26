@@ -19,8 +19,8 @@ const UeruenGiyimSchema = new Schema({
         required: true
     },
     beden: {
-        type: String,
-        enum: ['s', 'm', 'l', 'xl'],
+        type: [String],
+        //enum: ['s', 'm', 'l', 'xl'],
         required: true
     },
     fiyat: {
@@ -32,7 +32,13 @@ const UeruenGiyimSchema = new Schema({
         type: String,
         required: true,
         unique: false
-    }/* ,
+    },
+    aciklama: {
+        type: String,
+        required: true,
+        unique: false
+    }
+    /* ,
     miktar: {
         type: Number,
         required: true,

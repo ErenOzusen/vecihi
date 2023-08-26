@@ -8,40 +8,22 @@
                 <div id="UrunDetaySayfalariResimlerAlani">
                     <div id="UrunDetaySayfalariBuyukResimAlani">
                         <div id="UrunDetaySayfalariBuyukResimDısCercevesi">
-                            <img id="BuyukResim" src="/images/UrunResimleri/ErkekGiyim/adobe-1.png" alt="" title="">
+                            <img id="BuyukResim" src="<%=ueruen.images[0].url%>" alt="" title="">
                         </div>
                     </div>
 
                     <div id="UrunDetaySayfalariKucukResimlerAlani">
                         <div id="UrunDetaySayfalariKucukResimlerDengelemeAlani">
-
-                            <div class="UrunDetaySayfalariKucukResimSinirlamaAlani">
-                                <div class="UrunDetaySayfalariKucukResimDısCercevesi">
-                                    <img src="/images/UrunResimleri/ErkekGiyim/adobe-1.png" alt="" title=""
-                                        onclick="$.UrunDetaySayfasiIcinResimDegistir('adobe-1.png');">
-                                </div>
-                            </div>
-
-                            <div class="UrunDetaySayfalariKucukResimSinirlamaAlani">
-                                <div class="UrunDetaySayfalariKucukResimDısCercevesi">
-                                    <img src="/images/UrunResimleri/ErkekGiyim/adobe-2.png" alt="" title=""
-                                        onclick="$.UrunDetaySayfasiIcinResimDegistir('adobe-2.png');">
-                                </div>
-                            </div>
-
-                            <div class="UrunDetaySayfalariKucukResimSinirlamaAlani">
-                                <div class="UrunDetaySayfalariKucukResimDısCercevesi">
-                                    <img src="/images/UrunResimleri/ErkekGiyim/adobe-3.png" alt="" title=""
-                                        onclick="$.UrunDetaySayfasiIcinResimDegistir('adobe-3.png');">
-                                </div>
-                            </div>
-
-                            <div class="UrunDetaySayfalariKucukResimSinirlamaAlani">
-                                <div class="UrunDetaySayfalariKucukResimDısCercevesi">
-                                    <img src="/images/UrunResimleri/ErkekGiyim/adobe-4.png" alt="" title=""
-                                        onclick="$.UrunDetaySayfasiIcinResimDegistir('adobe-4.png');">
-                                </div>
-                            </div>
+                            <% if(ueruen.images.length> 1) { %>
+                                <% for(let i=0; i<ueruen.images.length; i++) {%>
+                                    <div class="UrunDetaySayfalariKucukResimSinirlamaAlani">
+                                        <div class="UrunDetaySayfalariKucukResimDısCercevesi">
+                                            <img src="<%=ueruen.images[i].url%>" alt="" title=""
+                                                onclick="$.UrunDetaySayfasiIcinResimDegistir('<%=ueruen.images[i].url%>');">
+                                        </div>
+                                    </div>
+                                    <% } %>
+                                        <% } %>
                         </div>
                     </div>
                 </div>
@@ -80,14 +62,16 @@
                             <div id="UrunDetaySayfalariUrunVaryantlarAlani">
                                 <select name="UrunBedeni" class="FormElemanlariSelectlerii">
                                     <option selected="selected">Beden Seçiniz</option>
-                                    <option value="XL">XL</option>
-                                    <option value="L">L</option>
-                                    <option value="M">M</option>
-                                    <option value="S">S</option>
+                                    <% for(let i=0; i<ueruen.beden.length; i++) {%>
+                                        <option value="">
+                                            <%=ueruen.beden[i] %>
+                                        </option>
+
+                                        <% } %>
                                 </select>
                             </div>
                             <% } %>
-                                <div id="UrunDetaySayfalariUrunFiyatlandirmaAlani">
+                                <div id=" UrunDetaySayfalariUrunFiyatlandirmaAlani">
                                     <span class="UrunDetaySayfasiUrunFiyatiAlani">
                                         <%=ueruen.fiyat %> TL
                                     </span>
@@ -126,42 +110,39 @@
                         Açıklama
                     </div>
                     <div id="UrundetaySayfalariUrununAciklamaIcerikMetni">
-                        Erkek Oversize Desenli %100 Pamuk Bisiklet Yaka Kısa Kollu T-shirt <br><br>
-                        BEDEN ÖLÇÜ TABLOSU S BEDEN BOY 67 GÖGÜS 54 CM DİR. M BEDEN BOY 69 GÖGÜS 56 CM DİR. L BEDEN BOY
-                        73 GÖGÜS 58 CM DİR. XL BEDEN BOY 75 GÖGÜS 60 CMDİR.
-                        DUYURU : T-SHİRTLERİ LÜTFEN YIKAMALARDA TERS ÇEVİRİP YIKAYINIZ. Erkek Oversize Desenli %100
-                        Pamuk Bisiklet Yaka Kısa Kollu T-Shirt, oversize ÖN ARKA
-                        BASLKILI ÇOK BEGENECEGİNİZ BİR ÜRÜNDÜR.<br><br>
-                        Bu üründen en fazla 10 adet sipariş verilebilir. 10 adetin üzerindeki siparişleri Trendyol iptal
-                        etme hakkını saklı tutar.<br><br>
-                        Kampanya fiyatından satılmak üzere 100 adetten fazla stok sunulmuştur.<br><br>
-                        İncelemiş olduğunuz ürünün satış fiyatını satıcı belirlemektedir.<br><br>
-                        Bir ürün, birden fazla satıcı tarafından satılabilir.
-                        Birden fazla satıcı tarafından satışa sunulan ürünlerin satıcıları ürün için belirledikleri
-                        fiyata, satıcı puanlarına,
-                        teslimat statülerine, ürünlerdeki promosyonlara, kargonun bedava olup olmamasına ve ürünlerin
-                        hızlı teslimat ile teslim edilip edilememesine,
-                        ürünlerin stok ve kategorileri bilgilerine göre sıralanmaktadır.<br><br>
+                        <% const originalString=ueruen.aciklama; %>
+                            <% const delimiter="/break/" ; %>
+
+                                <% const splittedArray=originalString.split(delimiter); %>
+                                    <% for(let i=0; i<splittedArray.length; i++) {%>
+                                        <%=splittedArray[i] %> <br>
+                                            <% } %>
                     </div>
                 </div>
 
 
 
-                <div id="UrundetaySayfalariUrununYorumlariAlani">
+                <div id=" UrundetaySayfalariUrununYorumlariAlani">
                     <div id="UrundetaySayfalariUrununYorumlariBaslikMetni">
                         Yorumlar
                     </div>
                     <div class="UrundetaySayfalariUrununYorumlariIcerikMetni">
-                        Aşırı güzel kumaşı var tavsiye ederim. Çok rahat bir ürün tavsiye ederim. Güzel yumuşak ve
-                        kaliteli bir ürün teşekkürler. Aynı resimdeki gibi gayet güzel. Çok iyi kumaşı da güzel.
+                        Aşırı güzel kumaşı var tavsiye ederim. Çok rahat bir ürün tavsiye ederim.
+                        Güzel yumuşak ve
+                        kaliteli bir ürün teşekkürler. Aynı resimdeki gibi gayet güzel. Çok iyi
+                        kumaşı da güzel.
                     </div>
                     <div class="UrundetaySayfalariUrununYorumlariIcerikMetni">
-                        Aşırı güzel kumaşı var tavsiye ederim. Çok rahat bir ürün tavsiye ederim. Güzel yumuşak ve
-                        kaliteli bir ürün teşekkürler. Aynı resimdeki gibi gayet güzel. Çok iyi kumaşı da güzel.
+                        Aşırı güzel kumaşı var tavsiye ederim. Çok rahat bir ürün tavsiye ederim.
+                        Güzel yumuşak ve
+                        kaliteli bir ürün teşekkürler. Aynı resimdeki gibi gayet güzel. Çok iyi
+                        kumaşı da güzel.
                     </div>
                     <div class="UrundetaySayfalariUrununYorumlariIcerikMetni">
-                        Aşırı güzel kumaşı var tavsiye ederim. Çok rahat bir ürün tavsiye ederim. Güzel yumuşak ve
-                        kaliteli bir ürün teşekkürler. Aynı resimdeki gibi gayet güzel. Çok iyi kumaşı da güzel.
+                        Aşırı güzel kumaşı var tavsiye ederim. Çok rahat bir ürün tavsiye ederim.
+                        Güzel yumuşak ve
+                        kaliteli bir ürün teşekkürler. Aynı resimdeki gibi gayet güzel. Çok iyi
+                        kumaşı da güzel.
                     </div>
                 </div>
 

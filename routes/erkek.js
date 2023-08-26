@@ -35,9 +35,13 @@ router.get('/canta', catchAsync(async (req, res, next) => {
     res.render("erkek/canta", { ueruenler });
 }))
 
+router.get('/sues', catchAsync(async (req, res, next) => {
+    const ueruenler = await UeruenGiyim.find();
+    res.render("erkek/sues", { ueruenler });
+}))
+
 router.get('/:id/detay', catchAsync(async (req, res, next) => {
     const { id } = req.params;
-    console.log("id = " + id); 3
     const ueruen = await UeruenGiyim.findById(id);
     res.render("erkek/ueruenDetay", { ueruen });
 }))

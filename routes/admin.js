@@ -19,7 +19,6 @@ router.post('/:id/yeniUeruen', isLoggedIn, isAdmin, upload.array('image'), catch
     const yeniUeruen = new UeruenGiyim(req.body.yeniUeruen);
     yeniUeruen.fiyat = parseFloat(yeniUeruen.fiyat);
     yeniUeruen.images = req.files.map(f => ({ url: f.path, filename: f.filename }));
-    console.log(req.body, req.files);
     await yeniUeruen.save();
     res.redirect('/');
 }))
