@@ -1,0 +1,114 @@
+<% layout('layouts/boilerplate') %>
+
+    <div id="TamSayfaAlani">
+        <div id="guencelleContainer">
+            <div id="guencelleSol">
+                <form action="/admin/<%=ueruen._id%>/ueruenGuencelle?_method=PUT" method="POST"
+                    enctype="multipart/form-data">
+                    <div>
+                        <div class="mb-5">
+                            <label class="form-label" for="image">Yeni resim ekle</label>
+                            <input type="file" name="image" id="image" multiple>
+                        </div>
+                        <h5>Silmek istediginiz resimleri seciniz</h5>
+                        <% ueruen.images.forEach(function(img, i) { %>
+                            <img src="<%=img.thumbnail%>" class="img-thumbnail" alt="">
+                            <div class="form-check-inline">
+                                <input type="checkbox" id="image-<%=i%>" name="deleteImages[]"
+                                    value="<%=img.filename%>">
+                            </div>
+                            <% }) %>
+                                <div class="ButonlarIcinKapsamaAlani"><input type="submit" value="Resimleri güncelle"
+                                        class="FormElemanlariYesilButonlar" tabindex="3"></div>
+                    </div>
+                </form>
+            </div>
+            <div id="guencelleSag">
+
+
+                <form action="" method="POST" novalidate class="validated-form" style="width: 70%"
+                    enctype="multipart/form-data">
+
+
+                    <div class="secenek">
+                        <img src="/images/product.png" alt="">
+
+                        <select name="yeniUeruen[kategori]" id="cesitDropDown1" required>
+                            <option class="dropdown-item" value="erkekGiyim">Erkek Giyim</option>
+                            <option class="dropdown-item" value="kadinGiyim">Kadin Giyim</option>
+                            <option class="dropdown-item" value="unisexGiyim">Unisex</option>
+                            <option class="dropdown-item" value="vintageUeruenler">Vintage Ürünler</option>
+                        </select>
+                    </div>
+                    <div class="secenek">
+                        <img src="/images/colour.png" alt="">
+
+                        <select name="yeniUeruen[cesit]" id="cesitDropDown2" required>
+
+                        </select>
+                    </div>
+                    <div class="secenek" style="display: flex; align-items: center;">
+                        <img src="/images/tshirt.png" style="height: 30px; width: 30px" alt="">
+                        <div style="display: block">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="flexCheckDefault1" value="S"
+                                    name="yeniUeruen[beden]">
+                                <label class="form-check-label" for="flexCheckDefault" id="">
+                                    S
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="flexCheckDefault2" value="M"
+                                    name="yeniUeruen[beden]">
+                                <label class="form-check-label" for="flexCheckDefault" id="">
+                                    M
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="flexCheckDefault3" value="L"
+                                    name="yeniUeruen[beden]">
+                                <label class="form-check-label" for="flexCheckDefault" id="">
+                                    L
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="flexCheckDefault4" value="XL"
+                                    name="yeniUeruen[beden]">
+                                <label class="form-check-label" for="flexCheckDefault" id="">
+                                    XL
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="secenek">
+                        <img src="/images/lira.png" alt="">
+                        <input type="text" name="yeniUeruen[fiyat]" id="currency-field" value="" data-type="currency"
+                            placeholder="250,50 TL" required>
+                        <div class="valid-feedback">Iyi!</div>
+                        <div class="invalid-feedback">Lütfen ürün fiyatini yazinizi</div>
+                    </div>
+
+                    <div class="secenek mb-2" style="display: flex; align-items: center;">
+                        <label style="width: 40%" for="tarif">Ürünü tarif et</label>
+                        <textarea class="form-control ml-4" id="tarif" style="width: 100%; height: 50px"
+                            name="yeniUeruen[tarif]" type="String" tabindex="1" required></textarea>
+                        <div class="valid-feedback">Iyi!</div>
+                        <div class="invalid-feedback">Lütfen ürünü tarif edin</div>
+                    </div>
+
+
+                    <div class="secenek mb-2" style="display: flex; align-items: center;">
+                        <label style="width: 40%" for="aciklama">Ürünü acikla</label>
+                        <textarea class="form-control ml-4" id="aciklama" style="width: 100%; height: 100px"
+                            name="yeniUeruen[aciklama]" type="String" tabindex="1" required></textarea>
+                        <div class="valid-feedback">Iyi!</div>
+                        <div class="invalid-feedback">Lütfen ürün bilgilerini aciklayiniz</div>
+                    </div>
+
+                    <div class="ButonlarIcinKapsamaAlani"><input type="submit" value="Ürün bilgileri güncelle - IN WORK"
+                            class="FormElemanlariYesilButonlar" id="submitButton" tabindex="3" disabled></div>
+
+                </form>
+            </div>
+        </div>
+    </div>

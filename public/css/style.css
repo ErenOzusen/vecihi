@@ -17808,3 +17808,58 @@ footer {
   border: 1px solid #DDD;
   background-color: #ffffff;
 }
+
+.güncelle {
+  border-top: 1px solid #000;
+  display: flex;
+  justify-content: center;
+}
+
+.güncelle div {
+  margin: 10px;
+}
+
+.güncelle a {
+  color: #646464;
+  text-decoration: none;
+
+}
+
+#guencelleContainer {
+  display: flex;
+  width: 100%;
+  height: 100%;
+}
+
+#guencelleSol {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #DDD;
+  padding: 10px;
+  margin: 5px;
+  flex: 40;
+}
+
+#guencelleSolPreview {
+  width: 100%;
+}
+
+#guencelleSag {
+  display: flex;
+  height: auto;
+  align-items: left;
+  border: 1px solid #DDD;
+  padding: 10px;
+  margin: 5px;
+  flex: 60;
+}
+
+#guencelleSol img {
+  max-width: 200px;
+  max-height: 230px;
+}
+
+#guencelleSag img {
+  width: 30px;
+  margin-right: 10px;
+}

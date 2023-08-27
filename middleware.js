@@ -20,7 +20,8 @@ module.exports.isAuthor = async (req, res, next) => {
 module.exports.isAdmin = async (req, res, next) => {
     const { id } = req.params;
     const ueye = await Ueye.findById(id);
-    if (ueye.email !== 'tolgay.altiner@web.de') {
+    const admin = process.env.ADMIN;
+    if (ueye && !admin.match(ueye.email)) {
         req.flash('error', 'Buna izinis yok!');
         return res.redirect('/girisYap');
     }

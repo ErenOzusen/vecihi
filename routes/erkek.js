@@ -22,7 +22,15 @@ router.post('/:id/yeniUeruen', isLoggedIn, isAdmin, (req, res) => {
 router.get('/tshirt', catchAsync(async (req, res, next) => {
     const ueruenler = await UeruenGiyim.find();
     const currentUser = req.user;
-    res.render("erkek/tshirt", { ueruenler });
+    const admin = process.env.ADMIN;
+    var isAdmin = false;
+    if (currentUser !== undefined && admin.match(currentUser.email)) {
+        isAdmin = true;
+    } else {
+        isAdmin = false;
+    }
+
+    res.render("erkek/tshirt", { ueruenler, isAdmin });
 }))
 
 router.get('/sapka', catchAsync(async (req, res, next) => {
