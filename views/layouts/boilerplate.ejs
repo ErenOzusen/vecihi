@@ -76,6 +76,7 @@
             const radioLabel = document.getElementById('radioLabel');
             const checkboxes = document.querySelectorAll('.form-check-input');
             const submitButton = document.getElementById('submitButton');
+            const cesit = cesitDropDown2.getAttribute('data-test');
 
             handleCesitDropDownChange();
             cesitDropDown1.addEventListener('change', handleCesitDropDownChange);
@@ -85,7 +86,7 @@
 
                 cesitDropDown2.innerHTML = '';
 
-                if (cesitDropDown1.value === 'erkekGiyim' || cesitDropDown1.value === 'kadinGiyim' || cesitDropDown1.value === 'unisex') {
+                if (cesitDropDown1.value === 'erkekGiyim' || cesitDropDown1.value === 'kadinGiyim' || cesitDropDown1.value === 'unisexGiyim') {
 
                     const option1 = document.createElement('option');
                     option1.value = 'tshirt';
@@ -96,33 +97,30 @@
                     const option3 = document.createElement('option');
                     option3.value = 'canta';
                     option3.textContent = 'Çanta';
-                    const option4 = document.createElement('option');
-                    option4.value = 'suesEsyalari';
-                    option4.textContent = 'Süs Eşyaları';
+
 
                     cesitDropDown2.appendChild(option1);
                     cesitDropDown2.appendChild(option2);
                     cesitDropDown2.appendChild(option3);
-                    cesitDropDown2.appendChild(option4);
+
+                    if (cesit) {
+                        for (let i = 0; i < cesitDropDown2.options.length; i++) {
+                            if (cesitDropDown2.options[i].value === cesit) {
+                                cesitDropDown2.options[i].selected = true;
+                                break;
+                            }
+                        }
+                    }
 
                     flexCheckDefault1.disabled = false;
                     flexCheckDefault2.disabled = false;
                     flexCheckDefault3.disabled = false;
                     flexCheckDefault4.disabled = false;
 
-                    /*   flexCheckDefault.appendChild(option5.value);
-                      radioLabel.appendChild(option5.textContent);
-                      flexCheckDefault.appendChild(option6);
-                      radioLabel.appendChild(option6.textContent);
-                      flexCheckDefault.appendChild(option7);
-                      radioLabel.appendChild(option7.textContent);
-                      flexCheckDefault.appendChild(option8);
-                      radioLabel.appendChild(option8.textContent); */
-
                 } else if (cesitDropDown1.value === 'vintageUeruenler') {
 
                     const option1 = document.createElement('option');
-                    option1.value = 'anahtarlık';
+                    option1.value = 'anahtarlik';
                     option1.textContent = 'Anahtarlık';
                     const option2 = document.createElement('option');
                     option2.value = 'ahsapueruenler';
@@ -130,13 +128,19 @@
                     const option3 = document.createElement('option');
                     option3.value = 'cantalar';
                     option3.textContent = 'Çantalar';
-                    const option4 = document.createElement('option');
-                    option4.value = 'süsueruenleri';
-                    option4.textContent = 'Süs Ürünleri';
+
                     cesitDropDown2.appendChild(option1);
                     cesitDropDown2.appendChild(option2);
                     cesitDropDown2.appendChild(option3);
-                    cesitDropDown2.appendChild(option4);
+
+                    if (cesit) {
+                        for (let i = 0; i < cesitDropDown2.options.length; i++) {
+                            if (cesitDropDown2.options[i].value === cesit) {
+                                cesitDropDown2.options[i].selected = true;
+                                break;
+                            }
+                        }
+                    }
 
                     flexCheckDefault1.disabled = true;
                     flexCheckDefault2.disabled = true;
@@ -152,7 +156,7 @@
                     }
                 });
 
-                if (!atLeastOneSelected) {
+                if (!atLeastOneSelected && flexCheckDefault1.disabled == false) {
                     event.preventDefault();
                     alert('Lütfen boyut seceneklerden minimum bir tane secin');
                 }

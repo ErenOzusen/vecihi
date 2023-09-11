@@ -1,77 +1,96 @@
 <% layout('layouts/boilerplate') %>
     <div id="TamSayfaAlani">
         <div id="TamSayfaSinirlamaAlani">
+            <div id="TamSayfaSolSutunSinirlamaAlani">
+                <div id="TamSayfaSolSutunIcMenuAlani">
+                    <div id="TamSayfaSolSutunIcMenuAlaniUstMenuBasligi">
+                        <% const erkekGiyimTshirtUeruenler=ueruenler.filter((ueruen)=> {
+                            return ueruen.kategori === 'erkekGiyim' && ueruen.cesit === 'tshirt';
+                            });
+                            %>
+                            <p>Erkek Giyim</p>
+                            <span href="/erkekGiyim" target="_top">Baskı T-Shirtler
+                                (<%=erkekGiyimTshirtUeruenler.length%>)
+                            </span>
 
-            <%- include('../partials/kategori')%>
-
-
-                <div id="TamSayfaSagSutunSinirlamaAlani">
-                    <div id="TamSayfaSagSutunIciAramaAlani">
-                        <form action="/erkekGiyim" method="post">
-                            <div class="TamSayfaSagSutunIciAramaAlaniButonlarIcinKapsamaAlani"><input type="submit"
-                                    value="" class="TamSayfaSagSutunIciAramaAlaniAramayapButonlari"> </div>
-                            <div class="TamSayfaSagSutunIciAramaAlaniInputAlanlariKapsamaAlani"><input type="text"
-                                    name="Arama" class="TamSayfaSagSutunIciAramaAlaniTextInputlari"> </div>
-                        </form>
                     </div>
+                    <div id="TamSayfaSolSutunIcMenuAlaniAltKategoriOkuVeMenuBasligi">
+                        <img src="/images/arrow-right.png" alt="" title=""><span
+                            class="TamSayfaSolSutunIcMenuAlaniMenuBasligi"><a href="/erkekGiyim" target="_top">Tüm
+                                Ürünler</a></span>
+                    </div>
+                    <%- include('../partials/kategori')%>
 
-                    <div id="TamSayfaSagSutunIciUrunlerAlani">
-                        <div id="TamSayfaSagSutunIciUrunlerDengelemeAlani">
-                            <% for(let ueruen of ueruenler) {%>
-                                <% if((ueruen.kategori=='erkekGiyim' || ueruen.kategori=='unisexGiyim' ) &&
-                                    ueruen.cesit=='tshirt' ) {%>
-                                    <div class="TamSayfaSagSutunIciUrunSinirlamaAlani">
-                                        <div class="TamSayfaSagSutunIciUrunResmiDısCercevesi">
-                                            <a href="/erkekGiyim/<%=ueruen._id%>/detay"><img
-                                                    src="<%=ueruen.images[0].url%>" alt="" title=""></a>
-                                        </div>
+                        <div id="TamSayfaSagSutunSinirlamaAlani">
+                            <div id="TamSayfaSagSutunIciAramaAlani">
+                                <form action="/erkekGiyim" method="post">
+                                    <div class="TamSayfaSagSutunIciAramaAlaniButonlarIcinKapsamaAlani"><input
+                                            type="submit" value=""
+                                            class="TamSayfaSagSutunIciAramaAlaniAramayapButonlari"> </div>
+                                    <div class="TamSayfaSagSutunIciAramaAlaniInputAlanlariKapsamaAlani"><input
+                                            type="text" name="Arama" class="TamSayfaSagSutunIciAramaAlaniTextInputlari">
+                                    </div>
+                                </form>
+                            </div>
 
-                                        <div class="TamSayfaSagSutunIciUrunUstBaslikMetni">
-                                            Erkek Giyim
-                                        </div>
-
-                                        <div class="TamSayfaSagSutunIciUrunAltBaslikMetni">
-
-                                            <%= ueruen.tarif%>
-                                        </div>
-
-                                        <div class="TamSayfaSagSutunIciUrunPuanYildizlariAlani">
-
-                                            <img src="/images/star-1.png" alt="" title="">
-
-                                        </div>
-
-                                        <div class="TamSayfaSagSutunIciUrunFiyatlariAlani mb-1">
-
-
-                                            <span class="TamSayfaSagSutunIciUrunAltBaslikMetni">
-
-                                                <%=ueruen.fiyat%> TL
-
-                                            </span>
-
-                                        </div>
-
-                                        <% if(isAdmin) {%>
-                                            <div class="güncelle">
-                                                <div class="">
-                                                    <a href="" target="_top">
-                                                        <img src="/images/delete.png" alt="" title="">
-                                                        Sil</a>
+                            <div id="TamSayfaSagSutunIciUrunlerAlani">
+                                <div id="TamSayfaSagSutunIciUrunlerDengelemeAlani">
+                                    <% for(let ueruen of ueruenler) {%>
+                                        <% if((ueruen.kategori=='erkekGiyim' || ueruen.kategori=='unisexGiyim' ) &&
+                                            ueruen.cesit=='tshirt' ) {%>
+                                            <div class="TamSayfaSagSutunIciUrunSinirlamaAlani">
+                                                <div class="TamSayfaSagSutunIciUrunResmiDısCercevesi">
+                                                    <a href="/erkekGiyim/<%=ueruen._id%>/detay"><img
+                                                            src="<%=ueruen.images[0].url%>" alt="" title=""></a>
                                                 </div>
-                                                <div class="">
-                                                    <a href="/admin/<%=ueruen._id%>/ueruenGuencelle" target="_top"> <img
-                                                            src="/images/refresh.png" alt="" title="">
-                                                        Güncelle</a>
+
+                                                <div class="TamSayfaSagSutunIciUrunUstBaslikMetni">
+                                                    Erkek Giyim
                                                 </div>
+
+                                                <div class="TamSayfaSagSutunIciUrunAltBaslikMetni">
+
+                                                    <%= ueruen.tarif%>
+                                                </div>
+
+                                                <div class="TamSayfaSagSutunIciUrunPuanYildizlariAlani">
+
+                                                    <img src="/images/star-1.png" alt="" title="">
+
+                                                </div>
+
+                                                <div class="TamSayfaSagSutunIciUrunFiyatlariAlani mb-1">
+
+
+                                                    <span class="TamSayfaSagSutunIciUrunAltBaslikMetni">
+
+                                                        <%=ueruen.fiyat%> TL
+
+                                                    </span>
+
+                                                </div>
+
+                                                <% if(isAdmin) {%>
+                                                    <div class="güncelle">
+                                                        <div class="">
+                                                            <a href="" target="_top">
+                                                                <img src="/images/delete.png" alt="" title="">
+                                                                Sil</a>
+                                                        </div>
+                                                        <div class="">
+                                                            <a href="/admin/<%=ueruen._id%>/ueruenGuencelle"
+                                                                target="_top">
+                                                                <img src="/images/refresh.png" alt="" title="">
+                                                                Güncelle</a>
+                                                        </div>
+                                                    </div>
+                                                    <% } %>
                                             </div>
                                             <% } %>
-                                    </div>
-                                    <% } %>
-                                        <% } %>
+                                                <% } %>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
 
-        </div>
-    </div>
+                </div>
+            </div>
