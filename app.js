@@ -15,6 +15,7 @@ const session = require('express-session');
 const flash = require('connect-flash');
 const ueyeRoutes = require('./routes/ueye');
 const erkekRoutes = require('./routes/erkek')
+const kadinRoutes = require('./routes/kadin');
 const adminRoutes = require('./routes/admin');
 const passport = require('passport');
 const LocalStrategy = require('passport-local');
@@ -69,6 +70,7 @@ app.use((req, res, next) => {
 
 app.use('/', ueyeRoutes);
 app.use('/erkekGiyim', erkekRoutes);
+app.use('/kadinGiyim', kadinRoutes);
 app.use('/admin', adminRoutes);
 
 app.get('/', (req, res) => {
