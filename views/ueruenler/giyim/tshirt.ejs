@@ -7,19 +7,23 @@
                         <% let ueruenler="" %>
                             <% if(typeof erkekUeruenler !=='undefined' ) { %>
                                 <% ueruenler=erkekUeruenler%>
-                                    <% ueruenRoute='erkekGiyim' ; %>
-                                        <p>Erkek Giyim</p>
-                                        <span href="/erkekGiyim" target="_top">Tüm Ürünler
-                                            (<%=erkekUeruenler.length %>)
-                                        </span>
-                                        <% } else if(typeof kadinUeruenler !=='undefined' ) { %>
-                                            <% ueruenler=kadinUeruenler;%>
-                                                <% ueruenRoute='kadinGiyim' ; %>
-                                                    <p>Kadin Giyim</p>
-                                                    <span href="/kadinGiyim" target="_top">Baskı T-Shirtler
-                                                        (<%=kadinUeruenler.length %>)
-                                                    </span>
-                                                    <% } %>
+                                    <% const erkekUeruenlerCanta=erkekUeruenler.filter((ueruen)=>
+                                        ueruen.cesit === 'tshirt');%>
+                                        <% ueruenRoute='erkekGiyim' ; %>
+                                            <p>Erkek Giyim</p>
+                                            <span href="/erkekGiyim" target="_top">Baskı T-Shirtler
+                                                (<%=erkekUeruenlerCanta.length %>)
+                                            </span>
+                                            <% } else if(typeof kadinUeruenler !=='undefined' ) { %>
+                                                <% ueruenler=kadinUeruenler;%>
+                                                    <% const kadinUeruenlerCanta=kadinUeruenler.filter((ueruen)=>
+                                                        ueruen.cesit === 'tshirt');%>
+                                                        <% ueruenRoute='kadinGiyim' ; %>
+                                                            <p>Kadin Giyim</p>
+                                                            <span href="/kadinGiyim" target="_top">Baskı T-Shirtler
+                                                                (<%=kadinUeruenlerCanta.length %>)
+                                                            </span>
+                                                            <% } %>
 
                     </div>
                     <div id="TamSayfaSolSutunIcMenuAlaniAltKategoriOkuVeMenuBasligi">

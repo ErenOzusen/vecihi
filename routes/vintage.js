@@ -8,9 +8,9 @@ const { isLoggedIn, isAuthor, isAdmin } = require('../middleware.js');
 
 router.get('/', catchAsync(async (req, res, next) => {
     const ueruenler = await UeruenGiyim.find();
-    const kadinUeruenler = ueruenler.filter((ueruen) => ueruen.kategori === 'kadinGiyim' || ueruen.kategori === 'unisexGiyim');
+    const vintageUeruenler = ueruenler.filter((ueruen) => ueruen.kategori === 'vintageUeruenler');
 
-    res.render("ueruenler/tuemUeruen", { kadinUeruenler });
+    res.render("ueruenler/tuemUeruen", { vintageUeruenler });
 }))
 
 router.get('/:id/detay', catchAsync(async (req, res, next) => {
@@ -19,9 +19,10 @@ router.get('/:id/detay', catchAsync(async (req, res, next) => {
     res.render("ueruenler/ueruenDetay", { ueruen });
 }))
 
-router.get('/tshirt', catchAsync(async (req, res, next) => {
+
+router.get('/ahsap', catchAsync(async (req, res, next) => {
     const ueruenler = await UeruenGiyim.find();
-    const kadinUeruenler = ueruenler.filter((ueruen) => ueruen.kategori === 'kadinGiyim' || ueruen.kategori === 'unisexGiyim');
+    const vintageUeruenler = ueruenler.filter((ueruen) => ueruen.kategori === 'vintageUeruenler');
     const currentUser = req.user;
     const admin = process.env.ADMIN;
     var isAdmin = false;
@@ -30,13 +31,12 @@ router.get('/tshirt', catchAsync(async (req, res, next) => {
     } else {
         isAdmin = false;
     }
-
-    res.render("ueruenler/giyim/tshirt", { kadinUeruenler, isAdmin });
+    res.render("ueruenler/vintage/ahsap", { vintageUeruenler, isAdmin });
 }))
 
-router.get('/sapka', catchAsync(async (req, res, next) => {
+router.get('/anahtarlik', catchAsync(async (req, res, next) => {
     const ueruenler = await UeruenGiyim.find();
-    const kadinUeruenler = ueruenler.filter((ueruen) => ueruen.kategori === 'kadinGiyim' || ueruen.kategori === 'unisexGiyim');
+    const vintageUeruenler = ueruenler.filter((ueruen) => ueruen.kategori === 'vintageUeruenler');
     const currentUser = req.user;
     const admin = process.env.ADMIN;
     var isAdmin = false;
@@ -45,12 +45,12 @@ router.get('/sapka', catchAsync(async (req, res, next) => {
     } else {
         isAdmin = false;
     }
-    res.render("ueruenler/giyim/sapka", { kadinUeruenler, isAdmin });
+    res.render("ueruenler/vintage/anahtarlik", { vintageUeruenler, isAdmin });
 }))
 
-router.get('/canta', catchAsync(async (req, res, next) => {
+router.get('/sues', catchAsync(async (req, res, next) => {
     const ueruenler = await UeruenGiyim.find();
-    const kadinUeruenler = ueruenler.filter((ueruen) => ueruen.kategori === 'kadinGiyim' || ueruen.kategori === 'unisexGiyim');
+    const vintageUeruenler = ueruenler.filter((ueruen) => ueruen.kategori === 'suesueruen');
     const currentUser = req.user;
     const admin = process.env.ADMIN;
     var isAdmin = false;
@@ -59,7 +59,7 @@ router.get('/canta', catchAsync(async (req, res, next) => {
     } else {
         isAdmin = false;
     }
-    res.render("ueruenler/giyim/canta", { kadinUeruenler, isAdmin });
+    res.render("ueruenler/vintage/sues", { vintageUeruenler, isAdmin });
 }))
 
 

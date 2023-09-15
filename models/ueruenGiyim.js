@@ -15,7 +15,7 @@ const UeruenGiyimSchema = new Schema({
 
     cesit: {
         type: String,
-        enum: ['tshirt', 'sapka', 'canta', 'suesEsyalari', 'anahtarlik', 'ahsapueruenler', 'cantalar', 'süsueruenleri'],
+        enum: ['tshirt', 'sapka', 'canta', 'anahtarlik', 'ahsapueruenler', 'suesueruen'],
         required: true
     },
     kategori: {

@@ -8,7 +8,7 @@ const { isLoggedIn, isAuthor, isAdmin } = require('../middleware.js');
 
 router.get('/', catchAsync(async (req, res, next) => {
     const ueruenler = await UeruenGiyim.find();
-    const erkekUeruenler = ueruenler.filter((ueruen) => ueruen.kategori === 'erkekGiyim');
+    const erkekUeruenler = ueruenler.filter((ueruen) => ueruen.kategori === 'erkekGiyim' || ueruen.kategori === 'unisexGiyim');
     res.render("ueruenler/tuemUeruen", { erkekUeruenler });
 }))
 

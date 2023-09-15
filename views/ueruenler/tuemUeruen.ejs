@@ -19,70 +19,85 @@
                                                     <span href="/kadinGiyim" target="_top">Tüm Ürünler
                                                         (<%=kadinUeruenler.length %>)
                                                     </span>
-                                                    <% } %>
+                                                    <% } else if(typeof vintageUeruenler !=='undefined' ) { %>
+                                                        <% ueruenler=vintageUeruenler;%>
+                                                            <% ueruenRoute='vintage' ; %>
+                                                                <p>Vintage Ürünler</p>
+                                                                <span href="/kadinGiyim" target="_top">Tüm Ürünler
+                                                                    (<%=vintageUeruenler.length %>)
+                                                                </span>%>
+                                                                <% } %>
                     </div>
                     <div id="TamSayfaSolSutunIcMenuAlaniAltKategoriOkuVeMenuBasligi">
 
                     </div>
-                    <%- include('../partials/kategori')%>
+                    <% if(typeof vintageUeruenler !=='undefined' ) {%>
+                        <%- include('../partials/kategori2')%>
+                            <% } else if (typeof erkekUeruenler !=='undefined' || typeof kadinUeruenler !=='undefined'
+                                ){%>
+                                <%- include('../partials/kategori')%>
+                                    <% } %>
 
-                        <div id="TamSayfaSagSutunSinirlamaAlani">
-                            <div id="TamSayfaSagSutunIciAramaAlani">
-                                <form action="/erkekGiyim" method="post">
-                                    <div class="TamSayfaSagSutunIciAramaAlaniButonlarIcinKapsamaAlani"><input
-                                            type="submit" value=""
-                                            class="TamSayfaSagSutunIciAramaAlaniAramayapButonlari"> </div>
-                                    <div class="TamSayfaSagSutunIciAramaAlaniInputAlanlariKapsamaAlani"><input
-                                            type="text" name="Arama" class="TamSayfaSagSutunIciAramaAlaniTextInputlari">
-                                    </div>
-                                </form>
-                            </div>
-
-                            <div id="TamSayfaSagSutunIciUrunlerAlani">
-                                <div id="TamSayfaSagSutunIciUrunlerDengelemeAlani">
-                                    <% for(let ueruen of ueruenler) {%>
-                                        <div class="TamSayfaSagSutunIciUrunSinirlamaAlani">
-                                            <div class="TamSayfaSagSutunIciUrunResmiDısCercevesi">
-                                                <a href="/<%=ueruenRoute %>/<%=ueruen._id%>/detay"><img
-                                                        src="<%=ueruen.images[0].url%>" alt="" title=""></a>
+                                        <div id="TamSayfaSagSutunSinirlamaAlani">
+                                            <div id="TamSayfaSagSutunIciAramaAlani">
+                                                <form action="/erkekGiyim" method="post">
+                                                    <div class="TamSayfaSagSutunIciAramaAlaniButonlarIcinKapsamaAlani">
+                                                        <input type="submit" value=""
+                                                            class="TamSayfaSagSutunIciAramaAlaniAramayapButonlari">
+                                                    </div>
+                                                    <div class="TamSayfaSagSutunIciAramaAlaniInputAlanlariKapsamaAlani">
+                                                        <input type="text" name="Arama"
+                                                            class="TamSayfaSagSutunIciAramaAlaniTextInputlari">
+                                                    </div>
+                                                </form>
                                             </div>
 
-                                            <div class="TamSayfaSagSutunIciUrunUstBaslikMetni">
-                                                <% if(ueruen.kategori=='erkekGiyim' ) {%>
-                                                    Erkek Giyim
-                                                    <% } else if (ueruen.kategori='kadinGiyim' ) {%>
-                                                        Kadin Giyim
+                                            <div id="TamSayfaSagSutunIciUrunlerAlani">
+                                                <div id="TamSayfaSagSutunIciUrunlerDengelemeAlani">
+                                                    <% for(let ueruen of ueruenler) {%>
+                                                        <div class="TamSayfaSagSutunIciUrunSinirlamaAlani">
+                                                            <div class="TamSayfaSagSutunIciUrunResmiDısCercevesi">
+                                                                <a href="/<%=ueruenRoute %>/<%=ueruen._id%>/detay"><img
+                                                                        src="<%=ueruen.images[0].url%>" alt=""
+                                                                        title=""></a>
+                                                            </div>
+
+                                                            <div class="TamSayfaSagSutunIciUrunUstBaslikMetni">
+                                                                <% if(ueruen.kategori=='erkekGiyim' ) {%>
+                                                                    Erkek Giyim
+                                                                    <% } else if (ueruen.kategori='kadinGiyim' ) {%>
+                                                                        Kadin Giyim
+                                                                        <% } %>
+                                                            </div>
+
+                                                            <div class="TamSayfaSagSutunIciUrunAltBaslikMetni">
+
+                                                                <%= ueruen.tarif%>
+                                                            </div>
+
+                                                            <div class="TamSayfaSagSutunIciUrunPuanYildizlariAlani">
+
+                                                                <img src="/images/star-1.png" alt="" title="">
+
+                                                            </div>
+
+                                                            <div class="TamSayfaSagSutunIciUrunFiyatlariAlani mb-1">
+
+
+                                                                <span class="TamSayfaSagSutunIciUrunAltBaslikMetni">
+
+                                                                    <%=ueruen.fiyat%> TL
+
+                                                                </span>
+
+                                                            </div>
+
+
+                                                        </div>
                                                         <% } %>
+                                                </div>
                                             </div>
-
-                                            <div class="TamSayfaSagSutunIciUrunAltBaslikMetni">
-
-                                                <%= ueruen.tarif%>
-                                            </div>
-
-                                            <div class="TamSayfaSagSutunIciUrunPuanYildizlariAlani">
-
-                                                <img src="/images/star-1.png" alt="" title="">
-
-                                            </div>
-
-                                            <div class="TamSayfaSagSutunIciUrunFiyatlariAlani mb-1">
-
-
-                                                <span class="TamSayfaSagSutunIciUrunAltBaslikMetni">
-
-                                                    <%=ueruen.fiyat%> TL
-
-                                                </span>
-
-                                            </div>
-
-
                                         </div>
-                                        <% } %>
-                                </div>
-                            </div>
-                        </div>
 
                 </div>
             </div>

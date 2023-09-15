@@ -16,6 +16,7 @@ const flash = require('connect-flash');
 const ueyeRoutes = require('./routes/ueye');
 const erkekRoutes = require('./routes/erkek')
 const kadinRoutes = require('./routes/kadin');
+const vintageRoutes = require('./routes/vintage');
 const adminRoutes = require('./routes/admin');
 const passport = require('passport');
 const LocalStrategy = require('passport-local');
@@ -72,6 +73,7 @@ app.use('/', ueyeRoutes);
 app.use('/erkekGiyim', erkekRoutes);
 app.use('/kadinGiyim', kadinRoutes);
 app.use('/admin', adminRoutes);
+app.use('/vintage', vintageRoutes);
 
 app.get('/', (req, res) => {
 

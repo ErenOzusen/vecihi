@@ -5,32 +5,24 @@
                 <div id="TamSayfaSolSutunIcMenuAlani">
                     <div id="TamSayfaSolSutunIcMenuAlaniUstMenuBasligi">
                         <% let ueruenler="" %>
-                            <% if(typeof erkekUeruenler !=='undefined' ) { %>
-                                <% ueruenler=erkekUeruenler%>
-                                    <% const erkekUeruenlerCanta=erkekUeruenler.filter((ueruen)=>
-                                        ueruen.cesit === 'canta');%>
-                                        <% ueruenRoute='erkekGiyim' ; %>
-                                            <p>Erkek Giyim</p>
-                                            <span href="/erkekGiyim" target="_top">Çantalar
-                                                (<%=erkekUeruenlerCanta.length %>)
+                            <% if(typeof vintageUeruenler !=='undefined' ) { %>
+                                <% ueruenler=vintageUeruenler%>
+                                    <% const vintageUeruenlerAnahtarlik=vintageUeruenler.filter((ueruen)=>
+                                        ueruen.cesit === 'anahtarlik');%>
+                                        <% ueruenRoute='vintage' ; %>
+                                            <p>Vintage Ürünler</p>
+                                            <span href="/vintage" target="_top">Anahtarlık
+                                                (<%=vintageUeruenlerAnahtarlik.length %>)
                                             </span>
-                                            <% } else if(typeof kadinUeruenler !=='undefined' ) { %>
-                                                <% ueruenler=kadinUeruenler;%>
-                                                    <% const kadinUeruenlerCanta=kadinUeruenler.filter((ueruen)=>
-                                                        ueruen.cesit === 'canta');%>
-                                                        <% ueruenRoute='kadinGiyim' ; %>
-                                                            <p>Kadin Giyim</p>
-                                                            <span href="/kadinGiyim" target="_top">Çantalar
-                                                                (<%=kadinUeruenlerCanta.length %>)
-                                                            </span>
-                                                            <% } %>
+
+                                            <% } %>
                     </div>
                     <div id="TamSayfaSolSutunIcMenuAlaniAltKategoriOkuVeMenuBasligi">
                         <img src="/images/arrow-right.png" alt="" title=""><span
                             class="TamSayfaSolSutunIcMenuAlaniMenuBasligi"><a href="/erkekGiyim" target="_top">Tüm
                                 Ürünler</a></span>
                     </div>
-                    <%- include('../../partials/kategori')%>
+                    <%- include('../../partials/kategori2')%>
 
                         <div id="TamSayfaSagSutunSinirlamaAlani">
                             <div id="TamSayfaSagSutunIciAramaAlani">
@@ -47,7 +39,7 @@
                             <div id="TamSayfaSagSutunIciUrunlerAlani">
                                 <div id="TamSayfaSagSutunIciUrunlerDengelemeAlani">
                                     <% for(let ueruen of ueruenler) {%>
-                                        <% if(ueruen.cesit=='canta' ) {%>
+                                        <% if(ueruen.cesit=='anahtarlik' ) {%>
                                             <div class="TamSayfaSagSutunIciUrunSinirlamaAlani">
                                                 <div class="TamSayfaSagSutunIciUrunResmiDısCercevesi">
                                                     <a href="/<%=ueruenRoute %>/<%=ueruen._id%>/detay"><img
@@ -55,11 +47,7 @@
                                                 </div>
 
                                                 <div class="TamSayfaSagSutunIciUrunUstBaslikMetni">
-                                                    <% if(ueruen.kategori=='erkekGiyim' ) {%>
-                                                        Erkek Giyim
-                                                        <% } else if (ueruen.kategori='kadinGiyim' ) {%>
-                                                            Kadin Giyim
-                                                            <% } %>
+                                                    Vintage Ürün
                                                 </div>
                                                 <div class="TamSayfaSagSutunIciUrunAltBaslikMetni">
 

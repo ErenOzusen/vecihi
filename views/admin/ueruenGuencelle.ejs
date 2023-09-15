@@ -33,14 +33,14 @@
                         <img src="/images/product.png" alt="">
 
                         <select name="yeniUeruen[kategori]" id="cesitDropDown1" required>
-                            <option class="dropdown-item" value="erkekGiyim" <%ueruen.kategori=='erkekGiyim'
-                                ? 'selected' : '' %>>Erkek Giyim</option>
-                            <option class="dropdown-item" value="kadinGiyim" <%ueruen.kategori=='kadinGiyim'
-                                ? 'selected' : '' %>>Kadin Giyim</option>
-                            <option class="dropdown-item" value="unisexGiyim" <%ueruen.kategori=='unisexGiyim'
-                                ? 'selected' : '' %>>Unisex</option>
-                            <option class="dropdown-item" value="vintageUeruenler" <%ueruen.kategori=='vintageUeruenler'
-                                ? 'selected' : '' %>>Vintage Ürünler
+                            <option class="dropdown-item" value="erkekGiyim" <%=ueruen.kategori=='erkekGiyim'
+                                ? 'selected' : '' %> >Erkek Giyim</option>
+                            <option class="dropdown-item" value="kadinGiyim" <%=ueruen.kategori=='kadinGiyim'
+                                ? 'selected' : '' %> >Kadin Giyim</option>
+                            <option class="dropdown-item" value="unisexGiyim" <%=ueruen.kategori=='unisexGiyim'
+                                ? 'selected' : '' %> >Unisex</option>
+                            <option class="dropdown-item" value="vintageUeruenler"
+                                <%=ueruen.kategori=='vintageUeruenler' ? 'selected' : '' %> >Vintage Ürünler
                             </option>
                         </select>
                     </div>

@@ -29,7 +29,6 @@ router.get('/:id/ueruenGuencelle', isLoggedIn, isAdmin, catchAsync(async (req, r
     const { id } = req.params;
     const ueruen = await UeruenGiyim.findById(id);
     res.render("admin/ueruenGuencelle", { ueruen });
-
 }))
 
 router.post('/:id/ueruenGuencelle/resim', isLoggedIn, isAdmin, upload.array('image'), catchAsync(async (req, res, next) => {
@@ -44,8 +43,8 @@ router.post('/:id/ueruenGuencelle/resim', isLoggedIn, isAdmin, upload.array('ima
         }
         await ueruenDB.updateOne({ $pull: { images: { filename: { $in: req.body.deleteImages } } } });
     };
-
-    res.redirect(`/admin/${id}/ueruenGuencelle`)
+    const route = ueruenDB.kategori;
+    res.redirect(`/${route}/${id}/detay`);
 }))
 
 router.post('/:id/ueruenGuencelle/form', isLoggedIn, isAdmin, upload.array('image'), catchAsync(async (req, res, next) => {
@@ -54,8 +53,8 @@ router.post('/:id/ueruenGuencelle/form', isLoggedIn, isAdmin, upload.array('imag
     const ueruenguencelle = new UeruenGiyim(yeniUeruen);
     ueruenDB = await UeruenGiyim.findByIdAndUpdate(id, { "$set": { "kategori": ueruenguencelle.kategori, "cesit": ueruenguencelle.cesit, "beden": ueruenguencelle.beden, "fiyat": ueruenguencelle.fiyat, "tarif": ueruenguencelle.tarif, "aciklama": ueruenguencelle.aciklama } });
     await ueruenDB.save();
-
-    res.redirect(`/admin/${id}/ueruenGuencelle`)
+    const route = ueruenDB.kategori;
+    res.redirect(`/${route}/${id}/detay`);
 }))
 
 module.exports = router;
