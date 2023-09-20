@@ -62,5 +62,4 @@ router.get('/:id/detay', catchAsync(async (req, res, next) => {
     res.render("ueruenler/ueruenDetay", { ueruen });
 }))
 
-
 module.exports = router;

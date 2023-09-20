@@ -73,11 +73,14 @@
 
                                                 <% if(isAdmin) {%>
                                                     <div class="güncelle">
-                                                        <div class="">
-                                                            <a href="" target="_top">
-                                                                <img src="/images/delete.png" alt="" title="">
-                                                                Sil</a>
-                                                        </div>
+                                                        <form action="/admin/<%=ueruen._id%>?_method=DELETE"
+                                                            method="POST">
+                                                            <div class="">
+                                                                <button><img src="/images/delete.png" alt=""
+                                                                        title="">Sil</button>
+
+                                                            </div>
+                                                        </form>
                                                         <div class="">
                                                             <a href="/admin/<%=ueruen._id%>/ueruenGuencelle"
                                                                 target="_top">

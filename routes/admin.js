@@ -57,4 +57,17 @@ router.post('/:id/ueruenGuencelle/form', isLoggedIn, isAdmin, upload.array('imag
     res.redirect(`/${route}/${id}/detay`);
 }))
 
+router.delete('/:id', isLoggedIn, isAdmin, catchAsync(async (req, res) => {
+    const { id } = req.params;
+    const ueruen = await UeruenGiyim.findById(id);
+    const cesit = ueruen.cesit;
+    var kategori = ueruen.kategori;
+    if (kategori == 'vintageUeruenler') {
+        kategori = 'vintage';
+    }
+    await UeruenGiyim.findByIdAndDelete(id);
+    res.redirect(`/${kategori}/${cesit}`);
+    req.flash('success', 'Ürün silindi');
+}))
+
 module.exports = router;

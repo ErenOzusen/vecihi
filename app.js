@@ -20,6 +20,7 @@ const vintageRoutes = require('./routes/vintage');
 const adminRoutes = require('./routes/admin');
 const passport = require('passport');
 const LocalStrategy = require('passport-local');
+const methodOverride = require('method-override');
 const { isLoggedIn, isAuthor, isAdmin } = require('./middleware.js');
 
 
@@ -48,6 +49,7 @@ db.once("open", () => {
 
 
 app.use(express.urlencoded({ extended: true }));
+app.use(methodOverride('_method'));
 app.use(express.static('public'));
 app.use(session(sessionConfig));
 app.use(flash());
