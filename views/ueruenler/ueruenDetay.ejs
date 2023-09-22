@@ -51,9 +51,12 @@
                         </div>
 
                         <div id="UrunDetaySayfalariSepeteEkleButonuAlani">
-                            <span id="UrunDetaySayfalariSepeteEkleButonuIconu"><img src="/images/add-to-cart.png" alt=""
-                                    title=""></span>
-                            <span id="UrunDetaySayfalariSepeteEkleButonuMetni">Sepete Ekle</span>
+                            <form action="/sepeteEkle" method="POST">
+                                <span id="UrunDetaySayfalariSepeteEkleButonuIconu"><img src="/images/add-to-cart.png"
+                                        alt="" title=""></span>
+                                <input type="hidden" name="ueruenID" value="<%=ueruen._id%>">
+                                <button id="UrunDetaySayfalariSepeteEkleButonuMetni" type="submit">Sepete Ekle</button>
+                            </form>
                         </div>
                     </div>
 

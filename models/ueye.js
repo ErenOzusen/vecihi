@@ -23,11 +23,11 @@ const UeyeSchema = new Schema({
         type: Number,
         required: false,
         unique: false
-    }
-    /*     sepet: {
-            type: Schema.Types.ObjectId,
-            ref: 'Ueruen'
-        } */
+    },
+    sepet: [{
+        type: Schema.Types.ObjectId,
+        ref: 'UeruenGiyim'
+    }]
 
 });
 

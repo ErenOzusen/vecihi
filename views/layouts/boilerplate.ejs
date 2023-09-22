@@ -207,9 +207,35 @@
             }
             input.val(input_val);
         }
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const urunlerDivs = document.querySelectorAll('.TamSayfaCerceveAlaniİciAlisverisSepetiSayfasiUrunlerAlani');
+            const urunlerAnzahl = urunlerDivs.length;
+
+            for (let i = 1; i <= urunlerAnzahl; i++) {
+                const decreaseButtonID = 'decreaseButton' + i;
+                const increaseButtonID = 'increaseButton' + i;
+                const decreaseButton = document.getElementById(decreaseButtonID);
+                const increaseButton = document.getElementById(increaseButtonID);
+                const quantityElement = document.getElementById('quantity' + i);
+
+                let quantity = 1;
 
 
+                decreaseButton.addEventListener('click', () => {
+                    if (quantity > 0) {
+                        quantity--;
+                        quantityElement.textContent = quantity;
+                    }
+                });
 
+                increaseButton.addEventListener('click', () => {
+                    quantity++;
+                    quantityElement.textContent = quantity;
+                });
+            }
+        })
     </script>
 </body>
 

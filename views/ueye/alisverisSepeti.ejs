@@ -1,0 +1,88 @@
+<% layout('layouts/boilerplate') %>
+
+    <div id="TamSayfaCerceveAlani">
+        <div id="TamSayfaCerceveSinirlamaAlani">
+
+            <div id="TamSayfaCerceveAlaniIciAlisverisSepetiSayfasiSolAlan">
+                <div class="TamSayfaCerceveAlaniİciAlisverisSepetiAltiCizgiliBaslikAlani">
+                    <div class="TamSayfaCerceveAlaniİciAlisverisSepetiAltiCizgiliBaslikAlaniUstBaslikMetni">
+                        Alışveriş Sepeti</div>
+                    <div class="TamSayfaCerceveAlaniİciAlisverisSepetiAltiCizgiliBaslikAlaniAltBaslikMetni">
+                        Alışveriş sepetine eklemiş olduğunuz ürünler aşağıdadır.
+                    </div>
+                </div>
+                <% let counter=1; %>
+                    <% for(let ueruen of ueruenler) { %>
+
+                        <% let decreaseButtonID='decreaseButton' + counter; %>
+                            <% let increaseButtonID='increaseButton' + counter; %>
+                                <% let quantityID='quantity' + counter; %>
+                                    <div class="TamSayfaCerceveAlaniİciAlisverisSepetiSayfasiUrunlerAlani">
+                                        <div class="TamSayfaCerceveAlaniİciAlisverisSepetiSayfasiUrunResmiAlani">
+                                            <img src="<%=ueruen.images[0].url%>" alt="" title="">
+                                        </div>
+                                        <div class="TamSayfaCerceveAlaniİciAlisverisSepetiSayfasiUrunSilResmiAlani">
+                                            <img src="/images/remove.png" alt="" title="">
+                                        </div>
+                                        <div class="TamSayfaCerceveAlaniİciAlisverisSepetiSayfasiUrunAdiAlani">
+                                            <%= ueruen.tarif%>
+                                        </div>
+                                        <div class="TamSayfaCerceveAlaniİciAlisverisSepetiSayfasiUrunAdediAlani">
+                                            <div
+                                                class="TamSayfaCerceveAlaniİciAlisverisSepetiSayfasiUrunAdediVeIslemleriAlani">
+                                                <div
+                                                    class="TamSayfaCerceveAlaniİciAlisverisSepetiSayfasiUrunAdediEksiltmeAlani">
+                                                    <img src="/images/decrease.png" alt="" title=""
+                                                        id="<%=decreaseButtonID%>">
+                                                </div>
+                                                <div
+                                                    class="TamSayfaCerceveAlaniİciAlisverisSepetiSayfasiUrunAdediRakamAlani">
+                                                    <span id="<%=quantityID%>">1</span>
+                                                </div>
+                                                <div
+                                                    class="TamSayfaCerceveAlaniİciAlisverisSepetiSayfasiUrunAdediArttirmaAlani">
+                                                    <img src="/images/add.png" alt="" title=""
+                                                        id="<%=increaseButtonID%>">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="TamSayfaCerceveAlaniİciAlisverisSepetiSayfasiFiyatAlani">
+                                            <%=ueruen.fiyat%> TL
+                                        </div>
+                                    </div>
+                                    <% counter ++ %>
+                                        <% } %>
+            </div>
+
+            <div id="TamSayfaCerceveAlaniIciAlisverisSepetiSayfasiSagAlan">
+                <div class="TamSayfaCerceveAlaniİciAlisverisSepetiAltiCizgiliSagBaslikAlani">
+                    <div class="TamSayfaCerceveAlaniİciAlisverisSepetiAltiCizgiliSagBaslikAlaniUstBaslikMetni">
+                        Sipariş özeti</div>
+                    <div class="TamSayfaCerceveAlaniİciAlisverisSepetiAltiCizgiliSagBaslikAlaniAltBaslikMetni">
+                        Toplam 5 adet ürün.
+                    </div>
+                </div>
+
+                <div class="TamSayfaCerceveAlaniİciAlisverisSepetiOdenecekTutarBaslikAlani">Ödenecek Tutar (KDV DAHİL)
+                </div>
+
+                <div class="TamSayfaCerceveAlaniİciAlisverisSepetiOdenecekTutarRakamAlani">1.000.00 TL</div>
+
+                <div class="TamSayfaCerceveAlaniİciAlisverisSepetiSiparisOzetiIciButonAlani">
+                    <a href="/alisverisSepetiFatura" target="_top">
+                        <span class="TamSayfaCerceveAlaniİciAlisverisSepetiSiparisOzetiIciButonuMetni">Alışverişi
+                            Tamamla</span></a>
+                </div>
+
+
+                <div class="TamSayfaCerceveAlaniİciAlisverisSepetiUrunlerToplamiKdvDahilBaslikAlani">Ürünler Toplamı
+                    (KDV DAHİL)</div>
+                <div class="TamSayfaCerceveAlaniİciAlisverisSepetiUrunlerToplamiKdvDahilRakamAlani">1000 TL</div>
+
+                <div class="TamSayfaCerceveAlaniİciAlisverisSepetiIndirimlerToplamiKdvDahilBaslikAlani">İndirimler
+                    Toplamı (KDV DAHİL)</div>
+                <div class="TamSayfaCerceveAlaniİciAlisverisSepetiIndirimlerToplamiKdvDahilRakamAlani">1000 TL</div>
+
+            </div>
+        </div>
+    </div>

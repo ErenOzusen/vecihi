@@ -1,9 +1,10 @@
 const express = require('express');
 const router = express.Router();
 const Ueye = require('../models/ueye');
+const UeruenGiyim = require('../models/ueruenGiyim');
 const catchAsync = require('../utils/catchAsync');
 const passport = require('passport');
-
+const { isLoggedIn, isAuthor, isAdmin } = require('../middleware.js');
 
 
 router.get('/girisYap', (req, res) => {
@@ -77,5 +78,35 @@ router.get('/favorilerim', (req, res) => {
 
     res.render("ueye/favorilerim");
 })
+
+router.get('/alisverisSepetiFatura', (req, res) => {
+
+    res.render("ueye/alisverisSepetiFatura");
+})
+
+router.get('/alisverisSepetiOedeme', (req, res) => {
+
+    res.render("ueye/alisverisSepetiOedeme");
+})
+
+router.post('/sepeteEkle', catchAsync(async (req, res, next) => {
+    // if (!req.isAuthenticated()) {
+    const ueruenID = req.body.ueruenID;
+    if (!req.session.ueruenIDs) {
+        req.session.ueruenIDs = [];
+    }
+    req.session.ueruenIDs.push(ueruenID);
+    res.redirect('/alisverisSepeti');
+}))
+
+router.get('/alisverisSepeti', catchAsync(async (req, res) => {
+    const ueruenIDs = req.session.ueruenIDs;
+    ueruenler = [];
+    for (let id of ueruenIDs) {
+        ueruen = await UeruenGiyim.findById(id);
+        ueruenler.push(ueruen);
+    }
+    res.render("ueye/alisverisSepeti", ueruenler);
+}))
 
 module.exports = router;
