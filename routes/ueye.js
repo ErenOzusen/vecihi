@@ -95,7 +95,9 @@ router.post('/sepeteEkle', catchAsync(async (req, res, next) => {
     if (!req.session.ueruenIDs) {
         req.session.ueruenIDs = [];
     }
-    req.session.ueruenIDs.push(ueruenID);
+    if (!req.session.ueruenIDs.includes(ueruenID)) {
+        req.session.ueruenIDs.push(ueruenID);
+    }
     res.redirect('/alisverisSepeti');
 }))
 
