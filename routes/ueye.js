@@ -100,13 +100,29 @@ router.post('/sepeteEkle', catchAsync(async (req, res, next) => {
 }))
 
 router.get('/alisverisSepeti', catchAsync(async (req, res) => {
-    const ueruenIDs = req.session.ueruenIDs;
-    ueruenler = [];
-    for (let id of ueruenIDs) {
-        ueruen = await UeruenGiyim.findById(id);
-        ueruenler.push(ueruen);
+    let ueruenler = [];
+
+    if (req.session.ueruenIDs) {
+        const ueruenIDs = req.session.ueruenIDs;
+        for (let id of ueruenIDs) {
+            ueruen = await UeruenGiyim.findById(id);
+            ueruenler.push(ueruen);
+        }
     }
-    res.render("ueye/alisverisSepeti", ueruenler);
+
+    res.render("ueye/alisverisSepeti", { ueruenler });
+}))
+
+router.post('/alisverisSepeti', catchAsync(async (req, res) => {
+    const idToRemove = req.body.ueruenID;
+    console.log("idToRemove = " + idToRemove);
+    const ueruenToRemove = await UeruenGiyim.findById(idToRemove);
+    console.log("Ürün To Remove: " + ueruenToRemove);
+
+    if (req.session.ueruenIDs && idToRemove) {
+        req.session.ueruenIDs = req.session.ueruenIDs.filter((ueruenID) => ueruenID !== idToRemove);
+    }
+    res.redirect('/alisverisSepeti');
 }))
 
 module.exports = router;

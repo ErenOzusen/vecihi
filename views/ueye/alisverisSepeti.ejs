@@ -11,47 +11,62 @@
                         Alışveriş sepetine eklemiş olduğunuz ürünler aşağıdadır.
                     </div>
                 </div>
-                <% let counter=1; %>
-                    <% for(let ueruen of ueruenler) { %>
+                <% if (typeof ueruenler !=='undefined' && ueruenler.length> 0) { %>
+                    <% let counter=1; %>
+                        <% for(let ueruen of ueruenler) { %>
 
-                        <% let decreaseButtonID='decreaseButton' + counter; %>
-                            <% let increaseButtonID='increaseButton' + counter; %>
-                                <% let quantityID='quantity' + counter; %>
-                                    <div class="TamSayfaCerceveAlaniİciAlisverisSepetiSayfasiUrunlerAlani">
-                                        <div class="TamSayfaCerceveAlaniİciAlisverisSepetiSayfasiUrunResmiAlani">
-                                            <img src="<%=ueruen.images[0].url%>" alt="" title="">
-                                        </div>
-                                        <div class="TamSayfaCerceveAlaniİciAlisverisSepetiSayfasiUrunSilResmiAlani">
-                                            <img src="/images/remove.png" alt="" title="">
-                                        </div>
-                                        <div class="TamSayfaCerceveAlaniİciAlisverisSepetiSayfasiUrunAdiAlani">
-                                            <%= ueruen.tarif%>
-                                        </div>
-                                        <div class="TamSayfaCerceveAlaniİciAlisverisSepetiSayfasiUrunAdediAlani">
-                                            <div
-                                                class="TamSayfaCerceveAlaniİciAlisverisSepetiSayfasiUrunAdediVeIslemleriAlani">
-                                                <div
-                                                    class="TamSayfaCerceveAlaniİciAlisverisSepetiSayfasiUrunAdediEksiltmeAlani">
-                                                    <img src="/images/decrease.png" alt="" title=""
-                                                        id="<%=decreaseButtonID%>">
+                            <% let decreaseButtonID='decreaseButton' + counter; %>
+                                <% let increaseButtonID='increaseButton' + counter; %>
+                                    <% let quantityID='quantity' + counter; %>
+                                        <% let removeButtonID='removeButton' + counter; %>
+                                            <% let removeFormID='removeForm' + counter; %>
+                                                <div class="TamSayfaCerceveAlaniİciAlisverisSepetiSayfasiUrunlerAlani">
+                                                    <div
+                                                        class="TamSayfaCerceveAlaniİciAlisverisSepetiSayfasiUrunResmiAlani">
+                                                        <img src="<%=ueruen.images[0].url%>" alt="" title="">
+                                                    </div>
+                                                    <form action="/alisverisSepeti" method="POST"
+                                                        id="<%=removeFormID%>">
+                                                        <div
+                                                            class="TamSayfaCerceveAlaniİciAlisverisSepetiSayfasiUrunSilResmiAlani">
+                                                            <input type="hidden" name="ueruenID"
+                                                                value="<%=ueruen._id%>">
+                                                            <img src="/images/remove.png" alt="" title=""
+                                                                id="<%=removeButtonID%>">
+                                                        </div>
+                                                    </form>
+                                                    <div
+                                                        class="TamSayfaCerceveAlaniİciAlisverisSepetiSayfasiUrunAdiAlani">
+                                                        <%= ueruen.tarif%>
+                                                    </div>
+                                                    <div
+                                                        class="TamSayfaCerceveAlaniİciAlisverisSepetiSayfasiUrunAdediAlani">
+                                                        <div
+                                                            class="TamSayfaCerceveAlaniİciAlisverisSepetiSayfasiUrunAdediVeIslemleriAlani">
+                                                            <div
+                                                                class="TamSayfaCerceveAlaniİciAlisverisSepetiSayfasiUrunAdediEksiltmeAlani">
+                                                                <img src="/images/decrease.png" alt="" title=""
+                                                                    id="<%=decreaseButtonID%>">
+                                                            </div>
+                                                            <div
+                                                                class="TamSayfaCerceveAlaniİciAlisverisSepetiSayfasiUrunAdediRakamAlani">
+                                                                <span id="<%=quantityID%>">1</span>
+                                                            </div>
+                                                            <div
+                                                                class="TamSayfaCerceveAlaniİciAlisverisSepetiSayfasiUrunAdediArttirmaAlani">
+                                                                <img src="/images/add.png" alt="" title=""
+                                                                    id="<%=increaseButtonID%>">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div
+                                                        class="TamSayfaCerceveAlaniİciAlisverisSepetiSayfasiFiyatAlani">
+                                                        <%=ueruen.fiyat%> TL
+                                                    </div>
                                                 </div>
-                                                <div
-                                                    class="TamSayfaCerceveAlaniİciAlisverisSepetiSayfasiUrunAdediRakamAlani">
-                                                    <span id="<%=quantityID%>">1</span>
-                                                </div>
-                                                <div
-                                                    class="TamSayfaCerceveAlaniİciAlisverisSepetiSayfasiUrunAdediArttirmaAlani">
-                                                    <img src="/images/add.png" alt="" title=""
-                                                        id="<%=increaseButtonID%>">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="TamSayfaCerceveAlaniİciAlisverisSepetiSayfasiFiyatAlani">
-                                            <%=ueruen.fiyat%> TL
-                                        </div>
-                                    </div>
-                                    <% counter ++ %>
-                                        <% } %>
+                                                <% counter ++ %>
+                                                    <% } %>
+                                                        <% } %>
             </div>
 
             <div id="TamSayfaCerceveAlaniIciAlisverisSepetiSayfasiSagAlan">
