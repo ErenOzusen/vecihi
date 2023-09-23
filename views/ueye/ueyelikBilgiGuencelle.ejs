@@ -1,0 +1,96 @@
+<% layout('layouts/boilerplate') %>
+
+    <div id="TamSayfaCerceveAlani">
+        <div id="TamSayfaCerceveSinirlamaAlani">
+
+            <div id="TamSayfaCerceveAlaniIciYuzdeElliSolAlan">
+                <div class="TamSayfaCerceveAlaniİciAltiCizgiliBaslikAlani">
+                    <div class="TamSayfaCerceveAlaniİciAltiCizgiliBaslikAlaniUstBaslikMetni">
+                        Hesabım > Üyelik Bilgileri</div>
+                    <div class="TamSayfaCerceveAlaniİciAltiCizgiliBaslikAlaniAltBaslikMetni">
+                        Aşağıdan üyelik bilgilerinizi görüntüleyebilir ve güncelleyebilirsiniz.</div>
+                </div>
+                <form action="/<%=curentUser.id%>/ueyelikBilgiGuencelle?_method=PUT" method="POST">
+                    <div class="TamSayfaCerceveAlaniIcinFormElemanlariBaslikMetni">İsim</div>
+                    <div class="TamSayfaCerceveAlaniIcinFormElemanlariIciSatirAlani"><input name="ueyeBilgi[isim]"
+                            type="text" class="FormElemanlariTextInputlari" value="<%=curentUser.isim%>" tabindex="1">
+                    </div>
+
+                    <div class="TamSayfaCerceveAlaniIcinFormElemanlariBaslikMetni">Soyisim</div>
+                    <div class="TamSayfaCerceveAlaniIcinFormElemanlariIciSatirAlani"><input name="ueyeBilgi[soyisim]"
+                            type="text" class="FormElemanlariTextInputlari" value="<%=curentUser.soyisim%>"
+                            tabindex="1">
+                    </div>
+
+                    <div class="TamSayfaCerceveAlaniIcinFormElemanlariBaslikMetni">E-Mail Adresi</div>
+                    <div class="TamSayfaCerceveAlaniIcinFormElemanlariIciSatirAlani"><input name="ueyeBilgi[email]"
+                            type="text" class="FormElemanlariTextInputlari" value="<%=curentUser.email%>" tabindex="2">
+                    </div>
+
+                    <div class="TamSayfaCerceveAlaniIcinFormElemanlariBaslikMetni">Eski şifre</div>
+                    <div class="TamSayfaCerceveAlaniIcinFormElemanlariIciSatirAlani"><input name="ueyeBilgi[eskiSifre]"
+                            type="password" class="FormElemanlariTextInputlari" value="" tabindex="3">
+                    </div>
+
+                    <div class="TamSayfaCerceveAlaniIcinFormElemanlariBaslikMetni">Yeni şifre</div>
+                    <div class="TamSayfaCerceveAlaniIcinFormElemanlariIciSatirAlani"><input name="ueyeBilgi[yeniSifre]"
+                            type="password" class="FormElemanlariTextInputlari" value="" tabindex="3">
+                    </div>
+
+                    <div class="TamSayfaCerceveAlaniIcinFormElemanlariBaslikMetni">Yeni şifre tekrar</div>
+                    <div class="TamSayfaCerceveAlaniIcinFormElemanlariIciSatirAlani"><input
+                            name="ueyeBilgi[yeniSifreTekrar]" type="password" class="FormElemanlariTextInputlari"
+                            value="" tabindex="4">
+                    </div>
+
+                    <div class="TamSayfaCerceveAlaniIcinFormElemanlariBaslikMetni">Cep Telefonu</div>
+                    <div class="TamSayfaCerceveAlaniIcinFormElemanlariIciSatirAlani"><input
+                            name="ueyeBilgi[ceptelefonu]" type="text" class="FormElemanlariTextInputlari"
+                            value="<%=curentUser.ceptelefonu%>" tabindex="5">
+                    </div>
+
+                    <div class="CheckBoxlarveSecenekleriIcinKapsamaAlanı">
+                        <span class="CheckBoxlarveSeceneklerKapsamaAlanı">
+                            <label class="CheckBoxKapsamaAlanı">
+                                <input name="EmailIleHaberdarOl" type="checkbox" class="FormElemanlariCheckBoxInputlari"
+                                    checked="checked">
+                                <span class="CheckBoxIcinBicimlendirmeAlani"></span>
+                                <span class="CheckBoxYaniMetinAlani">E-mail ile haberdar olmak istiyorum.</span>
+                            </label>
+                        </span>
+                    </div>
+
+                    <div class="CheckBoxlarveSecenekleriIcinKapsamaAlanı">
+                        <span class="CheckBoxlarveSeceneklerKapsamaAlanı">
+                            <label class="CheckBoxKapsamaAlanı">
+                                <input name="SmsIleHaberdarOl" type="checkbox" class="FormElemanlariCheckBoxInputlari">
+                                <span class="CheckBoxIcinBicimlendirmeAlani"></span>
+                                <span class="CheckBoxYaniMetinAlani">Sms ile haberdar olmak istiyorum.</span>
+                            </label>
+                        </span>
+                    </div>
+                    <div class="ButonlarIcinKapsamaAlani"><input type="submit" value="Bilgileri Güncelle"
+                            class="FormElemanlariYesilButonlar" tabindex="6"></div>
+                </form>
+            </div>
+
+            <div id="TamSayfaCerceveAlaniIciYuzdeElliSagAlan">
+                <div class="TamSayfaCerceveAlaniİciAltiCizgiliBaslikAlani">
+                    <div class="TamSayfaCerceveAlaniİciAltiCizgiliBaslikAlaniUstBaslikMetni">
+                        Reklam
+                    </div>
+                    <div class="TamSayfaCerceveAlaniİciAltiCizgiliBaslikAlaniAltBaslikMetni">
+                        vecihistore.com reklamları.
+                    </div>
+                </div>
+
+                <div class="TamSayfaCerceveAlaniIciReklamKapsamaAlani">
+                    <div class="TamSayfaCerceveAlaniIciReklamResmiAlani">
+                        <!-- 552x350 -->
+                        <img src="/images/reklam-comics.png" alt="" title="">
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>

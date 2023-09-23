@@ -233,14 +233,14 @@
                 let quantity = 1;
 
                 gesamtpreis += parseFloat(ueruenFiyat.textContent);
-                toplamFiyat.textContent = gesamtpreis.toFixed(2);
+                toplamFiyat.textContent = gesamtpreis.toFixed(2) + ' TL';
 
                 decreaseButton.addEventListener('click', () => {
                     if (quantity > 0) {
                         quantity--;
                         quantityElement.textContent = quantity;
                         gesamtpreis -= parseFloat(ueruenFiyat.textContent);
-                        toplamFiyat.textContent = gesamtpreis.toFixed(2);
+                        toplamFiyat.textContent = gesamtpreis.toFixed(2) + ' TL';
                     }
                 });
 
@@ -248,7 +248,7 @@
                     quantity++;
                     quantityElement.textContent = quantity;
                     gesamtpreis += parseFloat(ueruenFiyat.textContent);
-                    toplamFiyat.textContent = gesamtpreis.toFixed(2);
+                    toplamFiyat.textContent = gesamtpreis.toFixed(2) + ' TL';
                 });
 
                 removeButton.addEventListener('click', () => {

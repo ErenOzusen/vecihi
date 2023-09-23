@@ -10,21 +10,22 @@
                     <div class="TamSayfaCerceveAlaniİciAltiCizgiliBaslikAlaniAltBaslikMetni">
                         Aşağıdan üyelik bilgilerinizi görüntüleyebilir ve güncelleyebilirsiniz.</div>
                 </div>
-                <form action="/ueyelikBilgilerim" method="post">
+                <form action="/ueyelikBilgiGuencelle" method="post">
 
                     <div class="TamSayfaCerceveAlaniIciUyelikBilgileriSayfasiKayitBasliklarMetni">İsim Soyisim</div>
-                    <div class="TamSayfaCerceveAlaniIciUyelikBilgileriSayfasiKayitIcerikleriMetni">Eren Akkurt</div>
+                    <div class="TamSayfaCerceveAlaniIciUyelikBilgileriSayfasiKayitIcerikleriMetni">
+                        <%=curentUser.isim%>
+                            <%=curentUser.soyisim%>
+                    </div>
 
                     <div class="TamSayfaCerceveAlaniIciUyelikBilgileriSayfasiKayitBasliklarMetni">E-Mail Adresi</div>
                     <div class="TamSayfaCerceveAlaniIciUyelikBilgileriSayfasiKayitIcerikleriMetni">
-                        erenakkurt048@gmail.com</div>
-
-                    <div class="TamSayfaCerceveAlaniIciUyelikBilgileriSayfasiKayitBasliklarMetni">Şifre</div>
-                    <div class="TamSayfaCerceveAlaniIciUyelikBilgileriSayfasiKayitIcerikleriMetni">123456</div>
-
-
+                        <%=curentUser.email%>
+                    </div>
                     <div class="TamSayfaCerceveAlaniIciUyelikBilgileriSayfasiKayitBasliklarMetni">Cep Telefonu</div>
-                    <div class="TamSayfaCerceveAlaniIciUyelikBilgileriSayfasiKayitIcerikleriMetni">0506 996 72 13</div>
+                    <div class="TamSayfaCerceveAlaniIciUyelikBilgileriSayfasiKayitIcerikleriMetni">
+                        <%=curentUser.ceptelefonu%>
+                    </div>
 
                     <div class="TamSayfaCerceveAlaniIciUyelikBilgileriSayfasiKayitBasliklarMetni">E-mail İle Haberdar
                         Olma Durumu</div>
@@ -34,8 +35,11 @@
                         Durumu</div>
                     <div class="TamSayfaCerceveAlaniIciUyelikBilgileriSayfasiKayitIcerikleriMetni">Pasif</div>
 
-                    <div class="ButonlarIcinKapsamaAlani"><input type="submit" value="Bilgilerimi Güncellemek İstiyorum"
-                            class="FormElemanlariTuruncuButonlar" tabindex="6"></div>
+                    <div class="ButonlarIcinKapsamaAlani"><a href="/ueyelikBilgiGuencelle"
+                            style="text-decoration: none;"><span type="submit" value=""
+                                class="FormElemanlariTuruncuButonlar" tabindex="6">Bilgilerimi Güncellemek
+                                İstiyorum</span>
+                    </div>
                 </form>
             </div>
 

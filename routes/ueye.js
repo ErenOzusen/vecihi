@@ -4,6 +4,7 @@ const Ueye = require('../models/ueye');
 const UeruenGiyim = require('../models/ueruenGiyim');
 const catchAsync = require('../utils/catchAsync');
 const passport = require('passport');
+const bcrypt = require('bcrypt');
 const { isLoggedIn, isAuthor, isAdmin } = require('../middleware.js');
 
 
@@ -64,10 +65,57 @@ router.get('/yorumlarim', (req, res) => {
     res.render("ueye/yorumlarim");
 })
 
-router.get('/ueyelikBilgilerim', (req, res) => {
-
-    res.render("ueye/ueyelikBilgilerim");
+router.get('/ueyelikBilgilerim', isLoggedIn, (req, res) => {
+    curentUser = req.user;
+    res.render("ueye/ueyelikBilgilerim", curentUser);
 })
+
+router.get('/ueyelikBilgiGuencelle', isLoggedIn, (req, res) => {
+    curentUser = req.user;
+    res.render("ueye/ueyelikBilgiGuencelle", curentUser);
+})
+
+router.put('/:id/ueyelikBilgiGuencelle', isLoggedIn, catchAsync(async (req, res) => {
+    const { id } = req.params;
+    const curentUser = await Ueye.findById(id);
+    let ueyeBilgiler = req.body.ueyeBilgi;
+    //Ilk eşleştirme: üc sifre yazilmismi
+    if (ueyeBilgiler.yeniSifre && ueyeBilgiler.yeniSifreTekrar && ueyeBilgiler.eskiSifre) {
+        //Ikinci eşleştirme: yeni sifre ve tekrar yazilan yeni sifre uyuyorlarmi
+        if (ueyeBilgiler.yeniSifre !== ueyeBilgiler.yeniSifreTekrar) {
+            req.flash('error', 'Yazdiğiniz yeni şifreler birbirine uymuyor.');
+            res.redirect("/");
+        } else {
+            //eski sifre kayit olan eski sifreylen uyuyormu
+            curentUser.authenticate(ueyeBilgiler.eskiSifre, (err, result) => {
+                if (err) {
+                    return res.status(500).send('Şifre kıyaslamakda bi sorun yaşandı');
+                } else if (result) {
+                    //yeni sifre kayit ediliyor
+                    curentUser.setPassword(ueyeBilgiler.yeniSifre, async (err) => {
+                        if (err) {
+                            return res.status(500).send('Güncellenmekde bi sorun yaşandı');
+                        }
+                        await curentUser.save();
+                        const ueyeGüncellenmis = await Ueye.findByIdAndUpdate(id, { "$set": { "isim": ueyeBilgiler.isim, "soyisim": ueyeBilgiler.soyisim, "email": ueyeBilgiler.email, "ceptelefonu": ueyeBilgiler.ceptelefonu } });
+                        await ueyeGüncellenmis.save();
+                        req.flash('success', 'Üyelik bilgilerinis güncellenmişdir');
+                        res.redirect("/");
+                    });
+                } else {
+                    req.flash('error', 'Yazdiğiniz eski şifre yanliş');
+                    res.redirect("/");
+                }
+            });
+        }
+    }
+    //hic bir sifre verilmediginde geri kalan input lar kayit ediliyor
+    else if (!ueyeBilgiler.yeniSifre && !ueyeBilgiler.yeniSifreTekrar && !ueyeBilgiler.eskiSifre) {
+        const ueyeGüncellenmis = await Ueye.findByIdAndUpdate(id, { "$set": { "isim": ueyeBilgiler.isim, "soyisim": ueyeBilgiler.soyisim, "email": ueyeBilgiler.email, "ceptelefonu": ueyeBilgiler.ceptelefonu } });
+        await ueyeGüncellenmis.save();
+        req.flash('success', 'Üyelik bilgilerinis güncellenmişdir');
+    }
+}))
 
 router.get('/adreslerim', (req, res) => {
 
@@ -126,5 +174,6 @@ router.post('/alisverisSepeti', catchAsync(async (req, res) => {
     }
     res.redirect('/alisverisSepeti');
 }))
+
 
 module.exports = router;
