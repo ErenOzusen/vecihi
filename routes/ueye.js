@@ -4,7 +4,6 @@ const Ueye = require('../models/ueye');
 const UeruenGiyim = require('../models/ueruenGiyim');
 const catchAsync = require('../utils/catchAsync');
 const passport = require('passport');
-const bcrypt = require('bcrypt');
 const { isLoggedIn, isAuthor, isAdmin } = require('../middleware.js');
 
 
