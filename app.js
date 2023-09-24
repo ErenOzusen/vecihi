@@ -21,7 +21,6 @@ const adminRoutes = require('./routes/admin');
 const passport = require('passport');
 const LocalStrategy = require('passport-local');
 const methodOverride = require('method-override');
-const bcrypt = require('bcrypt');
 const { isLoggedIn, isAuthor, isAdmin } = require('./middleware.js');
 
 
