@@ -10,7 +10,7 @@
                     <div class="TamSayfaCerceveAlaniİciAltiCizgiliBaslikAlaniAltBaslikMetni">
                         Aşağıdan üyelik bilgilerinizi görüntüleyebilir ve güncelleyebilirsiniz.</div>
                 </div>
-                <form action="/<%=curentUser.id%>/ueyelikBilgiGuencelle?_method=PUT" method="POST">
+                <form action="/ueyelikBilgiGuencelle?_method=PUT" method="POST">
                     <div class="TamSayfaCerceveAlaniIcinFormElemanlariBaslikMetni">İsim</div>
                     <div class="TamSayfaCerceveAlaniIcinFormElemanlariIciSatirAlani"><input name="ueyeBilgi[isim]"
                             type="text" class="FormElemanlariTextInputlari" value="<%=curentUser.isim%>" tabindex="1">

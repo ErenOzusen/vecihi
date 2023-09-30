@@ -7,6 +7,22 @@ const TeslimatAdresSchema = new Schema({
         required: true,
         unique: false
     },
+    isim: {
+        type: String,
+        required: true,
+        unique: false
+    },
+    soyisim: {
+        type: String,
+        required: true,
+        unique: false
+    },
+
+    uelke: {
+        type: String,
+        required: true,
+        unique: false
+    },
     sehir: {
         type: String,
         required: true,
@@ -22,9 +38,12 @@ const TeslimatAdresSchema = new Schema({
         required: true,
         unique: false
     },
-    ceptelefonu: Number,
-    required: false,
-    unique: false
+    ceptelefonu: {
+        type: Number,
+        required: true,
+        unique: false
+    },
+
 });
 
 module.exports = mongoose.model('TeslimatAdres', TeslimatAdresSchema);

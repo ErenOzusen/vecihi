@@ -26,17 +26,17 @@ const UeyeSchema = new Schema({
     },
     sepet: [{
         type: Schema.Types.ObjectId,
-        ref: 'UeruenGiyim'
+        ref: 'AlisverisSepeti'
     }],
 
     teslimatAdres: [{
         type: Schema.Types.ObjectId,
-        ref: 'teslimatAdres'
+        ref: 'TeslimatAdres'
     }],
 
     faturaAdres: [{
         type: Schema.Types.ObjectId,
-        ref: 'teslimatAdres'
+        ref: 'FaturaAdres'
     }],
 
 });

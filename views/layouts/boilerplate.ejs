@@ -209,6 +209,7 @@
         }
     </script>
     <script>
+
         document.addEventListener('DOMContentLoaded', function () {
             const urunlerDivs = document.querySelectorAll('.TamSayfaCerceveAlaniİciAlisverisSepetiSayfasiUrunlerAlani');
             const urunlerAnzahl = urunlerDivs.length;
@@ -216,6 +217,7 @@
             const toplamFiyat = document.getElementById('toplamFiyat');
 
             let gesamtpreis = 0;
+            const produkteInformationen = [];
 
             for (let i = 1; i <= urunlerAnzahl; i++) {
                 const decreaseButtonID = 'decreaseButton' + i;
@@ -223,17 +225,26 @@
                 const removeButtonID = 'removeButton' + i;
                 const removeFormID = 'removeForm' + i;
                 const ueruenFiyatID = 'ueruenFiyat' + i;
+                const ueruenID = 'ueruenID' + i;
                 const decreaseButton = document.getElementById(decreaseButtonID);
                 const increaseButton = document.getElementById(increaseButtonID);
                 const removeButton = document.getElementById(removeButtonID);
                 const removeForm = document.getElementById(removeFormID);
                 const quantityElement = document.getElementById('quantity' + i);
                 const ueruenFiyat = document.getElementById(ueruenFiyatID);
+                const ueruen = document.getElementById(ueruenID);
+
 
                 let quantity = 1;
 
                 gesamtpreis += parseFloat(ueruenFiyat.textContent);
                 toplamFiyat.textContent = gesamtpreis.toFixed(2) + ' TL';
+
+                let produktInfo = {
+                    ueruenID: ueruen.value,
+                    quantity: quantityElement.textContent,
+                    gesamtpreis: gesamtpreis
+                }
 
                 decreaseButton.addEventListener('click', () => {
                     if (quantity > 0) {
@@ -241,6 +252,9 @@
                         quantityElement.textContent = quantity;
                         gesamtpreis -= parseFloat(ueruenFiyat.textContent);
                         toplamFiyat.textContent = gesamtpreis.toFixed(2) + ' TL';
+                        //Ürün bilgileri güncelle
+                        produktInfo.quantity = quantityElement.textContent;
+                        produktInfo.gesamtpreis = gesamtpreis;
                     }
                 });
 
@@ -249,16 +263,37 @@
                     quantityElement.textContent = quantity;
                     gesamtpreis += parseFloat(ueruenFiyat.textContent);
                     toplamFiyat.textContent = gesamtpreis.toFixed(2) + ' TL';
+                    //Ürün bilgileri güncelle
+                    produktInfo.quantity = quantityElement.textContent;
+                    produktInfo.gesamtpreis = gesamtpreis;
                 });
 
                 removeButton.addEventListener('click', () => {
                     removeForm.submit();
+                    //Ürün bilgileri Array den sil
+                    const index = produkteInformationen.findIndex(info => info.ueruenID === produktInfo.ueruenID);
+                    if (index > -1) {
+                        produkteInformationen.splice(index, 1);
+                    }
                 });
 
-
+                produkteInformationen.push(produktInfo);
+                console.log('------Produktinformationen------ ' + JSON.stringify(produkteInformationen));
             }
 
-        })
+            window.submitForm = function () {
+                const ueruenlerValue = document.getElementById('ueruenlerInput').value;
+                const ueruenlerInputPost = document.getElementById('ueruenlerInputPost');
+                const ueruenInformationlar = document.getElementById('ueruenInformationlar');
+                ueruenInformationlar.value = JSON.stringify(produkteInformationen);
+                ueruenlerInputPost.value = ueruenlerValue;
+                console.log('------- ' + JSON.stringify(produkteInformationen));
+                console.log('++++++++ ' + ueruenInformationlar.value);
+                const meinFormular = document.getElementById('meinFormular');
+                meinFormular.submit();
+
+            }
+        });
     </script>
 </body>
 

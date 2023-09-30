@@ -87,12 +87,13 @@ app.get('/', (req, res) => {
   res.render('index', { ueye });
 })) */
 
+
+
 app.get('/hakkimizda', (req, res) => {
 
   res.render("hakkimizda");
 
 })
-
 
 app.get('/bankaHesap', (req, res) => {
 
@@ -169,17 +170,6 @@ app.get('/iptalDegisim', (req, res) => {
   res.render("iptalDegisim");
 })
 
-
-
-app.get('/kadinGiyim', (req, res) => {
-
-  res.render("kadinGiyim");
-})
-
-app.get('/vintageUeruenler', (req, res) => {
-
-  res.render("vintageUeruenler");
-})
 
 
 app.listen(3000, () => {

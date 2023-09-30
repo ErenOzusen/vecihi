@@ -43,13 +43,6 @@ const UeruenGiyimSchema = new Schema({
         required: true,
         unique: false
     }
-    /* ,
-    miktar: {
-        type: Number,
-        required: true,
-        unique: false
-    } */
-
 });
 
 

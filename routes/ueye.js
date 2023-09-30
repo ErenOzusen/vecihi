@@ -2,9 +2,14 @@ const express = require('express');
 const router = express.Router();
 const Ueye = require('../models/ueye');
 const UeruenGiyim = require('../models/ueruenGiyim');
+const UeruenGiyimUeruen = require('../models/ueruenGiyimUeye');
+const AlisverisSepeti = require('../models/alisverisSepeti');
+const TeslimatAdres = require('../models/teslimatAdres');
+const FaturaAdres = require('../models/faturaAdres');
 const catchAsync = require('../utils/catchAsync');
 const passport = require('passport');
 const { isLoggedIn, isAuthor, isAdmin } = require('../middleware.js');
+const { findById } = require('../models/ueye');
 
 
 router.get('/girisYap', (req, res) => {
@@ -74,9 +79,57 @@ router.get('/ueyelikBilgiGuencelle', isLoggedIn, (req, res) => {
     res.render("ueye/ueyelikBilgiGuencelle", curentUser);
 })
 
-router.put('/:id/ueyelikBilgiGuencelle', isLoggedIn, catchAsync(async (req, res) => {
-    const { id } = req.params;
-    const curentUser = await Ueye.findById(id);
+router.get('/adreslerim', isLoggedIn, catchAsync(async (req, res) => {
+    const userId = req.user._id;
+    const curentUser = await Ueye.findById(userId)
+        .populate('teslimatAdres')
+        .populate('faturaAdres');
+    console.log('curentUser ' + curentUser);
+    res.render("ueye/adreslerim", { curentUser });
+}))
+
+router.get('/yeniAdresEkle', isLoggedIn, (req, res) => {
+    curentUser = req.user;
+    res.render("ueye/yeniAdresEkle", curentUser);
+})
+
+router.get('/yeniTeslimatAdres', isLoggedIn, (req, res) => {
+    curentUser = req.user;
+    res.render("ueye/yeniTeslimatAdres", curentUser);
+})
+
+router.post('/yeniTeslimatAdres', isLoggedIn, catchAsync(async (req, res) => {
+    const userId = req.user._id;
+    const curentUser = await Ueye.findById(userId);
+    teslimatAdresForm = req.body.teslimatAdres;
+    const teslimatAdres = new TeslimatAdres({ "isim": teslimatAdresForm.isim, "soyisim": teslimatAdresForm.soyisim, "tc": teslimatAdresForm.tc, "uelke": teslimatAdresForm.uelke, "sehir": teslimatAdresForm.sehir, "sokak": teslimatAdresForm.sokak, "evNumarasi": teslimatAdresForm.evNumarasi, "ceptelefonu": teslimatAdresForm.ceptelefonu });
+    await teslimatAdres.save();
+    curentUser.teslimatAdres.push(teslimatAdres);
+    await curentUser.save();
+    req.flash('success', 'Yeni teslimat adresi eklendi');
+    res.redirect('/')
+}))
+
+router.get('/yeniFaturaAdres', isLoggedIn, (req, res) => {
+    curentUser = req.user;
+    res.render("ueye/yeniFaturaAdres", curentUser);
+})
+
+router.post('/yeniFaturaAdres', isLoggedIn, catchAsync(async (req, res) => {
+    const userId = req.user._id;
+    const curentUser = await Ueye.findById(userId);
+    faturaAdresForm = req.body.faturaAdres;
+    const faturaAdres = new FaturaAdres({ "isim": faturaAdresForm.isim, "soyisim": faturaAdresForm.soyisim, "tc": faturaAdresForm.tc, "uelke": faturaAdresForm.uelke, "sehir": faturaAdresForm.sehir, "sokak": faturaAdresForm.sokak, "evNumarasi": faturaAdresForm.evNumarasi, "ceptelefonu": faturaAdresForm.ceptelefonu });
+    await faturaAdres.save();
+    curentUser.faturaAdres.push(faturaAdres);
+    await curentUser.save();
+    req.flash('success', 'Yeni fatura adresi eklendi');
+    res.redirect('/')
+}))
+
+router.put('/ueyelikBilgiGuencelle', isLoggedIn, catchAsync(async (req, res) => {
+    const userId = req.user._id;
+    const curentUser = await Ueye.findById(userId);
     let ueyeBilgiler = req.body.ueyeBilgi;
     //Ilk eşleştirme: üc sifre yazilmismi
     if (ueyeBilgiler.yeniSifre && ueyeBilgiler.yeniSifreTekrar && ueyeBilgiler.eskiSifre) {
@@ -110,34 +163,83 @@ router.put('/:id/ueyelikBilgiGuencelle', isLoggedIn, catchAsync(async (req, res)
     }
     //hic bir sifre verilmediginde geri kalan input lar kayit ediliyor
     else if (!ueyeBilgiler.yeniSifre && !ueyeBilgiler.yeniSifreTekrar && !ueyeBilgiler.eskiSifre) {
-        const ueyeGüncellenmis = await Ueye.findByIdAndUpdate(id, { "$set": { "isim": ueyeBilgiler.isim, "soyisim": ueyeBilgiler.soyisim, "email": ueyeBilgiler.email, "ceptelefonu": ueyeBilgiler.ceptelefonu } });
+        const ueyeGüncellenmis = await Ueye.findByIdAndUpdate(userId, { "$set": { "isim": ueyeBilgiler.isim, "soyisim": ueyeBilgiler.soyisim, "email": ueyeBilgiler.email, "ceptelefonu": ueyeBilgiler.ceptelefonu } });
         await ueyeGüncellenmis.save();
         req.flash('success', 'Üyelik bilgilerinis güncellenmişdir');
+        res.redirect("/");
+
     }
 }))
 
-router.get('/adreslerim', (req, res) => {
 
-    res.render("ueye/adreslerim");
-})
+
 
 router.get('/favorilerim', (req, res) => {
 
     res.render("ueye/favorilerim");
 })
 
-router.get('/alisverisSepetiFatura', (req, res) => {
+router.get('/alisverisSepeti', catchAsync(async (req, res) => {
+    let ueruenler = [];
+    curentUser = req.user;
 
-    res.render("ueye/alisverisSepetiFatura");
-})
+    if (req.session.ueruenIDs) {
+        const ueruenIDs = req.session.ueruenIDs;
+        for (let id of ueruenIDs) {
+            ueruen = await UeruenGiyim.findById(id);
+            ueruenler.push(ueruen);
+        }
+        res.render("ueye/alisverisSepeti", { ueruenler });
 
-router.get('/alisverisSepetiOedeme', (req, res) => {
+    } else {
+        res.render("./alisverisSepetiBos");
+    }
+
+}))
+
+router.post('/alisverisSepeti', catchAsync(async (req, res) => {
+    const idToRemove = req.body.ueruenID;
+
+    if (req.session.ueruenIDs && idToRemove) {
+        req.session.ueruenIDs = req.session.ueruenIDs.filter((ueruenID) => ueruenID !== idToRemove);
+    }
+    res.redirect('/alisverisSepeti');
+}))
+
+router.get('/alisverisSepetiFatura', isLoggedIn, catchAsync(async (req, res) => {
+    const userId = req.user._id;
+    const curentUser = await Ueye.findById(userId)
+        .populate('teslimatAdres')
+        .populate('faturaAdres');;
+    res.render("ueye/alisverisSepetiFatura", { curentUser });
+}))
+
+router.post('/alisverisSepetiFatura', isLoggedIn, catchAsync(async (req, res) => {
+    const { id } = req.params;
+    const ueruen = req.body.ueruen;
+    const ueruenInformation = JSON.parse(req.body.ueruenInformationlar);
+    for (let i = 0; i < ueruenInformation.length; i++) {
+        const sepetUeruenBilgi = await UeruenGiyim.findById(ueruenInformation[i].ueruenID);
+        const sepetUeruen = new UeruenGiyimUeruen({ "ueruenGiyim": sepetUeruenBilgi, "miktar": ueruenInformation[i].quantity });
+        await sepetUeruen.save();
+        const sepet = new AlisverisSepeti();
+        sepet.ueruenGiyimUeye.push(sepetUeruen);
+        sepet.save();
+        res.redirect('/alisverisSepetiFatura');
+    }
+}))
+
+router.get('/alisverisSepetiOedeme', isLoggedIn, (req, res) => {
 
     res.render("ueye/alisverisSepetiOedeme");
 })
 
+router.post('/alisverisSepetiOedeme', isLoggedIn, catchAsync(async (req, res) => {
+    const oedemeSistemSecimi = req.body.oedemeSistemSecimi;
+    console.log('oedemeSistemSecimi = ' + oedemeSistemSecimi);
+}))
+
 router.post('/sepeteEkle', catchAsync(async (req, res, next) => {
-    // if (!req.isAuthenticated()) {
     const ueruenID = req.body.ueruenID;
     if (!req.session.ueruenIDs) {
         req.session.ueruenIDs = [];
@@ -148,31 +250,7 @@ router.post('/sepeteEkle', catchAsync(async (req, res, next) => {
     res.redirect('/alisverisSepeti');
 }))
 
-router.get('/alisverisSepeti', catchAsync(async (req, res) => {
-    let ueruenler = [];
 
-    if (req.session.ueruenIDs) {
-        const ueruenIDs = req.session.ueruenIDs;
-        for (let id of ueruenIDs) {
-            ueruen = await UeruenGiyim.findById(id);
-            ueruenler.push(ueruen);
-        }
-    }
-
-    res.render("ueye/alisverisSepeti", { ueruenler });
-}))
-
-router.post('/alisverisSepeti', catchAsync(async (req, res) => {
-    const idToRemove = req.body.ueruenID;
-    console.log("idToRemove = " + idToRemove);
-    const ueruenToRemove = await UeruenGiyim.findById(idToRemove);
-    console.log("Ürün To Remove: " + ueruenToRemove);
-
-    if (req.session.ueruenIDs && idToRemove) {
-        req.session.ueruenIDs = req.session.ueruenIDs.filter((ueruenID) => ueruenID !== idToRemove);
-    }
-    res.redirect('/alisverisSepeti');
-}))
 
 
 module.exports = router;

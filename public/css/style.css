@@ -3535,6 +3535,23 @@ footer {
   vertical-align: top;
 }
 
+.UelkeSelect {
+  display: block;
+  width: 100%;
+  min-width: calc(100% - 22px);
+  max-width: calc(100% - 22px);
+  height: 33px;
+  margin: none;
+  padding: 0;
+  overflow: hidden;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  outline: none;
+  background-color: #FFF;
+  text-align: left;
+  vertical-align: top;
+}
+
 .ButonlarIcinKapsamaAlani {
   display: block;
   width: 100%;
@@ -17861,5 +17878,9 @@ footer {
 
 #guencelleSag img {
   width: 30px;
+  margin-right: 10px;
+}
+
+.TamSayfaCerceveAlaniIciAlisverisSepetiOdemeSecimleriRadioButonAlani {
   margin-right: 10px;
 }

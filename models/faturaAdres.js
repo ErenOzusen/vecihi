@@ -7,7 +7,22 @@ const FaturaAdresSchema = new Schema({
         required: true,
         unique: false
     },
+    isim: {
+        type: String,
+        required: true,
+        unique: false
+    },
+    soyisim: {
+        type: String,
+        required: true,
+        unique: false
+    },
     sehir: {
+        type: String,
+        required: true,
+        unique: false
+    },
+    uelke: {
         type: String,
         required: true,
         unique: false

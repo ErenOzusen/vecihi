@@ -18,133 +18,74 @@
                         <div class="TamSayfaCerceveAlaniİciAlisverisSepetiFaturaAdresleriAlani">
                             <div
                                 class="TamSayfaCerceveAlaniIciAlisverisSepetiFaturaVeTeslimatAdresiBilgileriBaslikAlani">
-                                Fatura Bilgileri Seçimi</div>
+                                Teslimat Bilgileri Seçimi</div>
 
-                            <a href="Yeni-Adres-ekle.html" target="_top">
-                                <div
-                                    class="TamSayfaCerceveAlaniIciAlisverisSepetiFaturaVeTeslimatAdresiBilgileriYeniAdresEklemeAlani">
+                            <% for(let i=0; i<curentUser.teslimatAdres.length;i++) {%>
+                                <% let teslimatAdres=curentUser.teslimatAdres[i]; %>
+
                                     <div
-                                        class="TamSayfaCerceveAlaniIciAlisverisSepetiFaturaVeTeslimatAdresiBilgileriYeniAdresEkleMetni">
-                                        + Yeni Fatura Adresi Ekle
+                                        class="TamSayfaCerceveAlaniIciAlisverisSepetiFaturaVeTeslimatAdresiBilgileriDetayAlani">
+                                        <div
+                                            class="TamSayfaCerceveAlaniIciAlisverisSepetiFaturaVeTeslimatAdresiBilgileriRadioButonAlani">
+                                            <label
+                                                class="TamSayfaCerceveAlaniIciAlisverisSepetiFaturaVeTeslimatAdresiBilgileriRadioButonSecenekKapsamaAlani">
+                                                <input type="radio" name="FaturaAdresiSecimi" value="1"
+                                                    class="TamSayfaCerceveAlaniIciAlisverisSepetiFaturaVeTeslimatAdresiBilgileriRadioButonInputlari">
+                                                <span
+                                                    class="TamSayfaCerceveAlaniIciAlisverisSepetiFaturaVeTeslimatAdresiBilgileriRadioButonBicimlendirmeAlani"></span>
+                                            </label>
+                                        </div>
+
+                                        <div
+                                            class="TamSayfaCerceveAlaniIciAlisverisSepetiFaturaVeTeslimatAdresiBilgileriAdresDetaylariAlani">
+                                            <%=teslimatAdres.isim%>
+                                                <%=teslimatAdres.soyisim%> <br> TC.
+                                                    <%=teslimatAdres.tc%> <br>
+                                                        <%=teslimatAdres.sokak%>
+                                                            <%=teslimatAdres.evNumarasi%>
+                                                                <%=teslimatAdres.sehir%>
+                                                                    <%=teslimatAdres.uelke%><br>
+                                                                        <%=teslimatAdres.ceptelefonu%>
+                                        </div>
                                     </div>
-                                </div>
-                            </a>
+                                    <% } %>
 
-                            <div
-                                class="TamSayfaCerceveAlaniIciAlisverisSepetiFaturaVeTeslimatAdresiBilgileriDetayAlani">
-                                <div
-                                    class="TamSayfaCerceveAlaniIciAlisverisSepetiFaturaVeTeslimatAdresiBilgileriRadioButonAlani">
-                                    <label
-                                        class="TamSayfaCerceveAlaniIciAlisverisSepetiFaturaVeTeslimatAdresiBilgileriRadioButonSecenekKapsamaAlani">
-                                        <input type="radio" name="FaturaAdresiSecimi" value="1"
-                                            class="TamSayfaCerceveAlaniIciAlisverisSepetiFaturaVeTeslimatAdresiBilgileriRadioButonInputlari">
-                                        <span
-                                            class="TamSayfaCerceveAlaniIciAlisverisSepetiFaturaVeTeslimatAdresiBilgileriRadioButonBicimlendirmeAlani"></span>
-                                    </label>
-                                </div>
-
-                                <div
-                                    class="TamSayfaCerceveAlaniIciAlisverisSepetiFaturaVeTeslimatAdresiBilgileriAdresDetaylariAlani">
-                                    Creative Teknoloji <br> Kartal V.D. 2150485695 <br> Esentepe mah. Aslandağı Sok.
-                                    no:37/4 KARTAL/İSTANBUL <br>0535 352 44 77
-                                </div>
-                            </div>
-
-                            <div
-                                class="TamSayfaCerceveAlaniIciAlisverisSepetiFaturaVeTeslimatAdresiBilgileriDetayAlani">
-                                <div
-                                    class="TamSayfaCerceveAlaniIciAlisverisSepetiFaturaVeTeslimatAdresiBilgileriRadioButonAlani">
-                                    <label
-                                        class="TamSayfaCerceveAlaniIciAlisverisSepetiFaturaVeTeslimatAdresiBilgileriRadioButonSecenekKapsamaAlani">
-                                        <input type="radio" name="FaturaAdresiSecimi" value="2"
-                                            class="TamSayfaCerceveAlaniIciAlisverisSepetiFaturaVeTeslimatAdresiBilgileriRadioButonInputlari">
-                                        <span
-                                            class="TamSayfaCerceveAlaniIciAlisverisSepetiFaturaVeTeslimatAdresiBilgileriRadioButonBicimlendirmeAlani"></span>
-                                    </label>
-                                </div>
-
-                                <div
-                                    class="TamSayfaCerceveAlaniIciAlisverisSepetiFaturaVeTeslimatAdresiBilgileriAdresDetaylariAlani">
-                                    Eren Akkurt <br> TC. 2150485695 <br> Esentepe mah. Aslandağı Sok. no:37/4
-                                    KARTAL/İSTANBUL <br>0535 352 44 77
-                                </div>
-                            </div>
-
-                            <div
-                                class="TamSayfaCerceveAlaniIciAlisverisSepetiFaturaVeTeslimatAdresiBilgileriDetayAlani">
-                                <div
-                                    class="TamSayfaCerceveAlaniIciAlisverisSepetiFaturaVeTeslimatAdresiBilgileriRadioButonAlani">
-                                    <label
-                                        class="TamSayfaCerceveAlaniIciAlisverisSepetiFaturaVeTeslimatAdresiBilgileriRadioButonSecenekKapsamaAlani">
-                                        <input type="radio" name="FaturaAdresiSecimi" value="3"
-                                            class="TamSayfaCerceveAlaniIciAlisverisSepetiFaturaVeTeslimatAdresiBilgileriRadioButonInputlari">
-                                        <span
-                                            class="TamSayfaCerceveAlaniIciAlisverisSepetiFaturaVeTeslimatAdresiBilgileriRadioButonBicimlendirmeAlani"></span>
-                                    </label>
-                                </div>
-
-                                <div
-                                    class="TamSayfaCerceveAlaniIciAlisverisSepetiFaturaVeTeslimatAdresiBilgileriAdresDetaylariAlani">
-                                    Eren Özüşen <br>TC. 2150485695 <br> Esentepe mah. Aslandağı Sok. no:37/4
-                                    KARTAL/İSTANBUL <br>0535 352 44 77
-                                </div>
-                            </div>
                         </div>
 
                         <div class="TamSayfaCerceveAlaniİciAlisverisSepetiTeslimatAdresleriAlani">
                             <div
                                 class="TamSayfaCerceveAlaniIciAlisverisSepetiFaturaVeTeslimatAdresiBilgileriBaslikAlani">
-                                Teslimat Bilgileri Seçimi</div>
+                                Fatura Bilgileri Seçimi</div>
 
-                            <a href="Yeni-Adres-ekle.html" target="_top">
-                                <div
-                                    class="TamSayfaCerceveAlaniIciAlisverisSepetiFaturaVeTeslimatAdresiBilgileriYeniAdresEklemeAlani">
+                            <% for(let i=0; i<curentUser.faturaAdres.length;i++) {%>
+                                <% let faturaAdres=curentUser.faturaAdres[i]; %>
+
                                     <div
-                                        class="TamSayfaCerceveAlaniIciAlisverisSepetiFaturaVeTeslimatAdresiBilgileriYeniAdresEkleMetni">
-                                        + Yeni Teslimat Adresi Ekle
+                                        class="TamSayfaCerceveAlaniIciAlisverisSepetiFaturaVeTeslimatAdresiBilgileriDetayAlani">
+                                        <div
+                                            class="TamSayfaCerceveAlaniIciAlisverisSepetiFaturaVeTeslimatAdresiBilgileriRadioButonAlani">
+                                            <label
+                                                class="TamSayfaCerceveAlaniIciAlisverisSepetiFaturaVeTeslimatAdresiBilgileriRadioButonSecenekKapsamaAlani">
+                                                <input type="radio" name="TeslimatAdresiSecimi" value="1"
+                                                    class="TamSayfaCerceveAlaniIciAlisverisSepetiFaturaVeTeslimatAdresiBilgileriRadioButonInputlari">
+                                                <span
+                                                    class="TamSayfaCerceveAlaniIciAlisverisSepetiFaturaVeTeslimatAdresiBilgileriRadioButonBicimlendirmeAlani"></span>
+                                            </label>
+                                        </div>
+
+                                        <div
+                                            class="TamSayfaCerceveAlaniIciAlisverisSepetiFaturaVeTeslimatAdresiBilgileriAdresDetaylariAlani">
+                                            <%=faturaAdres.isim%>
+                                                <%=faturaAdres.soyisim%> <br> TC.
+                                                    <%=faturaAdres.tc%> <br>
+                                                        <%=faturaAdres.sokak%>
+                                                            <%=faturaAdres.evNumarasi%>
+                                                                <%=faturaAdres.sehir%>
+                                                                    <%=faturaAdres.uelke%><br>
+                                                                        <%=faturaAdres.ceptelefonu%>
+                                        </div>
                                     </div>
-                                </div>
-                            </a>
-
-                            <div
-                                class="TamSayfaCerceveAlaniIciAlisverisSepetiFaturaVeTeslimatAdresiBilgileriDetayAlani">
-                                <div
-                                    class="TamSayfaCerceveAlaniIciAlisverisSepetiFaturaVeTeslimatAdresiBilgileriRadioButonAlani">
-                                    <label
-                                        class="TamSayfaCerceveAlaniIciAlisverisSepetiFaturaVeTeslimatAdresiBilgileriRadioButonSecenekKapsamaAlani">
-                                        <input type="radio" name="TeslimatAdresiSecimi" value="1"
-                                            class="TamSayfaCerceveAlaniIciAlisverisSepetiFaturaVeTeslimatAdresiBilgileriRadioButonInputlari">
-                                        <span
-                                            class="TamSayfaCerceveAlaniIciAlisverisSepetiFaturaVeTeslimatAdresiBilgileriRadioButonBicimlendirmeAlani"></span>
-                                    </label>
-                                </div>
-
-                                <div
-                                    class="TamSayfaCerceveAlaniIciAlisverisSepetiFaturaVeTeslimatAdresiBilgileriAdresDetaylariAlani">
-                                    Creative Teknoloji <br> Kartal V.D. 2150485695 <br> Esentepe mah. Aslandağı Sok.
-                                    no:37/4 KARTAL/İSTANBUL <br>0535 352 44 77
-                                </div>
-                            </div>
-
-                            <div
-                                class="TamSayfaCerceveAlaniIciAlisverisSepetiFaturaVeTeslimatAdresiBilgileriDetayAlani">
-                                <div
-                                    class="TamSayfaCerceveAlaniIciAlisverisSepetiFaturaVeTeslimatAdresiBilgileriRadioButonAlani">
-                                    <label
-                                        class="TamSayfaCerceveAlaniIciAlisverisSepetiFaturaVeTeslimatAdresiBilgileriRadioButonSecenekKapsamaAlani">
-                                        <input type="radio" name="TeslimatAdresiSecimi" value="2"
-                                            class="TamSayfaCerceveAlaniIciAlisverisSepetiFaturaVeTeslimatAdresiBilgileriRadioButonInputlari">
-                                        <span
-                                            class="TamSayfaCerceveAlaniIciAlisverisSepetiFaturaVeTeslimatAdresiBilgileriRadioButonBicimlendirmeAlani"></span>
-                                    </label>
-                                </div>
-
-                                <div
-                                    class="TamSayfaCerceveAlaniIciAlisverisSepetiFaturaVeTeslimatAdresiBilgileriAdresDetaylariAlani">
-                                    Eren Akkurt <br> TC. 2150485695 <br> Esentepe mah. Aslandağı Sok. no:37/4
-                                    KARTAL/İSTANBUL <br>0535 352 44 77
-                                </div>
-                            </div>
+                                    <% } %>
                         </div>
 
                         <div class="TamSayfaCerceveAlaniIciAlisverisSepetiKargoFirmalariAlani">
