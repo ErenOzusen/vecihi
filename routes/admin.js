@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const Ueye = require('../models/ueye');
 const UeruenGiyim = require('../models/ueruenGiyim');
+const Kargo = require('../models/kargo');
 const catchAsync = require('../utils/catchAsync');
 const passport = require('passport');
 const { isLoggedIn, isAuthor, isAdmin } = require('../middleware.js');
@@ -68,6 +69,30 @@ router.delete('/:id', isLoggedIn, isAdmin, catchAsync(async (req, res) => {
     await UeruenGiyim.findByIdAndDelete(id);
     res.redirect(`/${kategori}/${cesit}`);
     req.flash('success', 'Ürün silindi');
+}))
+
+router.get('/kargo', isLoggedIn, isAdmin, catchAsync(async (req, res, next) => {
+    const kargo = await Kargo.find();
+    res.render("admin/kargo", { kargo });
+}))
+
+router.post('/kargo', isLoggedIn, isAdmin, upload.single('image'), catchAsync(async (req, res, next) => {
+    const kargoDB = await Kargo.findOne();
+    const yeniKargo = new Kargo(req.body.yeniKargo);
+    yeniKargo.uecret = parseFloat(yeniKargo.uecret);
+    if (!kargoDB) {
+        console.log("if entered");
+        yeniKargo.image = { url: req.file.path, filename: req.file.filename };
+        await yeniKargo.save();
+    } else {
+        console.log("else entered");
+        await kargoDB.updateOne({ $unset: { image: null } });
+        kargoDB.isim = yeniKargo.isim;
+        kargoDB.uecret = yeniKargo.uecret;
+        kargoDB.image = { url: req.file.path, filename: req.file.filename };
+        await kargoDB.save();
+    }
+    res.redirect('/');
 }))
 
 module.exports = router;
