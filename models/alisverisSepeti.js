@@ -3,10 +3,16 @@ const Schema = mongoose.Schema;
 
 const AlisverisSepetiSchema = new Schema({
 
-    ueruenGiyimUeye: [{
+    ueruenGiyim: {
         type: Schema.Types.ObjectId,
-        ref: 'UeruenGiyimUeye'
-    }],
+        ref: 'UeruenGiyim'
+    },
+
+    miktar: {
+        type: Number,
+        required: true,
+        unique: false
+    },
 
     teslimatAdres: {
         type: Schema.Types.ObjectId,
@@ -28,6 +34,12 @@ const AlisverisSepetiSchema = new Schema({
         enum: ['kredikart', 'mobil', 'banka'],
         required: false
     },
+
+    toplamFiyat: {
+        type: Number,
+        required: false,
+        unique: false
+    }
 });
 
 module.exports = mongoose.model('AlisverisSepeti', AlisverisSepetiSchema);

@@ -17884,3 +17884,7 @@ footer {
 .TamSayfaCerceveAlaniIciAlisverisSepetiOdemeSecimleriRadioButonAlani {
   margin-right: 10px;
 }
+
+.radio-label-container label {
+  margin-left: 5px;
+}

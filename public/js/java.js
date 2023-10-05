@@ -133,6 +133,13 @@ $.AlisverisSepetiOdemeSayfasiIcinBankaHavalesiSistemiSecildi = function () {
 
 /* ALIŞVERİŞ ÖDEME YÖNTEMİ SEÇME AÇMA/KAPAMA <<<<< */
 
+$.faturaBilgiGöster = function () {
+    $("#faturaBilgi").css("display", "block");
+}
+
+$.faturaBilgiGösterme = function () {
+    $("#faturaBilgi").css("display", "none");
+}
 
 /* ÜRÜN DETAY SAYFASI RESİM DEĞİŞTİRME İŞLEMİ >>>>> */
 

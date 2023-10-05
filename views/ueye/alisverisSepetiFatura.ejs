@@ -29,7 +29,8 @@
                                             class="TamSayfaCerceveAlaniIciAlisverisSepetiFaturaVeTeslimatAdresiBilgileriRadioButonAlani">
                                             <label
                                                 class="TamSayfaCerceveAlaniIciAlisverisSepetiFaturaVeTeslimatAdresiBilgileriRadioButonSecenekKapsamaAlani">
-                                                <input type="radio" name="FaturaAdresiSecimi" value="1"
+                                                <input type="radio" name="TeslimatAdresiSecimi"
+                                                    value="<%=teslimatAdres%>"
                                                     class="TamSayfaCerceveAlaniIciAlisverisSepetiFaturaVeTeslimatAdresiBilgileriRadioButonInputlari">
                                                 <span
                                                     class="TamSayfaCerceveAlaniIciAlisverisSepetiFaturaVeTeslimatAdresiBilgileriRadioButonBicimlendirmeAlani"></span>
@@ -52,205 +53,93 @@
 
                         </div>
 
+
                         <div class="TamSayfaCerceveAlaniİciAlisverisSepetiTeslimatAdresleriAlani">
                             <div
                                 class="TamSayfaCerceveAlaniIciAlisverisSepetiFaturaVeTeslimatAdresiBilgileriBaslikAlani">
-                                Fatura Bilgileri Seçimi</div>
+                                Teslim adresi ve Fatura adresi aynimi?</div>
 
-                            <% for(let i=0; i<curentUser.faturaAdres.length;i++) {%>
-                                <% let faturaAdres=curentUser.faturaAdres[i]; %>
+                            <div
+                                class="TamSayfaCerceveAlaniIciAlisverisSepetiFaturaVeTeslimatAdresiBilgileriDetayAlani">
+                                <div class="radio-label-container">
+                                    <input type="radio" id="evet" name="secenek" onclick="$.faturaBilgiGösterme()"
+                                        checked>
+                                    <label for=" evet">Evet</label>
+                                </div>
+                                <div class="radio-label-container">
+                                    <input type="radio" id="hayir" name="secenek" onclick="$.faturaBilgiGöster()">
+                                    <label for="hayir">Hayir</label>
+                                </div>
 
-                                    <div
-                                        class="TamSayfaCerceveAlaniIciAlisverisSepetiFaturaVeTeslimatAdresiBilgileriDetayAlani">
+                            </div>
+
+                            <div class="TamSayfaCerceveAlaniİciAlisverisSepetiTeslimatAdresleriAlani" id="faturaBilgi">
+                                <div
+                                    class="TamSayfaCerceveAlaniIciAlisverisSepetiFaturaVeTeslimatAdresiBilgileriBaslikAlani">
+                                    Fatura Bilgileri Seçimi</div>
+
+                                <% for(let i=0; i<curentUser.faturaAdres.length;i++) {%>
+                                    <% let faturaAdres=curentUser.faturaAdres[i]; %>
+
                                         <div
-                                            class="TamSayfaCerceveAlaniIciAlisverisSepetiFaturaVeTeslimatAdresiBilgileriRadioButonAlani">
-                                            <label
-                                                class="TamSayfaCerceveAlaniIciAlisverisSepetiFaturaVeTeslimatAdresiBilgileriRadioButonSecenekKapsamaAlani">
-                                                <input type="radio" name="TeslimatAdresiSecimi" value="1"
-                                                    class="TamSayfaCerceveAlaniIciAlisverisSepetiFaturaVeTeslimatAdresiBilgileriRadioButonInputlari">
-                                                <span
-                                                    class="TamSayfaCerceveAlaniIciAlisverisSepetiFaturaVeTeslimatAdresiBilgileriRadioButonBicimlendirmeAlani"></span>
-                                            </label>
-                                        </div>
+                                            class="TamSayfaCerceveAlaniIciAlisverisSepetiFaturaVeTeslimatAdresiBilgileriDetayAlani">
+                                            <div
+                                                class="TamSayfaCerceveAlaniIciAlisverisSepetiFaturaVeTeslimatAdresiBilgileriRadioButonAlani">
+                                                <label
+                                                    class="TamSayfaCerceveAlaniIciAlisverisSepetiFaturaVeTeslimatAdresiBilgileriRadioButonSecenekKapsamaAlani">
+                                                    <input type="radio" name="TeslimatAdresiSecimi"
+                                                        value="<%=faturaAdres%>"
+                                                        class="TamSayfaCerceveAlaniIciAlisverisSepetiFaturaVeTeslimatAdresiBilgileriRadioButonInputlari">
+                                                    <span
+                                                        class="TamSayfaCerceveAlaniIciAlisverisSepetiFaturaVeTeslimatAdresiBilgileriRadioButonBicimlendirmeAlani"></span>
+                                                </label>
+                                            </div>
 
-                                        <div
-                                            class="TamSayfaCerceveAlaniIciAlisverisSepetiFaturaVeTeslimatAdresiBilgileriAdresDetaylariAlani">
-                                            <%=faturaAdres.isim%>
-                                                <%=faturaAdres.soyisim%> <br> TC.
-                                                    <%=faturaAdres.tc%> <br>
-                                                        <%=faturaAdres.sokak%>
-                                                            <%=faturaAdres.evNumarasi%>
-                                                                <%=faturaAdres.sehir%>
-                                                                    <%=faturaAdres.uelke%><br>
-                                                                        <%=faturaAdres.ceptelefonu%>
+                                            <div
+                                                class="TamSayfaCerceveAlaniIciAlisverisSepetiFaturaVeTeslimatAdresiBilgileriAdresDetaylariAlani">
+                                                <%=faturaAdres.isim%>
+                                                    <%=faturaAdres.soyisim%> <br> TC.
+                                                        <%=faturaAdres.tc%> <br>
+                                                            <%=faturaAdres.sokak%>
+                                                                <%=faturaAdres.evNumarasi%>
+                                                                    <%=faturaAdres.sehir%>
+                                                                        <%=faturaAdres.uelke%><br>
+                                                                            <%=faturaAdres.ceptelefonu%>
+                                            </div>
+                                        </div>
+                                        <% } %>
+                            </div>
+
+                            <div class="TamSayfaCerceveAlaniIciAlisverisSepetiKargoFirmalariAlani">
+                                <div class="TamSayfaCerceveAlaniIciAlisverisSepetiKargoFirmalariBaslikAlani">Kargo
+                                    Firması</div>
+
+                                <div class="TamSayfaCerceveAlaniIciKargoFirmalariAlani">
+                                    <div class="TamSayfaCerceveAlaniIciKargoFirmalariDengelemeAlani">
+
+                                        <div class="TamSayfaCerceveAlaniIciKargoFirmasiSinirlamaAlani">
+                                            <div class="TamSayfaCerceveAlaniIciKargoFirmasiLogosuaAlani">
+                                                <img src="<%=kargo.image.url%>" alt="" title="">
+                                            </div>
+                                            <div class="TamSayfaCerceveAlaniIciKargoFirmasiTabloAlani">
+                                                <table class="TamSayfaCerceveAlaniIciKargoFirmasiTablosu" width="100%"
+                                                    cellpadding="0" cellspacing="0">
+                                                    <tbody>
+                                                        <tr>
+                                                            <td align="left" valign="top"
+                                                                class="TamSayfaCerceveAlaniIciKargoFirmasiTablosuRadioButonSutunu">
+                                                            </td>
+                                                            <td align="left" valign="top"
+                                                                class="TamSayfaCerceveAlaniIciKargoFirmasiTablosuBaslikVeFiyatmetniSutunu">
+                                                                <%=kargo.isim%>
+                                                                    <%=kargo.uecret%> TL
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
                                         </div>
                                     </div>
-                                    <% } %>
-                        </div>
-
-                        <div class="TamSayfaCerceveAlaniIciAlisverisSepetiKargoFirmalariAlani">
-                            <div class="TamSayfaCerceveAlaniIciAlisverisSepetiKargoFirmalariBaslikAlani">Kargo
-                                Firması Seçimi</div>
-
-                            <div class="TamSayfaCerceveAlaniIciKargoFirmalariAlani">
-                                <div class="TamSayfaCerceveAlaniIciKargoFirmalariDengelemeAlani">
-
-                                    <div class="TamSayfaCerceveAlaniIciKargoFirmasiSinirlamaAlani">
-                                        <div class="TamSayfaCerceveAlaniIciKargoFirmasiLogosuaAlani">
-                                            <img src="/images/aras.png" alt="" title="">
-                                        </div>
-                                        <div class="TamSayfaCerceveAlaniIciKargoFirmasiTabloAlani">
-                                            <table class="TamSayfaCerceveAlaniIciKargoFirmasiTablosu" width="100%"
-                                                cellpadding="0" cellspacing="0">
-                                                <tbody>
-                                                    <tr>
-                                                        <td align="left" valign="top"
-                                                            class="TamSayfaCerceveAlaniIciKargoFirmasiTablosuRadioButonSutunu">
-                                                            <div
-                                                                class="TamSayfaCerceveAlaniIciAlisverisSepetiKargoFirmalariuRadioButonAlani">
-                                                                <label
-                                                                    class="TamSayfaCerceveAlaniIciAlisverisSepetiKargoFirmalariuRadioButonSecenekKapsamaAlani">
-                                                                    <input type="radio" name="KargoFirmasiSecimi"
-                                                                        value="1"
-                                                                        class="TamSayfaCerceveAlaniIciAlisverisSepetiKargoFirmalariRadioButonInputlari">
-                                                                </label>
-                                                            </div>
-                                                        </td>
-                                                        <td align="left" valign="top"
-                                                            class="TamSayfaCerceveAlaniIciKargoFirmasiTablosuBaslikVeFiyatmetniSutunu">
-                                                            Aras Kargo 25,00 TL
-                                                        </td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </div>
-
-                                    <div class="TamSayfaCerceveAlaniIciKargoFirmasiSinirlamaAlani">
-                                        <div class="TamSayfaCerceveAlaniIciKargoFirmasiLogosuaAlani">
-                                            <img src="/images/yurtici.png" alt="" title="">
-                                        </div>
-                                        <div class="TamSayfaCerceveAlaniIciKargoFirmasiTabloAlani">
-                                            <table class="TamSayfaCerceveAlaniIciKargoFirmasiTablosu" width="100%"
-                                                cellpadding="0" cellspacing="0">
-                                                <tbody>
-                                                    <tr>
-                                                        <td align="left" valign="top"
-                                                            class="TamSayfaCerceveAlaniIciKargoFirmasiTablosuRadioButonSutunu">
-                                                            <div
-                                                                class="TamSayfaCerceveAlaniIciAlisverisSepetiKargoFirmalariuRadioButonAlani">
-                                                                <label
-                                                                    class="TamSayfaCerceveAlaniIciAlisverisSepetiKargoFirmalariuRadioButonSecenekKapsamaAlani">
-                                                                    <input type="radio" name="KargoFirmasiSecimi"
-                                                                        value="2"
-                                                                        class="TamSayfaCerceveAlaniIciAlisverisSepetiKargoFirmalariRadioButonInputlari">
-                                                                </label>
-                                                            </div>
-                                                        </td>
-                                                        <td align="left" valign="top"
-                                                            class="TamSayfaCerceveAlaniIciKargoFirmasiTablosuBaslikVeFiyatmetniSutunu">
-                                                            Yurtiçi Kargo 23,00 TL
-                                                        </td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </div>
-
-                                    <div class="TamSayfaCerceveAlaniIciKargoFirmasiSinirlamaAlani">
-                                        <div class="TamSayfaCerceveAlaniIciKargoFirmasiLogosuaAlani">
-                                            <img src="/images/mng.png" alt="" title="">
-                                        </div>
-                                        <div class="TamSayfaCerceveAlaniIciKargoFirmasiTabloAlani">
-                                            <table class="TamSayfaCerceveAlaniIciKargoFirmasiTablosu" width="100%"
-                                                cellpadding="0" cellspacing="0">
-                                                <tbody>
-                                                    <tr>
-                                                        <td align="left" valign="top"
-                                                            class="TamSayfaCerceveAlaniIciKargoFirmasiTablosuRadioButonSutunu">
-                                                            <div
-                                                                class="TamSayfaCerceveAlaniIciAlisverisSepetiKargoFirmalariuRadioButonAlani">
-                                                                <label
-                                                                    class="TamSayfaCerceveAlaniIciAlisverisSepetiKargoFirmalariuRadioButonSecenekKapsamaAlani">
-                                                                    <input type="radio" name="KargoFirmasiSecimi"
-                                                                        value="3"
-                                                                        class="TamSayfaCerceveAlaniIciAlisverisSepetiKargoFirmalariRadioButonInputlari">
-                                                                </label>
-                                                            </div>
-                                                        </td>
-                                                        <td align="left" valign="top"
-                                                            class="TamSayfaCerceveAlaniIciKargoFirmasiTablosuBaslikVeFiyatmetniSutunu">
-                                                            MNG Kargo 22,00 TL
-                                                        </td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </div>
-
-
-                                    <div class="TamSayfaCerceveAlaniIciKargoFirmasiSinirlamaAlani">
-                                        <div class="TamSayfaCerceveAlaniIciKargoFirmasiLogosuaAlani">
-                                            <img src="/images/Surat.png" alt="" title="">
-                                        </div>
-                                        <div class="TamSayfaCerceveAlaniIciKargoFirmasiTabloAlani">
-                                            <table class="TamSayfaCerceveAlaniIciKargoFirmasiTablosu" width="100%"
-                                                cellpadding="0" cellspacing="0">
-                                                <tbody>
-                                                    <tr>
-                                                        <td align="left" valign="top"
-                                                            class="TamSayfaCerceveAlaniIciKargoFirmasiTablosuRadioButonSutunu">
-                                                            <div
-                                                                class="TamSayfaCerceveAlaniIciAlisverisSepetiKargoFirmalariuRadioButonAlani">
-                                                                <label
-                                                                    class="TamSayfaCerceveAlaniIciAlisverisSepetiKargoFirmalariuRadioButonSecenekKapsamaAlani">
-                                                                    <input type="radio" name="KargoFirmasiSecimi"
-                                                                        value="4"
-                                                                        class="TamSayfaCerceveAlaniIciAlisverisSepetiKargoFirmalariRadioButonInputlari">
-                                                                </label>
-                                                            </div>
-                                                        </td>
-                                                        <td align="left" valign="top"
-                                                            class="TamSayfaCerceveAlaniIciKargoFirmasiTablosuBaslikVeFiyatmetniSutunu">
-                                                            Sürat Kargo 18,40 TL
-                                                        </td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </div>
-
-                                    <div class="TamSayfaCerceveAlaniIciKargoFirmasiSinirlamaAlani">
-                                        <div class="TamSayfaCerceveAlaniIciKargoFirmasiLogosuaAlani">
-                                            <img src="/images/Ptt.png" alt="" title="">
-                                        </div>
-                                        <div class="TamSayfaCerceveAlaniIciKargoFirmasiTabloAlani">
-                                            <table class="TamSayfaCerceveAlaniIciKargoFirmasiTablosu" width="100%"
-                                                cellpadding="0" cellspacing="0">
-                                                <tbody>
-                                                    <tr>
-                                                        <td align="left" valign="top"
-                                                            class="TamSayfaCerceveAlaniIciKargoFirmasiTablosuRadioButonSutunu">
-                                                            <div
-                                                                class="TamSayfaCerceveAlaniIciAlisverisSepetiKargoFirmalariuRadioButonAlani">
-                                                                <label
-                                                                    class="TamSayfaCerceveAlaniIciAlisverisSepetiKargoFirmalariuRadioButonSecenekKapsamaAlani">
-                                                                    <input type="radio" name="KargoFirmasiSecimi"
-                                                                        value="5"
-                                                                        class="TamSayfaCerceveAlaniIciAlisverisSepetiKargoFirmalariRadioButonInputlari">
-                                                                </label>
-                                                            </div>
-                                                        </td>
-                                                        <td align="left" valign="top"
-                                                            class="TamSayfaCerceveAlaniIciKargoFirmasiTablosuBaslikVeFiyatmetniSutunu">
-                                                            Ptt Kargo 16,40 TL
-                                                        </td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </div>
-
                                 </div>
                             </div>
                         </div>
@@ -268,30 +157,37 @@
 
                     <div class="TamSayfaCerceveAlaniİciAlisverisSepetiOdenecekTutarBaslikAlani">Ödenecek Tutar (KDV
                         DAHİL)</div>
+                    <% let tutar=sepet.toplamFiyat + kargo.uecret %>
+                        <div class="TamSayfaCerceveAlaniİciAlisverisSepetiOdenecekTutarRakamAlani">
+                            <%=tutar%> TL
+                        </div>
 
-                    <div class="TamSayfaCerceveAlaniİciAlisverisSepetiOdenecekTutarRakamAlani">1.000.00 TL</div>
+                        <div class="TamSayfaCerceveAlaniİciAlisverisSepetiSiparisOzetiIciButonAlani">
+                            <a href="/alisverisSepetiOedeme" target="_top">
+                                <span class="TamSayfaCerceveAlaniİciAlisverisSepetiSiparisOzetiIciButonuMetni">Devam
+                                    Et</span>
+                        </div>
 
-                    <div class="TamSayfaCerceveAlaniİciAlisverisSepetiSiparisOzetiIciButonAlani">
-                        <a href="/alisverisSepetiOedeme" target="_top">
-                            <span class="TamSayfaCerceveAlaniİciAlisverisSepetiSiparisOzetiIciButonuMetni">Devam
-                                Et</span>
-                    </div>
+                        <div class="TamSayfaCerceveAlaniİciAlisverisSepetiUrunlerToplamiKdvDahilBaslikAlani">
+                            Ürünler
+                            Toplamı (KDV DAHİL)</div>
+                        <div class="TamSayfaCerceveAlaniİciAlisverisSepetiUrunlerToplamiKdvDahilRakamAlani">
+                            <%=sepet.toplamFiyat%> TL
+                        </div>
 
-                    <div class="TamSayfaCerceveAlaniİciAlisverisSepetiUrunlerToplamiKdvDahilBaslikAlani">Ürünler
-                        Toplamı (KDV DAHİL)</div>
-                    <div class="TamSayfaCerceveAlaniİciAlisverisSepetiUrunlerToplamiKdvDahilRakamAlani">1000 TL
-                    </div>
-
-                    <div class="TamSayfaCerceveAlaniİciAlisverisSepetiIndirimlerToplamiKdvDahilBaslikAlani">
-                        İndirimler Toplamı (KDV DAHİL)</div>
-                    <div class="TamSayfaCerceveAlaniİciAlisverisSepetiIndirimlerToplamiKdvDahilRakamAlani">1000 TL
-                    </div>
+                        <div class="TamSayfaCerceveAlaniİciAlisverisSepetiIndirimlerToplamiKdvDahilBaslikAlani">
+                            İndirimler Toplamı (KDV DAHİL)</div>
+                        <div class="TamSayfaCerceveAlaniİciAlisverisSepetiIndirimlerToplamiKdvDahilRakamAlani">
+                            TL
+                        </div>
 
 
-                    <div class="TamSayfaCerceveAlaniİciAlisverisSepetiKargoUcretleriToplamiKdvDahilBaslikAlani">
-                        Kargo Ücreti (KDV DAHİL)</div>
-                    <div class="TamSayfaCerceveAlaniİciAlisverisSepetiKargoUcretleriToplamiKdvDahilRakamAlani">24.50
-                        TL</div>
+                        <div class="TamSayfaCerceveAlaniİciAlisverisSepetiKargoUcretleriToplamiKdvDahilBaslikAlani">
+                            Kargo Ücreti (KDV DAHİL)</div>
+                        <div class="TamSayfaCerceveAlaniİciAlisverisSepetiKargoUcretleriToplamiKdvDahilRakamAlani">
+                            <%=kargo.uecret%>
+                                TL
+                        </div>
 
 
                 </div>
@@ -299,3 +195,12 @@
         </div>
 
     </div>
+
+    <script>
+
+        $(document).ready(function () {
+            $.faturaBilgiGösterme();
+        });
+
+
+    </script>

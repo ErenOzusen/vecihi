@@ -11,14 +11,14 @@ ImageSchema.virtual('thumbnail').get(function () {
 });
 
 const KargoSchema = new Schema({
-    images: ImageSchema,
+    image: ImageSchema,
 
-    kargoIsim: {
+    isim: {
         type: String,
         unique: true,
         required: true
     },
-    ücret: {
+    uecret: {
         type: Number,
         unique: false,
         required: true

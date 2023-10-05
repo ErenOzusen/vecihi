@@ -2,14 +2,16 @@ const express = require('express');
 const router = express.Router();
 const Ueye = require('../models/ueye');
 const UeruenGiyim = require('../models/ueruenGiyim');
-const UeruenGiyimUeruen = require('../models/ueruenGiyimUeye');
+const UeruenGiyimUeye = require('../models/ueruenGiyimUeye');
 const AlisverisSepeti = require('../models/alisverisSepeti');
 const TeslimatAdres = require('../models/teslimatAdres');
 const FaturaAdres = require('../models/faturaAdres');
+const Kargo = require('../models/kargo');
 const catchAsync = require('../utils/catchAsync');
 const passport = require('passport');
 const { isLoggedIn, isAuthor, isAdmin } = require('../middleware.js');
 const { findById } = require('../models/ueye');
+
 
 
 router.get('/girisYap', (req, res) => {
@@ -207,26 +209,46 @@ router.post('/alisverisSepeti', catchAsync(async (req, res) => {
 }))
 
 router.get('/alisverisSepetiFatura', isLoggedIn, catchAsync(async (req, res) => {
+    const sepetId = req.query.sepetId;
+    const sepet = await AlisverisSepeti.find({}).populate('ueruenGiyim');
+    let toplamFiyat = 0;
+    console.log('sepetId = ' + sepetId);
+    console.log("sepet = " + sepet);
     const userId = req.user._id;
     const curentUser = await Ueye.findById(userId)
         .populate('teslimatAdres')
-        .populate('faturaAdres');;
-    res.render("ueye/alisverisSepetiFatura", { curentUser });
+        .populate('faturaAdres');
+    const kargo = await Kargo.findOne();
+    sepet.forEach(sepetUeruen => {
+        toplamFiyat = toplamFiyat + sepetUeruen.ueruenGiyim.fiyat * sepetUeruen.miktar;
+    });
+    sepet.toplamFiyat = toplamFiyat;
+    res.render("ueye/alisverisSepetiFatura", { curentUser, kargo, sepet });
 }))
 
 router.post('/alisverisSepetiFatura', isLoggedIn, catchAsync(async (req, res) => {
-    const { id } = req.params;
-    const ueruen = req.body.ueruen;
     const ueruenInformation = JSON.parse(req.body.ueruenInformationlar);
+
     for (let i = 0; i < ueruenInformation.length; i++) {
-        const sepetUeruenBilgi = await UeruenGiyim.findById(ueruenInformation[i].ueruenID);
-        const sepetUeruen = new UeruenGiyimUeruen({ "ueruenGiyim": sepetUeruenBilgi, "miktar": ueruenInformation[i].quantity });
-        await sepetUeruen.save();
-        const sepet = new AlisverisSepeti();
-        sepet.ueruenGiyimUeye.push(sepetUeruen);
-        sepet.save();
-        res.redirect('/alisverisSepetiFatura');
+        const ueruenGiyimId = ueruenInformation[i].ueruenID;
+        const miktar = ueruenInformation[i].quantity;
+        const sepetUeruenBilgi = await UeruenGiyim.findById(ueruenGiyimId);
+        const sepet = await AlisverisSepeti.findOne({ ueruenGiyim: ueruenGiyimId });
+        console.log('sepet = ' + sepet);
+        console.log('ueruenId = ' + ueruenInformation[i].ueruenID);
+        if (sepet) {
+            console.log('if entered');
+            console.log('sepet = ' + sepet);
+            sepet.miktar = miktar;
+            await sepet.save();
+        } else {
+            console.log('else entered');
+            const sepetYeni = new AlisverisSepeti({ "ueruenGiyim": sepetUeruenBilgi, "miktar": miktar });
+            await sepetYeni.save();
+        }
     }
+    res.redirect('/alisverisSepetiFatura');
+
 }))
 
 router.get('/alisverisSepetiOedeme', isLoggedIn, (req, res) => {
