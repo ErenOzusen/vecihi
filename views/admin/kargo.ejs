@@ -47,26 +47,30 @@
             <div id="" class="col-md-6">
                 <div class="YeniÜrünEkle">
                     <span>Su an ekli olan Kargo</span>
-                    <div class="TamSayfaCerceveAlaniIciKargoFirmasiSinirlamaAlani">
-                        <div class="TamSayfaCerceveAlaniIciKargoFirmasiLogosuaAlani">
-                            <img src="<%=kargo[0].image.url%>" alt="" title="">
+                    <%if(kargo[0]) {%>
+                        <div class="TamSayfaCerceveAlaniIciKargoFirmasiSinirlamaAlani">
+                            <div class="TamSayfaCerceveAlaniIciKargoFirmasiLogosuaAlani">
+                                <img src="<%=kargo[0].image.url%>" alt="" title="">
+                            </div>
+                            <div class="TamSayfaCerceveAlaniIciKargoFirmasiTabloAlani">
+                                <table class="TamSayfaCerceveAlaniIciKargoFirmasiTablosu" width="100%" cellpadding="0"
+                                    cellspacing="0">
+                                    <tbody>
+                                        <tr>
+                                            <td align="left" valign="top"
+                                                class="TamSayfaCerceveAlaniIciKargoFirmasiTablosuBaslikVeFiyatmetniSutunu">
+                                                <%=kargo[0].isim %>
+                                                    <%=kargo[0].uecret %>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
-                        <div class="TamSayfaCerceveAlaniIciKargoFirmasiTabloAlani">
-                            <table class="TamSayfaCerceveAlaniIciKargoFirmasiTablosu" width="100%" cellpadding="0"
-                                cellspacing="0">
-                                <tbody>
-                                    <tr>
-                                        <td align="left" valign="top"
-                                            class="TamSayfaCerceveAlaniIciKargoFirmasiTablosuBaslikVeFiyatmetniSutunu">
-                                            <%=kargo[0].isim %>
-                                                <%=kargo[0].uecret %>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
                 </div>
+                <% }else { %>
+                    <span>Henüz Kargo eklenmedi</span>
+                    <%} %>
             </div>
         </div>
     </div>

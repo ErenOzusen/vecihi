@@ -9,7 +9,7 @@ const FaturaAdres = require('../models/faturaAdres');
 const Kargo = require('../models/kargo');
 const catchAsync = require('../utils/catchAsync');
 const passport = require('passport');
-const { isLoggedIn, isAuthor, isAdmin } = require('../middleware.js');
+const { isLoggedIn, isAuthor, isAdmin, toplamFiyatHesapla } = require('../middleware.js');
 const { findById } = require('../models/ueye');
 
 
@@ -208,22 +208,18 @@ router.post('/alisverisSepeti', catchAsync(async (req, res) => {
     res.redirect('/alisverisSepeti');
 }))
 
-router.get('/alisverisSepetiFatura', isLoggedIn, catchAsync(async (req, res) => {
-    const sepetId = req.query.sepetId;
+router.get('/alisverisSepetiFatura', isLoggedIn, toplamFiyatHesapla, catchAsync(async (req, res) => {
     const sepet = await AlisverisSepeti.find({}).populate('ueruenGiyim');
     let toplamFiyat = 0;
-    console.log('sepetId = ' + sepetId);
     console.log("sepet = " + sepet);
     const userId = req.user._id;
     const curentUser = await Ueye.findById(userId)
         .populate('teslimatAdres')
         .populate('faturaAdres');
     const kargo = await Kargo.findOne();
-    sepet.forEach(sepetUeruen => {
-        toplamFiyat = toplamFiyat + sepetUeruen.ueruenGiyim.fiyat * sepetUeruen.miktar;
-    });
-    sepet.toplamFiyat = toplamFiyat;
-    res.render("ueye/alisverisSepetiFatura", { curentUser, kargo, sepet });
+
+    toplamFiyat = res.locals.toplamFiyat;
+    res.render("ueye/alisverisSepetiFatura", { curentUser, kargo, sepet, toplamFiyat });
 }))
 
 router.post('/alisverisSepetiFatura', isLoggedIn, catchAsync(async (req, res) => {
@@ -251,10 +247,11 @@ router.post('/alisverisSepetiFatura', isLoggedIn, catchAsync(async (req, res) =>
 
 }))
 
-router.get('/alisverisSepetiOedeme', isLoggedIn, (req, res) => {
-
-    res.render("ueye/alisverisSepetiOedeme");
-})
+router.get('/alisverisSepetiOedeme', isLoggedIn, toplamFiyatHesapla, catchAsync(async (req, res) => {
+    const sepet = await AlisverisSepeti.find({}).populate('ueruenGiyim');
+    toplamFiyat = res.locals.toplamFiyat;
+    res.render("ueye/alisverisSepetiOedeme", { sepet, toplamFiyat });
+}))
 
 router.post('/alisverisSepetiOedeme', isLoggedIn, catchAsync(async (req, res) => {
     const oedemeSistemSecimi = req.body.oedemeSistemSecimi;

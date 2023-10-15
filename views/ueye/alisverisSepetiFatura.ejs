@@ -118,26 +118,31 @@
                                     <div class="TamSayfaCerceveAlaniIciKargoFirmalariDengelemeAlani">
 
                                         <div class="TamSayfaCerceveAlaniIciKargoFirmasiSinirlamaAlani">
-                                            <div class="TamSayfaCerceveAlaniIciKargoFirmasiLogosuaAlani">
-                                                <img src="<%=kargo.image.url%>" alt="" title="">
-                                            </div>
-                                            <div class="TamSayfaCerceveAlaniIciKargoFirmasiTabloAlani">
-                                                <table class="TamSayfaCerceveAlaniIciKargoFirmasiTablosu" width="100%"
-                                                    cellpadding="0" cellspacing="0">
-                                                    <tbody>
-                                                        <tr>
-                                                            <td align="left" valign="top"
-                                                                class="TamSayfaCerceveAlaniIciKargoFirmasiTablosuRadioButonSutunu">
-                                                            </td>
-                                                            <td align="left" valign="top"
-                                                                class="TamSayfaCerceveAlaniIciKargoFirmasiTablosuBaslikVeFiyatmetniSutunu">
-                                                                <%=kargo.isim%>
-                                                                    <%=kargo.uecret%> TL
-                                                            </td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
-                                            </div>
+                                            <% if(kargo) {%>
+                                                <div class="TamSayfaCerceveAlaniIciKargoFirmasiLogosuaAlani">
+                                                    <img src="<%=kargo.image.url%>" alt="" title="">
+                                                </div>
+                                                <div class="TamSayfaCerceveAlaniIciKargoFirmasiTabloAlani">
+                                                    <table class="TamSayfaCerceveAlaniIciKargoFirmasiTablosu"
+                                                        width="100%" cellpadding="0" cellspacing="0">
+                                                        <tbody>
+                                                            <tr>
+                                                                <td align="left" valign="top"
+                                                                    class="TamSayfaCerceveAlaniIciKargoFirmasiTablosuRadioButonSutunu">
+                                                                </td>
+                                                                <td align="left" valign="top"
+                                                                    class="TamSayfaCerceveAlaniIciKargoFirmasiTablosuBaslikVeFiyatmetniSutunu">
+                                                                    <%=kargo.isim%>
+                                                                        <%=kargo.uecret%> TL
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                                <% } else{ %>
+                                                    <span>Henüz Kargo eklenmedi</span>
+
+                                                    <% } %>
                                         </div>
                                     </div>
                                 </div>
@@ -157,39 +162,53 @@
 
                     <div class="TamSayfaCerceveAlaniİciAlisverisSepetiOdenecekTutarBaslikAlani">Ödenecek Tutar (KDV
                         DAHİL)</div>
-                    <% let tutar=sepet.toplamFiyat + kargo.uecret %>
-                        <div class="TamSayfaCerceveAlaniİciAlisverisSepetiOdenecekTutarRakamAlani">
-                            <%=tutar%> TL
-                        </div>
+                    <% let tutar; %>
+                        <%if(kargo){ tutar=toplamFiyat + kargo.uecret} else{tutar=toplamFiyat} %>
+                            <div class="TamSayfaCerceveAlaniİciAlisverisSepetiOdenecekTutarRakamAlani">
+                                <%=tutar%> TL
+                            </div>
 
-                        <div class="TamSayfaCerceveAlaniİciAlisverisSepetiSiparisOzetiIciButonAlani">
-                            <a href="/alisverisSepetiOedeme" target="_top">
-                                <span class="TamSayfaCerceveAlaniİciAlisverisSepetiSiparisOzetiIciButonuMetni">Devam
-                                    Et</span>
-                        </div>
+                            <div class="TamSayfaCerceveAlaniİciAlisverisSepetiSiparisOzetiIciButonAlani">
+                                <a href="<%= kargo ? '/alisverisSepetiOedeme' : '#'%>" target="_top"
+                                    class="<%= kargo ? '' : 'disabled'%>">
+                                    <span class="TamSayfaCerceveAlaniİciAlisverisSepetiSiparisOzetiIciButonuMetni">Devam
+                                        Et</span>
+                            </div>
+                            <div>
+                                <span class="hint">
+                                    <%= kargo ? '' : 'Lütfen Kargo ekleyiniz' %>
+                                </span>
+                            </div>
+                            <div class="TamSayfaCerceveAlaniİciAlisverisSepetiUrunlerToplamiKdvDahilBaslikAlani">
+                                Ürünler
+                                Toplamı (KDV DAHİL)</div>
+                            <div class="TamSayfaCerceveAlaniİciAlisverisSepetiUrunlerToplamiKdvDahilRakamAlani">
+                                <%=toplamFiyat%> TL
+                            </div>
 
-                        <div class="TamSayfaCerceveAlaniİciAlisverisSepetiUrunlerToplamiKdvDahilBaslikAlani">
-                            Ürünler
-                            Toplamı (KDV DAHİL)</div>
-                        <div class="TamSayfaCerceveAlaniİciAlisverisSepetiUrunlerToplamiKdvDahilRakamAlani">
-                            <%=sepet.toplamFiyat%> TL
-                        </div>
-
-                        <div class="TamSayfaCerceveAlaniİciAlisverisSepetiIndirimlerToplamiKdvDahilBaslikAlani">
-                            İndirimler Toplamı (KDV DAHİL)</div>
-                        <div class="TamSayfaCerceveAlaniİciAlisverisSepetiIndirimlerToplamiKdvDahilRakamAlani">
-                            TL
-                        </div>
-
-
-                        <div class="TamSayfaCerceveAlaniİciAlisverisSepetiKargoUcretleriToplamiKdvDahilBaslikAlani">
-                            Kargo Ücreti (KDV DAHİL)</div>
-                        <div class="TamSayfaCerceveAlaniİciAlisverisSepetiKargoUcretleriToplamiKdvDahilRakamAlani">
-                            <%=kargo.uecret%>
+                            <div class="TamSayfaCerceveAlaniİciAlisverisSepetiIndirimlerToplamiKdvDahilBaslikAlani">
+                                İndirimler Toplamı (KDV DAHİL)</div>
+                            <div class="TamSayfaCerceveAlaniİciAlisverisSepetiIndirimlerToplamiKdvDahilRakamAlani">
                                 TL
-                        </div>
+                            </div>
 
 
+                            <div class="TamSayfaCerceveAlaniİciAlisverisSepetiKargoUcretleriToplamiKdvDahilBaslikAlani">
+                                Kargo Ücreti (KDV DAHİL)</div>
+                            <% if(kargo) {%>
+                                <div
+                                    class="TamSayfaCerceveAlaniİciAlisverisSepetiKargoUcretleriToplamiKdvDahilRakamAlani">
+
+                                    <%=kargo.uecret%>
+                                        TL
+                                </div>
+                                <% }else{ %>
+                                    <div
+                                        class="TamSayfaCerceveAlaniİciAlisverisSepetiKargoUcretleriToplamiKdvDahilRakamAlani">
+
+                                        <span>Henüz Kargo eklenmedi</span>
+                                    </div>
+                                    <% } %>
                 </div>
             </div>
         </div>

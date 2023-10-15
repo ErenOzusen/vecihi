@@ -17888,3 +17888,14 @@ footer {
 .radio-label-container label {
   margin-left: 5px;
 }
+
+.disabled {
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+.hint {
+  font-size: 15px;
+  color: #FF0000;
+
+}
