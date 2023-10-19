@@ -9,6 +9,12 @@ const FaturaAdres = require('../models/faturaAdres');
 const Kargo = require('../models/kargo');
 const catchAsync = require('../utils/catchAsync');
 const passport = require('passport');
+const microtime = require('microtime');
+const nodeBase64 = require('base-64');
+const path = require('path');
+const crypto = require('crypto');
+const axios = require('axios');
+
 const { isLoggedIn, isAuthor, isAdmin, toplamFiyatHesapla } = require('../middleware.js');
 const { findById } = require('../models/ueye');
 
@@ -209,37 +215,62 @@ router.post('/alisverisSepeti', catchAsync(async (req, res) => {
 }))
 
 router.get('/alisverisSepetiFatura', isLoggedIn, toplamFiyatHesapla, catchAsync(async (req, res) => {
-    const sepet = await AlisverisSepeti.find({}).populate('ueruenGiyim');
-    let toplamFiyat = 0;
-    console.log("sepet = " + sepet);
     const userId = req.user._id;
     const curentUser = await Ueye.findById(userId)
         .populate('teslimatAdres')
         .populate('faturaAdres');
+    const sepet = await AlisverisSepeti.findOne({ ueye: userId }).populate('ueruenler.ueruenGiyim');
+    let toplamFiyat = 0;
+    console.log("sepet = " + sepet);
     const kargo = await Kargo.findOne();
 
     toplamFiyat = res.locals.toplamFiyat;
     res.render("ueye/alisverisSepetiFatura", { curentUser, kargo, sepet, toplamFiyat });
 }))
 
+//alisverisSepeti.ejs den yolanan ilk siparis bilgileri
 router.post('/alisverisSepetiFatura', isLoggedIn, catchAsync(async (req, res) => {
     const ueruenInformation = JSON.parse(req.body.ueruenInformationlar);
-
+    console.log('ueruenInformation = ' + ueruenInformation + ueruenInformation.length);
+    const userId = req.user._id;
+    const curentUser = await Ueye.findById(userId);
     for (let i = 0; i < ueruenInformation.length; i++) {
         const ueruenGiyimId = ueruenInformation[i].ueruenID;
         const miktar = ueruenInformation[i].quantity;
         const sepetUeruenBilgi = await UeruenGiyim.findById(ueruenGiyimId);
-        const sepet = await AlisverisSepeti.findOne({ ueruenGiyim: ueruenGiyimId });
-        console.log('sepet = ' + sepet);
+
+        //hem sepet hem ürün eklenmismi diye DB soruyorus
+        const ueruenEkliBile = await AlisverisSepeti.findOne({ ueye: userId, 'ueruenler.ueruenGiyim': ueruenGiyimId });
+        console.log('ueruenEkliBile = ' + ueruenEkliBile);
+        //sirf sepet eklenmismi diye DB soruyorus
+        const sepetEkliBile = await AlisverisSepeti.findOne({ ueye: userId });
+        console.log('sepetEkliBile = ' + sepetEkliBile);
         console.log('ueruenId = ' + ueruenInformation[i].ueruenID);
-        if (sepet) {
+        //ürün sepetde ekliyse miktarini güncelt
+        if (ueruenEkliBile) {
             console.log('if entered');
-            console.log('sepet = ' + sepet);
-            sepet.miktar = miktar;
-            await sepet.save();
-        } else {
+            const ueruenIndex = ueruenEkliBile.ueruenler.findIndex(item => item.ueruenGiyim.equals(ueruenGiyimId));
+            ueruenEkliBile.ueruenler[ueruenIndex].miktar = miktar;
+            await ueruenEkliBile.save();
+        }
+        //sepetde olmayan bir ürün ekleniyorsa ama bir sepet olusmus haldeyse sepeti güncelle
+        else if (sepetEkliBile) {
+            console.log('else if entered');
+            const yeniUeruen = {
+                ueruenGiyim: sepetUeruenBilgi,
+                miktar: miktar,
+            };
+            sepetEkliBile.ueruenler.push(yeniUeruen);
+            await sepetEkliBile.save();
+        }
+        //sepetde ilk ürünse yeni sepet olustur
+        else {
             console.log('else entered');
-            const sepetYeni = new AlisverisSepeti({ "ueruenGiyim": sepetUeruenBilgi, "miktar": miktar });
+            const yeniUeruen = {
+                ueruenGiyim: sepetUeruenBilgi,
+                miktar: miktar,
+            };
+            const sepetYeni = new AlisverisSepeti({ "ueye": curentUser, "ueruenler": [yeniUeruen] });
             await sepetYeni.save();
         }
     }
@@ -248,14 +279,128 @@ router.post('/alisverisSepetiFatura', isLoggedIn, catchAsync(async (req, res) =>
 }))
 
 router.get('/alisverisSepetiOedeme', isLoggedIn, toplamFiyatHesapla, catchAsync(async (req, res) => {
-    const sepet = await AlisverisSepeti.find({}).populate('ueruenGiyim');
+    const userId = req.user._id;
+    const sepet = await AlisverisSepeti.findOne({ ueye: userId }).populate('ueruenGiyim');
     toplamFiyat = res.locals.toplamFiyat;
     res.render("ueye/alisverisSepetiOedeme", { sepet, toplamFiyat });
 }))
 
+//alisversiSepetiFatura.ejs den yolanan ikinci siparis bilgileri
 router.post('/alisverisSepetiOedeme', isLoggedIn, catchAsync(async (req, res) => {
-    const oedemeSistemSecimi = req.body.oedemeSistemSecimi;
-    console.log('oedemeSistemSecimi = ' + oedemeSistemSecimi);
+    const userId = req.user._id;
+    const teslimatAdresId = req.body.teslimatAdresiSecimi;
+    console.log('teslimat Id = ' + teslimatAdresId);
+    const teslimatAdres = await TeslimatAdres.findById(teslimatAdresId);
+    const secenek = req.body.secenek;
+    let faturaAdresId = '';
+    const sepet = await AlisverisSepeti.findOne({ ueye: userId });
+    if (secenek == 'false') {
+        console.log('if entered');
+        faturaAdresId = req.body.faturaAdresiSecimi;
+        const faturaAdres = await FaturaAdres.findById(faturaAdresId);
+        sepet.faturaAdres = faturaAdres;
+    }
+    sepet.teslimatAdres = teslimatAdres;
+    await sepet.save();
+
+    //paytr icin payload hazirla
+
+    res.redirect('/paytr');
+
+}))
+
+router.get('/paytr', isLoggedIn, toplamFiyatHesapla, catchAsync(async (req, res) => {
+    const userId = req.user._id;
+    const curentUser = await Ueye.findById(userId);
+    const sepet = await AlisverisSepeti.findOne({ ueye: userId }).populate('ueruenler.ueruenGiyim').populate('teslimatAdres');
+    toplamFiyat = res.locals.toplamFiyat;
+
+    var merchant_id = 'XXXXXX';
+    var merchant_key = 'YYYYYYYYYYYYYY';
+    var merchant_salt = 'ZZZZZZZZZZZZZZ';
+    var basket = [];
+    for (let i = 0; i < sepet.ueruenler.length; i++) {
+        let basketBilgi = [];
+        basketBilgi.push(sepet.ueruenler[i].ueruenGiyim.tarif.toString());
+        basketBilgi.push(sepet.ueruenler[i].ueruenGiyim.fiyat.toString());
+        basketBilgi.push(sepet.ueruenler[i].miktar);
+        console.log('basketBilgi = ' + basketBilgi);
+        basket.push(basketBilgi);
+    }
+    console.log('basket = ' + basket);
+    basketJSON = JSON.stringify(basket);
+    console.log('basket2 = ' + basketJSON);
+    basketJSON2 = JSON.stringify(basketJSON);
+    console.log('basket3 = ' + basketJSON2);
+
+
+    var user_basket = nodeBase64.encode(basketJSON);
+    var merchant_oid = "IN" + microtime.now();
+
+    var max_installment = '0';
+    var no_installment = '0'
+    var user_ip = req.ip;
+    var email = curentUser.email;
+    var payment_amount = parseInt(toplamFiyat * 100);
+    console.log('paymentAmount = ' + payment_amount);
+    var currency = 'TL';
+    var test_mode = '0';
+    var user_name = curentUser.isim;
+    var user_address = sepet.teslimatAdres.sokak + ' ' + sepet.teslimatAdres.evNumarasi + ', ' + sepet.teslimatAdres.sehir + ', ' + sepet.teslimatAdres.uelke;
+    console.log('userAdress = ' + user_address);
+    var user_phone = curentUser.ceptelefonu.toString();
+    console.log('telefon = ' + user_phone);
+    var merchant_ok_url = '/erkekGiyim';
+    var merchant_fail_url = '/erkekGiyim';
+    var timeout_limit = 30;
+    var debug_on = 1;
+    var lang = 'tr';
+
+
+
+    var hashSTR = `${merchant_id}${user_ip}${merchant_oid}${email}${payment_amount}${user_basket}${no_installment}${max_installment}${currency}${test_mode}`;
+    var paytr_token = hashSTR + merchant_salt;
+    var token = crypto.createHmac('sha256', merchant_key).update(paytr_token).digest('base64');
+    console.log('token = ' + token);
+
+    axios.post('https://www.paytr.com/odeme/api/get-token', {
+        merchant_id: merchant_id,
+        merchant_key: merchant_key,
+        merchant_salt: merchant_salt,
+        email: email,
+        payment_amount: payment_amount,
+        merchant_oid: merchant_oid,
+        user_name: user_name,
+        user_address: user_address,
+        user_phone: user_phone,
+        merchant_ok_url: merchant_ok_url,
+        merchant_fail_url: merchant_fail_url,
+        user_basket: user_basket,
+        user_ip: user_ip,
+        timeout_limit: timeout_limit,
+        debug_on: debug_on,
+        test_mode: test_mode,
+        lang: lang,
+        no_installment: no_installment,
+        max_installment: max_installment,
+        currency: currency,
+        paytr_token: token,
+    })
+        .then(response => {
+            const res_data = response.data;
+            if (res_data.status === 'success') {
+                res.render('layout', { iframetoken: res_data.token });
+            } else {
+                res.end(response.data);
+            }
+        })
+        .catch(error => {
+            throw new Error(error);
+        });
+
+
+
+    res.render("ueye/paytr");
 }))
 
 router.post('/sepeteEkle', catchAsync(async (req, res, next) => {

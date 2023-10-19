@@ -30,20 +30,29 @@ module.exports.isAdmin = async (req, res, next) => {
 }
 
 module.exports.toplamFiyatHesapla = async (req, res, next) => {
-    AlisverisSepeti.find({})
-        .populate('ueruenGiyim')
-        .then(sepet => {
+    const userId = req.user._id;
+
+    try {
+        const sepet = await AlisverisSepeti.findOne({ ueye: userId }).populate('ueruenler.ueruenGiyim');
+
+        if (!sepet) {
+            res.locals.toplamFiyat = 0;
+        } else {
             let toplamFiyat = 0;
-            for (const sepetUeruen of sepet) {
+            for (const sepetUeruen of sepet.ueruenler) {
+
                 toplamFiyat += sepetUeruen.ueruenGiyim.fiyat * sepetUeruen.miktar;
             }
             res.locals.toplamFiyat = toplamFiyat;
-            next();
-        })
-        .catch(err => {
-            console.error('Fehler beim Berechnen der Gesamtsumme:', err);
-            res.locals.toplamFiyat = 0; // Setzen Sie einen Standardwert, falls ein Fehler auftritt
-            next();
-        });
+        }
+    } catch (err) {
+        console.error('Hesaplamada bir hata oluştu:', err);
+        res.locals.toplamFiyat = 0;
+    }
+
+    next();
 }
+
+
+
 

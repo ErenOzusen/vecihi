@@ -3,17 +3,26 @@ const Schema = mongoose.Schema;
 
 const AlisverisSepetiSchema = new Schema({
 
-    ueruenGiyim: {
+    ueye: {
         type: Schema.Types.ObjectId,
-        ref: 'UeruenGiyim'
+        ref: 'Ueye'
     },
 
-    miktar: {
-        type: Number,
-        required: true,
-        unique: false
-    },
+    ueruenler: [
+        {
+            ueruenGiyim: {
+                type: Schema.Types.ObjectId,
+                ref: 'UeruenGiyim',
+                required: true,
+            },
 
+            miktar: {
+                type: Number,
+                required: true,
+                unique: false,
+            },
+        },
+    ],
     teslimatAdres: {
         type: Schema.Types.ObjectId,
         ref: 'TeslimatAdres'
@@ -22,11 +31,6 @@ const AlisverisSepetiSchema = new Schema({
     faturaAdres: {
         type: Schema.Types.ObjectId,
         ref: 'FaturaAdres'
-    },
-
-    kargo: {
-        type: Schema.Types.ObjectId,
-        ref: 'Kargo'
     },
 
     oedemeSistemi: {

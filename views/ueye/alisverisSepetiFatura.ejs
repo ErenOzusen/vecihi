@@ -5,7 +5,7 @@
         <div id="TamSayfaCerceveAlani">
             <div id="TamSayfaCerceveSinirlamaAlani">
 
-                <form id="AlisverisSepetiFormu" action="Alisveris-Sepeti-Odeme.html" method="post">
+                <form id="alisverisSepeti" action="/alisverisSepetiOedeme" method="POST">
                     <div id="TamSayfaCerceveAlaniIciAlisverisSepetiSayfasiSolAlan">
                         <div class="TamSayfaCerceveAlaniİciAlisverisSepetiAltiCizgiliBaslikAlani">
                             <div class="TamSayfaCerceveAlaniİciAlisverisSepetiAltiCizgiliBaslikAlaniUstBaslikMetni">
@@ -29,8 +29,8 @@
                                             class="TamSayfaCerceveAlaniIciAlisverisSepetiFaturaVeTeslimatAdresiBilgileriRadioButonAlani">
                                             <label
                                                 class="TamSayfaCerceveAlaniIciAlisverisSepetiFaturaVeTeslimatAdresiBilgileriRadioButonSecenekKapsamaAlani">
-                                                <input type="radio" name="TeslimatAdresiSecimi"
-                                                    value="<%=teslimatAdres%>"
+                                                <input type="radio" name="teslimatAdresiSecimi"
+                                                    value="<%=teslimatAdres._id%>"
                                                     class="TamSayfaCerceveAlaniIciAlisverisSepetiFaturaVeTeslimatAdresiBilgileriRadioButonInputlari">
                                                 <span
                                                     class="TamSayfaCerceveAlaniIciAlisverisSepetiFaturaVeTeslimatAdresiBilgileriRadioButonBicimlendirmeAlani"></span>
@@ -63,11 +63,12 @@
                                 class="TamSayfaCerceveAlaniIciAlisverisSepetiFaturaVeTeslimatAdresiBilgileriDetayAlani">
                                 <div class="radio-label-container">
                                     <input type="radio" id="evet" name="secenek" onclick="$.faturaBilgiGösterme()"
-                                        checked>
+                                        checked value="true">
                                     <label for=" evet">Evet</label>
                                 </div>
                                 <div class="radio-label-container">
-                                    <input type="radio" id="hayir" name="secenek" onclick="$.faturaBilgiGöster()">
+                                    <input type="radio" id="hayir" name="secenek" value="false"
+                                        onclick="$.faturaBilgiGöster()">
                                     <label for="hayir">Hayir</label>
                                 </div>
 
@@ -87,8 +88,8 @@
                                                 class="TamSayfaCerceveAlaniIciAlisverisSepetiFaturaVeTeslimatAdresiBilgileriRadioButonAlani">
                                                 <label
                                                     class="TamSayfaCerceveAlaniIciAlisverisSepetiFaturaVeTeslimatAdresiBilgileriRadioButonSecenekKapsamaAlani">
-                                                    <input type="radio" name="TeslimatAdresiSecimi"
-                                                        value="<%=faturaAdres%>"
+                                                    <input type="radio" name="faturaAdresiSecimi"
+                                                        value="<%=faturaAdres._id%>"
                                                         class="TamSayfaCerceveAlaniIciAlisverisSepetiFaturaVeTeslimatAdresiBilgileriRadioButonInputlari">
                                                     <span
                                                         class="TamSayfaCerceveAlaniIciAlisverisSepetiFaturaVeTeslimatAdresiBilgileriRadioButonBicimlendirmeAlani"></span>
@@ -149,69 +150,71 @@
                             </div>
                         </div>
                     </div>
-                </form>
 
-                <div id="TamSayfaCerceveAlaniIciAlisverisSepetiSayfasiSagAlan">
-                    <div class="TamSayfaCerceveAlaniİciAlisverisSepetiAltiCizgiliSagBaslikAlani">
-                        <div class="TamSayfaCerceveAlaniİciAlisverisSepetiAltiCizgiliSagBaslikAlaniUstBaslikMetni">
-                            Sipariş özeti</div>
-                        <div class="TamSayfaCerceveAlaniİciAlisverisSepetiAltiCizgiliSagBaslikAlaniAltBaslikMetni">
-                            Toplam 5 adet ürün.
+
+                    <div id="TamSayfaCerceveAlaniIciAlisverisSepetiSayfasiSagAlan">
+                        <div class="TamSayfaCerceveAlaniİciAlisverisSepetiAltiCizgiliSagBaslikAlani">
+                            <div class="TamSayfaCerceveAlaniİciAlisverisSepetiAltiCizgiliSagBaslikAlaniUstBaslikMetni">
+                                Sipariş özeti</div>
+                            <div class="TamSayfaCerceveAlaniİciAlisverisSepetiAltiCizgiliSagBaslikAlaniAltBaslikMetni">
+                                Toplam 5 adet ürün.
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="TamSayfaCerceveAlaniİciAlisverisSepetiOdenecekTutarBaslikAlani">Ödenecek Tutar (KDV
-                        DAHİL)</div>
-                    <% let tutar; %>
-                        <%if(kargo){ tutar=toplamFiyat + kargo.uecret} else{tutar=toplamFiyat} %>
-                            <div class="TamSayfaCerceveAlaniİciAlisverisSepetiOdenecekTutarRakamAlani">
-                                <%=tutar%> TL
-                            </div>
-
-                            <div class="TamSayfaCerceveAlaniİciAlisverisSepetiSiparisOzetiIciButonAlani">
-                                <a href="<%= kargo ? '/alisverisSepetiOedeme' : '#'%>" target="_top"
-                                    class="<%= kargo ? '' : 'disabled'%>">
-                                    <span class="TamSayfaCerceveAlaniİciAlisverisSepetiSiparisOzetiIciButonuMetni">Devam
-                                        Et</span>
-                            </div>
-                            <div>
-                                <span class="hint">
-                                    <%= kargo ? '' : 'Lütfen Kargo ekleyiniz' %>
-                                </span>
-                            </div>
-                            <div class="TamSayfaCerceveAlaniİciAlisverisSepetiUrunlerToplamiKdvDahilBaslikAlani">
-                                Ürünler
-                                Toplamı (KDV DAHİL)</div>
-                            <div class="TamSayfaCerceveAlaniİciAlisverisSepetiUrunlerToplamiKdvDahilRakamAlani">
-                                <%=toplamFiyat%> TL
-                            </div>
-
-                            <div class="TamSayfaCerceveAlaniİciAlisverisSepetiIndirimlerToplamiKdvDahilBaslikAlani">
-                                İndirimler Toplamı (KDV DAHİL)</div>
-                            <div class="TamSayfaCerceveAlaniİciAlisverisSepetiIndirimlerToplamiKdvDahilRakamAlani">
-                                TL
-                            </div>
-
-
-                            <div class="TamSayfaCerceveAlaniİciAlisverisSepetiKargoUcretleriToplamiKdvDahilBaslikAlani">
-                                Kargo Ücreti (KDV DAHİL)</div>
-                            <% if(kargo) {%>
-                                <div
-                                    class="TamSayfaCerceveAlaniİciAlisverisSepetiKargoUcretleriToplamiKdvDahilRakamAlani">
-
-                                    <%=kargo.uecret%>
-                                        TL
+                        <div class="TamSayfaCerceveAlaniİciAlisverisSepetiOdenecekTutarBaslikAlani">Ödenecek Tutar (KDV
+                            DAHİL)</div>
+                        <% let tutar; %>
+                            <%if(kargo){ tutar=toplamFiyat + kargo.uecret} else{tutar=toplamFiyat} %>
+                                <div class="TamSayfaCerceveAlaniİciAlisverisSepetiOdenecekTutarRakamAlani">
+                                    <%=tutar%> TL
                                 </div>
-                                <% }else{ %>
+
+                                <div class="TamSayfaCerceveAlaniİciAlisverisSepetiSiparisOzetiIciButonAlani">
+                                    <span onclick="submitFaturaForm()" class="<%=kargo
+                                            ? 'TamSayfaCerceveAlaniİciAlisverisSepetiSiparisOzetiIciButonuMetni'
+                                            : 'disabled' %>">Devam
+                                        Et</span>
+                                </div>
+                                <div>
+                                    <span class="hint">
+                                        <%= kargo ? '' : 'Lütfen Kargo ekleyiniz' %>
+                                    </span>
+                                </div>
+                                <div class="TamSayfaCerceveAlaniİciAlisverisSepetiUrunlerToplamiKdvDahilBaslikAlani">
+                                    Ürünler
+                                    Toplamı (KDV DAHİL)</div>
+                                <div class="TamSayfaCerceveAlaniİciAlisverisSepetiUrunlerToplamiKdvDahilRakamAlani">
+                                    <%=toplamFiyat%> TL
+                                </div>
+
+                                <div class="TamSayfaCerceveAlaniİciAlisverisSepetiIndirimlerToplamiKdvDahilBaslikAlani">
+                                    İndirimler Toplamı (KDV DAHİL)</div>
+                                <div class="TamSayfaCerceveAlaniİciAlisverisSepetiIndirimlerToplamiKdvDahilRakamAlani">
+                                    TL
+                                </div>
+
+
+                                <div
+                                    class="TamSayfaCerceveAlaniİciAlisverisSepetiKargoUcretleriToplamiKdvDahilBaslikAlani">
+                                    Kargo Ücreti (KDV DAHİL)</div>
+                                <% if(kargo) {%>
                                     <div
                                         class="TamSayfaCerceveAlaniİciAlisverisSepetiKargoUcretleriToplamiKdvDahilRakamAlani">
 
-                                        <span>Henüz Kargo eklenmedi</span>
+                                        <%=kargo.uecret%>
+                                            TL
                                     </div>
-                                    <% } %>
-                </div>
+                                    <% }else{ %>
+                                        <div
+                                            class="TamSayfaCerceveAlaniİciAlisverisSepetiKargoUcretleriToplamiKdvDahilRakamAlani">
+
+                                            <span>Henüz Kargo eklenmedi</span>
+                                        </div>
+                                        <% } %>
+                </form>
             </div>
         </div>
+    </div>
 
     </div>
 
