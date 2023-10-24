@@ -4,6 +4,7 @@ const Ueye = require('../models/ueye');
 const UeruenGiyim = require('../models/ueruenGiyim');
 const UeruenGiyimUeye = require('../models/ueruenGiyimUeye');
 const AlisverisSepeti = require('../models/alisverisSepeti');
+const Siparisler = require('../models/siparisler');
 const TeslimatAdres = require('../models/teslimatAdres');
 const FaturaAdres = require('../models/faturaAdres');
 const Kargo = require('../models/kargo');
@@ -67,10 +68,16 @@ router.get('/cikis', (req, res, next) => {
     });
 })
 
-router.get('/hesabim', (req, res) => {
-
-    res.render("ueye/hesabim");
-})
+router.get('/hesabim', isLoggedIn, catchAsync(async (req, res) => {
+    const userId = req.user._id;
+    const siparisler = await Siparisler.findOne({ ueye: userId }).populate({
+        path: 'sepet',
+        populate: {
+            path: 'ueruenGiyim',
+        },
+    });
+    res.render("ueye/hesabim", { siparisler });
+}))
 
 router.get('/yorumlarim', (req, res) => {
 
@@ -362,45 +369,79 @@ router.get('/paytr', isLoggedIn, toplamFiyatHesapla, catchAsync(async (req, res)
     var paytr_token = hashSTR + merchant_salt;
     var token = crypto.createHmac('sha256', merchant_key).update(paytr_token).digest('base64');
     console.log('token = ' + token);
-
-    axios.post('https://www.paytr.com/odeme/api/get-token', {
-        merchant_id: merchant_id,
-        merchant_key: merchant_key,
-        merchant_salt: merchant_salt,
-        email: email,
-        payment_amount: payment_amount,
-        merchant_oid: merchant_oid,
-        user_name: user_name,
-        user_address: user_address,
-        user_phone: user_phone,
-        merchant_ok_url: merchant_ok_url,
-        merchant_fail_url: merchant_fail_url,
-        user_basket: user_basket,
-        user_ip: user_ip,
-        timeout_limit: timeout_limit,
-        debug_on: debug_on,
-        test_mode: test_mode,
-        lang: lang,
-        no_installment: no_installment,
-        max_installment: max_installment,
-        currency: currency,
-        paytr_token: token,
-    })
-        .then(response => {
-            const res_data = response.data;
-            if (res_data.status === 'success') {
-                res.render('layout', { iframetoken: res_data.token });
-            } else {
-                res.end(response.data);
-            }
+    /*
+        axios.post('https://www.paytr.com/odeme/api/get-token', {
+            merchant_id: merchant_id,
+            merchant_key: merchant_key,
+            merchant_salt: merchant_salt,
+            email: email,
+            payment_amount: payment_amount,
+            merchant_oid: merchant_oid,
+            user_name: user_name,
+            user_address: user_address,
+            user_phone: user_phone,
+            merchant_ok_url: merchant_ok_url,
+            merchant_fail_url: merchant_fail_url,
+            user_basket: user_basket,
+            user_ip: user_ip,
+            timeout_limit: timeout_limit,
+            debug_on: debug_on,
+            test_mode: test_mode,
+            lang: lang,
+            no_installment: no_installment,
+            max_installment: max_installment,
+            currency: currency,
+            paytr_token: token,
         })
-        .catch(error => {
-            throw new Error(error);
+            .then(response => {
+                const res_data = response.data;
+                if (res_data.status === 'success') {
+                    res.render('layout', { iframetoken: res_data.token });
+                } else {
+                    res.end(response.data);
+                }
+            })
+            .catch(error => {
+                throw new Error(error);
+            });
+        res.render("ueye/paytr");*/
+    //Paytr STEP 2 buraya eklencek
+    const siparisler = await Siparisler.findOne({ ueye: userId });
+    const now = new Date();
+    const orderDate = now.toLocaleDateString('de-DE'); // 'DD.MM.YYYY'
+    const orderTime = now.toLocaleTimeString('de-DE', { hour: '2-digit', minute: '2-digit' }); // 'SS:MM'
+    if (siparisler) {
+
+        siparisler.sepet.push(...sepet.ueruenler.map(item => ({
+            ueruenGiyim: item.ueruenGiyim._id,
+            miktar: item.miktar,
+            tarih: orderDate,
+            saat: orderTime,
+            toplamFiyat: toplamFiyat,
+        })));
+
+        await siparisler.save();
+    } else {
+
+        const newSiparisler = new Siparisler({
+            ueye: userId,
+            sepet: sepet.ueruenler.map(item => {
+                return {
+                    ueruenGiyim: item.ueruenGiyim._id,
+                    miktar: item.miktar,
+                    tarih: orderDate,
+                    saat: orderTime,
+                    toplamFiyat: toplamFiyat,
+                };
+            })
         });
 
+        await newSiparisler.save();
+    }
+    await AlisverisSepeti.findOneAndRemove({ ueye: userId });
+    delete req.session.ueruenIDs;
 
-
-    res.render("ueye/paytr");
+    res.redirect('/');
 }))
 
 router.post('/sepeteEkle', catchAsync(async (req, res, next) => {
@@ -415,6 +456,8 @@ router.post('/sepeteEkle', catchAsync(async (req, res, next) => {
 }))
 
 
-
+router.get('/yorumYaz', (req, res) => {
+    res.render('ueye/yorumYaz');
+})
 
 module.exports = router;

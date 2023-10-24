@@ -23,6 +23,7 @@ const AlisverisSepetiSchema = new Schema({
             },
         },
     ],
+
     teslimatAdres: {
         type: Schema.Types.ObjectId,
         ref: 'TeslimatAdres'

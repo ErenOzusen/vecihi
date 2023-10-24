@@ -12,105 +12,130 @@
                     </div>
                 </div>
 
-                <div id="TamsayfaCerceveAlaniİciHesapMenuleriAlani">
-                    <div id="TamsayfaCerceveAlaniİciHesapMenuleriDengelemeAlani">
-                        <div class="TamsayfaCerceveAlaniİciHesapMenusuSinirlamaAlani">
-                            <div class="TamsayfaCerceveAlaniİciHesapMenuleriAlani">
-                                <div class="TamsayfaCerceveAlaniİciHesapMenulerinMetniAlani">
-                                    <a href="/hesabim" style="color: #000;" target="_top"> Siparişler</a>
+                <div class="accordion" id="accordionExample">
+                    <!-- Her satin alinmis ürün icin satin alinan yil ve ay kayit ediliyor -->
+                    <% if (siparisler) { const groupedSiparisler={}; siparisler.sepet.forEach((siparis)=> {
+                        const tarihParts = siparis.tarih.split('.');
+                        const year = tarihParts[2];
+                        const month = tarihParts[1];
+
+                        if (!groupedSiparisler[year]) {
+                        groupedSiparisler[year] = {};
+                        }
+
+                        if (!groupedSiparisler[year][month]) {
+                        groupedSiparisler[year][month] = [];
+                        }
+
+                        // Überprüfen, ob ein neuer Abschnitt begonnen werden muss
+                        const currentSection = groupedSiparisler[year][month][groupedSiparisler[year][month].length -
+                        1];
+                        if (!currentSection || currentSection[0].tarih !== siparis.tarih || currentSection[0].saat !==
+                        siparis.saat) {
+                        groupedSiparisler[year][month].push([siparis]);
+                        } else {
+                        currentSection.push(siparis);
+                        }
+                        });
+
+                        for (const year in groupedSiparisler) { %>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#<%= year %>" aria-expanded="true" aria-controls="<%= year %>">
+                                    <%= year %>
+                                </button>
+                            </h2>
+                            <div id="<%= year %>" class="accordion-collapse collapse show"
+                                data-bs-parent="#accordionExample">
+                                <div class="accordion-body">
+                                    <% for (const month in groupedSiparisler[year]) { %>
+                                        <div class="accordion-item">
+                                            <h2 class="accordion-header">
+                                                <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                                    data-bs-target="#<%= year + month %>" aria-expanded="true"
+                                                    aria-controls="<%= year + month %>">
+                                                    <%= getTurkishMonthName(month) %>
+                                                </button>
+                                            </h2>
+                                            <div id="<%= year + month %>" class="accordion-collapse collapse show"
+                                                data-bs-parent="#<%= year %>">
+                                                <div class="accordion-body">
+                                                    <div class="row mb-2">
+                                                        <div class="col-2">
+                                                            Ürün resim
+                                                        </div>
+                                                        <div class="col-2">
+                                                            Ürün Tarif
+                                                        </div>
+                                                        <div class="col-2">
+                                                            Ürün Fiyat
+                                                        </div>
+                                                        <div class="col-2">
+                                                            Ürün Miktar
+                                                        </div>
+                                                        <div class="col-2">
+                                                            Siparis Gün
+                                                        </div>
+                                                        <div class="col-2">
+                                                            Siparis Saat
+                                                        </div>
+                                                    </div>
+                                                    <% let toplamFiyat=0; %>
+                                                        <% groupedSiparisler[year][month].forEach((section)=> { %>
+                                                            <% section.forEach((siparis)=> { %>
+                                                                <div class="row mb-2">
+                                                                    <div class="col-2">
+                                                                        <img src="<%= siparis.ueruenGiyim.images[0].url %>"
+                                                                            alt="" title="" style="width: 30px;">
+                                                                    </div>
+                                                                    <div class="col-2">
+                                                                        <%= siparis.ueruenGiyim.tarif %>
+                                                                    </div>
+                                                                    <div class="col-2">
+                                                                        <%= siparis.ueruenGiyim.fiyat %>
+                                                                    </div>
+                                                                    <div class="col-2">
+                                                                        <%= siparis.miktar %>
+                                                                    </div>
+                                                                    <div class="col-2">
+                                                                        <%= siparis.tarih %>
+                                                                    </div>
+                                                                    <div class="col-2">
+                                                                        <%= siparis.saat %>
+                                                                    </div>
+                                                                </div>
+                                                                <% toplamFiyat=siparis.toplamFiyat %>
+                                                                    <% }); %>
+                                                                        <hr>
+                                                                        <div class="row">
+                                                                            <div class="col-12 text-start">
+                                                                                <strong>Toplamfiyat:
+                                                                                    <%=toplamFiyat%>
+                                                                                        TL
+                                                                                </strong>
+                                                                            </div>
+                                                                        </div>
+                                                                        <hr
+                                                                            style="border: none; border-top: 4px solid #000;">
+                                                                        <% }); %>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <% } %>
                                 </div>
                             </div>
                         </div>
-
-                        <div class="TamsayfaCerceveAlaniİciHesapMenusuSinirlamaAlani">
-                            <div class="TamsayfaCerceveAlaniİciHesapMenuleriAlani">
-                                <div class="TamsayfaCerceveAlaniİciHesapMenulerinMetniAlani">
-                                    <a href="/yorumlarim" target="_top">Yorumlar</a>
+                        <% } %>
+                            <% } else { %>
+                                <div>
+                                    <h5>Henüz bir siparişiniz yok</h5>
                                 </div>
-                            </div>
-                        </div>
-
-                        <div class="TamsayfaCerceveAlaniİciHesapMenusuSinirlamaAlani">
-
-                            <div class="TamsayfaCerceveAlaniİciHesapMenuleriAlani">
-                                <div class="TamsayfaCerceveAlaniİciHesapMenulerinMetniAlani">
-                                    <a href="/ueyelikBilgilerim" target="_top">Üyelik Bilgileri</a>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="TamsayfaCerceveAlaniİciHesapMenusuSinirlamaAlani">
-                            <div class="TamsayfaCerceveAlaniİciHesapMenuleriAlani">
-                                <div class="TamsayfaCerceveAlaniİciHesapMenulerinMetniAlani">
-                                    <a href="/adreslerim" target="_top">Adresler</a>
-                                </div>
-                            </div>
-                        </div>
-
-
-                        <div class="TamsayfaCerceveAlaniİciHesapMenusuSinirlamaAlani">
-                            <div class="TamsayfaCerceveAlaniİciHesapMenuleriAlani">
-                                <div class="TamsayfaCerceveAlaniİciHesapMenulerinMetniAlani">
-                                    <a href="/favorilerim" target="_top">Favoriler</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-
-
-                <div class="TamSayfaCerceveAlaniIciHesabımSayfasiSiparislerKapsamaAlani">
-                    <div class="TamSayfaCerceveAlaniIciHesabımSayfasiSiparislerAlani">
-                        <div class="TamSayfaCerceveAlaniIciHesabımSayfasiSiparisNumarasiBaslikMetniAlani">Sipariş
-                            Numarası: #45648569856</div>
-                        <div class="TamSayfaCerceveAlaniIciHesabımSayfasiSiparisBilgiMetni">
-                            02.07.2023 Çarşamba günü saat 14:32:45 tarihli 1.257,65 TL tutarındaki sipariş.Detayları
-                            <a href="Siparis-detay.html">göster >>></a>
-                        </div>
-                    </div>
-
-
-                    <div class="TamSayfaCerceveAlaniIciHesabımSayfasiSiparislerKapsamaAlani">
-                        <div class="TamSayfaCerceveAlaniIciHesabımSayfasiSiparislerAlani">
-                            <div class="TamSayfaCerceveAlaniIciHesabımSayfasiSiparisNumarasiBaslikMetniAlani">
-                                Sipariş Numarası: #45648569856</div>
-                            <div class="TamSayfaCerceveAlaniIciHesabımSayfasiSiparisBilgiMetni">
-                                02.07.2023 Çarşamba günü saat 14:32:45 tarihli 1.257,65 TL tutarındaki
-                                sipariş.Detayları <a href="Siparis-detay.html">göster >>></a>
-                            </div>
-                        </div>
-
-
-                        <div class="TamSayfaCerceveAlaniIciHesabımSayfasiSiparislerAlani">
-                            <div class="TamSayfaCerceveAlaniIciHesabımSayfasiSiparisNumarasiBaslikMetniAlani">
-                                Sipariş Numarası: #45648569856</div>
-                            <div class="TamSayfaCerceveAlaniIciHesabımSayfasiSiparisBilgiMetni">
-                                02.07.2023 Çarşamba günü saat 14:32:45 tarihli 1.257,65 TL tutarındaki
-                                sipariş.Detayları <a href="Siparis-detay.html">göster >>></a>
-                            </div>
-                        </div>
-                    </div>
-
-
-
-                    <div id="SayfalamaAlani">
-                        <!--  <div id="SayfalamaAlaniIciSayfaVeKayitSayisiAlani">Toplam <b>10</b> sayfa , 54 kayıt bulunmaktadır.</div>
-                                <div id="SayfalamaNumaralandirmaAlani">
-                                    <span class="SayfalamaNumaralandirmaPasif"><a href="Hesabim.html" target="_top"><img src="foto/first.png" alt="" title=""></a></span>
-                                    <span class="SayfalamaNumaralandirmaPasif"><a href="Hesabim.html" target="_top"><img src="foto/back.png" alt="" title=""></a></span>
-
-                                    <span class="SayfalamaNumaralandirmaPasif"><a href="Hesabim.html" target="_top">1</a></span>
-                                    <span class="SayfalamaNumaralandirmaPasif"><a href="Hesabim.html" target="_top">2</a></span>
-                                    <span class="SayfalamaNumaralandirmaAktif"><a href="Hesabim.html" target="_top">3</a></span>
-                                    <span class="SayfalamaNumaralandirmaPasif"><a href="Hesabim.html" target="_top">4</a></span>
-                                    <span class="SayfalamaNumaralandirmaPasif"><a href="Hesabim.html" target="_top">5</a></span>
-
-                                    <span class="SayfalamaNumaralandirmaPasif"><a href="Hesabim.html" target="_top"><img src="foto/next.png" alt="" title=""></a></span>
-                                    <span class="SayfalamaNumaralandirmaPasif"><a href="Hesabim.html" target="_top"><img src="foto/last.png" alt="" title=""></a></span>
-                                </div>-->
-                    </div>
-
+                                <% } %>
                 </div>
             </div>
         </div>
+    </div>
+
+    <% function getTurkishMonthName(month) { const months=["Ocak", "Şubat" , "Mart" , "Nisan" , "Mayıs" , "Haziran"
+        , "Temmuz" , "Ağustos" , "Eylül" , "Ekim" , "Kasım" , "Aralık" ]; return months[parseInt(month) - 1]; } %>
