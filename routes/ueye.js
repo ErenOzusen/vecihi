@@ -11,10 +11,11 @@ const Kargo = require('../models/kargo');
 const catchAsync = require('../utils/catchAsync');
 const passport = require('passport');
 const microtime = require('microtime');
-const nodeBase64 = require('base-64');
-const path = require('path');
+var nodeBase64 = require('nodejs-base64-converter');
 const crypto = require('crypto');
-const axios = require('axios');
+var request = require('request');
+var ejsLayouts = require('express-ejs-layouts');
+
 
 const { isLoggedIn, isAuthor, isAdmin, toplamFiyatHesapla } = require('../middleware.js');
 const { findById } = require('../models/ueye');
@@ -322,9 +323,9 @@ router.get('/paytr', isLoggedIn, toplamFiyatHesapla, catchAsync(async (req, res)
     const sepet = await AlisverisSepeti.findOne({ ueye: userId }).populate('ueruenler.ueruenGiyim').populate('teslimatAdres');
     toplamFiyat = res.locals.toplamFiyat;
 
-    var merchant_id = 'XXXXXX';
-    var merchant_key = 'YYYYYYYYYYYYYY';
-    var merchant_salt = 'ZZZZZZZZZZZZZZ';
+    var merchant_id = '399794';
+    var merchant_key = 'b8JihzQCjkJrUEPn';
+    var merchant_salt = 'AUi6cTALqmKBRQpm';
     var basket = [];
     for (let i = 0; i < sepet.ueruenler.length; i++) {
         let basketBilgi = [];
@@ -357,20 +358,56 @@ router.get('/paytr', isLoggedIn, toplamFiyatHesapla, catchAsync(async (req, res)
     console.log('userAdress = ' + user_address);
     var user_phone = curentUser.ceptelefonu.toString();
     console.log('telefon = ' + user_phone);
-    var merchant_ok_url = '/erkekGiyim';
-    var merchant_fail_url = '/erkekGiyim';
+    var merchant_ok_url = 'http://localhost:3000/erkekGiyim';
+    var merchant_fail_url = 'http://localhost:3000/kadinGiyim';
     var timeout_limit = 30;
     var debug_on = 1;
     var lang = 'tr';
 
+    /*  var basket = JSON.stringify([
+         ['Sample Product 1', '18.00', 1],
+         ['Sample Product 2', '33.25', 2],
+         ['Sample Product 3', '45.42', 1]
+     ]);
+     var user_basket = nodeBase64.encode(basket);
+     console.log('user basket = ' + user_basket);
+     var merchant_oid = "IN" + microtime.now();
+     console.log('merchant oid = ' + merchant_oid);
+ 
+     var max_installment = '0';
+     var no_installment = '0'
+     var user_ip = req.ip;
+     var email = 'test@gmail.com';
+     var payment_amount = 500;
+     var currency = 'TL';
+     var test_mode = '1';
+     var user_name = 'Tester';
+     var user_address = 'testadress';
+     console.log('userAdress = ' + user_address);
+     var user_phone = '05555555555';
+     var merchant_ok_url = 'http://localhost:3000/erkekGiyim';
+     var merchant_fail_url = 'http://localhost:3000/kadinGiyim';
+     var timeout_limit = 30;
+     var debug_on = 1;
+     var lang = 'tr'; */
 
 
     var hashSTR = `${merchant_id}${user_ip}${merchant_oid}${email}${payment_amount}${user_basket}${no_installment}${max_installment}${currency}${test_mode}`;
+    console.log('hasSTR = ' + hashSTR);
+
     var paytr_token = hashSTR + merchant_salt;
+    console.log('paytr_token = ' + paytr_token);
+
     var token = crypto.createHmac('sha256', merchant_key).update(paytr_token).digest('base64');
     console.log('token = ' + token);
-    /*
-        axios.post('https://www.paytr.com/odeme/api/get-token', {
+
+
+    var options = {
+        method: 'POST',
+        url: 'https://www.paytr.com/odeme/api/get-token',
+        headers:
+            { 'content-type': 'application/x-www-form-urlencoded' },
+        formData: {
             merchant_id: merchant_id,
             merchant_key: merchant_key,
             merchant_salt: merchant_salt,
@@ -392,20 +429,23 @@ router.get('/paytr', isLoggedIn, toplamFiyatHesapla, catchAsync(async (req, res)
             max_installment: max_installment,
             currency: currency,
             paytr_token: token,
-        })
-            .then(response => {
-                const res_data = response.data;
-                if (res_data.status === 'success') {
-                    res.render('layout', { iframetoken: res_data.token });
-                } else {
-                    res.end(response.data);
-                }
-            })
-            .catch(error => {
-                throw new Error(error);
-            });
-        res.render("ueye/paytr");*/
-    //Paytr STEP 2 buraya eklencek
+
+        }
+    };
+
+    request(options, function (error, response, body) {
+        if (error) throw new Error(error);
+        var res_data = JSON.parse(body);
+
+        if (res_data.status == 'success') {
+            res.render('layout', { iframetoken: res_data.token });
+        } else {
+
+            res.end(body);
+        }
+
+    });
+
     const siparisler = await Siparisler.findOne({ ueye: userId });
     const now = new Date();
     const orderDate = now.toLocaleDateString('de-DE'); // 'DD.MM.YYYY'
@@ -440,9 +480,29 @@ router.get('/paytr', isLoggedIn, toplamFiyatHesapla, catchAsync(async (req, res)
     }
     await AlisverisSepeti.findOneAndRemove({ ueye: userId });
     delete req.session.ueruenIDs;
-
-    res.redirect('/');
 }))
+
+router.post("/callback", function (req, res) {
+
+    var callback = req.body;
+
+    paytr_token = callback.merchant_oid + merchant_salt + callback.status + callback.total_amount;
+    var token = crypto.createHmac('sha256', merchant_key).update(paytr_token).digest('base64');
+
+    if (token != callback.hash) {
+        throw new Error("PAYTR notification failed: bad hash");
+    }
+
+    if (callback.status == 'success') {
+
+    } else {
+
+    }
+
+    res.send('OK');
+
+});
+
 
 router.post('/sepeteEkle', catchAsync(async (req, res, next) => {
     const ueruenID = req.body.ueruenID;

@@ -21,8 +21,11 @@ const adminRoutes = require('./routes/admin');
 const passport = require('passport');
 const LocalStrategy = require('passport-local');
 const methodOverride = require('method-override');
-const { isLoggedIn, isAuthor, isAdmin } = require('./middleware.js');
-
+//var ejsLayouts = require('express-ejs-layouts');
+var microtime = require('microtime');
+var crypto = require('crypto');
+var nodeBase64 = require('nodejs-base64-converter');
+var request = require('request');
 
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
@@ -46,7 +49,8 @@ db.once("open", () => {
   console.log("Database connected");
 });
 
-
+//app.use(ejsLayouts);
+app.use(express.json());
 
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride('_method'));
@@ -172,6 +176,11 @@ app.get('/iptalDegisim', (req, res) => {
 
 
 
+
+
+
+
+
 app.listen(3000, () => {
 
   console.log("Server Çalışıyor");
@@ -194,22 +203,3 @@ app.use((err, req, res, next) => {
 //     console.log ("uye Kayitli");
 //   }
 // }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
