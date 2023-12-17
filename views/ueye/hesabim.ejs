@@ -61,48 +61,64 @@
                                             <div id="<%= year + month %>" class="accordion-collapse collapse show"
                                                 data-bs-parent="#<%= year %>">
                                                 <div class="accordion-body">
-                                                    <div class="row mb-2">
-                                                        <div class="col-2">
+                                                    <div class="row flex-wrap mb-2 justify-content-between">
+                                                        <div class="col-1">
                                                             Ürün resim
                                                         </div>
-                                                        <div class="col-2">
+                                                        <div class="col-1">
                                                             Ürün Tarif
                                                         </div>
-                                                        <div class="col-2">
+                                                        <div class="col-1">
                                                             Ürün Fiyat
                                                         </div>
-                                                        <div class="col-2">
+                                                        <div class="col-1">
                                                             Ürün Miktar
                                                         </div>
-                                                        <div class="col-2">
+                                                        <div class="col-1">
                                                             Siparis Gün
                                                         </div>
-                                                        <div class="col-2">
+                                                        <div class="col-1">
                                                             Siparis Saat
+                                                        </div>
+                                                        <div class="col-4 d-flex justify-content-end">
+                                                            <div class="col-6"></div>
+                                                            <div class="col-6"></div>
                                                         </div>
                                                     </div>
                                                     <% let toplamFiyat=0; %>
                                                         <% groupedSiparisler[year][month].forEach((section)=> { %>
                                                             <% section.forEach((siparis)=> { %>
-                                                                <div class="row mb-2">
-                                                                    <div class="col-2">
+                                                                <div class="row mb-2 flex-wrap justify-content-between">
+                                                                    <div class="col-1">
                                                                         <img src="<%= siparis.ueruenGiyim.images[0].url %>"
                                                                             alt="" title="" style="width: 30px;">
                                                                     </div>
-                                                                    <div class="col-2">
+                                                                    <div class="col-1">
                                                                         <%= siparis.ueruenGiyim.tarif %>
                                                                     </div>
-                                                                    <div class="col-2">
+                                                                    <div class="col-1">
                                                                         <%= siparis.ueruenGiyim.fiyat %>
                                                                     </div>
-                                                                    <div class="col-2">
+                                                                    <div class="col-1">
                                                                         <%= siparis.miktar %>
                                                                     </div>
-                                                                    <div class="col-2">
+                                                                    <div class="col-1">
                                                                         <%= siparis.tarih %>
                                                                     </div>
-                                                                    <div class="col-2">
+                                                                    <div class="col-1">
                                                                         <%= siparis.saat %>
+                                                                    </div>
+                                                                    <div class="col-4 d-flex justify-content-end">
+                                                                        <div class="col-6">
+                                                                            <button class="btn btn-success"><a
+                                                                                    style="text-decoration: none; color: white;"
+                                                                                    href="/<%=siparis.ueruenGiyim._id%>/yorumYaz">Yorumla</a></button>
+                                                                        </div>
+                                                                        <div class="col-6">
+                                                                            <button class="btn btn-success"><a
+                                                                                    style="text-decoration: none; color: white;"
+                                                                                    href="/<%=siparis.ueruenGiyim.kategori%>/<%=siparis.ueruenGiyim._id%>/detay">Detay</a></button>
+                                                                        </div>
                                                                     </div>
                                                                 </div>
                                                                 <% toplamFiyat=siparis.toplamFiyat %>

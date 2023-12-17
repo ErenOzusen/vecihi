@@ -516,7 +516,7 @@ router.post('/sepeteEkle', catchAsync(async (req, res, next) => {
 }))
 
 
-router.get('/yorumYaz', (req, res) => {
+router.get('/:id/yorumYaz', (req, res) => {
     res.render('ueye/yorumYaz');
 })
 

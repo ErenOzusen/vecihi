@@ -17899,3 +17899,21 @@ footer {
   color: #FF0000;
 
 }
+
+/* .siparisler {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  max-width: 200px;
+} */
+
+/* .siparisler__resim,
+.siparisler__tarif,
+.siparisler__fiyat,
+.siparisler__miktar,
+.siparisler__gün,
+.siparisler__saat,
+.siparisler__yorum,
+.siparisler__ueruenDetay {
+  flex-grow: 1;
+} */
