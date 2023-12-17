@@ -1,6 +1,9 @@
 const Ueye = require('./models/ueye');
 const AlisverisSepeti = require('./models/alisverisSepeti');
 const ExpressError = require('./utils/ExpressError');
+const Siparisler = require('./models/siparisler');
+const { ObjectId } = require('mongodb');
+
 
 
 module.exports.isLoggedIn = (req, res, next) => {
@@ -50,6 +53,40 @@ module.exports.toplamFiyatHesapla = async (req, res, next) => {
         res.locals.toplamFiyat = 0;
     }
 
+    next();
+}
+
+module.exports.ueruenOedenmis = async (req, res, next) => {
+    console.log('middleware entered');
+    const userId = req.user._id;
+    const ueruenId = req.params.id;
+    try {
+        const ueruenIdObject = new ObjectId(ueruenId);
+
+        const siparisler = await Siparisler.findOne({ ueye: userId }).populate({
+            path: 'sepet',
+            populate: {
+                path: 'ueruenGiyim',
+            },
+        });
+
+        let siparis;
+        if (siparisler && siparisler.sepet) {
+            siparis = siparisler.sepet.find(item => item.ueruenGiyim.equals(ueruenIdObject));
+            console.log('siparis: ' + JSON.stringify(siparis));
+            console.log('ueruenId: ' + ueruenId);
+            if (!siparis) {
+                req.flash('error', 'Buna izin yok!');
+                return res.redirect('/');
+            }
+        }
+
+        next();
+    } catch (error) {
+        console.error('Fehler bei der ObjectId-Konvertierung:', error.message);
+        req.flash('error', 'Ungültige UeruenId!');
+        return res.redirect('/');
+    }
     next();
 }
 

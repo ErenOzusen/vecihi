@@ -17,7 +17,7 @@ var request = require('request');
 var ejsLayouts = require('express-ejs-layouts');
 
 
-const { isLoggedIn, isAuthor, isAdmin, toplamFiyatHesapla } = require('../middleware.js');
+const { isLoggedIn, isAuthor, isAdmin, toplamFiyatHesapla, ueruenOedenmis } = require('../middleware.js');
 const { findById } = require('../models/ueye');
 
 
@@ -516,7 +516,8 @@ router.post('/sepeteEkle', catchAsync(async (req, res, next) => {
 }))
 
 
-router.get('/:id/yorumYaz', (req, res) => {
+router.get('/:id/yorumYaz', isLoggedIn, ueruenOedenmis, (req, res) => {
+    console.log('id: ' + req.params.id);
     res.render('ueye/yorumYaz');
 })
 
