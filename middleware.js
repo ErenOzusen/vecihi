@@ -57,7 +57,6 @@ module.exports.toplamFiyatHesapla = async (req, res, next) => {
 }
 
 module.exports.ueruenOedenmis = async (req, res, next) => {
-    console.log('middleware entered');
     const userId = req.user._id;
     const ueruenId = req.params.id;
     try {
@@ -73,8 +72,6 @@ module.exports.ueruenOedenmis = async (req, res, next) => {
         let siparis;
         if (siparisler && siparisler.sepet) {
             siparis = siparisler.sepet.find(item => item.ueruenGiyim.equals(ueruenIdObject));
-            console.log('siparis: ' + JSON.stringify(siparis));
-            console.log('ueruenId: ' + ueruenId);
             if (!siparis) {
                 req.flash('error', 'Buna izin yok!');
                 return res.redirect('/');
@@ -87,7 +84,6 @@ module.exports.ueruenOedenmis = async (req, res, next) => {
         req.flash('error', 'Ungültige UeruenId!');
         return res.redirect('/');
     }
-    next();
 }
 
 

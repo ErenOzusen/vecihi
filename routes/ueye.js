@@ -15,6 +15,13 @@ var nodeBase64 = require('nodejs-base64-converter');
 const crypto = require('crypto');
 var request = require('request');
 var ejsLayouts = require('express-ejs-layouts');
+const Rating = require('../models/rating');
+const multer = require('multer');
+const { storage } = require('../cloudinary');
+const { cloudinary } = require('../cloudinary');
+const upload = multer({ storage });
+const { ObjectId } = require('mongodb');
+
 
 
 const { isLoggedIn, isAuthor, isAdmin, toplamFiyatHesapla, ueruenOedenmis } = require('../middleware.js');
@@ -516,9 +523,56 @@ router.post('/sepeteEkle', catchAsync(async (req, res, next) => {
 }))
 
 
-router.get('/:id/yorumYaz', isLoggedIn, ueruenOedenmis, (req, res) => {
-    console.log('id: ' + req.params.id);
-    res.render('ueye/yorumYaz');
-})
+router.get('/:id/yorumYaz', isLoggedIn, ueruenOedenmis, catchAsync(async (req, res, next) => {
+    const id = req.params.id;
+    ueruen = await UeruenGiyim.findById(id);
+
+    res.render('ueye/yorumYaz', { ueruen });
+}))
+
+router.post('/:id/yorumYaz', isLoggedIn, ueruenOedenmis, upload.array('image'), catchAsync(async (req, res, next) => {
+    //Findet den User
+    const userId = req.user._id;
+    const curentUser = await Ueye.findById(userId);
+
+    //Findet das Produkt welches aufgerufen wurde
+    const ueruenId = req.params.id;
+    ueruen = await UeruenGiyim.findById(ueruenId);
+
+    //Erzeugt ein neues Rating mit dem ausgefüllten Formular
+    const yeniRating = new Rating(req.body.rating);
+    yeniRating.stars = parseInt(yeniRating.stars);
+    yeniRating.images = req.files.map(f => ({ url: f.path, filename: f.filename }));
+    yeniRating.ueye = curentUser;
+    yeniRating.ueruenGiyim = ueruen;
+
+    //Definiert den Endpunkt an dem es am Ende navigiert wird
+    console.log('ueruen: ' + ueruen + 'ueruenFormatted: ' + JSON.stringify(ueruen));
+    const redirectUrl = `/${ueruen.kategori}/${ueruen.id}/detay`;
+
+    const ratingUeyeDB = await Rating.find({ ueye: userId });
+
+    //Hier wird geprüft ob es bereits ratings vom User gibt
+    if (ratingUeyeDB && ratingUeyeDB.length > 0) {
+        console.log('if statement entered');
+        //Hier wird geprüft ob ein rating für das entsprechende Produkt bereits gibt
+        const exists = ratingUeyeDB.some(rating => rating.ueruenGiyim.equals(ueruenId));
+
+        if (exists) {
+            console.log('second if statement entered');
+            req.flash('error', 'Bu ürüne bir yorum verilmisdir.');
+            return res.redirect('/');
+        } else {
+            //Falls es bereits ein Kommentar vom User gib aber nicht zu diesem Produkt dann speichere
+            await yeniRating.save();
+            res.redirect(redirectUrl);
+        }
+    }
+    //Falls es das erste Kommentar vom User ist dann speichere
+    await yeniRating.save();
+    res.redirect(redirectUrl);
+
+
+}))
 
 module.exports = router;

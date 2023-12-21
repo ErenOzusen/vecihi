@@ -37,8 +37,7 @@ const UeyeSchema = new Schema({
     faturaAdres: [{
         type: Schema.Types.ObjectId,
         ref: 'FaturaAdres'
-    }],
-
+    }]
 });
 
 UeyeSchema.plugin(passportLocalMongoose,
