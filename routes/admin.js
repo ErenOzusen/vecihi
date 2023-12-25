@@ -104,40 +104,47 @@ router.get('/anaSayfaGuencelle', isLoggedIn, isAdmin, catchAsync(async (req, res
 }))
 
 router.post('/anaSayfaGuencelle', isLoggedIn, isAdmin, catchAsync(async (req, res, next) => {
-    console.log('_______req.body________: ' + req.body.section);
     const section = req.body.section;
     const tuemUeruenler = await UeruenGiyim.find({});
     res.render("admin/anaSayfaGuencelle", { tuemUeruenler, section });
 }))
 
-router.put('/anaSayfaGuencelle', isLoggedIn, isAdmin, catchAsync(async (req, res, next) => {
+router.put('/anaSayfaGuencelle', isLoggedIn, isAdmin, upload.array('image'), catchAsync(async (req, res, next) => {
     let sectionBirBaslik = '';
     let anaSayfa = new AnaSayfa({});
-    if (req.body.section === 'Ana Sayfa Bölüm Bir') {
-        sectionBirBaslik = req.body.sectionBirBaslik;
-    }
-    let selectedUeruenler = req.body.selectedUeruenler;
-    let sectionBirDB = await AnaSayfa.findOne();
-    if (!sectionBirDB) {
-        if (req.body.section === 'Ana Sayfa Bölüm Bir') {
-            anaSayfa.sectionBirBaslik = sectionBirBaslik;
-            anaSayfa.sectionBirUeruenID = selectedUeruenler;
-        } else {
-            anaSayfa.sectionIkiUeruenID = selectedUeruenler;
-        }
+    if (req.body.section === 'Ana Sayfa Bölüm Reklam') {
+        console.log('first if entered');
+        anaSayfa.images = req.files.map(f => ({ url: f.path, filename: f.filename }));
+        console.log('anaSayfa.images: ' + anaSayfa.images);
         await anaSayfa.save();
     } else {
+        let selectedUeruenler = req.body.selectedUeruenler;
+        let sectionBirDB = await AnaSayfa.findOne();
         if (req.body.section === 'Ana Sayfa Bölüm Bir') {
-            sectionBirDB.sectionBirBaslik = sectionBirBaslik;
-            sectionBirDB.sectionBirUeruenID = selectedUeruenler;
-        } else {
-            sectionBirDB.sectionIkiUeruenID = selectedUeruenler;
+            sectionBirBaslik = req.body.sectionBirBaslik;
         }
 
-        await sectionBirDB.save();
-    }
+        if (!sectionBirDB) {
+            if (req.body.section === 'Ana Sayfa Bölüm Bir') {
+                anaSayfa.sectionBirBaslik = sectionBirBaslik;
+                anaSayfa.sectionBirUeruenID = selectedUeruenler;
+            } else {
+                anaSayfa.sectionIkiUeruenID = selectedUeruenler;
+            }
+            await anaSayfa.save();
+        } else {
+            if (req.body.section === 'Ana Sayfa Bölüm Bir') {
+                sectionBirDB.sectionBirBaslik = sectionBirBaslik;
+                sectionBirDB.sectionBirUeruenID = selectedUeruenler;
+            } else {
+                sectionBirDB.sectionIkiUeruenID = selectedUeruenler;
+            }
 
-    console.log('sectionBirDB: ' + sectionBirDB);
+            await sectionBirDB.save();
+        }
+
+        console.log('sectionBirDB: ' + sectionBirDB);
+    }
     res.redirect('/');
 }))
 module.exports = router;

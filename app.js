@@ -99,7 +99,7 @@ app.get('/', (catchAsync(async (req, res, next) => {
   const anaSayfaUeruenlerSectionIkiIDs = anaSayfaUeruenlerDB.map(anaSayfaUeruenlerDB => anaSayfaUeruenlerDB.sectionIkiUeruenID).flat();
   const anaSayfaUeruenlerSectionBir = await UeruenGiyim.find({ _id: { $in: anaSayfaUeruenlerSectionBirIDs } });
   const anaSayfaUeruenlerSectionIki = await UeruenGiyim.find({ _id: { $in: anaSayfaUeruenlerSectionIkiIDs } });
-
+  console.log('______anaSayfaUeruenlerDB______: ' + anaSayfaUeruenlerDB);
   res.render("index", { isAdmin, anaSayfaUeruenlerSectionBir, anaSayfaUeruenlerSectionIki, anaSayfaUeruenlerDB });
 })))
 
