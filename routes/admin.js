@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const Ueye = require('../models/ueye');
 const UeruenGiyim = require('../models/ueruenGiyim');
+const Rating = require('../models/rating');
 const Kargo = require('../models/kargo');
 const catchAsync = require('../utils/catchAsync');
 const passport = require('passport');
@@ -32,7 +33,7 @@ router.get('/:id/ueruenGuencelle', isLoggedIn, isAdmin, catchAsync(async (req, r
     res.render("admin/ueruenGuencelle", { ueruen });
 }))
 
-router.post('/:id/ueruenGuencelle/resim', isLoggedIn, isAdmin, upload.array('image'), catchAsync(async (req, res, next) => {
+router.put('/:id/ueruenGuencelle/resim', isLoggedIn, isAdmin, upload.array('image'), catchAsync(async (req, res, next) => {
     const { id } = req.params;
     const ueruenDB = await UeruenGiyim.findById(id);
     const imgs = req.files.map(f => ({ url: f.path, filename: f.filename }));
@@ -48,7 +49,7 @@ router.post('/:id/ueruenGuencelle/resim', isLoggedIn, isAdmin, upload.array('ima
     res.redirect(`/${route}/${id}/detay`);
 }))
 
-router.post('/:id/ueruenGuencelle/form', isLoggedIn, isAdmin, upload.array('image'), catchAsync(async (req, res, next) => {
+router.put('/:id/ueruenGuencelle/form', isLoggedIn, isAdmin, upload.array('image'), catchAsync(async (req, res, next) => {
     const { id } = req.params;
     const yeniUeruen = req.body.yeniUeruen;
     const ueruenguencelle = new UeruenGiyim(yeniUeruen);
@@ -67,6 +68,7 @@ router.delete('/:id', isLoggedIn, isAdmin, catchAsync(async (req, res) => {
         kategori = 'vintage';
     }
     await UeruenGiyim.findByIdAndDelete(id);
+
     res.redirect(`/${kategori}/${cesit}`);
     req.flash('success', 'Ürün silindi');
 }))

@@ -16,6 +16,7 @@ const flash = require('connect-flash');
 const ueyeRoutes = require('./routes/ueye');
 const erkekRoutes = require('./routes/erkek')
 const kadinRoutes = require('./routes/kadin');
+const unisexRoutes = require('./routes/unisex');
 const vintageRoutes = require('./routes/vintage');
 const adminRoutes = require('./routes/admin');
 const passport = require('passport');
@@ -77,6 +78,7 @@ app.use((req, res, next) => {
 app.use('/', ueyeRoutes);
 app.use('/erkekGiyim', erkekRoutes);
 app.use('/kadinGiyim', kadinRoutes);
+app.use('/unisexGiyim', unisexRoutes);
 app.use('/admin', adminRoutes);
 app.use('/vintage', vintageRoutes);
 
@@ -173,7 +175,10 @@ app.get('/iptalDegisim', (req, res) => {
   res.render("iptalDegisim");
 })
 
+app.get('/error', (req, res) => {
 
+  res.render("error");
+})
 
 
 

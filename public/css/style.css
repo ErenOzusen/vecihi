@@ -17899,11 +17899,3 @@ footer {
   color: #FF0000;
 
 }
-
-.star-rating input {
-  display: none;
-}
-
-.star-rating label {
-  cursor: default;
-}

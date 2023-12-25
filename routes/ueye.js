@@ -84,6 +84,7 @@ router.get('/hesabim', isLoggedIn, catchAsync(async (req, res) => {
             path: 'ueruenGiyim',
         },
     });
+
     res.render("ueye/hesabim", { siparisler });
 }))
 

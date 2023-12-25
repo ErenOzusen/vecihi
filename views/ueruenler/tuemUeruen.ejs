@@ -55,46 +55,59 @@
                                             <div id="TamSayfaSagSutunIciUrunlerAlani">
                                                 <div id="TamSayfaSagSutunIciUrunlerDengelemeAlani">
                                                     <% for(let ueruen of ueruenler) {%>
-                                                        <div class="TamSayfaSagSutunIciUrunSinirlamaAlani">
-                                                            <div class="TamSayfaSagSutunIciUrunResmiDısCercevesi">
-                                                                <a href="/<%=ueruenRoute %>/<%=ueruen._id%>/detay"><img
-                                                                        src="<%=ueruen.images[0].url%>" alt=""
-                                                                        title=""></a>
-                                                            </div>
+                                                        <% if(ueruen.kategori &&
+                                                            ueruen.kategori.toString()==='unisexGiyim' ) { %>
+                                                            <%ueruenRoute= 'unisexGiyim' %>
+                                                                <% } %>
+                                                                    <div class="TamSayfaSagSutunIciUrunSinirlamaAlani">
+                                                                        <div
+                                                                            class="TamSayfaSagSutunIciUrunResmiDısCercevesi">
+                                                                            <a
+                                                                                href="/<%=ueruenRoute %>/<%=ueruen._id%>/detay"><img
+                                                                                    src="<%=ueruen.images[0].url%>"
+                                                                                    alt="" title=""></a>
+                                                                        </div>
 
-                                                            <div class="TamSayfaSagSutunIciUrunUstBaslikMetni">
-                                                                <% if(ueruen.kategori=='erkekGiyim' ) {%>
-                                                                    Erkek Giyim
-                                                                    <% } else if (ueruen.kategori='kadinGiyim' ) {%>
-                                                                        Kadin Giyim
-                                                                        <% } %>
-                                                            </div>
+                                                                        <div
+                                                                            class="TamSayfaSagSutunIciUrunUstBaslikMetni">
+                                                                            <% if(ueruen.kategori=='erkekGiyim' ) {%>
+                                                                                Erkek Giyim
+                                                                                <% } else if
+                                                                                    (ueruen.kategori='kadinGiyim' ) {%>
+                                                                                    Kadin Giyim
+                                                                                    <% } %>
+                                                                        </div>
 
-                                                            <div class="TamSayfaSagSutunIciUrunAltBaslikMetni">
+                                                                        <div
+                                                                            class="TamSayfaSagSutunIciUrunAltBaslikMetni">
 
-                                                                <%= ueruen.tarif%>
-                                                            </div>
+                                                                            <%= ueruen.tarif%>
+                                                                        </div>
 
-                                                            <div class="TamSayfaSagSutunIciUrunPuanYildizlariAlani">
+                                                                        <div
+                                                                            class="TamSayfaSagSutunIciUrunPuanYildizlariAlani">
 
-                                                                <img src="/images/star-1.png" alt="" title="">
+                                                                            <img src="/images/star-1.png" alt=""
+                                                                                title="">
 
-                                                            </div>
+                                                                        </div>
 
-                                                            <div class="TamSayfaSagSutunIciUrunFiyatlariAlani mb-1">
-
-
-                                                                <span class="TamSayfaSagSutunIciUrunAltBaslikMetni">
-
-                                                                    <%=ueruen.fiyat%> TL
-
-                                                                </span>
-
-                                                            </div>
+                                                                        <div
+                                                                            class="TamSayfaSagSutunIciUrunFiyatlariAlani mb-1">
 
 
-                                                        </div>
-                                                        <% } %>
+                                                                            <span
+                                                                                class="TamSayfaSagSutunIciUrunAltBaslikMetni">
+
+                                                                                <%=ueruen.fiyat%> TL
+
+                                                                            </span>
+
+                                                                        </div>
+
+
+                                                                    </div>
+                                                                    <% } %>
                                                 </div>
                                             </div>
                                         </div>
