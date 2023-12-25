@@ -72,21 +72,35 @@
             const flexCheckDefault2 = document.getElementById('flexCheckDefault2');
             const flexCheckDefault3 = document.getElementById('flexCheckDefault3');
             const flexCheckDefault4 = document.getElementById('flexCheckDefault4');
+            const flexCheckDefault5 = document.getElementById('flexCheckDefault5');
+            const flexCheckDefault6 = document.getElementById('flexCheckDefault6');
+            const flexCheckDefault7 = document.getElementById('flexCheckDefault7');
+            const flexCheckDefault8 = document.getElementById('flexCheckDefault8');
+            const flexCheckDefault9 = document.getElementById('flexCheckDefault9');
+            const flexCheckDefault10 = document.getElementById('flexCheckDefault10');
+            const flexCheckDefault11 = document.getElementById('flexCheckDefault11');
             const radioLabel = document.getElementById('radioLabel');
             const checkboxes = document.querySelectorAll('.form-check-input');
             const submitButton = document.getElementById('submitButton');
             const cesit = cesitDropDown2.getAttribute('data-test');
 
+
             handleCesitDropDownChange();
             cesitDropDown1.addEventListener('change', handleCesitDropDownChange);
+            cesitDropDown2.addEventListener('change', handleCesitDropDownChange2);
             submitButton.addEventListener('click', validateCheckboxes);
 
-            function handleCesitDropDownChange() {
+            function handleCesitDropDownChange2() {
+                enableAllCheckboxes();
+                if (cesitDropDown2.value === 'canta') {
+                    disableSpecificCheckboxes();
+                }
+            }
 
+            function handleCesitDropDownChange() {
                 cesitDropDown2.innerHTML = '';
 
                 if (cesitDropDown1.value === 'erkekGiyim' || cesitDropDown1.value === 'kadinGiyim' || cesitDropDown1.value === 'unisexGiyim') {
-
                     const option1 = document.createElement('option');
                     option1.value = 'tshirt';
                     option1.textContent = 'Tshirt';
@@ -96,7 +110,6 @@
                     const option3 = document.createElement('option');
                     option3.value = 'canta';
                     option3.textContent = 'Çanta';
-
 
                     cesitDropDown2.appendChild(option1);
                     cesitDropDown2.appendChild(option2);
@@ -111,13 +124,11 @@
                         }
                     }
 
-                    flexCheckDefault1.disabled = false;
-                    flexCheckDefault2.disabled = false;
-                    flexCheckDefault3.disabled = false;
-                    flexCheckDefault4.disabled = false;
+                    enableAllCheckboxes();
+
+
 
                 } else if (cesitDropDown1.value === 'vintageUeruenler') {
-
                     const option1 = document.createElement('option');
                     option1.value = 'anahtarlik';
                     option1.textContent = 'Anahtarlık';
@@ -132,6 +143,7 @@
                     cesitDropDown2.appendChild(option2);
                     cesitDropDown2.appendChild(option3);
 
+
                     if (cesit) {
                         for (let i = 0; i < cesitDropDown2.options.length; i++) {
                             if (cesitDropDown2.options[i].value === cesit) {
@@ -141,12 +153,11 @@
                         }
                     }
 
-                    flexCheckDefault1.disabled = true;
-                    flexCheckDefault2.disabled = true;
-                    flexCheckDefault3.disabled = true;
-                    flexCheckDefault4.disabled = true;
+
+                    disableAllCheckboxes();
                 }
             }
+
             function validateCheckboxes(event) {
                 let atLeastOneSelected = false;
                 checkboxes.forEach(checkbox => {
@@ -157,11 +168,32 @@
 
                 if (!atLeastOneSelected && flexCheckDefault1.disabled == false) {
                     event.preventDefault();
-                    alert('Lütfen boyut seceneklerden minimum bir tane secin');
+                    alert('Lütfen boyut seçeneklerden en az bir tanesini seçin');
                 }
+            }
+
+            function enableAllCheckboxes() {
+                checkboxes.forEach(checkbox => {
+                    checkbox.disabled = false;
+                });
+            }
+
+            function disableAllCheckboxes() {
+                checkboxes.forEach(checkbox => {
+                    checkbox.disabled = true;
+                });
+            }
+
+            function disableSpecificCheckboxes() {
+                console.log('disable specific checkboxes entered');
+                flexCheckDefault1.disabled = true;
+                flexCheckDefault2.disabled = true;
+                flexCheckDefault3.disabled = true;
+                flexCheckDefault4.disabled = true;
             }
         });
     </script>
+
     <script>
         $("input[data-type='currency']").on({
             keyup: function () {

@@ -23,10 +23,13 @@ const UeruenGiyimSchema = new Schema({
         enum: ['erkekGiyim', 'kadinGiyim', 'unisexGiyim', 'vintageUeruenler'],
         required: true
     },
+    renk: {
+        type: [String],
+        required: false
+    },
     beden: {
         type: [String],
-        //test
-        required: true
+        required: false
     },
     fiyat: {
         type: Number,

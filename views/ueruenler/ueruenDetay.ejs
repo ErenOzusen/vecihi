@@ -61,7 +61,7 @@
                     </div>
 
                     <div id="UrunDetaySayfalariUrunVaryantVeFiyatAlani">
-                        <% if(ueruen.kategori !=='vintageUeruenler' ) { %>
+                        <% if(ueruen.kategori !=='vintageUeruenler' && ueruen.cesit !=='canta' ) { %>
                             <div id="UrunDetaySayfalariUrunVaryantlarAlani">
                                 <select name="UrunBedeni" class="FormElemanlariSelectlerii">
                                     <option selected="selected">Beden Seçiniz</option>
@@ -74,11 +74,24 @@
                                 </select>
                             </div>
                             <% } %>
-                                <div id=" UrunDetaySayfalariUrunFiyatlandirmaAlani">
-                                    <span class="UrunDetaySayfasiUrunFiyatiAlani">
-                                        <%=ueruen.fiyat %> TL
-                                    </span>
-                                </div>
+                                <% if(ueruen.kategori !=='vintageUeruenler' ) { %>
+                                    <div id="UrunDetaySayfalariUrunVaryantlarAlani">
+                                        <select name="UrunRenk" class="FormElemanlariSelectlerii">
+                                            <option selected="selected">Renk Seçiniz</option>
+                                            <% for(let i=0; i<ueruen.renk.length; i++) {%>
+                                                <option value="">
+                                                    <%=ueruen.renk[i] %>
+                                                </option>
+
+                                                <% } %>
+                                        </select>
+                                    </div>
+                                    <% } %>
+                                        <div id=" UrunDetaySayfalariUrunFiyatlandirmaAlani">
+                                            <span class="UrunDetaySayfasiUrunFiyatiAlani">
+                                                <%=ueruen.fiyat %> TL
+                                            </span>
+                                        </div>
                     </div>
 
 
