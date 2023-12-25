@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const Ueye = require('../models/ueye');
 const UeruenGiyim = require('../models/ueruenGiyim');
+const AnaSayfa = require('../models/anaSayfa');
 const Rating = require('../models/rating');
 const Kargo = require('../models/kargo');
 const catchAsync = require('../utils/catchAsync');
@@ -97,4 +98,46 @@ router.post('/kargo', isLoggedIn, isAdmin, upload.single('image'), catchAsync(as
     res.redirect('/');
 }))
 
+router.get('/anaSayfaGuencelle', isLoggedIn, isAdmin, catchAsync(async (req, res, next) => {
+    const tuemUeruenler = await UeruenGiyim.find({});
+    res.render("admin/anaSayfaGuencelle", { tuemUeruenler });
+}))
+
+router.post('/anaSayfaGuencelle', isLoggedIn, isAdmin, catchAsync(async (req, res, next) => {
+    console.log('_______req.body________: ' + req.body.section);
+    const section = req.body.section;
+    const tuemUeruenler = await UeruenGiyim.find({});
+    res.render("admin/anaSayfaGuencelle", { tuemUeruenler, section });
+}))
+
+router.put('/anaSayfaGuencelle', isLoggedIn, isAdmin, catchAsync(async (req, res, next) => {
+    let sectionBirBaslik = '';
+    let anaSayfa = new AnaSayfa({});
+    if (req.body.section === 'Ana Sayfa Bölüm Bir') {
+        sectionBirBaslik = req.body.sectionBirBaslik;
+    }
+    let selectedUeruenler = req.body.selectedUeruenler;
+    let sectionBirDB = await AnaSayfa.findOne();
+    if (!sectionBirDB) {
+        if (req.body.section === 'Ana Sayfa Bölüm Bir') {
+            anaSayfa.sectionBirBaslik = sectionBirBaslik;
+            anaSayfa.sectionBirUeruenID = selectedUeruenler;
+        } else {
+            anaSayfa.sectionIkiUeruenID = selectedUeruenler;
+        }
+        await anaSayfa.save();
+    } else {
+        if (req.body.section === 'Ana Sayfa Bölüm Bir') {
+            sectionBirDB.sectionBirBaslik = sectionBirBaslik;
+            sectionBirDB.sectionBirUeruenID = selectedUeruenler;
+        } else {
+            sectionBirDB.sectionIkiUeruenID = selectedUeruenler;
+        }
+
+        await sectionBirDB.save();
+    }
+
+    console.log('sectionBirDB: ' + sectionBirDB);
+    res.redirect('/');
+}))
 module.exports = router;

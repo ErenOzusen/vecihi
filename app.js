@@ -22,6 +22,8 @@ const adminRoutes = require('./routes/admin');
 const passport = require('passport');
 const LocalStrategy = require('passport-local');
 const methodOverride = require('method-override');
+const AnaSayfa = require('./models/anaSayfa');
+const UeruenGiyim = require('./models/ueruenGiyim');
 //var ejsLayouts = require('express-ejs-layouts');
 var microtime = require('microtime');
 var crypto = require('crypto');
@@ -82,10 +84,24 @@ app.use('/unisexGiyim', unisexRoutes);
 app.use('/admin', adminRoutes);
 app.use('/vintage', vintageRoutes);
 
-app.get('/', (req, res) => {
+app.get('/', (catchAsync(async (req, res, next) => {
+  const currentUser = req.user;
+  var isAdmin = false;
+  const admin = process.env.ADMIN;
+  if (currentUser !== undefined && admin.match(currentUser.email)) {
+    isAdmin = true;
+  } else {
+    isAdmin = false;
+  }
 
-  res.render("index");
-})
+  const anaSayfaUeruenlerDB = await AnaSayfa.find({});
+  const anaSayfaUeruenlerSectionBirIDs = anaSayfaUeruenlerDB.map(anaSayfaUeruenlerDB => anaSayfaUeruenlerDB.sectionBirUeruenID).flat();
+  const anaSayfaUeruenlerSectionIkiIDs = anaSayfaUeruenlerDB.map(anaSayfaUeruenlerDB => anaSayfaUeruenlerDB.sectionIkiUeruenID).flat();
+  const anaSayfaUeruenlerSectionBir = await UeruenGiyim.find({ _id: { $in: anaSayfaUeruenlerSectionBirIDs } });
+  const anaSayfaUeruenlerSectionIki = await UeruenGiyim.find({ _id: { $in: anaSayfaUeruenlerSectionIkiIDs } });
+
+  res.render("index", { isAdmin, anaSayfaUeruenlerSectionBir, anaSayfaUeruenlerSectionIki, anaSayfaUeruenlerDB });
+})))
 
 /* app.get('/:id', catchAsync(async (req, res) => {
   const ueye = await Ueye.findById(req.params.id);

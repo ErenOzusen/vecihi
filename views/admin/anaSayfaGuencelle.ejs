@@ -1,0 +1,40 @@
+<% layout('layouts/boilerplate') %>
+
+    <div id="TamSayfaAlani">
+        <div class="indexContainer">
+            <h3>
+                <%=section%>
+            </h3>
+            <form action="/admin/anaSayfaGuencelle?_method=PUT" method="POST">
+                <input type="hidden" name="section" value="<%=section%>">
+                <%if(section==='Ana Sayfa Bölüm Bir' ){%>
+                    <div
+                        class="form-control mb-15 d-flex flex-direction-column justify-content-center justify-content-between">
+                        <label for="baslik">Baslik</label>
+                        <textarea id="baslik" name="sectionBirBaslik" type="String" style="width: 50%; height: 30px;"
+                            required></textarea>
+                    </div>
+                    <% } %>
+                        <% for (let i=0; i < tuemUeruenler.length; i +=6) { %>
+                            <div class="row">
+                                <% for (let j=i; j < i + 6 && j < tuemUeruenler.length; j++) { %>
+                                    <div class="col-2">
+                                        <img src="<%= tuemUeruenler[j].images[0].url %>" alt="" style="width: 100%;">
+                                        <div>
+                                            <%= tuemUeruenler[j].kategori %>
+                                        </div>
+                                        <div>
+                                            <%= tuemUeruenler[j].cesit %>
+                                        </div>
+                                        <input type="checkbox" name="selectedUeruenler"
+                                            value="<%= tuemUeruenler[j]._id %>">
+                                    </div>
+                                    <% } %>
+                            </div>
+                            <% } %>
+                                <div class="ButonlarIcinKapsamaAlani"><input type="submit"
+                                        value="Yeni <%=section%> ekle" class="FormElemanlariYesilButonlar"
+                                        id="submitButton"></div>
+            </form>
+        </div>
+    </div>
