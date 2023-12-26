@@ -295,12 +295,7 @@ router.post('/alisverisSepetiFatura', isLoggedIn, catchAsync(async (req, res) =>
 
 }))
 
-router.get('/alisverisSepetiOedeme', isLoggedIn, toplamFiyatHesapla, catchAsync(async (req, res) => {
-    const userId = req.user._id;
-    const sepet = await AlisverisSepeti.findOne({ ueye: userId }).populate('ueruenGiyim');
-    toplamFiyat = res.locals.toplamFiyat;
-    res.render("ueye/alisverisSepetiOedeme", { sepet, toplamFiyat });
-}))
+
 
 //alisversiSepetiFatura.ejs den yolanan ikinci siparis bilgileri
 router.post('/alisverisSepetiOedeme', isLoggedIn, catchAsync(async (req, res) => {
