@@ -7307,6 +7307,8 @@ footer {
   cursor: pointer;
 }
 
+
+
 .TamSayfaCerceveAlaniİciAlisverisSepetiSayfasiFiyatAlani {
   display: inline-block;
   margin: o auto;
@@ -15009,8 +15011,8 @@ footer {
   text-align: left;
   text-decoration: none;
   vertical-align: top;
+  background-color: #f90;
 }
-
 
 @media only screen and (min-width:1200px) {
 
@@ -15091,9 +15093,7 @@ footer {
 }
 
 #UrunDetaySayfalariUrunVaryantlarAlani {
-  height: 35px;
-  min-height: 35px;
-  max-height: 35px;
+  height: auto;
   margin: 0 auto;
   padding: 0;
   overflow: hidden;

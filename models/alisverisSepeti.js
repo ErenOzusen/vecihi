@@ -21,6 +21,16 @@ const AlisverisSepetiSchema = new Schema({
                 required: true,
                 unique: false,
             },
+            beden: {
+                type: String,
+                required: false,
+                unique: false,
+            },
+            renk: {
+                type: String,
+                required: false,
+                unique: false,
+            },
         },
     ],
 

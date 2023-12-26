@@ -19,6 +19,14 @@ const SiparislerSchema = new Schema({
                 type: Number,
                 required: true,
             },
+            beden: {
+                type: String,
+                required: false,
+            },
+            renk: {
+                type: String,
+                required: false,
+            },
 
             tarih: {
                 type: String, // Datum als Zeichenkette speichern

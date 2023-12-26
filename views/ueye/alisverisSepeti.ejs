@@ -12,7 +12,6 @@
                     </div>
                 </div>
                 <% if (typeof ueruenler !=='undefined' && ueruenler.length> 0) { %>
-                    <input type="hidden" name="ueruenler" value="<%=ueruenler%>" id="ueruenlerInput">
                     <% let counter=1; %>
                         <% for(let ueruen of ueruenler) { %>
 
@@ -44,6 +43,12 @@
                                                             <div
                                                                 class="TamSayfaCerceveAlaniİciAlisverisSepetiSayfasiUrunAdiAlani">
                                                                 <%= ueruen.tarif%>
+                                                            </div>
+                                                            <div class="">
+                                                                Beden: <%= ueruenDetaylar[0].ueruenBeden%>
+                                                            </div>
+                                                            <div class="">
+                                                                Renk: <%= ueruenDetaylar[0].ueruenRenk%>
                                                             </div>
                                                             <div
                                                                 class="TamSayfaCerceveAlaniİciAlisverisSepetiSayfasiUrunAdediAlani">
@@ -100,7 +105,7 @@
                 </div>
 
                 <form action="/alisverisSepetiFatura" method="POST" id="meinFormular">
-                    <input type="hidden" name="ueruen" id="ueruenlerInputPost" value="">
+                    <input type="hidden" name="ueruenDetaylar" value="<%= JSON.stringify(ueruenDetaylar) %>">
                     <input type="hidden" name="ueruenInformationlar" id="ueruenInformationlar" value="">
                     <div class="TamSayfaCerceveAlaniİciAlisverisSepetiSiparisOzetiIciButonAlani">
                         <span class="TamSayfaCerceveAlaniİciAlisverisSepetiSiparisOzetiIciButonuMetni"

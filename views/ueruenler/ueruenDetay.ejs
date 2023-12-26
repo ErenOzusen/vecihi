@@ -27,158 +27,167 @@
                         </div>
                     </div>
                 </div>
-
-                <div id="UrunDetaySayfalariBaslikVeIslemlerAlani">
-                    <div id="UrunDetaySayfalariUrunBasligiAlani">
-                        <%=ueruen.tarif %>
-                    </div>
-
-                    <div id="UrunDetaySayfalariUrunMarkasiAlani">
-                        <img src="/images/vecihi-urundetay.png" alt="" title="">
-                    </div>
-
-                    <div id="UrunDetaySayfalariPaylasVeSepeteEkleButonlariAlani">
-                        <div id="UrunDetaySayfalariInstagramPaylasButonuAlani">
-                            <img src="/images/instagram-urundetay.png" alt="" title="">
+                <form id="sepetForm" action="/sepeteEkle" method="POST">
+                    <div id="UrunDetaySayfalariBaslikVeIslemlerAlani">
+                        <div id="UrunDetaySayfalariUrunBasligiAlani">
+                            <%=ueruen.tarif %>
                         </div>
 
-                        <div id="UrunDetaySayfalariTwitterPaylasButonuAlani">
-                            <img src="/images/twitter-detaysayfasi.png" alt="" title="">
+                        <div id="UrunDetaySayfalariUrunMarkasiAlani">
+                            <img src="/images/vecihi-urundetay.png" alt="" title="">
                         </div>
 
-                        <div id="UrunDetaySayfalariFavoriListesineEkleButonuAlani">
-                            <img src="/images/favourite-urundetay.png" alt="" title="">
-                        </div>
+                        <div id="UrunDetaySayfalariPaylasVeSepeteEkleButonlariAlani">
+                            <div id="UrunDetaySayfalariInstagramPaylasButonuAlani">
+                                <img src="/images/instagram-urundetay.png" alt="" title="">
+                            </div>
 
-                        <div id="UrunDetaySayfalariSepeteEkleButonuAlani">
-                            <form action="/sepeteEkle" method="POST">
+                            <div id="UrunDetaySayfalariTwitterPaylasButonuAlani">
+                                <img src="/images/twitter-detaysayfasi.png" alt="" title="">
+                            </div>
+
+                            <div id="UrunDetaySayfalariFavoriListesineEkleButonuAlani">
+                                <img src="/images/favourite-urundetay.png" alt="" title="">
+                            </div>
+
+
+                            <div class="TamSayfaCerceveAlaniİciAlisverisSepetiSiparisOzetiIciButonAlani">
+                                <input type="hidden" name="ueruenID" value="<%=ueruen._id%>">
                                 <span id="UrunDetaySayfalariSepeteEkleButonuIconu"><img src="/images/add-to-cart.png"
                                         alt="" title=""></span>
-                                <input type="hidden" name="ueruenID" value="<%=ueruen._id%>">
-                                <button id="UrunDetaySayfalariSepeteEkleButonuMetni" type="submit">Sepete Ekle</button>
-                            </form>
-                        </div>
-                    </div>
-
-                    <div id="UrunDetaySayfalariUrunVaryantVeFiyatAlani">
-                        <% if(ueruen.kategori !=='vintageUeruenler' && ueruen.cesit !=='canta' ) { %>
-                            <div id="UrunDetaySayfalariUrunVaryantlarAlani">
-                                <select name="UrunBedeni" class="FormElemanlariSelectlerii">
-                                    <option selected="selected">Beden Seçiniz</option>
-                                    <% for(let i=0; i<ueruen.beden.length; i++) {%>
-                                        <option value="">
-                                            <%=ueruen.beden[i] %>
-                                        </option>
-
-                                        <% } %>
-                                </select>
+                                <span class="TamSayfaCerceveAlaniİciAlisverisSepetiSiparisOzetiIciButonuMetni"
+                                    onclick="submitSepetForm()">Sepete
+                                    Ekle</span>
                             </div>
-                            <% } %>
-                                <% if(ueruen.kategori !=='vintageUeruenler' ) { %>
-                                    <div id="UrunDetaySayfalariUrunVaryantlarAlani">
-                                        <select name="UrunRenk" class="FormElemanlariSelectlerii">
-                                            <option selected="selected">Renk Seçiniz</option>
-                                            <% for(let i=0; i<ueruen.renk.length; i++) {%>
-                                                <option value="">
-                                                    <%=ueruen.renk[i] %>
-                                                </option>
-
-                                                <% } %>
-                                        </select>
-                                    </div>
-                                    <% } %>
-                                        <div id=" UrunDetaySayfalariUrunFiyatlandirmaAlani">
-                                            <span class="UrunDetaySayfasiUrunFiyatiAlani">
-                                                <%=ueruen.fiyat %> TL
-                                            </span>
-                                        </div>
-                    </div>
-
-
-                    <div id="UrundetaySayfalariUrununKargoIslemleriDetayAlani">
-                        <div id="UrundetaySayfalariUrunKargoIslemleriResimAlani">
-                            <img src="/images/fast.png" alt="" title="">
                         </div>
-                        <div id="UrundetaySayfalariUrunKargoIslemleriMetni">
-                            Sipariş maksimum 24 saat içerisinde kargoya verilir.
-                        </div>
-                    </div>
-
-                    <div id="UrundetaySayfalariUrununHizliGonderiDetayAlani">
-                        <div id="UrundetaySayfalariUrunHizliGonderiResimAlani">
-                            <img src="/images/fast.png" alt="" title="">
-                        </div>
-                        <div id="UrundetaySayfalariUrununHizliGonderiMetni">
-                            İlgili ürün hızlı teslimat kapsamındadır aynı gün kargoya verilir.
-                        </div>
-                    </div>
-
-                </div>
 
 
+                        <div id="UrunDetaySayfalariUrunVaryantVeFiyatAlani">
+                            <% if(ueruen.kategori !=='vintageUeruenler' && ueruen.cesit !=='canta' ) { %>
+                                <div id="UrunDetaySayfalariUrunVaryantlarAlani">
+                                    <div>Beden Seçiniz</div>
+                                    <select name="ueruenBeden" class="FormElemanlariSelectlerii" required>
+                                        <% for(let i=0; i<ueruen.beden.length; i++) {%>
+                                            <option value="<%=ueruen.beden[i] %>">
+                                                <%=ueruen.beden[i] %>
+                                            </option>
 
-
-                <div id="UrundetaySayfalariUrununAciklamaAlani">
-                    <div id="UrundetaySayfalariUrununAciklamaBaslikMetni">
-                        Açıklama
-                    </div>
-                    <div id="UrundetaySayfalariUrununAciklamaIcerikMetni">
-                        <% const originalString=ueruen.aciklama; %>
-                            <% const delimiter="/break/" ; %>
-
-                                <% const splittedArray=originalString.split(delimiter); %>
-                                    <% for(let i=0; i<splittedArray.length; i++) {%>
-                                        <%=splittedArray[i] %> <br>
                                             <% } %>
-                    </div>
-                </div>
-
-
-                <% if(ratingUeruenDB && ratingUeruenDB.length> 0) { %>
-                    <div id=" UrundetaySayfalariUrununYorumlariAlani">
-                        <div id="UrundetaySayfalariUrununYorumlariBaslikMetni">
-                            Yorumlar
-                        </div>
-                        <% for(let rating of ratingUeruenDB) { %>
-                            <div class="UrundetaySayfalariUrununYorumlariIcerikMetni">
-                                <p>
-                                    <%=rating.ueye.isim%>
-                                </p>
-                                <p class="starability-result" data-rating="<%=rating.stars%>"></p>
-
-                                <p>
-                                    <%=rating.yorum%>
-                                </p>
-
-                                <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel"
-                                    style="width: 30%;">
-                                    <div class="carousel-inner">
-                                        <% for(let i=0; i<rating.images.length; i++) { %>
-
-                                            <div class="carousel-item active">
-                                                <img src="<%=rating.images[i].url%>" class="d-block w-100">
-                                            </div>
-                                            <% } %>
-
-                                                <button class="carousel-control-prev" type="button"
-                                                    data-bs-target="#carouselExampleControls" data-bs-slide="prev">
-                                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                                    <span class="visually-hidden">Previous</span>
-                                                </button>
-                                                <button class="carousel-control-next" type="button"
-                                                    data-bs-target="#carouselExampleControls" data-bs-slide="next">
-                                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                                    <span class="visually-hidden">Next</span>
-                                                </button>
-                                    </div>
+                                    </select>
                                 </div>
-                                <hr>
-
                                 <% } %>
-                            </div>
+                                    <% if(ueruen.kategori !=='vintageUeruenler' ) { %>
+                                        <div id="UrunDetaySayfalariUrunVaryantlarAlani">
+                                            <div>Renk Seçiniz</div>
+                                            <select name="ueruenRenk" class="FormElemanlariSelectlerii" required>
+                                                <% for(let i=0; i<ueruen.renk.length; i++) {%>
+                                                    <option value="<%=ueruen.renk[i] %>">
+                                                        <%=ueruen.renk[i] %>
+                                                    </option>
 
+                                                    <% } %>
+                                            </select>
+                                        </div>
+                                        <% } %>
+                                            <div id=" UrunDetaySayfalariUrunFiyatlandirmaAlani">
+                                                <span class="UrunDetaySayfasiUrunFiyatiAlani">
+                                                    <%=ueruen.fiyat %> TL
+                                                </span>
+                                            </div>
+                        </div>
 
+                </form>
+                <div id="UrundetaySayfalariUrununKargoIslemleriDetayAlani">
+                    <div id="UrundetaySayfalariUrunKargoIslemleriResimAlani">
+                        <img src="/images/fast.png" alt="" title="">
                     </div>
-                    <% } %>
+                    <div id="UrundetaySayfalariUrunKargoIslemleriMetni">
+                        Sipariş maksimum 24 saat içerisinde kargoya verilir.
+                    </div>
+                </div>
+
+                <div id="UrundetaySayfalariUrununHizliGonderiDetayAlani">
+                    <div id="UrundetaySayfalariUrunHizliGonderiResimAlani">
+                        <img src="/images/fast.png" alt="" title="">
+                    </div>
+                    <div id="UrundetaySayfalariUrununHizliGonderiMetni">
+                        İlgili ürün hızlı teslimat kapsamındadır aynı gün kargoya verilir.
+                    </div>
+                </div>
+
             </div>
+
+
+
+
+            <div id="UrundetaySayfalariUrununAciklamaAlani">
+                <div id="UrundetaySayfalariUrununAciklamaBaslikMetni">
+                    Açıklama
+                </div>
+                <div id="UrundetaySayfalariUrununAciklamaIcerikMetni">
+                    <% const originalString=ueruen.aciklama; %>
+                        <% const delimiter="/break/" ; %>
+
+                            <% const splittedArray=originalString.split(delimiter); %>
+                                <% for(let i=0; i<splittedArray.length; i++) {%>
+                                    <%=splittedArray[i] %> <br>
+                                        <% } %>
+                </div>
+            </div>
+
+
+            <% if(ratingUeruenDB && ratingUeruenDB.length> 0) { %>
+                <div id=" UrundetaySayfalariUrununYorumlariAlani">
+                    <div id="UrundetaySayfalariUrununYorumlariBaslikMetni">
+                        Yorumlar
+                    </div>
+                    <% for(let rating of ratingUeruenDB) { %>
+                        <div class="UrundetaySayfalariUrununYorumlariIcerikMetni">
+                            <p>
+                                <%=rating.ueye.isim%>
+                            </p>
+                            <p class="starability-result" data-rating="<%=rating.stars%>"></p>
+
+                            <p>
+                                <%=rating.yorum%>
+                            </p>
+
+                            <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel"
+                                style="width: 30%;">
+                                <div class="carousel-inner">
+                                    <% for(let i=0; i<rating.images.length; i++) { %>
+
+                                        <div class="carousel-item active">
+                                            <img src="<%=rating.images[i].url%>" class="d-block w-100">
+                                        </div>
+                                        <% } %>
+
+                                            <button class="carousel-control-prev" type="button"
+                                                data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                                <span class="visually-hidden">Previous</span>
+                                            </button>
+                                            <button class="carousel-control-next" type="button"
+                                                data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                                <span class="visually-hidden">Next</span>
+                                            </button>
+                                </div>
+                            </div>
+                            <hr>
+
+                            <% } %>
+                        </div>
+
+
+                </div>
+                <% } %>
         </div>
+    </div>
+
+    <script>
+        function submitSepetForm() {
+            // Formular abschicken
+            document.getElementById("sepetForm").submit();
+        }
+    </script>

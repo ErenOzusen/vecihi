@@ -209,12 +209,14 @@ router.get('/alisverisSepeti', catchAsync(async (req, res) => {
     curentUser = req.user;
 
     if (req.session.ueruenIDs) {
+        const ueruenDetaylar = req.session.ueruenDetaylar;
+        console.log('ueruenDetaylar:' + JSON.stringify(ueruenDetaylar));
         const ueruenIDs = req.session.ueruenIDs;
         for (let id of ueruenIDs) {
             ueruen = await UeruenGiyim.findById(id);
             ueruenler.push(ueruen);
         }
-        res.render("ueye/alisverisSepeti", { ueruenler });
+        res.render("ueye/alisverisSepeti", { ueruenler, ueruenDetaylar });
 
     } else {
         res.render("./alisverisSepetiBos");
@@ -226,7 +228,13 @@ router.post('/alisverisSepeti', catchAsync(async (req, res) => {
     const idToRemove = req.body.ueruenID;
 
     if (req.session.ueruenIDs && idToRemove) {
-        req.session.ueruenIDs = req.session.ueruenIDs.filter((ueruenID) => ueruenID !== idToRemove);
+        const indexToRemove = req.session.ueruenIDs.indexOf(idToRemove);
+
+        if (indexToRemove !== -1) {
+            // Entferne das Element aus ueruenIDs und ueruenDetaylar
+            req.session.ueruenIDs.splice(indexToRemove, 1);
+            req.session.ueruenDetaylar.splice(indexToRemove, 1);
+        }
     }
     res.redirect('/alisverisSepeti');
 }))
@@ -235,21 +243,27 @@ router.post('/alisverisSepeti', catchAsync(async (req, res) => {
 
 //alisverisSepeti.ejs den yolanan ilk siparis bilgileri
 router.post('/alisverisSepetiFatura', isLoggedIn, catchAsync(async (req, res) => {
+    const ueruenDetaylarString = req.body.ueruenDetaylar;
+    const ueruenDetaylar = JSON.parse(ueruenDetaylarString);
     const ueruenInformation = JSON.parse(req.body.ueruenInformationlar);
-    console.log('ueruenInformation = ' + JSON.stringify(ueruenInformation) + ueruenInformation.length);
     const userId = req.user._id;
     const curentUser = await Ueye.findById(userId)
         .populate('teslimatAdres')
         .populate('faturaAdres');
     const kargo = await Kargo.findOne();
     const maxEntry = ueruenInformation.reduce((max, entry) => (entry.gesamtpreis > max.gesamtpreis) ? entry : max, ueruenInformation[0]);
-    // Extrahiere die dazugehörigen Elemente
     let { ueruenID, quantity, gesamtpreis, ueruenToplam, kdv } = maxEntry;
-    console.log('maxEntry: ' + maxEntry + 'quantity: ' + quantity + 'gesamtpreis: ' + gesamtpreis + 'ueruenToplam: ' + ueruenToplam + 'kdv: ' + kdv);
     for (let i = 0; i < ueruenInformation.length; i++) {
         const ueruenGiyimId = ueruenInformation[i].ueruenID;
         const miktar = ueruenInformation[i].quantity;
+
         const sepetUeruenBilgi = await UeruenGiyim.findById(ueruenGiyimId);
+        const sepetUeruenYeni = new UeruenGiyim();
+        sepetUeruenYeni.id = sepetUeruenBilgi.id;
+        sepetUeruenYeni.cesit = sepetUeruenBilgi.cesit;
+        sepetUeruenYeni.kategori = sepetUeruenBilgi.kategori;
+        sepetUeruenYeni.fiyat = sepetUeruenBilgi.fiyat;
+        sepetUeruenYeni.aciklama = sepetUeruenBilgi.aciklama;
 
         //hem sepet hem ürün eklenmismi diye DB soruyorus
         const ueruenEkliBile = await AlisverisSepeti.findOne({ ueye: userId, 'ueruenler.ueruenGiyim': ueruenGiyimId });
@@ -269,9 +283,13 @@ router.post('/alisverisSepetiFatura', isLoggedIn, catchAsync(async (req, res) =>
         else if (sepetEkliBile) {
             console.log('else if entered');
             const yeniUeruen = {
-                ueruenGiyim: sepetUeruenBilgi,
+                ueruenGiyim: sepetUeruenYeni,
                 miktar: miktar,
+                beden: ueruenDetaylar[i].ueruenBeden,
+                renk: ueruenDetaylar[i].ueruenRenk,
             };
+
+            console.log('yeniÜrün: ' + JSON.stringify(yeniUeruen));
             sepetEkliBile.ueruenler.push(yeniUeruen);
             await sepetEkliBile.save();
         }
@@ -279,20 +297,24 @@ router.post('/alisverisSepetiFatura', isLoggedIn, catchAsync(async (req, res) =>
         else {
             console.log('else entered');
             const yeniUeruen = {
-                ueruenGiyim: sepetUeruenBilgi,
+                ueruenGiyim: sepetUeruenYeni,
                 miktar: miktar,
+                beden: ueruenDetaylar[i].ueruenBeden,
+                renk: ueruenDetaylar[i].ueruenRenk,
             };
+
             const sepetYeni = new AlisverisSepeti({ "ueye": curentUser, "ueruenler": [yeniUeruen] });
+            console.log('sepetYeni: ' + JSON.stringify(sepetYeni));
             await sepetYeni.save();
         }
     }
     const sepet = await AlisverisSepeti.findOne({ ueye: userId }).populate('ueruenler.ueruenGiyim');
-    sepet.toplamFiyat = gesamtpreis
-    await sepet.save();
-    console.log('sepet son: ' + sepet);
+
+    console.log('sepet son: ' + sepet.ueruenler[0]);
     gesamtpreis = parseFloat(gesamtpreis) + parseFloat(kargo.uecret);
     gesamtpreis = gesamtpreis.toFixed(2);
-    console.log('---1---toplamFiyat: ' + res.locals.toplamFiyat);
+    sepet.toplamFiyat = gesamtpreis;
+    await sepet.save();
     res.render("ueye/alisverisSepetiFatura", { curentUser, gesamtpreis, ueruenToplam, kdv, kargo, sepet });
 }))
 
@@ -302,13 +324,11 @@ router.post('/alisverisSepetiFatura', isLoggedIn, catchAsync(async (req, res) =>
 router.post('/alisverisSepetiOedeme', isLoggedIn, catchAsync(async (req, res) => {
     const userId = req.user._id;
     const teslimatAdresId = req.body.teslimatAdresiSecimi;
-    console.log('teslimat Id = ' + teslimatAdresId);
     const teslimatAdres = await TeslimatAdres.findById(teslimatAdresId);
     const secenek = req.body.secenek;
     let faturaAdresId = '';
     const sepet = await AlisverisSepeti.findOne({ ueye: userId });
     if (secenek == 'false') {
-        console.log('if entered');
         faturaAdresId = req.body.faturaAdresiSecimi;
         const faturaAdres = await FaturaAdres.findById(faturaAdresId);
         sepet.faturaAdres = faturaAdres;
@@ -461,6 +481,8 @@ router.get('/paytr', isLoggedIn, catchAsync(async (req, res) => {
         siparisler.sepet.push(...sepet.ueruenler.map(item => ({
             ueruenGiyim: item.ueruenGiyim._id,
             miktar: item.miktar,
+            beden: item.beden,
+            renk: item.renk,
             tarih: orderDate,
             saat: orderTime,
             toplamFiyat: toplamFiyat,
@@ -475,6 +497,8 @@ router.get('/paytr', isLoggedIn, catchAsync(async (req, res) => {
                 return {
                     ueruenGiyim: item.ueruenGiyim._id,
                     miktar: item.miktar,
+                    beden: item.beden,
+                    renk: item.renk,
                     tarih: orderDate,
                     saat: orderTime,
                     toplamFiyat: toplamFiyat,
@@ -494,8 +518,8 @@ router.get('/paytr', isLoggedIn, catchAsync(async (req, res) => {
             Ürün Acıklama: ${ueruen.ueruenGiyim.aciklama}
             Ürün Kategori: ${ueruen.ueruenGiyim.kategori}
             Ürün Çeşit: ${ueruen.ueruenGiyim.cesit}
-            Ürün Renk: ${ueruen.ueruenGiyim.renk}
-            Ürün Beden: ${ueruen.ueruenGiyim.beden}
+            Ürün Renk: ${ueruen.renk}
+            Ürün Beden: ${ueruen.beden}
             Ürün Fiyat: ${ueruen.ueruenGiyim.fiyat} TL
 
         `;
@@ -577,12 +601,21 @@ router.post("/callback", function (req, res) {
 
 
 router.post('/sepeteEkle', catchAsync(async (req, res, next) => {
-    const ueruenID = req.body.ueruenID;
+    console.log('sepetEkle: ' + JSON.stringify(req.body));
+    const { ueruenID, ueruenBeden, ueruenRenk } = req.body;
     if (!req.session.ueruenIDs) {
         req.session.ueruenIDs = [];
+        req.session.ueruenDetaylar = [];
     }
     if (!req.session.ueruenIDs.includes(ueruenID)) {
         req.session.ueruenIDs.push(ueruenID);
+        const ueruenDetaylar = {
+            ueruenID,
+            ueruenBeden,
+            ueruenRenk
+        };
+        req.session.ueruenDetaylar.push(ueruenDetaylar);
+        console.log('ürün detaylar: ' + JSON.stringify(req.session.ueruenDetaylar));
     }
     res.redirect('/alisverisSepeti');
 }))
