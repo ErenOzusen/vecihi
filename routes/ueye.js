@@ -113,11 +113,6 @@ router.get('/adreslerim', isLoggedIn, catchAsync(async (req, res) => {
     res.render("ueye/adreslerim", { curentUser });
 }))
 
-router.get('/yeniAdresEkle', isLoggedIn, (req, res) => {
-    curentUser = req.user;
-    res.render("ueye/yeniAdresEkle", curentUser);
-})
-
 router.get('/yeniTeslimatAdres', isLoggedIn, (req, res) => {
     curentUser = req.user;
     res.render("ueye/yeniTeslimatAdres", curentUser);
@@ -144,7 +139,7 @@ router.post('/yeniFaturaAdres', isLoggedIn, catchAsync(async (req, res) => {
     const userId = req.user._id;
     const curentUser = await Ueye.findById(userId);
     faturaAdresForm = req.body.faturaAdres;
-    const faturaAdres = new FaturaAdres({ "isim": faturaAdresForm.isim, "soyisim": faturaAdresForm.soyisim, "tc": faturaAdresForm.tc, "uelke": faturaAdresForm.uelke, "sehir": faturaAdresForm.sehir, "sokak": faturaAdresForm.sokak, "evNumarasi": faturaAdresForm.evNumarasi, "ceptelefonu": faturaAdresForm.ceptelefonu });
+    const faturaAdres = new FaturaAdres({ "ünvan": faturaAdresForm.firmaUnvani, "vergiDaire": faturaAdresForm.vergiDairesi, "vergiNr": faturaAdresForm.vergiNumarasi, "isim": faturaAdresForm.isim, "soyisim": faturaAdresForm.soyisim, "uelke": faturaAdresForm.uelke, "sehir": faturaAdresForm.sehir, "sokak": faturaAdresForm.sokak, "evNumarasi": faturaAdresForm.evNumarasi, "ceptelefonu": faturaAdresForm.telefon });
     await faturaAdres.save();
     curentUser.faturaAdres.push(faturaAdres);
     await curentUser.save();
