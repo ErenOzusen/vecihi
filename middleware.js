@@ -2,6 +2,7 @@ const Ueye = require('./models/ueye');
 const AlisverisSepeti = require('./models/alisverisSepeti');
 const ExpressError = require('./utils/ExpressError');
 const Siparisler = require('./models/siparisler');
+const Kargo = require('./models/kargo');
 const { ObjectId } = require('mongodb');
 
 
@@ -34,6 +35,7 @@ module.exports.isAdmin = async (req, res, next) => {
 
 module.exports.toplamFiyatHesapla = async (req, res, next) => {
     const userId = req.user._id;
+    const kargo = await Kargo.findOne();
 
     try {
         const sepet = await AlisverisSepeti.findOne({ ueye: userId }).populate('ueruenler.ueruenGiyim');
@@ -44,9 +46,15 @@ module.exports.toplamFiyatHesapla = async (req, res, next) => {
             let toplamFiyat = 0;
             for (const sepetUeruen of sepet.ueruenler) {
 
-                toplamFiyat += sepetUeruen.ueruenGiyim.fiyat * sepetUeruen.miktar;
+                toplamFiyat = toplamFiyat + (sepetUeruen.ueruenGiyim.fiyat * sepetUeruen.miktar) * 1.2;
+
             }
-            res.locals.toplamFiyat = toplamFiyat;
+            if (kargo.uecret) {
+                res.locals.toplamFiyat = toplamFiyat + kargo.uecret;
+            } else {
+                res.locals.toplamFiyat = toplamFiyat;
+            }
+
         }
     } catch (err) {
         console.error('Hesaplamada bir hata oluştu:', err);

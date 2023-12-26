@@ -6603,6 +6603,7 @@ footer {
   /* satır yüksekliği */
   text-decoration: none;
   vertical-align: top;
+  margin-bottom: 15px;
 }
 
 @media only screen and (min-width:1200px) {
@@ -7459,11 +7460,20 @@ footer {
   }
 }
 
+.hesapRakamlar {
+  font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+  color: #646464;
+  font-weight: 800;
+  line-height: 1.2;
+  /* Korrigiert die line-height-Eigenschaft */
+  text-decoration: none;
+  vertical-align: middle;
+}
+
 .TamSayfaCerceveAlaniİciAlisverisSepetiOdenecekTutarRakamAlani {
   display: block;
-  width: 100½;
-  min-width: 100½;
-  max-width: 100½;
+  width: 100%;
+  /* Korrigiert die width-Eigenschaft */
   height: auto;
   margin: 0 auto;
   padding: 0;
@@ -7471,17 +7481,18 @@ footer {
   border: none;
   outline: none;
   background-color: #FFF;
-  font-family: Arial, " Helvetica Neue ", Helvatica, sans-serif;
+  font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
   color: #646464;
-  font-style: normal;
-  font-variant: normal;
   font-weight: 800;
-  line-height: 120½;
+  line-height: 1.2;
+  /* Korrigiert die line-height-Eigenschaft */
   text-decoration: none;
   vertical-align: middle;
 }
 
-@media only screen and (min-width:1200px) {
+/* Media Queries */
+
+@media only screen and (min-width: 1200px) {
 
   /* xl */
   .TamSayfaCerceveAlaniİciAlisverisSepetiOdenecekTutarRakamAlani {
@@ -7491,7 +7502,7 @@ footer {
   }
 }
 
-@media only screen and (min-width:992px) and (max-width:1199px) {
+@media only screen and (min-width: 992px) and (max-width: 1199px) {
 
   /* L */
   .TamSayfaCerceveAlaniİciAlisverisSepetiOdenecekTutarRakamAlani {
@@ -7501,7 +7512,7 @@ footer {
   }
 }
 
-@media only screen and (min-width:768px) and (max-width:991px) {
+@media only screen and (min-width: 768px) and (max-width: 991px) {
 
   /* m */
   .TamSayfaCerceveAlaniİciAlisverisSepetiOdenecekTutarRakamAlani {
@@ -7511,7 +7522,7 @@ footer {
   }
 }
 
-@media only screen and (max-width:767px) {
+@media only screen and (max-width: 767px) {
 
   /* s / xs */
   .TamSayfaCerceveAlaniİciAlisverisSepetiOdenecekTutarRakamAlani {
@@ -7520,6 +7531,7 @@ footer {
     text-align: left;
   }
 }
+
 
 .TamSayfaCerceveAlaniİciAlisverisSepetiSiparisOzetiIciButonAlani {
   display: block;

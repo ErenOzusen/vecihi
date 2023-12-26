@@ -113,9 +113,7 @@ router.put('/anaSayfaGuencelle', isLoggedIn, isAdmin, upload.array('image'), cat
     let sectionBirBaslik = '';
     let anaSayfa = new AnaSayfa({});
     if (req.body.section === 'Ana Sayfa Bölüm Reklam') {
-        console.log('first if entered');
         anaSayfa.images = req.files.map(f => ({ url: f.path, filename: f.filename }));
-        console.log('anaSayfa.images: ' + anaSayfa.images);
         await anaSayfa.save();
     } else {
         let selectedUeruenler = req.body.selectedUeruenler;

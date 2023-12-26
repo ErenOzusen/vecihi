@@ -230,26 +230,21 @@ router.post('/alisverisSepeti', catchAsync(async (req, res) => {
     res.redirect('/alisverisSepeti');
 }))
 
-router.get('/alisverisSepetiFatura', isLoggedIn, toplamFiyatHesapla, catchAsync(async (req, res) => {
-    const userId = req.user._id;
-    const curentUser = await Ueye.findById(userId)
-        .populate('teslimatAdres')
-        .populate('faturaAdres');
-    const sepet = await AlisverisSepeti.findOne({ ueye: userId }).populate('ueruenler.ueruenGiyim');
-    let toplamFiyat = 0;
-    console.log("sepet = " + sepet);
-    const kargo = await Kargo.findOne();
 
-    toplamFiyat = res.locals.toplamFiyat;
-    res.render("ueye/alisverisSepetiFatura", { curentUser, kargo, sepet, toplamFiyat });
-}))
 
 //alisverisSepeti.ejs den yolanan ilk siparis bilgileri
 router.post('/alisverisSepetiFatura', isLoggedIn, catchAsync(async (req, res) => {
     const ueruenInformation = JSON.parse(req.body.ueruenInformationlar);
-    console.log('ueruenInformation = ' + ueruenInformation + ueruenInformation.length);
+    console.log('ueruenInformation = ' + JSON.stringify(ueruenInformation) + ueruenInformation.length);
     const userId = req.user._id;
-    const curentUser = await Ueye.findById(userId);
+    const curentUser = await Ueye.findById(userId)
+        .populate('teslimatAdres')
+        .populate('faturaAdres');
+    const kargo = await Kargo.findOne();
+    const maxEntry = ueruenInformation.reduce((max, entry) => (entry.gesamtpreis > max.gesamtpreis) ? entry : max, ueruenInformation[0]);
+    // Extrahiere die dazugehörigen Elemente
+    let { ueruenID, quantity, gesamtpreis, ueruenToplam, kdv } = maxEntry;
+    console.log('maxEntry: ' + maxEntry + 'quantity: ' + quantity + 'gesamtpreis: ' + gesamtpreis + 'ueruenToplam: ' + ueruenToplam + 'kdv: ' + kdv);
     for (let i = 0; i < ueruenInformation.length; i++) {
         const ueruenGiyimId = ueruenInformation[i].ueruenID;
         const miktar = ueruenInformation[i].quantity;
@@ -290,7 +285,13 @@ router.post('/alisverisSepetiFatura', isLoggedIn, catchAsync(async (req, res) =>
             await sepetYeni.save();
         }
     }
-    res.redirect('/alisverisSepetiFatura');
+    const sepet = await AlisverisSepeti.findOne({ ueye: userId }).populate('ueruenler.ueruenGiyim');
+    gesamtpreis = parseFloat(gesamtpreis) + parseFloat(kargo.uecret);
+    gesamtpreis = gesamtpreis.toFixed(2);
+    res.locals.toplamFiyat = 0;
+    res.locals.toplamFiyat = gesamtpreis;
+    res.render("ueye/alisverisSepetiFatura", { curentUser, gesamtpreis, ueruenToplam, kdv, kargo, sepet });
+
 
 }))
 
