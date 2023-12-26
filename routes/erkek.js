@@ -61,7 +61,6 @@ router.get('/:id/detay', catchAsync(async (req, res, next) => {
     const { id } = req.params;
     const ratingUeruenDB = await Rating.find({ ueruenGiyim: id }).populate('ueye');
     const ueruen = await UeruenGiyim.findById(id);
-    console.log('ratingUeruenDB: ' + ratingUeruenDB + 'ratingUeruenDBFormated: ' + JSON.stringify(ratingUeruenDB));
     res.render("ueruenler/ueruenDetay", { ueruen, ratingUeruenDB });
 }))
 

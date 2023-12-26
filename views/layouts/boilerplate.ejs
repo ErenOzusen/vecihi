@@ -185,7 +185,6 @@
             }
 
             function disableSpecificCheckboxes() {
-                console.log('disable specific checkboxes entered');
                 flexCheckDefault1.disabled = true;
                 flexCheckDefault2.disabled = true;
                 flexCheckDefault3.disabled = true;
@@ -332,7 +331,6 @@
                 });
 
                 produkteInformationen.push(produktInfo);
-                console.log('------Produktinformationen------ ' + JSON.stringify(produkteInformationen));
             }
 
             window.submitForm = function () {
@@ -341,8 +339,6 @@
                 const ueruenInformationlar = document.getElementById('ueruenInformationlar');
                 ueruenInformationlar.value = JSON.stringify(produkteInformationen);
                 ueruenlerInputPost.value = ueruenlerValue;
-                console.log('------- ' + JSON.stringify(produkteInformationen));
-                console.log('++++++++ ' + ueruenInformationlar.value);
                 const meinFormular = document.getElementById('meinFormular');
                 meinFormular.submit();
 

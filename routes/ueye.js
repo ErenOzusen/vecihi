@@ -21,6 +21,7 @@ const { storage } = require('../cloudinary');
 const { cloudinary } = require('../cloudinary');
 const upload = multer({ storage });
 const { ObjectId } = require('mongodb');
+const nodemailer = require('nodemailer');
 
 
 
@@ -286,13 +287,13 @@ router.post('/alisverisSepetiFatura', isLoggedIn, catchAsync(async (req, res) =>
         }
     }
     const sepet = await AlisverisSepeti.findOne({ ueye: userId }).populate('ueruenler.ueruenGiyim');
+    sepet.toplamFiyat = gesamtpreis
+    await sepet.save();
+    console.log('sepet son: ' + sepet);
     gesamtpreis = parseFloat(gesamtpreis) + parseFloat(kargo.uecret);
     gesamtpreis = gesamtpreis.toFixed(2);
-    res.locals.toplamFiyat = 0;
-    res.locals.toplamFiyat = gesamtpreis;
+    console.log('---1---toplamFiyat: ' + res.locals.toplamFiyat);
     res.render("ueye/alisverisSepetiFatura", { curentUser, gesamtpreis, ueruenToplam, kdv, kargo, sepet });
-
-
 }))
 
 
@@ -321,11 +322,12 @@ router.post('/alisverisSepetiOedeme', isLoggedIn, catchAsync(async (req, res) =>
 
 }))
 
-router.get('/paytr', isLoggedIn, toplamFiyatHesapla, catchAsync(async (req, res) => {
+router.get('/paytr', isLoggedIn, catchAsync(async (req, res) => {
     const userId = req.user._id;
     const curentUser = await Ueye.findById(userId);
-    const sepet = await AlisverisSepeti.findOne({ ueye: userId }).populate('ueruenler.ueruenGiyim').populate('teslimatAdres');
-    toplamFiyat = res.locals.toplamFiyat;
+    const sepet = await AlisverisSepeti.findOne({ ueye: userId }).populate('ueye').populate('ueruenler.ueruenGiyim').populate('teslimatAdres');
+    toplamFiyat = sepet.toplamFiyat;
+    console.log('------sepet: ' + sepet);
 
     var merchant_id = '399794';
     var merchant_key = 'b8JihzQCjkJrUEPn';
@@ -482,6 +484,72 @@ router.get('/paytr', isLoggedIn, toplamFiyatHesapla, catchAsync(async (req, res)
 
         await newSiparisler.save();
     }
+
+    const urunBilgileri = sepet.ueruenler.map((ueruen) => {
+        return `
+            Ürün Bilgisi:
+            Miktar: ${ueruen.miktar}
+            Ürün ID: ${ueruen.ueruenGiyim._id} 
+            Ürün Tarif: ${ueruen.ueruenGiyim.tarif}
+            Ürün Acıklama: ${ueruen.ueruenGiyim.aciklama}
+            Ürün Kategori: ${ueruen.ueruenGiyim.kategori}
+            Ürün Çeşit: ${ueruen.ueruenGiyim.cesit}
+            Ürün Renk: ${ueruen.ueruenGiyim.renk}
+            Ürün Beden: ${ueruen.ueruenGiyim.beden}
+            Ürün Fiyat: ${ueruen.ueruenGiyim.fiyat} TL
+
+        `;
+    });
+
+    const urunBilgileriText = urunBilgileri.join('\n');
+
+    const transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+            user: process.env.EMAIL,
+            pass: process.env.APP_PASSWORD,
+        },
+        secure: true,
+        port: 465,
+    });
+
+    const emailText = `
+        Üye Bilgileri:
+        Isim: ${sepet.ueye.isim}
+        Soyisim: ${sepet.ueye.soyisim}
+        E-Mail: ${sepet.ueye.email}
+        Telefon: ${sepet.ueye.ceptelefonu}
+
+        ${urunBilgileriText}
+
+        Teslimat Adresi:
+        Isim: ${sepet.teslimatAdres.isim}
+        Soyisim: ${sepet.teslimatAdres.soyisim}
+        Ülke: ${sepet.teslimatAdres.uelke}
+        Şehir: ${sepet.teslimatAdres.sehir}
+        Sokak: ${sepet.teslimatAdres.sokak}
+        Ev Numarası: ${sepet.teslimatAdres.evNumarasi}
+        Telefon: ${sepet.teslimatAdres.ceptelefonu}
+
+        Toplamfiyat: ${sepet.toplamFiyat}
+    `;
+
+    const mailOptions = {
+        from: 'vecihistore@gmail.com',
+        to: 'tolgay.altiner@web.de',
+        subject: 'Vecihi Siparişin',
+        text: emailText
+    };
+
+    transporter.sendMail(mailOptions, (error, info) => {
+        if (error) {
+            console.error(error);
+        } else {
+            console.log('E-Mail erfolgreich versendet: ' + info.response);
+        }
+    });
+
+
     await AlisverisSepeti.findOneAndRemove({ ueye: userId });
     delete req.session.ueruenIDs;
 }))
