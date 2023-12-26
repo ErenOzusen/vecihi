@@ -12523,6 +12523,10 @@ footer {
   text-decoration: none;
 }
 
+.TamSayfaCerceveAlaniIciHesabimSayfasiAdresBilgileriIslemIconlariMetni span:hover {
+  cursor: pointer;
+}
+
 .TamSayfaCerceveAlaniİciHesabimFavorilerSayfasiUrunlerAlani {
   display: block;
   width: 100%;

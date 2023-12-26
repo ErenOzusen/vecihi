@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 const FaturaAdresSchema = new Schema({
 
-    ünvan: {
+    uenvan: {
         type: String,
         required: true,
         unique: false

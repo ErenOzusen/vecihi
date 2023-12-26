@@ -1,0 +1,88 @@
+<% layout('layouts/boilerplate') %>
+
+    <div id="TamSayfaCerceveAlani">
+        <div id="TamSayfaCerceveSinirlamaAlani">
+            <form action="/teslimatAdresGuencelle?_method=PUT" method="POST" novalidate class="validated-form">
+
+                <div id="TamSayfaCerceveAlaniIciYuzdeElliSolAlan">
+                    <div class="TamSayfaCerceveAlaniİciAltiCizgiliBaslikAlani">
+                        <div class="TamSayfaCerceveAlaniİciAltiCizgiliBaslikAlaniUstBaslikMetni">
+                            Hesabım > Yeni Teslimat Adres Ekleme</div>
+                        <div class="TamSayfaCerceveAlaniİciAltiCizgiliBaslikAlaniAltBaslikMetni">
+                            Aşağıdan yeni adres ekleyebilirsiniz.</div>
+                    </div>
+
+
+                    <div class="TamSayfaCerceveAlaniIcinFormElemanlariBaslikMetni">Isim</div>
+                    <div class="TamSayfaCerceveAlaniIcinFormElemanlariIciSatirAlani"><input name="teslimatAdres[isim]"
+                            type="text" class="FormElemanlariTextInputlari" tabindex="1" value="<%=curentUser.isim%>"
+                            required>
+                        <div class="valid-feedback">Iyi!</div>
+                        <div class="invalid-feedback">Lütfen izminizi yazın</div>
+                    </div>
+
+
+                    <div class="TamSayfaCerceveAlaniIcinFormElemanlariBaslikMetni">Soyisim</div>
+                    <div class="TamSayfaCerceveAlaniIcinFormElemanlariIciSatirAlani"><input
+                            name="teslimatAdres[soyisim]" type="text" class="FormElemanlariTextInputlari" tabindex="2"
+                            value="<%=curentUser.soyisim%>" required>
+                        <div class="valid-feedback">Iyi!</div>
+                        <div class="invalid-feedback">Lütfen soyizminizi yazın</div>
+                    </div>
+
+                    <div class="TamSayfaCerceveAlaniIcinFormElemanlariBaslikMetni">TC kimlik no.</div>
+                    <div class="TamSayfaCerceveAlaniIcinFormElemanlariIciSatirAlani"><input name="teslimatAdres[tc]"
+                            type="text" class="FormElemanlariTextInputlari" tabindex="3" value="<%=teslimatAdres.tc%>"
+                            required>
+                        <div class="valid-feedback">Iyi!</div>
+                        <div class="invalid-feedback">Lütfen tc kimlik no. yazın</div>
+                    </div>
+
+                    <div class="TamSayfaCerceveAlaniIcinFormElemanlariBaslikMetni">Ülke</div>
+                    <div class="TamSayfaCerceveAlaniIcinFormElemanlariIciSatirAlani">
+                        <select name="teslimatAdres[uelke]" class="UelkeSelect" required>
+                            <option class="" value="Türkiye">Türkiye</option>
+                        </select>
+                        <div class="valid-feedback">Iyi!</div>
+                        <div class="invalid-feedback">Lütfen bir tane ülke secin</div>
+                    </div>
+
+                    <div class="TamSayfaCerceveAlaniIcinFormElemanlariBaslikMetni">Sehir</div>
+                    <div class="TamSayfaCerceveAlaniIcinFormElemanlariIciSatirAlani"><input name="teslimatAdres[sehir]"
+                            type="text" class="FormElemanlariTextInputlari" tabindex="4"
+                            value="<%=teslimatAdres.sehir%>" required>
+                        <div class="valid-feedback">Iyi!</div>
+                        <div class="invalid-feedback">Lütfen sokağınzı yazın</div>
+                    </div>
+
+                    <div class="TamSayfaCerceveAlaniIcinFormElemanlariBaslikMetni">Sokak</div>
+                    <div class="TamSayfaCerceveAlaniIcinFormElemanlariIciSatirAlani"><input name="teslimatAdres[sokak]"
+                            type="text" class="FormElemanlariTextInputlari" tabindex="4"
+                            value="<%=teslimatAdres.sokak%>" required>
+                        <div class="valid-feedback">Iyi!</div>
+                        <div class="invalid-feedback">Lütfen sokağınzı yazın</div>
+                    </div>
+
+                    <div class="TamSayfaCerceveAlaniIcinFormElemanlariBaslikMetni">Ev numarası</div>
+                    <div class="TamSayfaCerceveAlaniIcinFormElemanlariIciSatirAlani"><input
+                            name="teslimatAdres[evNumarasi]" type="text" class="FormElemanlariTextInputlari"
+                            tabindex="5" value="<%=teslimatAdres.evNumarasi%>" required>
+                        <div class="valid-feedback">Iyi!</div>
+                        <div class="invalid-feedback">Lütfen ev numaranızı yazın</div>
+                    </div>
+
+                    <div class="TamSayfaCerceveAlaniIcinFormElemanlariBaslikMetni">Cep Telefonu</div>
+                    <div class="TamSayfaCerceveAlaniIcinFormElemanlariIciSatirAlani"><input
+                            name="teslimatAdres[ceptelefonu]" type="text" class="FormElemanlariTextInputlari"
+                            tabindex="6" value="<%=teslimatAdres.ceptelefonu%>" required>
+                        <div class="valid-feedback">Iyi!</div>
+                        <div class="invalid-feedback">Lütfen cep telefonunuzu yazın</div>
+                    </div>
+
+                    <input type="hidden" name="teslimatAdres[id]" value="<%=teslimatAdres._id%>">
+                    <div class="ButonlarIcinKapsamaAlani"><input type="submit" value="Teslimat Adresi Güncelle"
+                            class="FormElemanlariYesilButonlar" tabindex="7"></div>
+                </div>
+            </form>
+        </div>
+    </div>

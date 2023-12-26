@@ -33,20 +33,28 @@
                                 </div>
 
                                 <div class="TamSayfaCerceveAlaniIciHesabimSayfasiAdresBilgileriGuncelleVeSilIslemAlani">
-
-                                    <div class="TamSayfaCerceveAlaniIciHesabimSayfasiAdresBilgileriIslemIconlariMetni">
-                                        <a href="Adreslerim.html" target="_top">Sil</a>
-                                    </div>
-                                    <div class="TamSayfaCerceveAlaniIciHesabimSayfasiAdresBilgileriIslemIconlariAlani">
-                                        <img src="/images/delete.png" alt="" title="">
-                                    </div>
-
-                                    <div class="TamSayfaCerceveAlaniIciHesabimSayfasiAdresBilgileriIslemIconlariMetni">
-                                        <a href="/yeniTeslimatAdres" target="_top">Güncelle</a>
-                                    </div>
-                                    <div class="TamSayfaCerceveAlaniIciHesabimSayfasiAdresBilgileriIslemIconlariAlani">
-                                        <img src="/images/refresh.png" alt="" title="">
-                                    </div>
+                                    <form action="/<%=teslimatAdres._id%>/teslimatAdresSil?_method=DELETE" method="POST"
+                                        id="teslimatForm">
+                                        <div
+                                            class="TamSayfaCerceveAlaniIciHesabimSayfasiAdresBilgileriIslemIconlariMetni">
+                                            <span onclick="deleteTeslimatForm(this)">Sil</span>
+                                        </div>
+                                        <div
+                                            class="TamSayfaCerceveAlaniIciHesabimSayfasiAdresBilgileriIslemIconlariAlani">
+                                            <img src="/images/delete.png" alt="" title="">
+                                        </div>
+                                    </form>
+                                    <form action="/teslimatAdresGuencelle" method="POST" id="teslimatForm">
+                                        <input type="hidden" name="teslimatAdresID" value="<%=teslimatAdres.id%>">
+                                        <div
+                                            class="TamSayfaCerceveAlaniIciHesabimSayfasiAdresBilgileriIslemIconlariMetni">
+                                            <span onclick="submitTeslimatForm(this)">Güncelle</span>
+                                        </div>
+                                        <div class="
+                                                TamSayfaCerceveAlaniIciHesabimSayfasiAdresBilgileriIslemIconlariAlani">
+                                            <img src="/images/refresh.png" alt="" title="">
+                                        </div>
+                                    </form>
                                 </div>
                             </div>
 
@@ -61,36 +69,44 @@
                                     <% let faturaAdres=curentUser.faturaAdres[i]; %>
                                         <div class="TamSayfaCerceveAlaniIciHesabimSayfasiAdresBilgileriDetayAlani">
                                             <div class="TamSayfaCerceveAlaniIciHesabimSayfasiAdresBilgileriMetni">Eren
-                                                <%=faturaAdres.isim%>
-                                                    <%=faturaAdres.soyisim%> <br> TC.
-                                                        <%=faturaAdres.tc%> <br>
-                                                            <%=faturaAdres.sokak%>
-                                                                <%=faturaAdres.evNumarasi%>
-                                                                    <%=faturaAdres.sehir%>
-                                                                        <%=faturaAdres.uelke%><br>
-                                                                            <%=faturaAdres.ceptelefonu%>
+                                                <%=faturaAdres.uenvan%> <br>
+                                                    <%=faturaAdres.vergiDaire%> <br>
+                                                        <%=faturaAdres.vergiNr%> <br>
+                                                            <%=faturaAdres.isim%>
+                                                                <%=faturaAdres.soyisim%> <br>
+                                                                    <%=faturaAdres.sokak%>
+                                                                        <%=faturaAdres.evNumarasi%> <br>
+                                                                            <%=faturaAdres.sehir%>
+                                                                                <%=faturaAdres.uelke%><br>
+                                                                                    <%=faturaAdres.ceptelefonu%>
                                             </div>
 
                                             <div
                                                 class="TamSayfaCerceveAlaniIciHesabimSayfasiAdresBilgileriGuncelleVeSilIslemAlani">
+                                                <form action="/<%=faturaAdres._id%>/faturaAdresSil?_method=DELETE"
+                                                    method="POST" id="faturaForm">
+                                                    <div
+                                                        class="TamSayfaCerceveAlaniIciHesabimSayfasiAdresBilgileriIslemIconlariMetni">
+                                                        <span onclick="deleteFaturaForm(this)">Sil</span>
+                                                    </div>
+                                                    <div
+                                                        class="TamSayfaCerceveAlaniIciHesabimSayfasiAdresBilgileriIslemIconlariAlani">
+                                                        <img src="/images/delete.png" alt="" title="">
+                                                    </div>
+                                                </form>
+                                                <form action="/faturaAdresGuencelle" method="POST" id="FaturaForm">
+                                                    <input type="hidden" name="faturaAdresID"
+                                                        value="<%=faturaAdres.id%>">
+                                                    <div
+                                                        class="TamSayfaCerceveAlaniIciHesabimSayfasiAdresBilgileriIslemIconlariMetni">
+                                                        <span onclick="submitFaturaAdresForm(this)">Güncelle</span>
+                                                    </div>
+                                                    <div
+                                                        class="TamSayfaCerceveAlaniIciHesabimSayfasiAdresBilgileriIslemIconlariAlani">
+                                                        <img src="/images/refresh.png" alt="" title="">
+                                                    </div>
+                                                </form>
 
-                                                <div
-                                                    class="TamSayfaCerceveAlaniIciHesabimSayfasiAdresBilgileriIslemIconlariMetni">
-                                                    <a href="Adreslerim.html" target="_top">Sil</a>
-                                                </div>
-                                                <div
-                                                    class="TamSayfaCerceveAlaniIciHesabimSayfasiAdresBilgileriIslemIconlariAlani">
-                                                    <img src="/images/delete.png" alt="" title="">
-                                                </div>
-
-                                                <div
-                                                    class="TamSayfaCerceveAlaniIciHesabimSayfasiAdresBilgileriIslemIconlariMetni">
-                                                    <a href="Adres-Guncelle.html" target="_top">Güncelle</a>
-                                                </div>
-                                                <div
-                                                    class="TamSayfaCerceveAlaniIciHesabimSayfasiAdresBilgileriIslemIconlariAlani">
-                                                    <img src="/images/refresh.png" alt="" title="">
-                                                </div>
                                             </div>
                                         </div>
                                         <% } %>
@@ -102,3 +118,28 @@
                 </div>
             </div>
         </div>
+
+        <script>
+            function submitTeslimatForm(link) {
+                var form = link.closest("form");
+                form.submit();
+            }
+        </script>
+        <script>
+            function deleteTeslimatForm(link) {
+                var form = link.closest("form");
+                form.submit();
+            }
+        </script>
+        <script>
+            function submitFaturaAdresForm(link) {
+                var form = link.closest("form");
+                form.submit();
+            }
+        </script>
+        <script>
+            function deleteFaturaForm(link) {
+                var form = link.closest("form");
+                form.submit();
+            }
+        </script>

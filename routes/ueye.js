@@ -130,16 +130,62 @@ router.post('/yeniTeslimatAdres', isLoggedIn, catchAsync(async (req, res) => {
     res.redirect('/')
 }))
 
+router.post('/teslimatAdresGuencelle', isLoggedIn, catchAsync(async (req, res) => {
+    const teslimatAdresID = req.body.teslimatAdresID;
+    console.log('teslimatAdresID: ' + teslimatAdresID);
+    teslimatAdres = await TeslimatAdres.findById(teslimatAdresID);
+    curentUser = req.user;
+    res.render("ueye/teslimatAdresGuencelle", { curentUser, teslimatAdres });
+}))
+
+router.put('/teslimatAdresGuencelle', isLoggedIn, catchAsync(async (req, res) => {
+    yeniteslimatAdres = req.body.teslimatAdres;
+    const teslimatAdresGuencellenmis = await TeslimatAdres.findByIdAndUpdate(yeniteslimatAdres.id, { "$set": { "isim": yeniteslimatAdres.isim, "soyisim": yeniteslimatAdres.soyisim, "tc": yeniteslimatAdres.tc, "uelke": yeniteslimatAdres.uelke, "sehir": yeniteslimatAdres.sehir, "sokak": yeniteslimatAdres.sokak, "evNumarasi": yeniteslimatAdres.evNumarasi, "ceptelefonu": yeniteslimatAdres.ceptelefonu } });
+    await teslimatAdresGuencellenmis.save();
+    res.redirect('/adreslerim');
+}))
+
+router.delete('/:id/teslimatAdresSil', isLoggedIn, catchAsync(async (req, res) => {
+    const { id } = req.params;
+    await TeslimatAdres.findByIdAndDelete(id);
+
+    res.redirect('/adreslerim');
+    req.flash('success', 'Teslimat adres silindi');
+}))
+
 router.get('/yeniFaturaAdres', isLoggedIn, (req, res) => {
     curentUser = req.user;
     res.render("ueye/yeniFaturaAdres", curentUser);
 })
 
+router.post('/faturaAdresGuencelle', isLoggedIn, catchAsync(async (req, res) => {
+    const faturaAdresID = req.body.faturaAdresID;
+    console.log('faturaAdresID: ' + faturaAdresID);
+    faturaAdres = await FaturaAdres.findById(faturaAdresID);
+    curentUser = req.user;
+    res.render("ueye/faturaAdresGuencelle", { curentUser, faturaAdres });
+}))
+
+router.put('/faturaAdresGuencelle', isLoggedIn, catchAsync(async (req, res) => {
+    yeniFaturaAdres = req.body.faturaAdres;
+    const faturaAdresGuencellenmis = await FaturaAdres.findByIdAndUpdate(yeniFaturaAdres.id, { "$set": { "uenvan": yeniFaturaAdres.firmaUnvani, "vergiDaire": yeniFaturaAdres.vergiDairesi, "vergiNr": yeniFaturaAdres.vergiNumarasi, "isim": yeniFaturaAdres.isim, "soyisim": yeniFaturaAdres.soyisim, "uelke": yeniFaturaAdres.uelke, "sehir": yeniFaturaAdres.sehir, "sokak": yeniFaturaAdres.sokak, "evNumarasi": yeniFaturaAdres.evNumarasi, "ceptelefonu": yeniFaturaAdres.ceptelefonu } });
+    await faturaAdresGuencellenmis.save();
+    res.redirect('/adreslerim');
+}))
+
+router.delete('/:id/faturaAdresSil', isLoggedIn, catchAsync(async (req, res) => {
+    const { id } = req.params;
+    await FaturaAdres.findByIdAndDelete(id);
+
+    res.redirect('/adreslerim');
+    req.flash('success', 'Fatura adres silindi');
+}))
+
 router.post('/yeniFaturaAdres', isLoggedIn, catchAsync(async (req, res) => {
     const userId = req.user._id;
     const curentUser = await Ueye.findById(userId);
     faturaAdresForm = req.body.faturaAdres;
-    const faturaAdres = new FaturaAdres({ "ünvan": faturaAdresForm.firmaUnvani, "vergiDaire": faturaAdresForm.vergiDairesi, "vergiNr": faturaAdresForm.vergiNumarasi, "isim": faturaAdresForm.isim, "soyisim": faturaAdresForm.soyisim, "uelke": faturaAdresForm.uelke, "sehir": faturaAdresForm.sehir, "sokak": faturaAdresForm.sokak, "evNumarasi": faturaAdresForm.evNumarasi, "ceptelefonu": faturaAdresForm.telefon });
+    const faturaAdres = new FaturaAdres({ "uenvan": faturaAdresForm.firmaUnvani, "vergiDaire": faturaAdresForm.vergiDairesi, "vergiNr": faturaAdresForm.vergiNumarasi, "isim": faturaAdresForm.isim, "soyisim": faturaAdresForm.soyisim, "uelke": faturaAdresForm.uelke, "sehir": faturaAdresForm.sehir, "sokak": faturaAdresForm.sokak, "evNumarasi": faturaAdresForm.evNumarasi, "ceptelefonu": faturaAdresForm.telefon });
     await faturaAdres.save();
     curentUser.faturaAdres.push(faturaAdres);
     await curentUser.save();
