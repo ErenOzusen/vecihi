@@ -24,6 +24,7 @@ const LocalStrategy = require('passport-local');
 const methodOverride = require('method-override');
 const AnaSayfa = require('./models/anaSayfa');
 const UeruenGiyim = require('./models/ueruenGiyim');
+const Rating = require('./models/rating');
 //var ejsLayouts = require('express-ejs-layouts');
 var microtime = require('microtime');
 var crypto = require('crypto');
@@ -85,6 +86,7 @@ app.use('/admin', adminRoutes);
 app.use('/vintage', vintageRoutes);
 
 app.get('/', (catchAsync(async (req, res, next) => {
+  const ratings = await Rating.find({});
   const currentUser = req.user;
   var isAdmin = false;
   const admin = process.env.ADMIN;
@@ -99,7 +101,7 @@ app.get('/', (catchAsync(async (req, res, next) => {
   const anaSayfaUeruenlerSectionIkiIDs = anaSayfaUeruenlerDB.map(anaSayfaUeruenlerDB => anaSayfaUeruenlerDB.sectionIkiUeruenID).flat();
   const anaSayfaUeruenlerSectionBir = await UeruenGiyim.find({ _id: { $in: anaSayfaUeruenlerSectionBirIDs } });
   const anaSayfaUeruenlerSectionIki = await UeruenGiyim.find({ _id: { $in: anaSayfaUeruenlerSectionIkiIDs } });
-  res.render("index", { isAdmin, anaSayfaUeruenlerSectionBir, anaSayfaUeruenlerSectionIki, anaSayfaUeruenlerDB });
+  res.render("index", { isAdmin, anaSayfaUeruenlerSectionBir, anaSayfaUeruenlerSectionIki, anaSayfaUeruenlerDB, ratings });
 })))
 
 /* app.get('/:id', catchAsync(async (req, res) => {

@@ -8,10 +8,11 @@ const passport = require('passport');
 const { isLoggedIn, isAuthor, isAdmin } = require('../middleware.js');
 
 router.get('/', catchAsync(async (req, res, next) => {
+    const ratings = await Rating.find({});
     const ueruenler = await UeruenGiyim.find();
     const vintageUeruenler = ueruenler.filter((ueruen) => ueruen.kategori === 'vintageUeruenler');
 
-    res.render("ueruenler/tuemUeruen", { vintageUeruenler });
+    res.render("ueruenler/tuemUeruen", { vintageUeruenler, ratings });
 }))
 
 router.get('/:id/detay', catchAsync(async (req, res, next) => {
@@ -23,6 +24,7 @@ router.get('/:id/detay', catchAsync(async (req, res, next) => {
 
 
 router.get('/ahsap', catchAsync(async (req, res, next) => {
+    const ratings = await Rating.find({});
     const ueruenler = await UeruenGiyim.find();
     const vintageUeruenler = ueruenler.filter((ueruen) => ueruen.kategori === 'vintageUeruenler');
     const currentUser = req.user;
@@ -33,10 +35,11 @@ router.get('/ahsap', catchAsync(async (req, res, next) => {
     } else {
         isAdmin = false;
     }
-    res.render("ueruenler/vintage/ahsap", { vintageUeruenler, isAdmin });
+    res.render("ueruenler/vintage/ahsap", { vintageUeruenler, isAdmin, ratings });
 }))
 
 router.get('/anahtarlik', catchAsync(async (req, res, next) => {
+    const ratings = await Rating.find({});
     const ueruenler = await UeruenGiyim.find();
     const vintageUeruenler = ueruenler.filter((ueruen) => ueruen.kategori === 'vintageUeruenler');
     const currentUser = req.user;
@@ -47,10 +50,11 @@ router.get('/anahtarlik', catchAsync(async (req, res, next) => {
     } else {
         isAdmin = false;
     }
-    res.render("ueruenler/vintage/anahtarlik", { vintageUeruenler, isAdmin });
+    res.render("ueruenler/vintage/anahtarlik", { vintageUeruenler, isAdmin, ratings });
 }))
 
 router.get('/sues', catchAsync(async (req, res, next) => {
+    const ratings = await Rating.find({});
     const ueruenler = await UeruenGiyim.find();
     const vintageUeruenler = ueruenler.filter((ueruen) => ueruen.kategori === 'suesueruen');
     const currentUser = req.user;
@@ -61,7 +65,7 @@ router.get('/sues', catchAsync(async (req, res, next) => {
     } else {
         isAdmin = false;
     }
-    res.render("ueruenler/vintage/sues", { vintageUeruenler, isAdmin });
+    res.render("ueruenler/vintage/sues", { vintageUeruenler, isAdmin, ratings });
 }))
 
 

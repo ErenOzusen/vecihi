@@ -8,10 +8,11 @@ const passport = require('passport');
 const { isLoggedIn, isAuthor, isAdmin } = require('../middleware.js');
 
 router.get('/', catchAsync(async (req, res, next) => {
+    const ratings = await Rating.find({});
     const ueruenler = await UeruenGiyim.find();
     const kadinUeruenler = ueruenler.filter((ueruen) => ueruen.kategori === 'kadinGiyim' || ueruen.kategori === 'unisexGiyim');
 
-    res.render("ueruenler/tuemUeruen", { kadinUeruenler });
+    res.render("ueruenler/tuemUeruen", { kadinUeruenler, ratings });
 }))
 
 router.get('/:id/detay', catchAsync(async (req, res, next) => {
@@ -22,6 +23,7 @@ router.get('/:id/detay', catchAsync(async (req, res, next) => {
 }))
 
 router.get('/tshirt', catchAsync(async (req, res, next) => {
+    const ratings = await Rating.find({});
     const ueruenler = await UeruenGiyim.find();
     const kadinUeruenler = ueruenler.filter((ueruen) => ueruen.kategori === 'kadinGiyim' || ueruen.kategori === 'unisexGiyim');
     const currentUser = req.user;
@@ -33,10 +35,11 @@ router.get('/tshirt', catchAsync(async (req, res, next) => {
         isAdmin = false;
     }
 
-    res.render("ueruenler/giyim/tshirt", { kadinUeruenler, isAdmin });
+    res.render("ueruenler/giyim/tshirt", { kadinUeruenler, isAdmin, ratings });
 }))
 
 router.get('/sapka', catchAsync(async (req, res, next) => {
+    const ratings = await Rating.find({});
     const ueruenler = await UeruenGiyim.find();
     const kadinUeruenler = ueruenler.filter((ueruen) => ueruen.kategori === 'kadinGiyim' || ueruen.kategori === 'unisexGiyim');
     const currentUser = req.user;
@@ -47,10 +50,11 @@ router.get('/sapka', catchAsync(async (req, res, next) => {
     } else {
         isAdmin = false;
     }
-    res.render("ueruenler/giyim/sapka", { kadinUeruenler, isAdmin });
+    res.render("ueruenler/giyim/sapka", { kadinUeruenler, isAdmin, ratings });
 }))
 
 router.get('/canta', catchAsync(async (req, res, next) => {
+    const ratings = await Rating.find({});
     const ueruenler = await UeruenGiyim.find();
     const kadinUeruenler = ueruenler.filter((ueruen) => ueruen.kategori === 'kadinGiyim' || ueruen.kategori === 'unisexGiyim');
     const currentUser = req.user;
@@ -61,7 +65,7 @@ router.get('/canta', catchAsync(async (req, res, next) => {
     } else {
         isAdmin = false;
     }
-    res.render("ueruenler/giyim/canta", { kadinUeruenler, isAdmin });
+    res.render("ueruenler/giyim/canta", { kadinUeruenler, isAdmin, ratings });
 }))
 
 

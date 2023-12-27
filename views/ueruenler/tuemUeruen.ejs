@@ -72,26 +72,32 @@
                                                                             <%= ueruen.tarif%>
                                                                         </div>
 
-                                                                        <div
-                                                                            class="TamSayfaSagSutunIciUrunPuanYildizlariAlani">
+                                                                        <% if(ratings !==undefined) { %>
+                                                                            <% for(let rating of ratings) { %>
+                                                                                <% if(ueruen._id.equals(rating.ueruenGiyim._id))
+                                                                                    { %>
+                                                                                    <div
+                                                                                        class="TamSayfaSagSutunIciUrunAltBaslikMetni d-flex justify-content-center">
+                                                                                        <p class="starability-result"
+                                                                                            data-rating="<%=rating.stars%>">
+                                                                                        </p>
+                                                                                    </div>
+                                                                                    <% } %>
+                                                                                        <% } %>
+                                                                                            <% } %>
+                                                                                                <div
+                                                                                                    class="TamSayfaSagSutunIciUrunFiyatlariAlani mb-1">
 
-                                                                            <img src="/images/star-1.png" alt=""
-                                                                                title="">
 
-                                                                        </div>
+                                                                                                    <span
+                                                                                                        class="TamSayfaSagSutunIciUrunAltBaslikMetni">
 
-                                                                        <div
-                                                                            class="TamSayfaSagSutunIciUrunFiyatlariAlani mb-1">
+                                                                                                        <%=ueruen.fiyat%>
+                                                                                                            TL
 
+                                                                                                    </span>
 
-                                                                            <span
-                                                                                class="TamSayfaSagSutunIciUrunAltBaslikMetni">
-
-                                                                                <%=ueruen.fiyat%> TL
-
-                                                                            </span>
-
-                                                                        </div>
+                                                                                                </div>
 
 
                                                                     </div>

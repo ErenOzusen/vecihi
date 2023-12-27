@@ -149,12 +149,24 @@
                                                                                                                 style="text-decoration: none; color: white;"
                                                                                                                 href="/<%=siparis.ueruenGiyim._id%>/yorumYaz">Yorumla</a></button>
                                                                                                     </div>
-                                                                                                    <div class="col-6">
-                                                                                                        <button
-                                                                                                            class="btn btn-success"><a
-                                                                                                                style="text-decoration: none; color: white;"
-                                                                                                                href="/<%=siparis.ueruenGiyim.kategori%>/<%=siparis.ueruenGiyim._id%>/detay">Detay</a></button>
-                                                                                                    </div>
+                                                                                                    <% if(siparis.ueruenGiyim.kategori==='vintageUeruenler'
+                                                                                                        ) {%>
+                                                                                                        <div
+                                                                                                            class="col-6">
+                                                                                                            <button
+                                                                                                                class="btn btn-success"><a
+                                                                                                                    style="text-decoration: none; color: white;"
+                                                                                                                    href="/vintage/<%=siparis.ueruenGiyim._id%>/detay">Detay</a></button>
+                                                                                                        </div>
+                                                                                                        <% } else {%>
+                                                                                                            <div
+                                                                                                                class="col-6">
+                                                                                                                <button
+                                                                                                                    class="btn btn-success"><a
+                                                                                                                        style="text-decoration: none; color: white;"
+                                                                                                                        href="/<%=siparis.ueruenGiyim.kategori%>/<%=siparis.ueruenGiyim._id%>/detay">Detay</a></button>
+                                                                                                            </div>
+                                                                                                            <% }%>
                                                                                                 </div>
                                                                                                 <% } else { %>
 

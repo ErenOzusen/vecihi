@@ -687,7 +687,12 @@ router.post('/:id/yorumYaz', isLoggedIn, ueruenOedenmis, upload.array('image'), 
 
     //Definiert den Endpunkt an dem es am Ende navigiert wird
     console.log('ueruen: ' + ueruen + 'ueruenFormatted: ' + JSON.stringify(ueruen));
-    const redirectUrl = `/${ueruen.kategori}/${ueruen.id}/detay`;
+    let redirectUrl = '';
+    if (ueruen.kategori === 'vintageUeruenler') {
+        redirectUrl = `/vintage/${ueruen.id}/detay`;
+    } else {
+        redirectUrl = `/${ueruen.kategori}/${ueruen.id}/detay`;
+    }
 
     const ratingUeyeDB = await Rating.find({ ueye: userId });
 

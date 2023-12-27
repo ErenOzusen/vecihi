@@ -8,12 +8,14 @@ const passport = require('passport');
 const { isLoggedIn, isAuthor, isAdmin } = require('../middleware.js');
 
 router.get('/', catchAsync(async (req, res, next) => {
+    const ratings = await Rating.find({});
     const ueruenler = await UeruenGiyim.find();
     const erkekUeruenler = ueruenler.filter((ueruen) => ueruen.kategori === 'erkekGiyim' || ueruen.kategori === 'unisexGiyim');
-    res.render("ueruenler/tuemUeruen", { erkekUeruenler });
+    res.render("ueruenler/tuemUeruen", { erkekUeruenler, ratings });
 }))
 
 router.get('/tshirt', catchAsync(async (req, res, next) => {
+    const ratings = await Rating.find({});
     const ueruenler = await UeruenGiyim.find();
     const erkekUeruenler = ueruenler.filter((ueruen) => ueruen.kategori === 'erkekGiyim' || ueruen.kategori === 'unisexGiyim');
     const currentUser = req.user;
@@ -25,10 +27,11 @@ router.get('/tshirt', catchAsync(async (req, res, next) => {
         isAdmin = false;
     }
 
-    res.render("ueruenler/giyim/tshirt", { erkekUeruenler, isAdmin });
+    res.render("ueruenler/giyim/tshirt", { erkekUeruenler, isAdmin, ratings });
 }))
 
 router.get('/sapka', catchAsync(async (req, res, next) => {
+    const ratings = await Rating.find({});
     const ueruenler = await UeruenGiyim.find();
     const erkekUeruenler = ueruenler.filter((ueruen) => ueruen.kategori === 'erkekGiyim' || ueruen.kategori === 'unisexGiyim');
     const currentUser = req.user;
@@ -39,10 +42,11 @@ router.get('/sapka', catchAsync(async (req, res, next) => {
     } else {
         isAdmin = false;
     }
-    res.render("ueruenler/giyim/sapka", { erkekUeruenler, isAdmin });
+    res.render("ueruenler/giyim/sapka", { erkekUeruenler, isAdmin, ratings });
 }))
 
 router.get('/canta', catchAsync(async (req, res, next) => {
+    const ratings = await Rating.find({});
     const ueruenler = await UeruenGiyim.find();
     const erkekUeruenler = ueruenler.filter((ueruen) => ueruen.kategori === 'erkekGiyim' || ueruen.kategori === 'unisexGiyim');
     const currentUser = req.user;
@@ -53,7 +57,7 @@ router.get('/canta', catchAsync(async (req, res, next) => {
     } else {
         isAdmin = false;
     }
-    res.render("ueruenler/giyim/canta", { erkekUeruenler, isAdmin });
+    res.render("ueruenler/giyim/canta", { erkekUeruenler, isAdmin, ratings });
 }))
 
 

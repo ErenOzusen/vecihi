@@ -53,42 +53,48 @@
 
                                                     <%= ueruen.tarif%>
                                                 </div>
-
-                                                <div class="TamSayfaSagSutunIciUrunPuanYildizlariAlani">
-
-                                                    <img src="/images/star-1.png" alt="" title="">
-
-                                                </div>
-
-                                                <div class="TamSayfaSagSutunIciUrunFiyatlariAlani mb-1">
-
-
-                                                    <span class="TamSayfaSagSutunIciUrunAltBaslikMetni">
-
-                                                        <%=ueruen.fiyat%> TL
-
-                                                    </span>
-
-                                                </div>
-
-                                                <% if(isAdmin) {%>
-                                                    <div class="güncelle">
-                                                        <form action="/admin/<%=ueruen._id%>?_method=DELETE"
-                                                            method="POST">
-                                                            <div class="">
-                                                                <button><img src="/images/delete.png" alt=""
-                                                                        title="">Sil</button>
-
-                                                            </div>
-                                                        </form>
-                                                        <div class="">
-                                                            <a href="/admin/<%=ueruen._id%>/ueruenGuencelle"
-                                                                target="_top">
-                                                                <img src="/images/refresh.png" alt="" title="">
-                                                                Güncelle</a>
+                                                <% for(let rating of ratings) { %>
+                                                    <% if(ueruen._id.equals(rating.ueruenGiyim._id)) { %>
+                                                        <div
+                                                            class="TamSayfaSagSutunIciUrunAltBaslikMetni d-flex justify-content-center">
+                                                            <p class="starability-result"
+                                                                data-rating="<%=rating.stars%>">
+                                                            </p>
                                                         </div>
-                                                    </div>
-                                                    <% } %>
+                                                        <% } %>
+                                                            <% } %>
+
+                                                                <div class="TamSayfaSagSutunIciUrunFiyatlariAlani mb-1">
+
+
+                                                                    <span class="TamSayfaSagSutunIciUrunAltBaslikMetni">
+
+                                                                        <%=ueruen.fiyat%> TL
+
+                                                                    </span>
+
+                                                                </div>
+
+                                                                <% if(isAdmin) {%>
+                                                                    <div class="güncelle">
+                                                                        <form
+                                                                            action="/admin/<%=ueruen._id%>?_method=DELETE"
+                                                                            method="POST">
+                                                                            <div class="">
+                                                                                <button><img src="/images/delete.png"
+                                                                                        alt="" title="">Sil</button>
+
+                                                                            </div>
+                                                                        </form>
+                                                                        <div class="">
+                                                                            <a href="/admin/<%=ueruen._id%>/ueruenGuencelle"
+                                                                                target="_top">
+                                                                                <img src="/images/refresh.png" alt=""
+                                                                                    title="">
+                                                                                Güncelle</a>
+                                                                        </div>
+                                                                    </div>
+                                                                    <% } %>
                                             </div>
                                             <% } %>
                                                 <% } %>

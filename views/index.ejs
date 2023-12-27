@@ -24,6 +24,10 @@
                     </ul>
                 </div>
                 <% } %>
+
+
+
+
                     <div id="TamsayfajUrunlerAlani">
                         <% if(anaSayfaUeruenlerDB.length>0) {%>
                             <div id="TamsayfaYeniUrunlerBaslikAlani">
@@ -74,22 +78,35 @@
                                                                         <%=anaSayfaUeruenlerSectionBir[j].cesit%>
                                                                     </a>
                                                                 </div>
-                                                                <div class="TamsayfaYeniUrunPuanYildizlariAlani">
-                                                                    <a href="/ueruenDetay" target=""><img
-                                                                            src="/images/star-3.png" alt=""
-                                                                            title=""></a>
+                                                                <div class="">
+                                                                    <% for(let rating of ratings) { %>
+                                                                        <% if(anaSayfaUeruenlerSectionBir[j]._id.equals(rating.ueruenGiyim._id))
+                                                                            { %>
+                                                                            <div
+                                                                                class="TamSayfaSagSutunIciUrunAltBaslikMetni d-flex justify-content-center">
+                                                                                <p class="starability-result"
+                                                                                    data-rating="<%=rating.stars%>">
+                                                                                </p>
+                                                                            </div>
+                                                                            <% } %>
+                                                                                <% } %>
                                                                 </div>
                                                                 <div class="TamsayfaYeniUrunFiyatlariAlani">
-                                                                    <span class="TamsayfaUzeriCiziliYeniUrunFiyati">
-                                                                        <a href="/ueruenDetay" target=""><del>800
-                                                                                TL</del></a>
-                                                                    </span>
-                                                                    <span class="TamsayfaYeniUrunFiyati">
-                                                                        <a href="/<%=anaSayfaUeruenlerSectionBir[j].kategori%>/<%=anaSayfaUeruenlerSectionBir[j]._id%>/detay"
-                                                                            target="">
-                                                                            <%=anaSayfaUeruenlerSectionBir[j].fiyat%> TL
-                                                                        </a>
-                                                                    </span>
+                                                                    <div
+                                                                        class="TamSayfaSagSutunIciUrunFiyatlariAlani mb-1">
+
+
+                                                                        <span
+                                                                            class="TamSayfaSagSutunIciUrunAltBaslikMetni">
+                                                                            <a href="/<%=anaSayfaUeruenlerSectionBir[j].kategori%>/<%=anaSayfaUeruenlerSectionBir[j]._id%>/detay"
+                                                                                target="">
+                                                                                <%=anaSayfaUeruenlerSectionBir[j].fiyat%>
+                                                                                    TL
+                                                                            </a>
+                                                                        </span>
+
+                                                                    </div>
+
                                                                 </div>
                                                             </div>
                                                             <% } %>
@@ -97,7 +114,9 @@
                                                     <% } %>
                                                         <% } %>
                                         </div>
+
                     </div>
+
 
 
                     <div id="TamsayfaCoksatanUrunlerAlani">
@@ -146,18 +165,29 @@
                                                                 <%=anaSayfaUeruenlerSectionIki[j].cesit%>
                                                             </a>
                                                         </div>
-                                                        <div class="TamsayfaYeniUrunPuanYildizlariAlani">
-                                                            <a href="/ueruenDetay" target=""><img
-                                                                    src="/images/star-3.png" alt="" title=""></a>
+                                                        <div class="">
+                                                            <% for(let rating of ratings) { %>
+                                                                <% if(anaSayfaUeruenlerSectionIki[j]._id.equals(rating.ueruenGiyim._id))
+                                                                    { %>
+                                                                    <div
+                                                                        class="TamSayfaSagSutunIciUrunAltBaslikMetni d-flex justify-content-center">
+                                                                        <p class="starability-result"
+                                                                            data-rating="<%=rating.stars%>">
+                                                                        </p>
+                                                                    </div>
+                                                                    <% } %>
+                                                                        <% } %>
                                                         </div>
                                                         <div class="TamsayfaYeniUrunFiyatlariAlani">
                                                             <span class="TamsayfaUzeriCiziliYeniUrunFiyati">
-                                                                <a href="/ueruenDetay" target=""><del>800 TL</del></a>
+                                                                <a href="/ueruenDetay" target=""><del>800
+                                                                        TL</del></a>
                                                             </span>
                                                             <span class="TamsayfaYeniUrunFiyati">
                                                                 <a href="/<%=anaSayfaUeruenlerSectionIki[j].kategori%>/<%=anaSayfaUeruenlerSectionIki[j]._id%>/detay"
                                                                     target="">
-                                                                    <%=anaSayfaUeruenlerSectionIki[j].fiyat%> TL
+                                                                    <%=anaSayfaUeruenlerSectionIki[j].fiyat%>
+                                                                        TL
                                                                 </a>
                                                             </span>
                                                         </div>
@@ -166,16 +196,8 @@
                                             </div>
                                             <% } %>
                                                 <% } %>
-
-
-
-
-
-
                                 </div>
                     </div>
-
-
 
                     <div id="TamsayfaDortluBannerAlani">
                         <div id="TamsayfaDortluBannerDengelemeAlani">
