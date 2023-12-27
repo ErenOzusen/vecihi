@@ -133,11 +133,13 @@
                                                                 <td align="left" valign="top"
                                                                     class="TamSayfaCerceveAlaniIciKargoFirmasiTablosuRadioButonSutunu">
                                                                 </td>
-                                                                <td align="left" valign="top"
-                                                                    class="TamSayfaCerceveAlaniIciKargoFirmasiTablosuBaslikVeFiyatmetniSutunu">
-                                                                    <%=kargo.isim%>
-                                                                        <%=kargo.uecret%> TL
-                                                                </td>
+                                                                <% if(kargo) {%>
+                                                                    <td align="left" valign="top"
+                                                                        class="TamSayfaCerceveAlaniIciKargoFirmasiTablosuBaslikVeFiyatmetniSutunu">
+                                                                        <%=kargo.isim%>
+                                                                            <%=kargo.uecret%> TL
+                                                                    </td>
+                                                                    <% } %>
                                                             </tr>
                                                         </tbody>
                                                     </table>

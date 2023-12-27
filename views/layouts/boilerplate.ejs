@@ -347,6 +347,17 @@
     </script>
     <script>
         window.submitFaturaForm = function () {
+            var teslimatChecked = $('input[name="teslimatAdresiSecimi"]:checked').length > 0;
+            var faturaChecked = $('input[name="faturaAdresiSecimi"]:checked').length > 0;
+
+            // Wenn keiner ausgewählt wurde, zeige eine Meldung und verhindere das Absenden des Formulars
+            if (!teslimatChecked && !faturaChecked) {
+                alert('Lütfen teslimat veya fatura adresini seçiniz.');
+                return false;
+            }
+
+            // Andernfalls submit das Formular
+            document.getElementById("alisverisSepeti").submit();
             const alisverisSepetiForm = document.getElementById('alisverisSepeti');
             alisverisSepetiForm.submit();
         }
