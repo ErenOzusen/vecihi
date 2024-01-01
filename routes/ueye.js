@@ -601,7 +601,7 @@ router.get('/paytr', isLoggedIn, catchAsync(async (req, res) => {
 
     const mailOptions = {
         from: 'vecihistore@gmail.com',
-        to: 'tolgay.altiner@web.de, ozuseneren@gmail.com, erenakkurt048',
+        to: 'tolgay.altiner@web.de, ozuseneren@gmail.com, erenakkurt048@gmail.com',
         subject: 'Vecihi Siparişin',
         text: emailText
     };
